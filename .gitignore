@@ -1,0 +1,103 @@
+# --- ОС и IDE ---
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.code-workspace
+.ropeproject
+
+# --- Виртуальные окружения ---
+.venv/
+venv/
+ENV/
+env/
+.direnv/
+.pyenv/
+.python-version
+
+# --- Переменные окружения и секреты ---
+.env
+.env.*
+!.env.example
+!.env.sample
+!.env.template
+.flaskenv
+.secrets.*
+*.key
+*.pem
+
+# --- Python байткод и кэш ---
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.cache/
+.hypothesis/
+
+# --- Сборка и дистрибутивы ---
+build/
+dist/
+wheels/
+share/python-wheels/
+*.egg-info/
+.eggs/
+*.egg
+MANIFEST
+.installed.cfg
+
+# --- Логи и временные файлы ---
+*.log
+logs/
+pip-log.txt
+pip-delete-this-directory.txt
+
+# --- Тесты и покрытие ---
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache/
+coverage.xml
+nosetests.xml
+*.cover
+*.py,cover
+
+# --- Документация и артефакты ---
+docs/_build/
+doc/_build/
+
+# --- Проекты/фреймворки ---
+# Django / Flask / FastAPI (локальные файлы)
+db.sqlite3
+db.sqlite3-journal
+instance/
+.webassets-cache
+media/
+
+# --- Jupyter ---
+.ipynb_checkpoints/
+
+# --- Инструменты/менеджеры пакетов ---
+__pypackages__/
+# PDM создает каталог с зависимостями
+.pdm-python/
+
+# --- Планировщики/очереди ---
+celerybeat-schedule
+celerybeat.pid
+
+# --- Docker локальные переопределения (опционально) ---
+docker-compose.override.yml
+.docker/
+
+# --- Node (если фронт рядом с ботом) ---
+node_modules/
+
+
+*.session
+*.session-journal
+
+# --- Telegram bot data ---
+data/sessions/
+data/exports/
