@@ -1,0 +1,33 @@
+# Exclude results and logs
+logs/
+runs/
+runs_corpus_ppl/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+
+# Jupyter
+*.ipynb
+.ipynb_checkpoints/
+
+# Git
+.git/
+.gitignore
+
+# IDE
+.vscode/
+.idea/
+
+# Other
+*.md
+test.py
+main.py
