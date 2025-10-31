@@ -1,0 +1,84 @@
+defaults:
+  - hydra: default  
+  - _self_
+  - override hydra/hydra_logging: none  
+  - override hydra/job_logging: none  
+  
+  
+data: 
+  name: ""
+  d_x: -1
+  x_range: []
+  min_num_ctx: -1
+  max_num_ctx: -1
+  standardize: false
+  search_space_id: ""
+
+experiment: 
+  model: PABBO
+  mode: train
+  expid: ${experiment.model}_${data.name}_${now:%Y%m%d_%H%M%S}
+  device: cuda
+  resume: false
+  wandb: true
+
+wandb: 
+  project: PABBO
+  name: ${experiment.expid}
+  group: ${experiment.model}
+  job_type: debug
+  tags: ['${experiment.model}', training, '${data.name}']
+
+train: 
+  sampler: 
+    kernel_list: [rbf, matern52, matern32, matern12]
+    sample_kernel_weights: [0.25, 0.25, 0.25, 0.25]
+    lengthscale_range: [0.05, 2]
+    std_range: [0.1, 2]
+    p_iso: 0.5
+  
+  ranking_reward: false
+  train_seed: 0
+  n_steps: 8000
+  n_burnin: 3000
+  train_batch_size: 128
+  ac_train_batch_size: 16
+  lr: 1e-3
+  ac_lr: 3e-5
+
+  n_random_pairs: 100
+  num_prediction_points: 100
+  num_query_points: 100
+  sobol_grid: False
+  p_noise: 0.0
+
+  num_init_pairs: 0
+  n_trajectories: 20
+  max_T: 64
+  discount_factor: 0.98
+  regret_option: simple_regret
+
+  loss_weight: 1.0
+  auxiliary_ratio: 1.0
+
+  print_freq: 200
+  eval_freq: 1000
+  save_freq: 500
+
+model: 
+  d_x: ${data.d_x}
+  d_f: 1
+  d_model: 64
+  nhead: 4
+  dropout: 0.0
+  n_layers: 6
+  dim_feedforward: 128
+  emb_depth: 3
+  tok_emb_option: ind_point_emb_sum
+  joint_model_af_training: true
+  af_name: mlp 
+  bound_std: False 
+  nbuckets: 2
+  transformer_encoder_layer_cls: efficient
+  time_budget: true
+
