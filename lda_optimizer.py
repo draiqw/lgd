@@ -1,9 +1,8 @@
 import time
+import argparse
 import numpy as np
 import scipy.sparse as sp
 import matplotlib.pyplot as plt
-import pandas as pd
-from typing import Dict, Callable
 from sklearn.decomposition import LatentDirichletAllocation
 import random
 from deap import base, creator, tools
@@ -15,7 +14,7 @@ from functools import wraps
 import copy
 from concurrent.futures import ProcessPoolExecutor, as_completed
 
-# Decorators
+
 def timing_decorator(func):
     @wraps(func)
     def wrapper(*args, **kwargs):
@@ -26,12 +25,13 @@ def timing_decorator(func):
         return result
     return wrapper
 
+
 def load_bow_data(val_path: str):
     """Load validation data only"""
     Xval = sp.load_npz(val_path).tocsr(copy=False)
     return Xval
 
-# DEAP setup
+
 try:
     creator.create("FitnessMin", base.Fitness, weights=(-1.0,))
 except Exception:
@@ -41,8 +41,10 @@ try:
 except Exception:
     pass
 
+
 def _clamp(x, lo, hi):
     return lo if x < lo else hi if x > hi else x
+
 
 class GAOptimizer:
     """
@@ -108,9 +110,22 @@ class GAOptimizer:
         return (v,)
 
     def _cx(self, ind1, ind2):
-        """Crossover for T only"""
-        if random.random() < 0.5:
-            ind1[0], ind2[0] = ind2[0], ind1[0]
+        """Binary crossover - split T in half at bit level"""
+        T1 = int(ind1[0])
+        T2 = int(ind2[0])
+
+        num_bits = 10
+        crossover_point = num_bits // 2
+
+        mask = ((1 << crossover_point) - 1) << (num_bits - crossover_point)
+
+        child1 = (T1 & mask) | (T2 & ~mask)
+
+        child2 = (T2 & mask) | (T1 & ~mask)
+
+        ind1[0] = _clamp(child1, self.Tb[0], self.Tb[1])
+        ind2[0] = _clamp(child2, self.Tb[0], self.Tb[1])
+
         return ind1, ind2
 
     def _mut(self, ind):
@@ -461,10 +476,18 @@ class ESOptimizer:
         }
 
 
-# Evaluation cache and functions
 EVAL_CACHE = {}
 
-def _fit_eval_on_val(T, alpha, eta, Xval, seed=42, max_iter=100, batch_size=2048, learning_method="online"):
+def _fit_eval_on_val(
+        T,
+        alpha,
+        eta,
+        Xval,
+        seed=42,
+        max_iter=100,
+        batch_size=2048,
+        learning_method="online"
+):
     """
     Train LDA on validation set and evaluate perplexity on the same set.
     This is the correct approach for hyperparameter optimization.
@@ -507,19 +530,38 @@ def _fit_eval_on_val(T, alpha, eta, Xval, seed=42, max_iter=100, batch_size=2048
     EVAL_CACHE[key] = res
     return res
 
-def make_objective(Xval, seed=42, max_iter=100, batch_size=2048, learning_method="online"):
+
+def make_objective(
+        Xval,
+        seed=42,
+        max_iter=100,
+        batch_size=2048,
+        learning_method="online"
+):
     def objective(T, a, e):
-        r = _fit_eval_on_val(T, a, e, Xval, seed=seed, max_iter=max_iter, batch_size=batch_size, learning_method=learning_method)
+        r = _fit_eval_on_val(
+            T,
+            a,
+            e,
+            Xval,
+            seed=seed,
+            max_iter=max_iter,
+            batch_size=batch_size,
+            learning_method=learning_method
+        )
         return r["perplexity"]
     return objective
+
 
 def make_eval_func(Xval, seed=42, max_iter=100, batch_size=2048, learning_method="online"):
     def eval_func(T, a, e):
         return _fit_eval_on_val(T, a, e, Xval, seed=seed, max_iter=max_iter, batch_size=batch_size, learning_method=learning_method)
     return eval_func
 
+
 def _ensure_dir(p):
     os.makedirs(p, exist_ok=True)
+
 
 def _write_history_csv(history_rows, path):
     if not history_rows:
@@ -531,6 +573,7 @@ def _write_history_csv(history_rows, path):
         for row in history_rows:
             w.writerow(row)
 
+
 def _plot_series(xs, ys, xlabel, ylabel, title, path):
     plt.figure(figsize=(7,4))
     plt.plot(xs, ys, marker="o", linewidth=1.5)
@@ -541,6 +584,7 @@ def _plot_series(xs, ys, xlabel, ylabel, title, path):
     plt.tight_layout()
     plt.savefig(path, dpi=150)
     plt.close()
+
 
 @timing_decorator
 def run_single_optimization(
@@ -566,8 +610,20 @@ def run_single_optimization(
     print(f"[OPTIMIZATION] Output directory: {outdir}")
     print(f"{'='*80}\n")
 
-    obj = make_objective(Xval, seed=seed, max_iter=max_iter, batch_size=batch_size, learning_method=learning_method)
-    eval_func = make_eval_func(Xval, seed=seed, max_iter=max_iter, batch_size=batch_size, learning_method=learning_method)
+    obj = make_objective(
+        Xval,
+        seed=seed,
+        max_iter=max_iter,
+        batch_size=batch_size,
+        learning_method=learning_method
+    )
+    eval_func = make_eval_func(
+        Xval,
+        seed=seed,
+        max_iter=max_iter,
+        batch_size=batch_size,
+        learning_method=learning_method
+    )
     optimizer = optimizer_class(
         obj,
         eval_func,
@@ -576,9 +632,18 @@ def run_single_optimization(
     )
 
     if algorithm_name == "GA":
-        res = optimizer.run(gens=gens_or_steps, pop_size=pop_size, writer=writer, outdir=outdir)
-    else:  # ES
-        res = optimizer.run(steps=gens_or_steps, writer=writer, outdir=outdir)
+        res = optimizer.run(
+            gens=gens_or_steps,
+            pop_size=pop_size,
+            writer=writer,
+            outdir=outdir
+        )
+    else:
+        res = optimizer.run(
+            steps=gens_or_steps,
+            writer=writer,
+            outdir=outdir
+        )
 
     writer.close()
     print(f"\n[TensorBoard] Logs saved to: {os.path.join(outdir, 'tensorboard')}")
@@ -591,15 +656,30 @@ def run_single_optimization(
         ys_T = [h["T_best"] for h in res["history"]]
         ys_step = [h["step_time"] for h in res["history"]]
 
-        _plot_series(xs, ys_perplexity, "Iteration", "Perplexity",
-                     f"{algorithm_name}: Perplexity vs Iteration",
-                     os.path.join(outdir, "perplexity.png"))
-        _plot_series(xs, ys_T, "Iteration", "T",
-                     f"{algorithm_name}: Topics (T) vs Iteration",
-                     os.path.join(outdir, "T_over_time.png"))
-        _plot_series(xs, ys_step, "Iteration", "seconds",
-                     f"{algorithm_name}: Step Time vs Iteration",
-                     os.path.join(outdir, "step_time.png"))
+        _plot_series(
+            xs,
+            ys_perplexity,
+            "Iteration",
+            "Perplexity",
+            f"{algorithm_name}: Perplexity vs Iteration",
+            os.path.join(outdir, "perplexity.png")
+        )
+        _plot_series(
+            xs,
+            ys_T,
+            "Iteration",
+            "T",
+            f"{algorithm_name}: Topics (T) vs Iteration",
+            os.path.join(outdir, "T_over_time.png")
+        )
+        _plot_series(
+            xs,
+            ys_step,
+            "Iteration",
+            "seconds",
+            f"{algorithm_name}: Step Time vs Iteration",
+            os.path.join(outdir, "step_time.png")
+        )
 
     summary = {
         "algorithm": algorithm_name,
@@ -634,7 +714,6 @@ class ParallelRunner:
 
         print(f"\n[WORKER] Starting {algorithm} on {dataset_name}")
 
-        # Load data
         Xval = load_bow_data(val_path)
 
         # Run optimization
@@ -673,14 +752,11 @@ class ParallelRunner:
         print("="*80)
 
         with ProcessPoolExecutor(max_workers=self.max_workers) as executor:
-            # Submit all tasks
             futures = {executor.submit(self._run_task, task): task for task in tasks}
 
-            # Collect results as they complete
             for future in as_completed(futures):
                 dataset_name, algorithm, summary = future.result()
 
-                # Store result
                 if dataset_name not in results:
                     results[dataset_name] = {}
                 results[dataset_name][algorithm] = summary
@@ -722,14 +798,12 @@ def main(parallel=False, algorithm_filter=None):
     early_stop_eps_pct = 0.01
     max_no_improvement = 3
 
-    # GA parameters
     ga_params = {
         "early_stop_eps_pct": early_stop_eps_pct,
         "max_no_improvement": max_no_improvement,
         "elite": elite
     }
 
-    # ES parameters
     es_params = {
         "early_stop_eps_pct": early_stop_eps_pct,
         "max_no_improvement": max_no_improvement,
@@ -782,7 +856,6 @@ def main(parallel=False, algorithm_filter=None):
         runner = ParallelRunner(max_workers=min(len(tasks), 8))
         results = runner.run_all(tasks)
     else:
-        # Sequential execution
         results = {}
         for name, val_path in DATASETS.items():
             print(f"\n[DATASET] Loading {name} from {val_path}")
@@ -791,7 +864,6 @@ def main(parallel=False, algorithm_filter=None):
 
             results[name] = {}
 
-            # Run GA
             if algorithm_filter is None or algorithm_filter.upper() == "GA":
                 outdir_ga = os.path.join(BASE_DIR, name, "ga")
                 summary_ga = run_single_optimization(
@@ -810,7 +882,6 @@ def main(parallel=False, algorithm_filter=None):
                 )
                 results[name]["GA"] = summary_ga
 
-            # Run ES
             if algorithm_filter is None or algorithm_filter.upper() == "ES":
                 outdir_es = os.path.join(BASE_DIR, name, "es")
                 summary_es = run_single_optimization(
@@ -842,11 +913,23 @@ def main(parallel=False, algorithm_filter=None):
 
 
 if __name__ == "__main__":
-    import argparse
-    parser = argparse.ArgumentParser(description="LDA Hyperparameter Optimization")
-    parser.add_argument("--parallel", action="store_true", help="Run optimizations in parallel")
-    parser.add_argument("--algorithm", type=str, choices=["ga", "es", "GA", "ES"], default=None,
-                        help="Run only specific algorithm (GA or ES)")
+    parser = argparse.ArgumentParser(
+        description="LDA Hyperparameter Optimization"
+    )
+    parser.add_argument(
+        "--parallel",
+        action="store_true",
+        help="Run optimizations in parallel"
+    )
+    parser.add_argument(
+        "--algorithm",
+        type=str,
+        choices=["ga", "es", "GA", "ES"],
+        default=None,
+        help="Run only specific algorithm (GA or ES)"
+    )
     args = parser.parse_args()
-
-    main(parallel=args.parallel, algorithm_filter=args.algorithm)
+    main(
+        parallel=args.parallel,
+        algorithm_filter=args.algorithm
+    )

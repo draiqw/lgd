@@ -14,6 +14,7 @@ from botorch.test_functions import (
 
 __all__ = [
     "forrester1D",
+    "sinexp1D",
     "branin2D",
     "beale2D",
     "hartmann6D",
@@ -35,6 +36,23 @@ def forrester1D(x: torch.Tensor, negate: bool = True, add_dim: bool = True):
         y, (B, N, 1) if add_dim else (B, N)
     """
     y = ((6 * x - 2) ** 2) * torch.sin(12 * x - 4)
+    if negate:
+        y = -y
+    return y if add_dim else y.squeeze(-1)
+
+
+def sinexp1D(x: torch.Tensor, negate: bool = True, add_dim: bool = True):
+    """Custom test function: y(x) = sin(x) + e^x.
+
+    Args:
+        x, (B, N, 1): input tensor
+        negate, bool: whether to negate the function.
+        add_dim, bool: whether to add dimension at the end.
+
+    Returns:
+        y, (B, N, 1) if add_dim else (B, N)
+    """
+    y = torch.sin(x) + torch.exp(x)
     if negate:
         y = -y
     return y if add_dim else y.squeeze(-1)
