@@ -285,6 +285,24 @@ class GAOptimizer(BaseOptimizer):
             ensure_dir(outdir)
             self._save_population(pop, 0, outdir)
 
+        # Add initial point to history (iteration -1)
+        vals = [ind.fitness.values[0] for ind in pop]
+        history.append({
+            "iter": -1,
+            "best_perplexity": best_metrics['perplexity'],
+            "pop_mean": float(np.mean(vals)),
+            "pop_std": float(np.std(vals)),
+            "pop_min": float(np.min(vals)),
+            "pop_max": float(np.max(vals)),
+            "T_best": Tb,
+            "alpha_best": ab,
+            "eta_best": eb,
+            "step_time": 0.0,
+            "cum_time": 0.0,
+            "no_improvement_count": 0,
+            "relative_change_pct": 0.0
+        })
+
         # Main GA loop
         for g in range(iterations):
             gs = time.perf_counter()

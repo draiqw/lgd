@@ -15,6 +15,7 @@ from botorch.test_functions import (
 __all__ = [
     "forrester1D",
     "sinexp1D",
+    "rastrigin1D",
     "branin2D",
     "beale2D",
     "hartmann6D",
@@ -53,6 +54,28 @@ def sinexp1D(x: torch.Tensor, negate: bool = True, add_dim: bool = True):
         y, (B, N, 1) if add_dim else (B, N)
     """
     y = torch.sin(x) + torch.exp(x)
+    if negate:
+        y = -y
+    return y if add_dim else y.squeeze(-1)
+
+
+def rastrigin1D(x: torch.Tensor, negate: bool = True, add_dim: bool = True):
+    """1D Rastrigin-like test function with additional oscillations:
+    y(x) = 10 + x^2 - 10*cos(2πx) + 2*sin(3πx) + 0.5*sin(10πx)
+
+    This function has many local minima, global minimum around x=0.
+
+    Args:
+        x, (B, N, 1): input tensor
+        negate, bool: whether to negate the function (for maximization).
+        add_dim, bool: whether to add dimension at the end.
+
+    Returns:
+        y, (B, N, 1) if add_dim else (B, N)
+    """
+    pi = math.pi
+    y = (10 + x**2 - 10 * torch.cos(2 * pi * x) +
+         2 * torch.sin(3 * pi * x) + 0.5 * torch.sin(10 * pi * x))
     if negate:
         y = -y
     return y if add_dim else y.squeeze(-1)

@@ -227,7 +227,8 @@ class PABBOOptimizer(BaseOptimizer):
         # Create or use provided initial points
         if initial_population is not None:
             self.logger.info("Using provided initial population")
-            initial_points = initial_population[:n_initial]
+            # Use ALL provided points (for fair comparison)
+            initial_points = initial_population
         else:
             initial_points = self.create_initial_population(n_initial)
 
@@ -262,6 +263,28 @@ class PABBOOptimizer(BaseOptimizer):
         if outdir:
             ensure_dir(outdir)
             self._save_evaluated_points(0, outdir)
+
+        # Add initial point to history (iteration -1)
+        all_fitness = [f for _, f in self.evaluated_points]
+        history.append({
+            "iter": -1,
+            "best_perplexity": best_metrics['perplexity'],
+            "current_T": best_T,
+            "current_fitness": best_fitness,
+            "sample_type": "initial",
+            "pop_mean": float(np.mean(all_fitness)),
+            "pop_std": float(np.std(all_fitness)),
+            "pop_min": float(np.min(all_fitness)),
+            "pop_max": float(np.max(all_fitness)),
+            "T_best": Tb,
+            "alpha_best": ab,
+            "eta_best": eb,
+            "temperature": 1.0,
+            "step_time": 0.0,
+            "cum_time": 0.0,
+            "no_improvement_count": 0,
+            "relative_change_pct": 0.0
+        })
 
         # Main PABBO loop
         for iteration in range(iterations):

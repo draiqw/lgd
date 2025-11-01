@@ -206,11 +206,13 @@ class ESOptimizer(BaseOptimizer):
         # Create or use provided initial population
         if initial_population is not None:
             self.logger.info("Using provided initial population")
-            # Take first mu individuals
+            # Use ALL provided individuals (for fair comparison)
             parents = []
-            for T_val in initial_population[:self.mu]:
+            for T_val in initial_population:
                 ind = creator.Individual([T_val])
                 parents.append(ind)
+            # If we have more than mu, keep only mu best after evaluation
+            # If we have less than mu, this is fine - we'll still have at least some
         else:
             parents = self.create_initial_population(self.mu)
 
@@ -224,6 +226,16 @@ class ESOptimizer(BaseOptimizer):
         self.logger.info("Evaluating initial population...")
         for ind in parents:
             ind.fitness.values = self.toolbox.evaluate(ind)
+
+        # If we have more than mu parents, select best mu
+        if len(parents) > self.mu:
+            initial_count = len(parents)
+            parents.sort(key=lambda x: x.fitness.values[0])
+            selected_parents = parents[:self.mu]
+            parents = [creator.Individual(ind[:]) for ind in selected_parents]
+            for i in range(self.mu):
+                parents[i].fitness.values = selected_parents[i].fitness.values
+            self.logger.info(f"Selected best {self.mu} parents from {initial_count} initial individuals")
 
         best_sofar = min(parents, key=lambda x: x.fitness.values[0])
 
@@ -241,6 +253,24 @@ class ESOptimizer(BaseOptimizer):
         if outdir:
             ensure_dir(outdir)
             self._save_population(parents, 0, outdir)
+
+        # Add initial point to history (iteration -1)
+        vals = [ind.fitness.values[0] for ind in parents]
+        history.append({
+            "iter": -1,
+            "best_perplexity": best_metrics['perplexity'],
+            "pop_mean": float(np.mean(vals)),
+            "pop_std": float(np.std(vals)),
+            "pop_min": float(np.min(vals)),
+            "pop_max": float(np.max(vals)),
+            "T_best": Tb,
+            "alpha_best": ab,
+            "eta_best": eb,
+            "step_time": 0.0,
+            "cum_time": 0.0,
+            "no_improvement_count": 0,
+            "relative_change_pct": 0.0
+        })
 
         # Main ES loop
         for s in range(iterations):

@@ -1,0 +1,85 @@
+defaults:
+  - hydra: default
+  - _self_
+  - override hydra/hydra_logging: none
+  - override hydra/job_logging: none
+
+# Quick training configuration for 1D Rastrigin-like test function
+# Optimized for fast testing (~10-20 minutes on CPU)
+
+data:
+  name: "rastrigin1d_test"
+  d_x: 1  # 1D function
+  x_range: [[-5.12, 5.12]]  # Standard Rastrigin domain
+  min_num_ctx: 5
+  max_num_ctx: 20
+  standardize: false
+  search_space_id: ""
+
+experiment:
+  model: PABBO
+  mode: train
+  expid: ${experiment.model}_${data.name}_quick_${now:%Y%m%d_%H%M%S}
+  device: cpu  # Use CPU for quick test (change to cuda if available)
+  resume: false
+  wandb: false  # Disable wandb for quick test
+
+wandb:
+  project: PABBO
+  name: ${experiment.expid}
+  group: ${experiment.model}
+  job_type: test
+  tags: ['${experiment.model}', training, '${data.name}', quick-test]
+
+train:
+  sampler:
+    kernel_list: [rbf, matern52]  # Reduced kernel types for speed
+    sample_kernel_weights: [0.5, 0.5]
+    lengthscale_range: [0.1, 1.5]
+    std_range: [0.2, 1.5]
+    p_iso: 0.8  # Higher probability of isotropic for 1D
+
+  ranking_reward: false
+  train_seed: 42
+  n_steps: 2000  # Reduced from 8000 for quick training
+  n_burnin: 800  # Reduced from 3000
+  train_batch_size: 64  # Reduced from 128
+  ac_train_batch_size: 8  # Reduced from 16
+  lr: 1e-3
+  ac_lr: 3e-5
+
+  n_random_pairs: 50  # Reduced from 100 for 1D
+  num_prediction_points: 50  # Reduced from 100
+  num_query_points: 50  # Reduced from 100
+  sobol_grid: True
+  p_noise: 0.0
+
+  num_init_pairs: 0
+  n_trajectories: 10  # Reduced from 20
+  max_T: 30  # Reduced from 64 for faster training
+  discount_factor: 0.98
+  regret_option: simple_regret
+
+  loss_weight: 1.0
+  auxiliary_ratio: 1.0
+
+  print_freq: 100  # More frequent printing
+  eval_freq: 500
+  save_freq: 500
+
+model:
+  d_x: ${data.d_x}
+  d_f: 1
+  d_model: 32  # Reduced from 64 for faster training
+  nhead: 2  # Reduced from 4
+  dropout: 0.0
+  n_layers: 3  # Reduced from 6 for speed
+  dim_feedforward: 64  # Reduced from 128
+  emb_depth: 2  # Reduced from 3
+  tok_emb_option: ind_point_emb_sum
+  joint_model_af_training: true
+  af_name: mlp
+  bound_std: False
+  nbuckets: 2
+  transformer_encoder_layer_cls: efficient
+  time_budget: true

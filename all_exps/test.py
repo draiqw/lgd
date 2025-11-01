@@ -24,20 +24,54 @@ from exp_pabbo import PABBOOptimizer
 
 def test_function(x: float) -> float:
     """
-    Test function to minimize: y(x) = sin(x) + e^cos(x) - 20 + 99*ln(x)
+    Very complex NON-DIFFERENTIABLE test function with multiple local minima:
 
-    Domain: x > 0 (due to ln(x))
+    y(x) = |sin(2πx)| + 0.5*|cos(5πx)| + 0.3*x^2 + 2*|x| +
+           |sin(10πx)|*0.2 + step_function(x)
+
+    where step_function adds discontinuities
+
+    This function has:
+    - Multiple local minima (>5 in [-5, 5] range)
+    - Non-differentiable points (absolute values, steps)
+    - 3 major local minima + 1 global minimum
+    - Global minimum around x ≈ 0
+    - Highly challenging for gradient-based methods
+    - Domain: [-5, 5]
 
     Args:
-        x: Input value (must be > 0)
+        x: Input value
 
     Returns:
         Function value
     """
-    if x <= 0:
-        return float('inf')
+    # Core oscillations with absolute values (non-differentiable)
+    y = np.abs(np.sin(2 * np.pi * x))  # Major oscillations
+    y += 0.5 * np.abs(np.cos(5 * np.pi * x))  # Medium oscillations
+    y += 0.2 * np.abs(np.sin(10 * np.pi * x))  # Fine oscillations
 
-    y = np.sin(x) + np.exp(np.cos(x)) - 20 + 99 * np.log(x)
+    # Quadratic bias toward center
+    y += 0.3 * x**2
+
+    # Absolute value of x (non-differentiable at x=0)
+    y += 2 * np.abs(x)
+
+    # Step function (discontinuous, non-differentiable)
+    # Creates discrete jumps
+    if x < -3:
+        y += 5
+    elif x < -1:
+        y += 3
+    elif x < 1:
+        y += 0  # Best region
+    elif x < 3:
+        y += 2
+    else:
+        y += 4
+
+    # Additional "noise" to create more local minima
+    y += 0.1 * np.abs(np.sin(20 * np.pi * x))
+
     return float(y)
 
 
@@ -64,7 +98,7 @@ def visualize_function(x_range: Tuple[float, float], save_path: str = None):
 
     plt.xlabel('x', fontsize=12)
     plt.ylabel('y(x)', fontsize=12)
-    plt.title('Test Function: y(x) = sin(x) + e^cos(x) - 20 + 99*ln(x)',
+    plt.title('Test Function: Non-differentiable with discontinuities',
               fontsize=14, fontweight='bold')
     plt.legend(fontsize=10)
     plt.grid(True, alpha=0.3)
@@ -122,6 +156,7 @@ def run_algorithm_test(
     iterations: int = 50,
     pop_size: int = 10,
     seed: int = 42,
+    initial_population: List[int] = None,
     **optimizer_kwargs
 ) -> Dict:
     """
@@ -147,8 +182,21 @@ def run_algorithm_test(
     # Setup adapter
     adapter = IntegerToRealAdapter(x_range, T_range)
 
-    # Setup logger
-    logger = setup_logger(f"test_{algorithm_name.lower()}", log_file=None)
+    # Setup logger WITH FILE LOGGING
+    ensure_dir('test_results')
+    log_file = f"test_results/{algorithm_name}_test.log"
+    logger = setup_logger(f"test_{algorithm_name.lower()}", log_file=log_file)
+
+    logger.info("="*80)
+    logger.info(f"{algorithm_name} Optimization Test")
+    logger.info("="*80)
+    logger.info(f"Domain: x ∈ [{x_range[0]}, {x_range[1]}]")
+    logger.info(f"T range: [{T_range[0]}, {T_range[1]}]")
+    logger.info(f"Iterations: {iterations}")
+    logger.info(f"Population size: {pop_size}")
+    logger.info(f"Seed: {seed}")
+    logger.info(f"Initial population: {initial_population}")
+    logger.info("="*80)
 
     # Create objective function (wrapped with adapter)
     def objective(T: int, alpha: float, eta: float) -> float:
@@ -191,20 +239,23 @@ def run_algorithm_test(
             iterations=iterations,
             pop_size=pop_size,
             writer=None,
-            outdir=None
+            outdir=None,
+            initial_population=initial_population
         )
     elif algorithm_name == "ES":
         results = optimizer.run(
             iterations=iterations,
             writer=None,
-            outdir=None
+            outdir=None,
+            initial_population=initial_population
         )
     elif algorithm_name == "PABBO":
         results = optimizer.run(
             iterations=iterations,
             n_initial=pop_size,
             writer=None,
-            outdir=None
+            outdir=None,
+            initial_population=initial_population
         )
 
     total_time = time.perf_counter() - start_time
@@ -241,10 +292,11 @@ def plot_convergence(results_list: List[Dict], save_path: str = None):
         results_list: List of results dictionaries
         save_path: Path to save plot
     """
-    plt.figure(figsize=(12, 5))
+    # Create figure with 4 plots (2x2 grid)
+    fig = plt.figure(figsize=(18, 10))
 
     # Plot 1: Best y over iterations
-    plt.subplot(1, 2, 1)
+    plt.subplot(2, 2, 1)
     for result in results_list:
         history = result['history']
         iterations = [h['iter'] for h in history]
@@ -258,8 +310,24 @@ def plot_convergence(results_list: List[Dict], save_path: str = None):
     plt.legend()
     plt.grid(True, alpha=0.3)
 
-    # Plot 2: Best x over iterations
-    plt.subplot(1, 2, 2)
+    # Plot 2: Best y over wall-clock time ⏱️
+    plt.subplot(2, 2, 2)
+    for result in results_list:
+        history = result['history']
+        # Cumulative time from history
+        times = [h['cum_time'] for h in history]
+        best_y = [h['best_perplexity'] for h in history]
+        plt.plot(times, best_y, marker='o', linewidth=2,
+                label=result['algorithm'], markersize=4)
+
+    plt.xlabel('Wall-clock Time (seconds)', fontsize=12)
+    plt.ylabel('Best y(x)', fontsize=12)
+    plt.title('Convergence: Best Value vs Time', fontsize=13, fontweight='bold')
+    plt.legend()
+    plt.grid(True, alpha=0.3)
+
+    # Plot 3: Best x over iterations
+    plt.subplot(2, 2, 3)
     for result in results_list:
         history = result['history']
         adapter = result['adapter']
@@ -271,6 +339,22 @@ def plot_convergence(results_list: List[Dict], save_path: str = None):
     plt.xlabel('Iteration', fontsize=12)
     plt.ylabel('Best x', fontsize=12)
     plt.title('Convergence: Best x vs Iteration', fontsize=13, fontweight='bold')
+    plt.legend()
+    plt.grid(True, alpha=0.3)
+
+    # Plot 4: Best x over time
+    plt.subplot(2, 2, 4)
+    for result in results_list:
+        history = result['history']
+        adapter = result['adapter']
+        times = [h['cum_time'] for h in history]
+        best_x = [adapter.T_to_x(h['T_best']) for h in history]
+        plt.plot(times, best_x, marker='s', linewidth=2,
+                label=result['algorithm'], markersize=4)
+
+    plt.xlabel('Wall-clock Time (seconds)', fontsize=12)
+    plt.ylabel('Best x', fontsize=12)
+    plt.title('Convergence: Best x vs Time', fontsize=13, fontweight='bold')
     plt.legend()
     plt.grid(True, alpha=0.3)
 
@@ -291,14 +375,14 @@ def main():
 
     print("="*80)
     print("OPTIMIZATION ALGORITHMS TEST")
-    print("Testing on: y(x) = sin(x) + e^cos(x) - 20 + 99*ln(x)")
+    print("Testing on: Non-differentiable function with discontinuities and multiple local minima")
     print("="*80)
 
     # Configuration
-    x_range = (0.1, 10.0)  # Domain for x (must be > 0 due to ln)
-    T_range = (1, 1000)    # Integer range for T
-    iterations = 50
-    pop_size = 10
+    x_range = (-5.0, 5.0)     # Domain for non-differentiable function
+    T_range = (1, 1000)       # Integer range for T
+    iterations = 50           # More iterations for very complex function
+    pop_size = 20             # Larger population for better exploration
     seed = 42
 
     print(f"\nConfiguration:")
@@ -316,7 +400,28 @@ def main():
     )
     print(f"True minimum (approx): x={true_min_x:.6f}, y={true_min_y:.6f}")
 
-    # Run algorithms
+    # Create shared initial population for fair comparison
+    print(f"\nCreating shared initial population (seed={seed})...")
+    import random
+    random.seed(seed)
+    import numpy as np
+    np.random.seed(seed)
+
+    # Use Latin Hypercube Sampling
+    shared_population = []
+    for i in range(pop_size):
+        bin_size = (T_range[1] - T_range[0]) / pop_size
+        T = int(T_range[0] + (i + random.random()) * bin_size)
+        T = max(T_range[0], min(T_range[1], T))
+        shared_population.append(T)
+
+    random.shuffle(shared_population)
+
+    print(f"Shared population: {shared_population}")
+    print(f"  min={min(shared_population)}, max={max(shared_population)}, "
+          f"mean={np.mean(shared_population):.1f}")
+
+    # Run algorithms with SAME initial population
     results_list = []
 
     # GA
@@ -328,6 +433,7 @@ def main():
         iterations=iterations,
         pop_size=pop_size,
         seed=seed,
+        initial_population=shared_population,  # ✅ Shared!
         elite=3,
         cxpb=0.9,
         mutpb=0.2
@@ -343,6 +449,7 @@ def main():
         iterations=iterations,
         pop_size=pop_size,
         seed=seed,
+        initial_population=shared_population,  # ✅ Shared!
         mu=5,
         lmbda=10
     )
@@ -357,6 +464,7 @@ def main():
         iterations=iterations,
         pop_size=pop_size,
         seed=seed,
+        initial_population=shared_population,  # ✅ Shared!
         exploration_rate=0.3
     )
     results_list.append(pabbo_result)
