@@ -31,7 +31,7 @@ from utils import (
 )
 
 # Import optimizers
-from optimizers import GAOptimizer, ESOptimizer, PABBOOptimizer
+from optimizers import GAOptimizer, ESOptimizer, PABBOSimpleOptimizer, PABBOFullOptimizer, PABBOOptimizer
 
 
 def load_initial_population(json_path: str) -> List[int]:
@@ -241,9 +241,11 @@ def main():
     parser.add_argument('--batch-size', type=int, default=2048,
                        help='LDA batch size')
     parser.add_argument('--algorithms', type=str, nargs='+',
-                       default=['GA', 'ES', 'PABBO'],
-                       choices=['GA', 'ES', 'PABBO'],
-                       help='Algorithms to run')
+                       default=['GA', 'ES', 'PABBO_Simple'],
+                       choices=['GA', 'ES', 'PABBO', 'PABBO_Simple', 'PABBO_Full'],
+                       help='Algorithms to run (PABBO defaults to PABBO_Simple)')
+    parser.add_argument('--pabbo-model', type=str, default=None,
+                       help='Path to trained PABBO Transformer model (for PABBO_Full)')
 
     args = parser.parse_args()
 
@@ -330,23 +332,43 @@ def main():
         es_result['algorithm'] = 'ES'
         results.append(es_result)
 
-    if 'PABBO' in args.algorithms:
+    # Handle PABBO variants
+    if 'PABBO' in args.algorithms or 'PABBO_Simple' in args.algorithms:
         logger.info("\n" + "=" * 80)
-        logger.info("Running PABBO")
+        logger.info("Running PABBO Simple")
         logger.info("=" * 80)
         pabbo_result = run_single_optimizer(
-            algorithm_name='PABBO',
-            optimizer_class=PABBOOptimizer,
+            algorithm_name='PABBO_Simple',
+            optimizer_class=PABBOSimpleOptimizer,
             obj=obj,
             eval_func=eval_func,
             initial_population=initial_population.copy(),
             iterations=args.iterations,
-            outdir=os.path.join(args.outdir, 'PABBO'),
+            outdir=os.path.join(args.outdir, 'PABBO_Simple'),
             seed=args.seed,
             exploration_rate=0.3
         )
-        pabbo_result['algorithm'] = 'PABBO'
+        pabbo_result['algorithm'] = 'PABBO_Simple'
         results.append(pabbo_result)
+
+    if 'PABBO_Full' in args.algorithms:
+        logger.info("\n" + "=" * 80)
+        logger.info("Running PABBO Full (with Transformer)")
+        logger.info("=" * 80)
+        pabbo_full_result = run_single_optimizer(
+            algorithm_name='PABBO_Full',
+            optimizer_class=PABBOFullOptimizer,
+            obj=obj,
+            eval_func=eval_func,
+            initial_population=initial_population.copy(),
+            iterations=args.iterations,
+            outdir=os.path.join(args.outdir, 'PABBO_Full'),
+            seed=args.seed,
+            model_path=args.pabbo_model,
+            exploration_rate=0.3
+        )
+        pabbo_full_result['algorithm'] = 'PABBO_Full'
+        results.append(pabbo_full_result)
 
     # Plot comparison
     if len(results) > 1:

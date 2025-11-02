@@ -1,6 +1,6 @@
 # LDA Hyperparameter Optimization
 
-Comparison of optimization algorithms (GA, ES, PABBO) for LDA hyperparameter tuning.
+Comparison of optimization algorithms (GA, ES, PABBO Simple, PABBO Full) for LDA hyperparameter tuning.
 
 ## Overview
 
@@ -9,7 +9,8 @@ This project optimizes the `T` parameter (number of topics) for Latent Dirichlet
 **Algorithms:**
 - **GA** (Genetic Algorithm): Binary crossover, tournament selection, elitism
 - **ES** (Evolution Strategy): (μ, λ)-ES with self-adaptive mutation
-- **PABBO** (Preference-Augmented BBO): Simplified version with exploration/exploitation balance
+- **PABBO Simple**: Adaptive random search with exploration/exploitation balance, no Transformer
+- **PABBO Full**: Full PABBO implementation with Transformer-based policy learning (requires trained model)
 
 All algorithms use **identical initial population** for fair comparison.
 
@@ -26,7 +27,8 @@ lda_hyperopt/
 │   ├── __init__.py
 │   ├── ga.py                      # Genetic Algorithm
 │   ├── es.py                      # Evolution Strategy
-│   └── pabbo.py                   # PABBO (simplified)
+│   ├── pabbo_simple.py            # PABBO Simple (no Transformer)
+│   └── pabbo_full.py              # PABBO Full (with Transformer)
 └── logs/                          # Logs (created automatically)
 ```
 
@@ -66,7 +68,7 @@ python run.py \
   --iterations 50 \
   --seed 42 \
   --outdir results \
-  --algorithms GA ES PABBO
+  --algorithms GA ES PABBO_Simple
 ```
 
 **Arguments:**
@@ -77,7 +79,8 @@ python run.py \
 - `--outdir`: Output directory for results (default: `results`)
 - `--max-iter`: Max LDA iterations (default: 100)
 - `--batch-size`: LDA batch size (default: 2048)
-- `--algorithms`: Algorithms to run (choices: GA, ES, PABBO; default: all)
+- `--algorithms`: Algorithms to run (choices: GA, ES, PABBO, PABBO_Simple, PABBO_Full; default: GA ES PABBO_Simple)
+- `--pabbo-model`: Path to trained Transformer model for PABBO_Full (optional)
 
 ### 3. View Results
 
@@ -95,8 +98,10 @@ results/
 │   └── tensorboard/               # TensorBoard logs
 ├── ES/
 │   └── ...                        # Same structure
-└── PABBO/
-    └── ...                        # Same structure
+├── PABBO_Simple/
+│   └── ...                        # Same structure
+└── PABBO_Full/
+    └── ...                        # Same structure (if run)
 ```
 
 ### 4. View TensorBoard (Optional)
@@ -108,11 +113,19 @@ tensorboard --logdir results/GA/tensorboard
 ## Example
 
 ```bash
-# Run all algorithms on validation data
+# Run all default algorithms (GA, ES, PABBO_Simple)
 python run.py --data data/val_bow.npz --iterations 50 --outdir results
 
 # Run only GA and ES
 python run.py --data data/val_bow.npz --algorithms GA ES --outdir results_ga_es
+
+# Run with PABBO Full (requires trained Transformer model)
+python run.py --data data/val_bow.npz --algorithms PABBO_Full \
+  --pabbo-model ../pabbo_method/checkpoints/best_model.pt --outdir results_pabbo_full
+
+# Compare all PABBO variants
+python run.py --data data/val_bow.npz --algorithms PABBO_Simple PABBO_Full \
+  --pabbo-model ../pabbo_method/checkpoints/best_model.pt --outdir results_pabbo_compare
 
 # Custom iterations and seed
 python run.py --data data/val_bow.npz --iterations 100 --seed 123 --outdir results_custom
@@ -195,7 +208,7 @@ python run.py --data data/val_bow.npz --max-iter 200 --batch-size 4096
 ### Early Stopping
 
 All algorithms support early stopping:
-- Stop if relative improvement < 1% for 3 consecutive iterations
+- Stop if relative improvement < 1% for 5 consecutive iterations
 - Prevents wasting time on converged solutions
 
 ### OOP Design
@@ -205,7 +218,8 @@ BaseOptimizer (abstract base class)
     │
     ├── GAOptimizer
     ├── ESOptimizer
-    └── PABBOOptimizer
+    ├── PABBOSimpleOptimizer
+    └── PABBOFullOptimizer
 ```
 
 All optimizers implement:

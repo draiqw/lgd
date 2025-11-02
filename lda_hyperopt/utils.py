@@ -432,7 +432,7 @@ class BaseOptimizer(ABC):
         T_bounds: Tuple[int, int] = (2, 1000),
         seed: int = 42,
         early_stop_eps_pct: float = 0.01,
-        max_no_improvement: int = 3,
+        max_no_improvement: int = 5,
         logger: Optional[logging.Logger] = None
     ):
         """

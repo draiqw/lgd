@@ -25,7 +25,7 @@ from tensorboardX import SummaryWriter
 from utils import BaseOptimizer, clamp, ensure_dir
 
 
-class PABBOOptimizer(BaseOptimizer):
+class PABBOSimpleOptimizer(BaseOptimizer):
     """
     PABBO-inspired optimizer for LDA hyperparameters.
 
@@ -46,7 +46,7 @@ class PABBOOptimizer(BaseOptimizer):
         temperature_decay=0.95,
         min_temperature=0.1,
         early_stop_eps_pct=0.01,
-        max_no_improvement=3,
+        max_no_improvement=5,
         logger=None
     ):
         """
@@ -427,5 +427,5 @@ class PABBOOptimizer(BaseOptimizer):
             "avg_step_time": float(np.mean([h["step_time"] for h in history])) if history else 0.0,
             "stopped_early": no_improvement_count >= self.max_no_improvement,
             "total_evaluations": len(self.evaluated_points),
-            "algorithm": "PABBO"
+            "algorithm": "PABBO_Simple"
         }

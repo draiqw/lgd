@@ -1,10 +1,10 @@
 # Test Function Optimization
 
-Benchmark comparison of optimization algorithms (GA, ES, PABBO) on a complex non-differentiable test function.
+Benchmark comparison of optimization algorithms (GA, ES, PABBO Simple, PABBO Full) on a complex non-differentiable test function.
 
 ## Overview
 
-This project tests three optimization algorithms on a challenging mathematical function with:
+This project tests optimization algorithms on a challenging mathematical function with:
 - **Non-differentiable** points (absolute values)
 - **Discontinuities** (step function)
 - **Multiple local minima** (>5)
@@ -13,7 +13,8 @@ This project tests three optimization algorithms on a challenging mathematical f
 **Algorithms:**
 - **GA** (Genetic Algorithm): Binary crossover, tournament selection, elitism
 - **ES** (Evolution Strategy): (μ, λ)-ES with self-adaptive mutation
-- **PABBO** (Preference-Augmented BBO): Simplified version with exploration/exploitation balance
+- **PABBO Simple**: Adaptive random search with exploration/exploitation balance, no Transformer
+- **PABBO Full**: Full PABBO implementation with Transformer-based policy learning (requires trained model)
 
 All algorithms use **identical initial population** for fair comparison.
 
@@ -31,7 +32,8 @@ test_function_opt/
 │   ├── __init__.py
 │   ├── ga.py                      # Genetic Algorithm
 │   ├── es.py                      # Evolution Strategy
-│   └── pabbo.py                   # PABBO (simplified)
+│   ├── pabbo_simple.py            # PABBO Simple (no Transformer)
+│   └── pabbo_full.py              # PABBO Full (with Transformer)
 └── logs/                          # Logs (created automatically)
 ```
 
@@ -98,7 +100,7 @@ python run.py \
   --iterations 50 \
   --seed 42 \
   --outdir results \
-  --algorithms GA ES PABBO
+  --algorithms GA ES PABBO_Simple
 ```
 
 **Arguments:**
@@ -108,7 +110,8 @@ python run.py \
 - `--iterations`: Number of optimization iterations (default: 50)
 - `--seed`: Random seed for reproducibility (default: 42)
 - `--outdir`: Output directory for results (default: `results`)
-- `--algorithms`: Algorithms to run (choices: GA, ES, PABBO; default: all)
+- `--algorithms`: Algorithms to run (choices: GA, ES, PABBO, PABBO_Simple, PABBO_Full; default: GA ES PABBO_Simple)
+- `--pabbo-model`: Path to trained Transformer model for PABBO_Full (optional)
 
 ### 3. View Results
 
@@ -125,18 +128,28 @@ results/
 │   └── history.csv                # Iteration history
 ├── ES/
 │   └── ...                        # Same structure
-└── PABBO/
-    └── ...                        # Same structure
+├── PABBO_Simple/
+│   └── ...                        # Same structure
+└── PABBO_Full/
+    └── ...                        # Same structure (if run)
 ```
 
 ## Example
 
 ```bash
-# Run all algorithms
+# Run all default algorithms (GA, ES, PABBO_Simple)
 python run.py --iterations 50 --outdir results
 
 # Run only GA and ES with more iterations
 python run.py --algorithms GA ES --iterations 100 --outdir results_ga_es
+
+# Run with PABBO Full (requires trained Transformer model)
+python run.py --algorithms PABBO_Full \
+  --pabbo-model ../pabbo_method/checkpoints/best_model.pt --outdir results_pabbo_full
+
+# Compare all PABBO variants
+python run.py --algorithms PABBO_Simple PABBO_Full \
+  --pabbo-model ../pabbo_method/checkpoints/best_model.pt --outdir results_pabbo_compare
 
 # Custom domain and seed
 python run.py --x-range -3.0 3.0 --seed 123 --outdir results_custom
@@ -260,7 +273,7 @@ This allows using the same optimizer code for both LDA and continuous optimizati
 ### Early Stopping
 
 All algorithms support early stopping:
-- Stop if relative improvement < 1% for 3 consecutive iterations
+- Stop if relative improvement < 1% for 5 consecutive iterations
 - Prevents wasting time on converged solutions
 
 ### Logging
@@ -282,7 +295,8 @@ BaseOptimizer (abstract base class)
     │
     ├── GAOptimizer
     ├── ESOptimizer
-    └── PABBOOptimizer
+    ├── PABBOSimpleOptimizer
+    └── PABBOFullOptimizer
 ```
 
 All optimizers implement:

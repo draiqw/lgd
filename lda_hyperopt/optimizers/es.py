@@ -55,7 +55,7 @@ class ESOptimizer(BaseOptimizer):
         lmbda=10,
         dT=5,
         early_stop_eps_pct=0.01,
-        max_no_improvement=3,
+        max_no_improvement=5,
         logger=None
     ):
         """
