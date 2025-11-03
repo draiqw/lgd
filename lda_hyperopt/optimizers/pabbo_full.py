@@ -142,24 +142,137 @@ class PABBOFullOptimizer(BaseOptimizer):
         checkpoint = torch.load(model_path, map_location='cpu')
 
         # Try to extract model config from checkpoint
-        if 'config' in checkpoint:
-            config = checkpoint['config']
-            self.model = TransformerModel(**config)
-        else:
-            # Use default config
-            self.model = TransformerModel(
-                d_model=64,
-                n_heads=8,
-                n_layers=6,
-                dropout=0.1
+        state_dict = checkpoint.get('model', checkpoint)
+        model_kwargs = checkpoint.get('model_kwargs')
+
+        if model_kwargs is None:
+            model_kwargs = self._infer_model_kwargs_from_state(state_dict)
+            self.logger.info(
+                "Model config not found in checkpoint; inferred parameters: "
+                f"{model_kwargs}"
             )
 
-        if 'model' in checkpoint:
-            self.model.load_state_dict(checkpoint['model'])
-        else:
-            self.model.load_state_dict(checkpoint)
+        # ensure plain python types (Hydra may produce ListConfig)
+        model_kwargs = self._normalize_model_kwargs(model_kwargs)
+
+        self.model = TransformerModel(**model_kwargs)
+
+        missing = self.model.load_state_dict(state_dict, strict=False)
+        if missing.missing_keys or missing.unexpected_keys:
+            self.logger.warning(
+                f"Loaded Transformer with missing keys={missing.missing_keys} "
+                f"and unexpected keys={missing.unexpected_keys}"
+            )
 
         self.model.eval()
+        self.model_kwargs = model_kwargs
+
+    @staticmethod
+    def _normalize_model_kwargs(model_kwargs: Dict) -> Dict:
+        """Convert OmegaConf containers to plain python types."""
+        normalized = {}
+        for k, v in model_kwargs.items():
+            if isinstance(v, (list, tuple)):
+                normalized[k] = list(v)
+            elif hasattr(v, 'items'):
+                normalized[k] = dict(v)
+            else:
+                normalized[k] = v
+        return normalized
+
+    def _infer_model_kwargs_from_state(self, state_dict: Dict[str, torch.Tensor]) -> Dict:
+        """
+        Infer transformer constructor arguments from a state dict.
+
+        This is a best-effort heuristic for older checkpoints that do not store
+        configuration metadata.
+        """
+        def _get_shape(name: str):
+            tensor = state_dict[name]
+            return tuple(tensor.shape)
+
+        # Core dimensions
+        d_model = _get_shape("x_embedders.0.0.weight")[0]
+        d_x = _get_shape("x_embedders.0.0.weight")[1]
+        dim_feedforward = _get_shape("encoder.layers.0.linear1.weight")[0]
+
+        # Number of encoder layers
+        layer_indices = {
+            key.split(".")[2]
+            for key in state_dict.keys()
+            if key.startswith("encoder.layers.")
+        }
+        n_layers = len(layer_indices)
+
+        # Embedding depth equals number of linear blocks in x_embedders.{idx}
+        emb_linear_keys = [
+            key for key in state_dict.keys()
+            if key.startswith("x_embedders.0") and key.endswith(".weight")
+        ]
+        emb_depth = len(emb_linear_keys)
+
+        # nbuckets is decoder output dimension
+        if "eval_bucket_decoder.2.weight" in state_dict:
+            nbuckets = _get_shape("eval_bucket_decoder.2.weight")[0]
+        else:
+            # older checkpoints used single-layer decoder
+            decoder_weights = [
+                key for key in state_dict if key.startswith("eval_bucket_decoder") and key.endswith("weight")
+            ]
+            nbuckets = _get_shape(decoder_weights[-1])[0] if decoder_weights else 1
+
+        # Candidate head counts: divisors of d_model (descending)
+        candidate_heads = [
+            h for h in range(d_model, 0, -1)
+            if d_model % h == 0
+        ]
+
+        # Heuristic nhead inference (older checkpoints did not store metadata)
+        if dim_feedforward <= 64:
+            default_nhead = 2
+        elif dim_feedforward <= 128:
+            default_nhead = 4
+        else:
+            default_nhead = max(1, min(8, d_model // 8))
+
+        base_kwargs = dict(
+            d_x=d_x,
+            d_f=1,
+            d_model=d_model,
+            dropout=0.0,
+            n_layers=n_layers,
+            dim_feedforward=dim_feedforward,
+            emb_depth=emb_depth,
+            tok_emb_option="ind_point_emb_sum",
+            transformer_encoder_layer_cls="efficient",
+            joint_model_af_training=True,
+            af_name="mlp",
+            bound_std=False,
+            nbuckets=nbuckets,
+            time_budget=True,
+        )
+
+        # Try candidate nhead values until state dict loads
+        last_error = None
+        ordered_candidates = [default_nhead] + [
+            h for h in candidate_heads if h != default_nhead
+        ]
+
+        for nhead in ordered_candidates:
+            try_kwargs = dict(base_kwargs)
+            try_kwargs["nhead"] = nhead
+            try:
+                candidate_model = TransformerModel(**try_kwargs)
+                candidate_model.load_state_dict(state_dict, strict=False)
+                return try_kwargs
+            except Exception as exc:  # noqa: BLE001
+                last_error = exc
+                continue
+
+        raise RuntimeError(
+            "Unable to infer transformer configuration from checkpoint. "
+            f"Last error: {last_error}"
+        )
 
     def _evaluate_point(self, T: int) -> float:
         """
