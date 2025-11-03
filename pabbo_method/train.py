@@ -6,7 +6,7 @@ import os.path as osp
 import time
 import wandb
 
-from omegaconf import DictConfig
+from omegaconf import DictConfig, OmegaConf
 import hydra
 from wandb_wrapper import init as wandb_init, save_artifact
 from policies.transformer import TransformerModel
@@ -34,11 +34,13 @@ def main(config: DictConfig):
     torch.set_default_dtype(torch.float32)
     torch.set_default_device(config.experiment.device)
 
+    model_kwargs = OmegaConf.to_container(config.model, resolve=True)
     model = TransformerModel(**config.model)
     train(
         expid=config.experiment.expid,
         exp_path=exp_path,
         model=model,
+        model_kwargs=model_kwargs,
         dataname=config.data.name,
         x_range=config.data.x_range,
         sampler_kwargs=config.train.sampler,
@@ -91,6 +93,7 @@ def train(
     expid: str,
     exp_path: str,
     model: TransformerModel,
+    model_kwargs: dict,
     dataname: str,
     x_range: list,  # [d_x, 2]
     sampler_kwargs: dict,
@@ -125,7 +128,9 @@ def train(
     device: str = "cuda",
     wb: bool = True,  # whether to use wandb
 ):
-    n_gpus = torch.cuda.device_count()  # the number of gpus
+    # torch.cuda.device_count returns 0 on CPU-only setups; we still need a positive value
+    # so that downstream tensor tiling keeps expected dimensions.
+    n_gpus = torch.cuda.device_count() or 1
 
     # checkpoint
     if osp.exists(exp_path + "/ckpt.tar"):
@@ -494,6 +499,7 @@ def train(
                 "scheduler": scheduler.state_dict(),
                 "expdir": expdir,
                 "step": epoch + 1,
+                "model_kwargs": model_kwargs,
             }
 
             # save to the result saving path

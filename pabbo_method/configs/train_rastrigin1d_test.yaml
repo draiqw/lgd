@@ -8,10 +8,10 @@ defaults:
 # Optimized for fast testing (~10-20 minutes on CPU)
 
 data:
-  name: "rastrigin1d_test"
-  d_x: 1  # 1D function
-  x_range: [[-5.12, 5.12]]  # Standard Rastrigin domain
-  min_num_ctx: 5
+  name: "GP1D"
+  d_x: 1
+  x_range: [[-1.0, 1.0]]
+  min_num_ctx: 1
   max_num_ctx: 20
   standardize: false
   search_space_id: ""
