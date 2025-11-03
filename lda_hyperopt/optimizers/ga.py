@@ -22,7 +22,6 @@ from deap import base, creator, tools
 from lda_hyperopt.utils import BaseOptimizer, clamp, ensure_dir
 
 
-# Create DEAP fitness and individual classes (only once)
 try:
     creator.create("FitnessMin", base.Fitness, weights=(-1.0,))
 except RuntimeError:
