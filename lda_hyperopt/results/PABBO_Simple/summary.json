@@ -4,8 +4,8 @@
   "best_alpha": 0.030303030303030304,
   "best_eta": 0.030303030303030304,
   "best_perplexity": 1785.3303492923615,
-  "total_time": 837.1959277920105,
-  "avg_step_time": 29.95501219449943,
+  "total_time": 175.87072787500801,
+  "avg_step_time": 29.310029631839523,
   "stopped_early": true,
   "num_iterations": 6,
   "initial_population": [
