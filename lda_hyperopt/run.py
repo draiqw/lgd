@@ -365,7 +365,8 @@ def main():
             outdir=os.path.join(args.outdir, 'PABBO_Full'),
             seed=args.seed,
             model_path=args.pabbo_model,
-            exploration_rate=0.3
+            exploration_rate=0.3,
+            max_no_improvement=3
         )
         pabbo_full_result['algorithm'] = 'PABBO_Full'
         results.append(pabbo_full_result)

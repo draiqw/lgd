@@ -1,11 +1,11 @@
 {
   "algorithm": "PABBO_Full",
-  "best_T": 33,
-  "best_alpha": 0.030303030303030304,
-  "best_eta": 0.030303030303030304,
-  "best_perplexity": 1785.3303492923615,
-  "total_time": 0.0011028750013792887,
-  "avg_step_time": 0.00022057500027585774,
+  "best_T": 12,
+  "best_alpha": 0.08333333333333333,
+  "best_eta": 0.08333333333333333,
+  "best_perplexity": 1724.5831698517404,
+  "total_time": 114.94439024999156,
+  "avg_step_time": 22.988878049998313,
   "stopped_early": true,
   "num_iterations": 5,
   "initial_population": [
