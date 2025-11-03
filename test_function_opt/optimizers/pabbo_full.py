@@ -19,7 +19,7 @@ import warnings
 import numpy as np
 from tensorboardX import SummaryWriter
 
-from utils import BaseOptimizer, clamp, ensure_dir
+from test_function_opt.utils import BaseOptimizer, clamp, ensure_dir
 
 # Try to import PyTorch dependencies
 try:

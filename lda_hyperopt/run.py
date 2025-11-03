@@ -236,7 +236,7 @@ def main():
                        help='Random seed')
     parser.add_argument('--outdir', type=str, default='results',
                        help='Output directory')
-    parser.add_argument('--max-iter', type=int, default=100,
+    parser.add_argument('--max-iter', type=int, default=60,
                        help='Max LDA iterations')
     parser.add_argument('--batch-size', type=int, default=2048,
                        help='LDA batch size')

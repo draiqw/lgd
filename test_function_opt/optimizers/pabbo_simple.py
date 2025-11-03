@@ -22,7 +22,7 @@ from typing import Optional, List, Dict, Tuple
 import numpy as np
 from tensorboardX import SummaryWriter
 
-from utils import BaseOptimizer, clamp, ensure_dir
+from test_function_opt.utils import BaseOptimizer, clamp, ensure_dir
 
 
 class PABBOSimpleOptimizer(BaseOptimizer):

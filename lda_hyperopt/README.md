@@ -77,7 +77,7 @@ python run.py \
 - `--iterations`: Number of optimization iterations (default: 50)
 - `--seed`: Random seed for reproducibility (default: 42)
 - `--outdir`: Output directory for results (default: `results`)
-- `--max-iter`: Max LDA iterations (default: 100)
+- `--max-iter`: Max LDA iterations (default: 60)
 - `--batch-size`: LDA batch size (default: 2048)
 - `--algorithms`: Algorithms to run (choices: GA, ES, PABBO, PABBO_Simple, PABBO_Full; default: GA ES PABBO_Simple)
 - `--pabbo-model`: Path to trained Transformer model for PABBO_Full (optional)

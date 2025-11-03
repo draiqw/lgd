@@ -19,7 +19,7 @@ import numpy as np
 from tensorboardX import SummaryWriter
 from deap import base, creator, tools
 
-from utils import BaseOptimizer, clamp, ensure_dir
+from lda_hyperopt.utils import BaseOptimizer, clamp, ensure_dir
 
 
 # Create DEAP fitness and individual classes (only once)
