@@ -6,10 +6,11 @@ LDA Hyperparameter Optimization - Parallel Pipeline
 Parallel version of lda.py that:
 1. Trains PABBO model from scratch (light version)
 2. Evaluates the trained model
-3. Runs LDA optimization experiments in PARALLEL:
+3. Runs LDA optimization experiments in PARALLEL (NO EARLY STOPPING, 20 iterations):
    - 3 processes (one per algorithm: GA, ES, PABBO_Full)
    - 4 threads per process (one per dataset)
    - 10 sequential runs per thread (with different seeds)
+   - Each run executes exactly 20 iterations (no early stopping)
 4. Aggregates results and generates comprehensive visualizations
 
 Architecture:
@@ -346,10 +347,10 @@ class ParallelLDAExperimentRunner:
         run_dir = output_dir / dataset_name / algorithm / f"run_{run_id}"
         run_dir.mkdir(parents=True, exist_ok=True)
 
-        # Build command
+        # Build command (using run_no_early_stop.py for parallel execution)
         cmd = [
             sys.executable,
-            str(self.lda_dir / "run.py"),
+            str(self.lda_dir / "run_no_early_stop.py"),
             "--data", str(val_data),
             "--algorithms", algorithm,
             "--iterations", str(iterations),
@@ -841,12 +842,12 @@ def main():
         pipeline_logger.log_info(f"✓ Evaluation completed: {eval_metrics['status']}")
 
         # =====================================================================
-        # STAGE 3: Run LDA Experiments in PARALLEL
+        # STAGE 3: Run LDA Experiments in PARALLEL (20 iterations, no early stopping)
         # =====================================================================
         experiment_runner = ParallelLDAExperimentRunner(pipeline_logger, model_path)
 
         algorithms = ["GA", "ES", "PABBO_Full"]
-        iterations = 200
+        iterations = 20  # Fixed 20 iterations, no early stopping
         num_runs = 10
 
         all_results = experiment_runner.run_all_experiments_parallel(

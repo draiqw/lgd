@@ -7,6 +7,7 @@ Complete pipeline that:
 1. Trains PABBO model from scratch (light version)
 2. Evaluates the trained model
 3. Runs LDA optimization experiments (GA, ES, PABBO_Full) on all datasets
+   - NO EARLY STOPPING: exactly 20 iterations per run
 4. Repeats experiments 10 times for statistical significance
 5. Aggregates results and generates comprehensive visualizations
 
@@ -318,10 +319,10 @@ class LDAExperimentRunner:
         run_dir = output_dir / dataset_name / f"run_{run_id}"
         run_dir.mkdir(parents=True, exist_ok=True)
 
-        # Build command
+        # Build command (using run_no_early_stop.py for consistent behavior)
         cmd = [
             sys.executable,
-            str(self.lda_dir / "run.py"),
+            str(self.lda_dir / "run_no_early_stop.py"),
             "--data", str(val_data),
             "--algorithms", *algorithms,
             "--iterations", str(iterations),
@@ -422,10 +423,10 @@ class LDAExperimentRunner:
             List of all results
         """
         self.logger.logger.info("\n" + "="*80)
-        self.logger.logger.info(f"STAGE 3: Running LDA Experiments")
+        self.logger.logger.info(f"STAGE 3: Running LDA Experiments (NO EARLY STOPPING)")
         self.logger.logger.info(f"Datasets: {len(self.datasets)}")
         self.logger.logger.info(f"Algorithms: {algorithms}")
-        self.logger.logger.info(f"Iterations per run: {iterations}")
+        self.logger.logger.info(f"Iterations per run: {iterations} (no early stopping)")
         self.logger.logger.info(f"Repetitions: {num_runs}")
         self.logger.logger.info(f"Total experiments: {len(self.datasets) * num_runs}")
         self.logger.logger.info("="*80)
@@ -694,12 +695,12 @@ def main():
         pipeline_logger.logger.info(f"✓ Evaluation completed: {eval_metrics['status']}")
 
         # =====================================================================
-        # STAGE 3: Run LDA Experiments (10 runs on all datasets)
+        # STAGE 3: Run LDA Experiments (20 iterations, no early stopping)
         # =====================================================================
         experiment_runner = LDAExperimentRunner(pipeline_logger, model_path)
 
         algorithms = ["GA", "ES", "PABBO_Full"]
-        iterations = 200
+        iterations = 20  # Fixed 20 iterations, no early stopping
         num_runs = 10
 
         all_results = experiment_runner.run_all_experiments(
