@@ -4,8 +4,12 @@ import numpy as np
 from typing import Tuple, List
 from torchrl.modules import MaskedCategorical
 
-from .data.environment import gather_data_at_index
-from .policies.transformer import TransformerModel
+try:
+    from .data.environment import gather_data_at_index
+    from .policies.transformer import TransformerModel
+except ImportError:
+    from data.environment import gather_data_at_index
+    from policies.transformer import TransformerModel
 
 
 def sample_from_masked_categorical(

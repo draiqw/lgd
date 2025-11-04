@@ -16,8 +16,12 @@ from botorch.fit import fit_gpytorch_mll
 from botorch.acquisition.preference import qExpectedUtilityOfBestOption
 from botorch.models.pairwise_gp import PairwiseGP, PairwiseLaplaceMarginalLogLikelihood
 
-from ..data.utils import My1DInterpolator, MyNDInterpolator
-from .mpes import MultinomialPredictiveEntropySearch
+try:
+    from ..data.utils import My1DInterpolator, MyNDInterpolator
+    from .mpes import MultinomialPredictiveEntropySearch
+except ImportError:
+    from data.utils import My1DInterpolator, MyNDInterpolator
+    from policies.mpes import MultinomialPredictiveEntropySearch
 
 RAW_SAMPLES = 1024  # the number of raw samples before acqf optimization
 NUM_RESTARTS = 20  # the number of best candidates from the raw samples for further local optimization
