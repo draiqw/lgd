@@ -124,7 +124,7 @@ class PABBOTrainer:
             sys.executable,
             str(self.pabbo_dir / "train.py"),
             "--config-name=train_rastrigin1d_test",
-            "experiment.wandb=false",  # Disable wandb for cleaner output
+            "experiment.wandb=false",
         ]
 
         self.logger.logger.info(f"Command: {' '.join(cmd)}")
@@ -195,16 +195,20 @@ class PABBOTrainer:
             str(self.pabbo_dir / "evaluate_continuous.py"),
             "--config-name=evaluate",
             f"experiment.expid={expid}",
-            f"experiment.model=PABBO",
+            "experiment.model=PABBO",
             "experiment.device=cpu",
             "experiment.wandb=false",
-            "data.name=rastrigin1D",
+            "data.name=GP1D",
             "data.d_x=1",
-            'data.x_range="[[-5.12,5.12]]"',
-            'data.Xopt="[[0.0]]"',
-            'data.yopt="[[0.0]]"',
-            "eval.eval_max_T=30",
-            "eval.eval_num_query_points=128",
+            'data.x_range="[[-1,1]]"',
+            "data.min_num_ctx=5",
+            "data.max_num_ctx=20",
+            "eval.eval_num_query_points=256",
+            "model.d_model=32",
+            "model.n_layers=3",
+            "model.nhead=2",
+            "model.dim_feedforward=64",
+            "model.emb_depth=2",
         ]
 
         self.logger.logger.info(f"Command: {' '.join(cmd)}")
@@ -291,11 +295,10 @@ class LDAExperimentRunner:
         start_time = time.time()
 
         # Prepare data paths
-        train_data = self.data_dir / f"X_{dataset_name}_train_bow.npz"
         val_data = self.data_dir / f"X_{dataset_name}_val_bow.npz"
 
-        if not train_data.exists() or not val_data.exists():
-            raise FileNotFoundError(f"Data not found for {dataset_name}")
+        if not val_data.exists():
+            raise FileNotFoundError(f"Validation data not found for {dataset_name}")
 
         # Create output directory for this run
         run_dir = output_dir / dataset_name / f"run_{run_id}"
@@ -305,12 +308,12 @@ class LDAExperimentRunner:
         cmd = [
             sys.executable,
             str(self.lda_dir / "run.py"),
-            "--train-data", str(train_data),
-            "--val-data", str(val_data),
+            "--data", str(val_data),
             "--algorithms", *algorithms,
             "--iterations", str(iterations),
-            "--seed", str(42 + run_id),  # Different seed for each run
-            "--output-dir", str(run_dir),
+            "--seed", str(42 + run_id),
+            "--outdir", str(run_dir),
+            "--init", str(self.lda_dir / "lda_init_population.json"),
         ]
 
         # Add PABBO model path if needed
