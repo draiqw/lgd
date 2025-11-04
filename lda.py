@@ -45,6 +45,17 @@ sys.path.insert(0, str(PABBO_METHOD_DIR))
 sys.path.insert(0, str(LDA_HYPEROPT_DIR))
 
 
+def _subprocess_env() -> Dict[str, str]:
+    """Return environment dict with project root on PYTHONPATH."""
+    env = os.environ.copy()
+    py_paths = env.get("PYTHONPATH", "")
+    paths = [str(PROJECT_ROOT)]
+    if py_paths:
+        paths.append(py_paths)
+    env["PYTHONPATH"] = os.pathsep.join(paths)
+    return env
+
+
 class PipelineLogger:
     """Centralized logging for the entire pipeline."""
 
@@ -137,7 +148,8 @@ class PABBOTrainer:
                 cwd=str(self.pabbo_dir),
                 capture_output=True,
                 text=True,
-                timeout=3600  # 1 hour timeout
+                timeout=3600,  # 1 hour timeout
+                env=_subprocess_env(),
             )
 
             training_time = time.time() - start_time
@@ -219,7 +231,8 @@ class PABBOTrainer:
                 cwd=str(self.pabbo_dir),
                 capture_output=True,
                 text=True,
-                timeout=1800  # 30 min timeout
+                timeout=1800,  # 30 min timeout
+                env=_subprocess_env(),
             )
 
             eval_time = time.time() - start_time
@@ -328,7 +341,8 @@ class LDAExperimentRunner:
                 cwd=str(self.lda_dir),
                 capture_output=True,
                 text=True,
-                timeout=7200  # 2 hours timeout
+                timeout=7200,  # 2 hours timeout
+                env=_subprocess_env(),
             )
 
             elapsed = time.time() - start_time
@@ -476,6 +490,12 @@ class ResultsAggregator:
 
         # Convert to DataFrame
         df = self._results_to_dataframe(all_results)
+        if df.empty:
+            self.logger.logger.warning("No successful experiment results to aggregate.")
+            (agg_dir / "all_results.csv").write_text("status\nNO_SUCCESS\n")
+            self.logger.log_stage("Results_Aggregation", "SKIPPED", 0, reason="no_successful_runs")
+            return
+
         df.to_csv(agg_dir / "all_results.csv", index=False)
 
         # Generate statistics
