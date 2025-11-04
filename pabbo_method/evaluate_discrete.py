@@ -1,24 +1,26 @@
 import time
-from wandb_wrapper import init as wandb_init
-from omegaconf import DictConfig
-import torch
-import numpy as np
-import os.path as osp
 import os
-import hydra
-import wandb
-from tqdm import tqdm
-from utils.paths import DATASETS_PATH, RESULT_PATH
-from policies.transformer import TransformerModel
-from data.utils import set_all_seeds
-from data.kernel import *
-from data.utils import scale_from_domain_1_to_domain_2
-from data.environment import generate_pair_set
-from data.evaluation import *
-from policy_learning import *
-from utils.losses import kendalltau_correlation
-from utils.plot import *
 import logging
+import os.path as osp
+
+import hydra
+import torch
+import wandb
+import numpy as np
+from tqdm import tqdm
+from omegaconf import DictConfig
+
+from .wandb_wrapper import init as wandb_init
+from .utils.paths import DATASETS_PATH, RESULT_PATH
+from .policies.transformer import TransformerModel
+from .data.utils import set_all_seeds
+from .data.kernel import *
+from .data.utils import scale_from_domain_1_to_domain_2
+from .data.environment import generate_pair_set
+from .data.evaluation import *
+from .policy_learning import *
+from .utils.losses import kendalltau_correlation
+from .utils.plot import *
 
 
 @hydra.main(version_base=None, config_path="configs")

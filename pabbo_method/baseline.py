@@ -1,17 +1,19 @@
-import os.path as osp
 import os
-import hydra
-from wandb_wrapper import init as wandb_init
-import wandb
-from omegaconf import DictConfig
-import torch
-from utils.paths import DATASETS_PATH, RESULT_PATH
-from data.utils import set_all_seeds, scale_from_domain_1_to_domain_2
-from data.sampler import SimpleGPSampler, OptimizationFunction
-from data.evaluation import *
-from policies.pbo import PBOHandler
-import botorch
+import os.path as osp
 from typing import Union, Callable
+
+import hydra
+import wandb
+import torch
+import botorch
+from omegaconf import DictConfig
+
+from .wandb_wrapper import init as wandb_init
+from .utils.paths import DATASETS_PATH, RESULT_PATH
+from .data.utils import set_all_seeds, scale_from_domain_1_to_domain_2
+from .data.sampler import SimpleGPSampler, OptimizationFunction
+from .data.evaluation import *
+from .policies.pbo import PBOHandler
 
 
 @hydra.main(version_base=None, config_path="configs")

@@ -1,10 +1,11 @@
 import torch
 from torch import Tensor
 import numpy as np
-from data.environment import gather_data_at_index
 from typing import Tuple, List
-from policies.transformer import TransformerModel
 from torchrl.modules import MaskedCategorical
+
+from .data.environment import gather_data_at_index
+from .policies.transformer import TransformerModel
 
 
 def sample_from_masked_categorical(
