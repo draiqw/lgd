@@ -349,7 +349,7 @@ class PABBOSimpleOptimizer(BaseOptimizer):
 
             # TensorBoard logging
             if writer:
-                iter_num = iteration + 1
+                iter_num = iteration
                 writer.add_scalar("PABBO/Best/perplexity", best_metrics['perplexity'], iter_num)
                 writer.add_scalar("PABBO/Best/T", Tb, iter_num)
                 writer.add_scalar("PABBO/Best/alpha", ab, iter_num)

@@ -181,7 +181,9 @@ def plot_optimization_history(history: List[Dict], algorithm_name: str, outdir: 
     axes[1, 1].grid(True, alpha=0.3)
 
     plt.tight_layout()
-    plt.savefig(os.path.join(outdir, 'optimization_plots.png'), dpi=150)
+    # Save in both PNG and SVG formats
+    plt.savefig(os.path.join(outdir, 'optimization_plots.png'), dpi=150, bbox_inches='tight')
+    plt.savefig(os.path.join(outdir, 'optimization_plots.svg'), format='svg', bbox_inches='tight')
     plt.close()
 
 
@@ -220,7 +222,9 @@ def plot_comparison(results: List[Dict], outdir: str):
     axes[1].grid(True, alpha=0.3)
 
     plt.tight_layout()
-    plt.savefig(os.path.join(outdir, 'comparison.png'), dpi=150)
+    # Save in both PNG and SVG formats
+    plt.savefig(os.path.join(outdir, 'comparison.png'), dpi=150, bbox_inches='tight')
+    plt.savefig(os.path.join(outdir, 'comparison.svg'), format='svg', bbox_inches='tight')
     plt.close()
 
 

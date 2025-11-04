@@ -475,6 +475,20 @@ class ResultsAggregator:
     def __init__(self, logger: PipelineLogger):
         self.logger = logger
 
+    def _save_figure(self, output_dir: Path, filename: str):
+        """
+        Save figure in both PNG and SVG formats.
+
+        Args:
+            output_dir: Directory to save figures
+            filename: Base filename without extension
+        """
+        # Save as PNG (high resolution for presentations)
+        plt.savefig(output_dir / f"{filename}.png", dpi=300, bbox_inches='tight')
+        # Save as SVG (vector format for publications)
+        plt.savefig(output_dir / f"{filename}.svg", format='svg', bbox_inches='tight')
+        plt.close()
+
     def aggregate_results(self, all_results: List[Dict], output_dir: Path):
         """
         Aggregate results from all runs and create comprehensive analysis.
@@ -607,8 +621,7 @@ class ResultsAggregator:
             ax.tick_params(axis='x', rotation=45)
 
         plt.tight_layout()
-        plt.savefig(output_dir / "perplexity_comparison.png", dpi=300, bbox_inches='tight')
-        plt.close()
+        self._save_figure(output_dir, "perplexity_comparison")
 
     def _plot_time_comparison(self, df: pd.DataFrame, output_dir: Path):
         """Plot execution time comparison."""
@@ -625,8 +638,7 @@ class ResultsAggregator:
         ax.tick_params(axis='x', rotation=45)
 
         plt.tight_layout()
-        plt.savefig(output_dir / "time_comparison.png", dpi=300, bbox_inches='tight')
-        plt.close()
+        self._save_figure(output_dir, "time_comparison")
 
     def _plot_boxplots(self, df: pd.DataFrame, output_dir: Path):
         """Plot box plots for perplexity distribution."""
@@ -657,8 +669,7 @@ class ResultsAggregator:
             ax.grid(True, alpha=0.3, axis='y')
 
         plt.tight_layout()
-        plt.savefig(output_dir / "perplexity_boxplots.png", dpi=300, bbox_inches='tight')
-        plt.close()
+        self._save_figure(output_dir, "perplexity_boxplots")
 
 
 def main():
