@@ -1,14 +1,27 @@
 """
 =============================================================================
-LDA Hyperparameter Optimization - Full Pipeline
+LDA Hyperparameter Optimization - Parallel Pipeline
 =============================================================================
 
-Complete pipeline that:
+Parallel version of lda.py that:
 1. Trains PABBO model from scratch (light version)
 2. Evaluates the trained model
-3. Runs LDA optimization experiments (GA, ES, PABBO_Full) on all datasets
-4. Repeats experiments 10 times for statistical significance
-5. Aggregates results and generates comprehensive visualizations
+3. Runs LDA optimization experiments in PARALLEL:
+   - 3 processes (one per algorithm: GA, ES, PABBO_Full)
+   - 4 threads per process (one per dataset)
+   - 10 sequential runs per thread (with different seeds)
+4. Aggregates results and generates comprehensive visualizations
+
+Architecture:
+    Process 1 (GA)          Process 2 (ES)          Process 3 (PABBO_Full)
+    ├─ Thread 1 (dataset1)  ├─ Thread 1 (dataset1)  ├─ Thread 1 (dataset1)
+    │  └─ 10 runs (seed)    │  └─ 10 runs (seed)    │  └─ 10 runs (seed)
+    ├─ Thread 2 (dataset2)  ├─ Thread 2 (dataset2)  ├─ Thread 2 (dataset2)
+    │  └─ 10 runs (seed)    │  └─ 10 runs (seed)    │  └─ 10 runs (seed)
+    ├─ Thread 3 (dataset3)  ├─ Thread 3 (dataset3)  ├─ Thread 3 (dataset3)
+    │  └─ 10 runs (seed)    │  └─ 10 runs (seed)    │  └─ 10 runs (seed)
+    └─ Thread 4 (dataset4)  └─ Thread 4 (dataset4)  └─ Thread 4 (dataset4)
+       └─ 10 runs (seed)       └─ 10 runs (seed)       └─ 10 runs (seed)
 
 Date: November 2024
 =============================================================================
@@ -23,12 +36,13 @@ import subprocess
 from pathlib import Path
 from datetime import datetime
 from typing import Dict, List, Tuple
-import shutil
+from multiprocessing import Process, Queue, Manager
+from threading import Thread, Lock
+import queue
 
 import numpy as np
 import pandas as pd
 import matplotlib
-
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -57,12 +71,13 @@ def _subprocess_env() -> Dict[str, str]:
     return env
 
 
-class PipelineLogger:
-    """Centralized logging for the entire pipeline."""
+class ThreadSafePipelineLogger:
+    """Thread-safe centralized logging for the parallel pipeline."""
 
     def __init__(self, log_dir: Path):
         self.log_dir = log_dir
         self.log_dir.mkdir(parents=True, exist_ok=True)
+        self.lock = Lock()
 
         # Main log file
         self.main_log = log_dir / "pipeline_main.log"
@@ -70,13 +85,13 @@ class PipelineLogger:
         # Setup logging
         logging.basicConfig(
             level=logging.INFO,
-            format='%(asctime)s [%(levelname)s] %(message)s',
+            format='%(asctime)s [%(levelname)s] [%(processName)s-%(threadName)s] %(message)s',
             handlers=[
                 logging.FileHandler(self.main_log),
                 logging.StreamHandler(sys.stdout)
             ]
         )
-        self.logger = logging.getLogger("LDA_Pipeline")
+        self.logger = logging.getLogger("LDA_Parallel_Pipeline")
 
         # Metrics tracking
         self.metrics = {
@@ -85,35 +100,47 @@ class PipelineLogger:
         }
 
     def log_stage(self, stage_name: str, status: str, duration: float = None, **kwargs):
-        """Log a pipeline stage."""
-        self.logger.info(f"{'='*80}")
-        self.logger.info(f"Stage: {stage_name}")
-        self.logger.info(f"Status: {status}")
-        if duration:
-            self.logger.info(f"Duration: {duration:.2f}s ({duration/60:.2f}min)")
-        for key, value in kwargs.items():
-            self.logger.info(f"{key}: {value}")
-        self.logger.info(f"{'='*80}")
+        """Thread-safe log a pipeline stage."""
+        with self.lock:
+            self.logger.info(f"{'='*80}")
+            self.logger.info(f"Stage: {stage_name}")
+            self.logger.info(f"Status: {status}")
+            if duration:
+                self.logger.info(f"Duration: {duration:.2f}s ({duration/60:.2f}min)")
+            for key, value in kwargs.items():
+                self.logger.info(f"{key}: {value}")
+            self.logger.info(f"{'='*80}")
 
-        self.metrics['stages'][stage_name] = {
-            'status': status,
-            'duration': duration,
-            **kwargs
-        }
+            self.metrics['stages'][stage_name] = {
+                'status': status,
+                'duration': duration,
+                **kwargs
+            }
+
+    def log_info(self, message: str):
+        """Thread-safe info logging."""
+        with self.lock:
+            self.logger.info(message)
+
+    def log_error(self, message: str):
+        """Thread-safe error logging."""
+        with self.lock:
+            self.logger.error(message)
 
     def save_metrics(self):
         """Save all metrics to JSON."""
-        self.metrics['end_time'] = datetime.now().isoformat()
-        metrics_file = self.log_dir / "pipeline_metrics.json"
-        with open(metrics_file, 'w') as f:
-            json.dump(self.metrics, f, indent=2)
-        self.logger.info(f"Metrics saved to {metrics_file}")
+        with self.lock:
+            self.metrics['end_time'] = datetime.now().isoformat()
+            metrics_file = self.log_dir / "pipeline_metrics.json"
+            with open(metrics_file, 'w') as f:
+                json.dump(self.metrics, f, indent=2)
+            self.logger.info(f"Metrics saved to {metrics_file}")
 
 
 class PABBOTrainer:
-    """Handles PABBO model training."""
+    """Handles PABBO model training (same as in lda.py)."""
 
-    def __init__(self, logger: PipelineLogger):
+    def __init__(self, logger: ThreadSafePipelineLogger):
         self.logger = logger
         self.pabbo_dir = PABBO_METHOD_DIR
         self.model_path = None
@@ -125,9 +152,9 @@ class PABBOTrainer:
         Returns:
             (model_path, training_time)
         """
-        self.logger.logger.info("\n" + "="*80)
-        self.logger.logger.info("STAGE 1: Training PABBO Model (Light Version)")
-        self.logger.logger.info("="*80)
+        self.logger.log_info("\n" + "="*80)
+        self.logger.log_info("STAGE 1: Training PABBO Model (Light Version)")
+        self.logger.log_info("="*80)
 
         start_time = time.time()
 
@@ -139,8 +166,8 @@ class PABBOTrainer:
             "experiment.wandb=false",
         ]
 
-        self.logger.logger.info(f"Command: {' '.join(cmd)}")
-        self.logger.logger.info("Training in progress...")
+        self.logger.log_info(f"Command: {' '.join(cmd)}")
+        self.logger.log_info("Training in progress...")
 
         try:
             # Run training
@@ -156,8 +183,8 @@ class PABBOTrainer:
             training_time = time.time() - start_time
 
             if result.returncode != 0:
-                self.logger.logger.error("Training failed!")
-                self.logger.logger.error(f"STDERR: {result.stderr}")
+                self.logger.log_error("Training failed!")
+                self.logger.log_error(f"STDERR: {result.stderr}")
                 raise RuntimeError("PABBO training failed")
 
             # Find the trained model
@@ -193,9 +220,9 @@ class PABBOTrainer:
         Returns:
             Evaluation metrics
         """
-        self.logger.logger.info("\n" + "="*80)
-        self.logger.logger.info("STAGE 2: Evaluating PABBO Model")
-        self.logger.logger.info("="*80)
+        self.logger.log_info("\n" + "="*80)
+        self.logger.log_info("STAGE 2: Evaluating PABBO Model")
+        self.logger.log_info("="*80)
 
         start_time = time.time()
 
@@ -224,7 +251,7 @@ class PABBOTrainer:
             "model.emb_depth=2",
         ]
 
-        self.logger.logger.info(f"Command: {' '.join(cmd)}")
+        self.logger.log_info(f"Command: {' '.join(cmd)}")
 
         try:
             result = subprocess.run(
@@ -239,8 +266,8 @@ class PABBOTrainer:
             eval_time = time.time() - start_time
 
             if result.returncode != 0:
-                self.logger.logger.warning("Evaluation failed (non-critical)")
-                self.logger.logger.warning(f"STDERR: {result.stderr}")
+                self.logger.log_info("Evaluation failed (non-critical)")
+                self.logger.log_info(f"STDERR: {result.stderr}")
 
             metrics = {
                 'eval_time': eval_time,
@@ -257,10 +284,10 @@ class PABBOTrainer:
             return {'status': 'FAILED', 'error': str(e)}
 
 
-class LDAExperimentRunner:
-    """Runs LDA optimization experiments."""
+class ParallelLDAExperimentRunner:
+    """Runs LDA optimization experiments in parallel."""
 
-    def __init__(self, logger: PipelineLogger, model_path: str):
+    def __init__(self, logger: ThreadSafePipelineLogger, model_path: str):
         self.logger = logger
         self.model_path = model_path
         self.lda_dir = LDA_HYPEROPT_DIR
@@ -277,23 +304,23 @@ class LDAExperimentRunner:
             name = file.stem.replace("X_", "").replace("_val_bow", "")
             datasets.append(name)
 
-        self.logger.logger.info(f"Found {len(datasets)} datasets: {datasets}")
+        self.logger.log_info(f"Found {len(datasets)} datasets: {datasets}")
         return sorted(datasets)
 
     def run_single_experiment(
         self,
         dataset_name: str,
-        algorithms: List[str],
+        algorithm: str,
         iterations: int,
         run_id: int,
         output_dir: Path
     ) -> Dict:
         """
-        Run a single LDA optimization experiment.
+        Run a single LDA optimization experiment (one algorithm, one dataset, one seed).
 
         Args:
             dataset_name: Name of dataset
-            algorithms: List of algorithms to run
+            algorithm: Algorithm to run
             iterations: Number of optimization iterations
             run_id: Run identifier (0-9)
             output_dir: Where to save results
@@ -301,21 +328,22 @@ class LDAExperimentRunner:
         Returns:
             Results dictionary
         """
-        self.logger.logger.info(f"\n{'='*60}")
-        self.logger.logger.info(f"Dataset: {dataset_name} | Run: {run_id+1}/10")
-        self.logger.logger.info(f"Algorithms: {', '.join(algorithms)}")
-        self.logger.logger.info(f"{'='*60}")
-
         start_time = time.time()
 
         # Prepare data paths
         val_data = self.data_dir / f"X_{dataset_name}_val_bow.npz"
 
         if not val_data.exists():
-            raise FileNotFoundError(f"Validation data not found for {dataset_name}")
+            return {
+                'status': 'FAILED',
+                'dataset': dataset_name,
+                'algorithm': algorithm,
+                'run_id': run_id,
+                'error': f"Validation data not found for {dataset_name}"
+            }
 
         # Create output directory for this run
-        run_dir = output_dir / dataset_name / f"run_{run_id}"
+        run_dir = output_dir / dataset_name / algorithm / f"run_{run_id}"
         run_dir.mkdir(parents=True, exist_ok=True)
 
         # Build command
@@ -323,7 +351,7 @@ class LDAExperimentRunner:
             sys.executable,
             str(self.lda_dir / "run.py"),
             "--data", str(val_data),
-            "--algorithms", *algorithms,
+            "--algorithms", algorithm,
             "--iterations", str(iterations),
             "--seed", str(42 + run_id),
             "--outdir", str(run_dir),
@@ -331,10 +359,8 @@ class LDAExperimentRunner:
         ]
 
         # Add PABBO model path if needed
-        if "PABBO_Full" in algorithms:
+        if algorithm == "PABBO_Full":
             cmd.extend(["--pabbo-model", self.model_path])
-
-        self.logger.logger.info(f"Command: {' '.join(cmd)}")
 
         try:
             result = subprocess.run(
@@ -349,60 +375,133 @@ class LDAExperimentRunner:
             elapsed = time.time() - start_time
 
             if result.returncode != 0:
-                self.logger.logger.error(f"Experiment failed for {dataset_name} run {run_id}")
-                self.logger.logger.error(f"STDERR: {result.stderr}")
+                self.logger.log_error(f"Experiment failed: {dataset_name}/{algorithm}/run_{run_id}")
                 return {
                     'status': 'FAILED',
                     'dataset': dataset_name,
+                    'algorithm': algorithm,
                     'run_id': run_id,
                     'elapsed': elapsed,
                     'error': result.stderr
                 }
 
             # Parse results
-            results = self._parse_results(run_dir, algorithms)
+            results = self._parse_results(run_dir, algorithm)
             results.update({
                 'status': 'SUCCESS',
                 'dataset': dataset_name,
+                'algorithm': algorithm,
                 'run_id': run_id,
                 'elapsed': elapsed
             })
 
-            self.logger.logger.info(f"✓ Completed in {elapsed:.2f}s")
             return results
 
         except subprocess.TimeoutExpired:
-            self.logger.logger.error(f"Experiment timed out for {dataset_name} run {run_id}")
+            self.logger.log_error(f"Experiment timed out: {dataset_name}/{algorithm}/run_{run_id}")
             return {
                 'status': 'TIMEOUT',
                 'dataset': dataset_name,
+                'algorithm': algorithm,
                 'run_id': run_id,
                 'error': 'Timeout'
             }
         except Exception as e:
-            self.logger.logger.error(f"Experiment error: {e}")
+            self.logger.log_error(f"Experiment error: {dataset_name}/{algorithm}/run_{run_id} - {e}")
             return {
                 'status': 'ERROR',
                 'dataset': dataset_name,
+                'algorithm': algorithm,
                 'run_id': run_id,
                 'error': str(e)
             }
 
-    def _parse_results(self, run_dir: Path, algorithms: List[str]) -> Dict:
+    def _parse_results(self, run_dir: Path, algorithm: str) -> Dict:
         """Parse results from a run."""
-        results = {}
+        summary_file = run_dir / algorithm / "summary.json"
+        if summary_file.exists():
+            with open(summary_file) as f:
+                return {algorithm: json.load(f)}
+        else:
+            return {algorithm: {'status': 'NO_SUMMARY'}}
 
-        for algo in algorithms:
-            summary_file = run_dir / algo / "summary.json"
-            if summary_file.exists():
-                with open(summary_file) as f:
-                    results[algo] = json.load(f)
-            else:
-                results[algo] = {'status': 'NO_SUMMARY'}
+    def run_dataset_thread(
+        self,
+        dataset_name: str,
+        algorithm: str,
+        iterations: int,
+        num_runs: int,
+        output_dir: Path,
+        results_queue: Queue,
+        progress_queue: Queue
+    ):
+        """
+        Thread worker: runs all experiments for one dataset with one algorithm.
 
-        return results
+        Args:
+            dataset_name: Dataset name
+            algorithm: Algorithm name
+            iterations: Optimization iterations
+            num_runs: Number of runs (10)
+            output_dir: Output directory
+            results_queue: Queue to put results
+            progress_queue: Queue for progress updates
+        """
+        self.logger.log_info(f"[{algorithm}] Thread started for dataset: {dataset_name}")
 
-    def run_all_experiments(
+        for run_id in range(num_runs):
+            result = self.run_single_experiment(
+                dataset_name=dataset_name,
+                algorithm=algorithm,
+                iterations=iterations,
+                run_id=run_id,
+                output_dir=output_dir
+            )
+            results_queue.put(result)
+            progress_queue.put(1)  # Signal progress
+
+        self.logger.log_info(f"[{algorithm}] Thread finished for dataset: {dataset_name}")
+
+    def run_algorithm_process(
+        self,
+        algorithm: str,
+        iterations: int,
+        num_runs: int,
+        output_dir: Path,
+        results_queue: Queue,
+        progress_queue: Queue
+    ):
+        """
+        Process worker: runs experiments for one algorithm across all datasets using threads.
+
+        Args:
+            algorithm: Algorithm name (GA, ES, or PABBO_Full)
+            iterations: Optimization iterations
+            num_runs: Number of runs per dataset (10)
+            output_dir: Output directory
+            results_queue: Queue to collect results
+            progress_queue: Queue for progress updates
+        """
+        self.logger.log_info(f"[{algorithm}] Process started")
+
+        # Create threads for each dataset
+        threads = []
+        for dataset in self.datasets:
+            thread = Thread(
+                target=self.run_dataset_thread,
+                args=(dataset, algorithm, iterations, num_runs, output_dir, results_queue, progress_queue),
+                name=f"{algorithm}-{dataset}"
+            )
+            threads.append(thread)
+            thread.start()
+
+        # Wait for all threads to complete
+        for thread in threads:
+            thread.join()
+
+        self.logger.log_info(f"[{algorithm}] Process finished")
+
+    def run_all_experiments_parallel(
         self,
         algorithms: List[str],
         iterations: int,
@@ -410,45 +509,71 @@ class LDAExperimentRunner:
         output_dir: Path
     ) -> List[Dict]:
         """
-        Run experiments on all datasets, repeated num_runs times.
+        Run experiments in parallel:
+        - 3 processes (one per algorithm)
+        - 4 threads per process (one per dataset)
+        - 10 sequential runs per thread
 
         Args:
-            algorithms: List of algorithms
+            algorithms: List of algorithms (GA, ES, PABBO_Full)
             iterations: Optimization iterations
-            num_runs: Number of repetitions (default: 10)
+            num_runs: Number of repetitions per dataset (10)
             output_dir: Where to save all results
 
         Returns:
             List of all results
         """
-        self.logger.logger.info("\n" + "="*80)
-        self.logger.logger.info(f"STAGE 3: Running LDA Experiments")
-        self.logger.logger.info(f"Datasets: {len(self.datasets)}")
-        self.logger.logger.info(f"Algorithms: {algorithms}")
-        self.logger.logger.info(f"Iterations per run: {iterations}")
-        self.logger.logger.info(f"Repetitions: {num_runs}")
-        self.logger.logger.info(f"Total experiments: {len(self.datasets) * num_runs}")
-        self.logger.logger.info("="*80)
+        self.logger.log_info("\n" + "="*80)
+        self.logger.log_info("STAGE 3: Running LDA Experiments (PARALLEL)")
+        self.logger.log_info(f"Processes: {len(algorithms)} (one per algorithm)")
+        self.logger.log_info(f"Threads per process: {len(self.datasets)} (one per dataset)")
+        self.logger.log_info(f"Runs per thread: {num_runs}")
+        self.logger.log_info(f"Algorithms: {algorithms}")
+        self.logger.log_info(f"Datasets: {self.datasets}")
+        self.logger.log_info(f"Iterations per run: {iterations}")
+        self.logger.log_info(f"Total experiments: {len(self.datasets) * num_runs * len(algorithms)}")
+        self.logger.log_info("="*80)
 
-        all_results = []
+        # Shared queues for results and progress
+        manager = Manager()
+        results_queue = manager.Queue()
+        progress_queue = manager.Queue()
+
         start_time = time.time()
 
-        total_experiments = len(self.datasets) * num_runs
-        pbar = tqdm(total=total_experiments, desc="Running experiments")
+        # Create processes for each algorithm
+        processes = []
+        for algorithm in algorithms:
+            process = Process(
+                target=self.run_algorithm_process,
+                args=(algorithm, iterations, num_runs, output_dir, results_queue, progress_queue),
+                name=algorithm
+            )
+            processes.append(process)
+            process.start()
 
-        for dataset in self.datasets:
-            for run_id in range(num_runs):
-                result = self.run_single_experiment(
-                    dataset_name=dataset,
-                    algorithms=algorithms,
-                    iterations=iterations,
-                    run_id=run_id,
-                    output_dir=output_dir
-                )
-                all_results.append(result)
-                pbar.update(1)
+        # Progress monitoring
+        total_experiments = len(self.datasets) * num_runs * len(algorithms)
+        with tqdm(total=total_experiments, desc="Running experiments") as pbar:
+            completed = 0
+            while completed < total_experiments:
+                try:
+                    progress_queue.get(timeout=1)
+                    completed += 1
+                    pbar.update(1)
+                except queue.Empty:
+                    # Check if all processes are still alive
+                    if not any(p.is_alive() for p in processes):
+                        break
 
-        pbar.close()
+        # Wait for all processes to complete
+        for process in processes:
+            process.join()
+
+        # Collect results
+        all_results = []
+        while not results_queue.empty():
+            all_results.append(results_queue.get())
 
         total_time = time.time() - start_time
 
@@ -457,21 +582,23 @@ class LDAExperimentRunner:
         failures = len(all_results) - successes
 
         self.logger.log_stage(
-            "LDA_Experiments",
-            f"COMPLETED",
+            "LDA_Experiments_Parallel",
+            "COMPLETED",
             total_time,
             total_experiments=total_experiments,
             successes=successes,
-            failures=failures
+            failures=failures,
+            processes=len(algorithms),
+            threads_per_process=len(self.datasets)
         )
 
         return all_results
 
 
 class ResultsAggregator:
-    """Aggregates and analyzes results from multiple runs."""
+    """Aggregates and analyzes results from multiple runs (same as lda.py)."""
 
-    def __init__(self, logger: PipelineLogger):
+    def __init__(self, logger: ThreadSafePipelineLogger):
         self.logger = logger
 
     def aggregate_results(self, all_results: List[Dict], output_dir: Path):
@@ -482,9 +609,9 @@ class ResultsAggregator:
             all_results: List of all experiment results
             output_dir: Directory for aggregated results
         """
-        self.logger.logger.info("\n" + "="*80)
-        self.logger.logger.info("STAGE 4: Aggregating Results")
-        self.logger.logger.info("="*80)
+        self.logger.log_info("\n" + "="*80)
+        self.logger.log_info("STAGE 4: Aggregating Results")
+        self.logger.log_info("="*80)
 
         agg_dir = output_dir / "aggregated_results"
         agg_dir.mkdir(parents=True, exist_ok=True)
@@ -492,7 +619,7 @@ class ResultsAggregator:
         # Convert to DataFrame
         df = self._results_to_dataframe(all_results)
         if df.empty:
-            self.logger.logger.warning("No successful experiment results to aggregate.")
+            self.logger.log_info("No successful experiment results to aggregate.")
             (agg_dir / "all_results.csv").write_text("status\nNO_SUCCESS\n")
             self.logger.log_stage("Results_Aggregation", "SKIPPED", 0, reason="no_successful_runs")
             return
@@ -507,7 +634,7 @@ class ResultsAggregator:
         # Create visualizations
         self._create_visualizations(df, agg_dir)
 
-        self.logger.logger.info(f"Aggregated results saved to {agg_dir}")
+        self.logger.log_info(f"Aggregated results saved to {agg_dir}")
         self.logger.log_stage("Results_Aggregation", "SUCCESS", 0)
 
     def _results_to_dataframe(self, all_results: List[Dict]) -> pd.DataFrame:
@@ -520,20 +647,20 @@ class ResultsAggregator:
 
             base = {
                 'dataset': result['dataset'],
+                'algorithm': result['algorithm'],
                 'run_id': result['run_id'],
                 'elapsed_time': result['elapsed']
             }
 
             # Extract algorithm results
-            for algo in ['GA', 'ES', 'PABBO_Full']:
-                if algo in result:
-                    row = base.copy()
-                    row['algorithm'] = algo
-                    row['best_T'] = result[algo].get('best_T', np.nan)
-                    row['best_perplexity'] = result[algo].get('best_perplexity', np.nan)
-                    row['total_time'] = result[algo].get('total_time', np.nan)
-                    row['num_iterations'] = result[algo].get('num_iterations', np.nan)
-                    rows.append(row)
+            algo = result['algorithm']
+            if algo in result:
+                row = base.copy()
+                row['best_T'] = result[algo].get('best_T', np.nan)
+                row['best_perplexity'] = result[algo].get('best_perplexity', np.nan)
+                row['total_time'] = result[algo].get('total_time', np.nan)
+                row['num_iterations'] = result[algo].get('num_iterations', np.nan)
+                rows.append(row)
 
         return pd.DataFrame(rows)
 
@@ -575,23 +702,26 @@ class ResultsAggregator:
         # 3. Box plots for each dataset
         self._plot_boxplots(df, output_dir)
 
-        # 4. Convergence curves (if history available)
-        # TODO: Implement if history data is accessible
-
-        self.logger.logger.info(f"Visualizations saved to {output_dir}")
+        self.logger.log_info(f"Visualizations saved to {output_dir}")
 
     def _plot_perplexity_comparison(self, df: pd.DataFrame, output_dir: Path):
         """Plot perplexity comparison across algorithms and datasets."""
-        fig, axes = plt.subplots(2, 2, figsize=(16, 12))
-        axes = axes.flatten()
-
         datasets = df['dataset'].unique()
+        n_datasets = len(datasets)
+        n_cols = 2
+        n_rows = (n_datasets + 1) // 2
+
+        fig, axes = plt.subplots(n_rows, n_cols, figsize=(16, 6 * n_rows))
+        if n_datasets == 1:
+            axes = np.array([[axes]])
+        elif n_rows == 1:
+            axes = axes.reshape(1, -1)
 
         for idx, dataset in enumerate(datasets):
-            if idx >= 4:
-                break
+            row = idx // n_cols
+            col = idx % n_cols
+            ax = axes[row, col]
 
-            ax = axes[idx]
             dataset_df = df[df['dataset'] == dataset]
 
             # Bar plot with error bars
@@ -604,6 +734,12 @@ class ResultsAggregator:
             ax.set_xlabel('Algorithm', fontsize=12)
             ax.grid(True, alpha=0.3)
             ax.tick_params(axis='x', rotation=45)
+
+        # Hide unused subplots
+        for idx in range(n_datasets, n_rows * n_cols):
+            row = idx // n_cols
+            col = idx % n_cols
+            axes[row, col].axis('off')
 
         plt.tight_layout()
         plt.savefig(output_dir / "perplexity_comparison.png", dpi=300, bbox_inches='tight')
@@ -631,15 +767,20 @@ class ResultsAggregator:
         """Plot box plots for perplexity distribution."""
         datasets = df['dataset'].unique()
         n_datasets = len(datasets)
+        n_cols = 2
+        n_rows = (n_datasets + 1) // 2
 
-        fig, axes = plt.subplots(2, 2, figsize=(16, 12))
-        axes = axes.flatten()
+        fig, axes = plt.subplots(n_rows, n_cols, figsize=(16, 6 * n_rows))
+        if n_datasets == 1:
+            axes = np.array([[axes]])
+        elif n_rows == 1:
+            axes = axes.reshape(1, -1)
 
         for idx, dataset in enumerate(datasets):
-            if idx >= 4:
-                break
+            row = idx // n_cols
+            col = idx % n_cols
+            ax = axes[row, col]
 
-            ax = axes[idx]
             dataset_df = df[df['dataset'] == dataset]
 
             sns.boxplot(
@@ -655,27 +796,33 @@ class ResultsAggregator:
             ax.set_xlabel('Algorithm', fontsize=12)
             ax.grid(True, alpha=0.3, axis='y')
 
+        # Hide unused subplots
+        for idx in range(n_datasets, n_rows * n_cols):
+            row = idx // n_cols
+            col = idx % n_cols
+            axes[row, col].axis('off')
+
         plt.tight_layout()
         plt.savefig(output_dir / "perplexity_boxplots.png", dpi=300, bbox_inches='tight')
         plt.close()
 
 
 def main():
-    """Main pipeline execution."""
+    """Main parallel pipeline execution."""
     print("="*80)
-    print("LDA HYPERPARAMETER OPTIMIZATION - FULL PIPELINE")
+    print("LDA HYPERPARAMETER OPTIMIZATION - PARALLEL PIPELINE")
     print("="*80)
     print(f"Start time: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     print("="*80)
 
     # Create results directory
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    results_dir = RESULTS_DIR / f"run_{timestamp}"
+    results_dir = RESULTS_DIR / f"run_parallel_{timestamp}"
     results_dir.mkdir(parents=True, exist_ok=True)
 
     # Initialize logger
-    pipeline_logger = PipelineLogger(results_dir / "logs")
-    pipeline_logger.logger.info("Pipeline started")
+    pipeline_logger = ThreadSafePipelineLogger(results_dir / "logs")
+    pipeline_logger.log_info("Parallel pipeline started")
 
     try:
         # =====================================================================
@@ -684,25 +831,25 @@ def main():
         trainer = PABBOTrainer(pipeline_logger)
         model_path, training_time = trainer.train_light_model()
 
-        pipeline_logger.logger.info(f"✓ PABBO model trained: {model_path}")
-        pipeline_logger.logger.info(f"✓ Training time: {training_time:.2f}s ({training_time/60:.2f}min)")
+        pipeline_logger.log_info(f"✓ PABBO model trained: {model_path}")
+        pipeline_logger.log_info(f"✓ Training time: {training_time:.2f}s ({training_time/60:.2f}min)")
 
         # =====================================================================
         # STAGE 2: Evaluate PABBO Model
         # =====================================================================
         eval_metrics = trainer.evaluate_model(model_path)
-        pipeline_logger.logger.info(f"✓ Evaluation completed: {eval_metrics['status']}")
+        pipeline_logger.log_info(f"✓ Evaluation completed: {eval_metrics['status']}")
 
         # =====================================================================
-        # STAGE 3: Run LDA Experiments (10 runs on all datasets)
+        # STAGE 3: Run LDA Experiments in PARALLEL
         # =====================================================================
-        experiment_runner = LDAExperimentRunner(pipeline_logger, model_path)
+        experiment_runner = ParallelLDAExperimentRunner(pipeline_logger, model_path)
 
         algorithms = ["GA", "ES", "PABBO_Full"]
         iterations = 200
         num_runs = 10
 
-        all_results = experiment_runner.run_all_experiments(
+        all_results = experiment_runner.run_all_experiments_parallel(
             algorithms=algorithms,
             iterations=iterations,
             num_runs=num_runs,
@@ -722,28 +869,28 @@ def main():
         # =====================================================================
         # Pipeline Complete
         # =====================================================================
-        pipeline_logger.logger.info("\n" + "="*80)
-        pipeline_logger.logger.info("PIPELINE COMPLETED SUCCESSFULLY!")
-        pipeline_logger.logger.info("="*80)
-        pipeline_logger.logger.info(f"Results saved to: {results_dir}")
-        pipeline_logger.logger.info(f"Model path: {model_path}")
-        pipeline_logger.logger.info(f"Total experiments: {len(all_results)}")
+        pipeline_logger.log_info("\n" + "="*80)
+        pipeline_logger.log_info("PARALLEL PIPELINE COMPLETED SUCCESSFULLY!")
+        pipeline_logger.log_info("="*80)
+        pipeline_logger.log_info(f"Results saved to: {results_dir}")
+        pipeline_logger.log_info(f"Model path: {model_path}")
+        pipeline_logger.log_info(f"Total experiments: {len(all_results)}")
 
         successes = sum(1 for r in all_results if r['status'] == 'SUCCESS')
-        pipeline_logger.logger.info(f"Successful runs: {successes}/{len(all_results)}")
+        pipeline_logger.log_info(f"Successful runs: {successes}/{len(all_results)}")
 
         pipeline_logger.save_metrics()
 
         return 0
 
     except Exception as e:
-        pipeline_logger.logger.error(f"\n{'='*80}")
-        pipeline_logger.logger.error("PIPELINE FAILED!")
-        pipeline_logger.logger.error(f"Error: {e}")
-        pipeline_logger.logger.error("="*80)
+        pipeline_logger.log_error(f"\n{'='*80}")
+        pipeline_logger.log_error("PARALLEL PIPELINE FAILED!")
+        pipeline_logger.log_error(f"Error: {e}")
+        pipeline_logger.log_error("="*80)
 
         import traceback
-        pipeline_logger.logger.error(traceback.format_exc())
+        pipeline_logger.log_error(traceback.format_exc())
 
         pipeline_logger.save_metrics()
 
