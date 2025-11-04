@@ -1,0 +1,141 @@
+2025-11-04 04:37:36,256 [INFO] Pipeline started
+2025-11-04 04:37:36,256 [INFO] 
+================================================================================
+2025-11-04 04:37:36,256 [INFO] STAGE 1: Training PABBO Model (Light Version)
+2025-11-04 04:37:36,256 [INFO] ================================================================================
+2025-11-04 04:37:36,256 [INFO] Command: /Users/draiqws/Llabs/.venv/bin/python /Users/draiqws/Llabs/pabbo_method/train.py --config-name=train_rastrigin1d_test experiment.wandb=false
+2025-11-04 04:37:36,256 [INFO] Training in progress...
+2025-11-04 04:53:34,892 [INFO] ================================================================================
+2025-11-04 04:53:34,892 [INFO] Stage: PABBO_Training
+2025-11-04 04:53:34,892 [INFO] Status: SUCCESS
+2025-11-04 04:53:34,892 [INFO] Duration: 958.64s (15.98min)
+2025-11-04 04:53:34,892 [INFO] model_path: /Users/draiqws/Llabs/pabbo_method/results/PABBO/PABBO_GP1D_quick_20251104_043738/ckpt.tar
+2025-11-04 04:53:34,892 [INFO] config: train_rastrigin1d_test
+2025-11-04 04:53:34,892 [INFO] ================================================================================
+2025-11-04 04:53:34,892 [INFO] ✓ PABBO model trained: /Users/draiqws/Llabs/pabbo_method/results/PABBO/PABBO_GP1D_quick_20251104_043738/ckpt.tar
+2025-11-04 04:53:34,892 [INFO] ✓ Training time: 958.64s (15.98min)
+2025-11-04 04:53:34,892 [INFO] 
+================================================================================
+2025-11-04 04:53:34,892 [INFO] STAGE 2: Evaluating PABBO Model
+2025-11-04 04:53:34,892 [INFO] ================================================================================
+2025-11-04 04:53:34,892 [INFO] Command: /Users/draiqws/Llabs/.venv/bin/python /Users/draiqws/Llabs/pabbo_method/evaluate_continuous.py --config-name=evaluate experiment.expid=PABBO_GP1D_quick_20251104_043738 experiment.model=PABBO experiment.device=cpu experiment.wandb=false data.name=GP1D data.d_x=1 data.x_range="[[-1,1]]" data.min_num_ctx=5 data.max_num_ctx=20 eval.eval_num_query_points=256 model.d_model=32 model.n_layers=3 model.nhead=2 model.dim_feedforward=64 model.emb_depth=2
+2025-11-04 04:55:52,826 [INFO] ================================================================================
+2025-11-04 04:55:52,826 [INFO] Stage: PABBO_Evaluation
+2025-11-04 04:55:52,826 [INFO] Status: SUCCESS
+2025-11-04 04:55:52,826 [INFO] Duration: 137.93s (2.30min)
+2025-11-04 04:55:52,826 [INFO] ================================================================================
+2025-11-04 04:55:52,826 [INFO] ✓ Evaluation completed: SUCCESS
+2025-11-04 04:55:52,826 [INFO] Found 4 datasets: ['agnews', 'yelp', '20news', 'val_out']
+2025-11-04 04:55:52,826 [INFO] 
+================================================================================
+2025-11-04 04:55:52,826 [INFO] STAGE 3: Running LDA Experiments
+2025-11-04 04:55:52,826 [INFO] Datasets: 4
+2025-11-04 04:55:52,827 [INFO] Algorithms: ['GA', 'ES', 'PABBO_Full']
+2025-11-04 04:55:52,827 [INFO] Iterations per run: 200
+2025-11-04 04:55:52,827 [INFO] Repetitions: 10
+2025-11-04 04:55:52,827 [INFO] Total experiments: 40
+2025-11-04 04:55:52,827 [INFO] ================================================================================
+2025-11-04 04:55:52,841 [INFO] 
+============================================================
+2025-11-04 04:55:52,841 [INFO] Dataset: 20news | Run: 1/10
+2025-11-04 04:55:52,841 [INFO] Algorithms: GA, ES, PABBO_Full
+2025-11-04 04:55:52,841 [INFO] ============================================================
+2025-11-04 04:55:52,842 [INFO] Command: /Users/draiqws/Llabs/.venv/bin/python /Users/draiqws/Llabs/lda_hyperopt/run.py --data /Users/draiqws/Llabs/data/X_20news_val_bow.npz --algorithms GA ES PABBO_Full --iterations 200 --seed 42 --outdir /Users/draiqws/Llabs/lda_pipeline_results/run_20251104_043736/experiments/20news/run_0 --init /Users/draiqws/Llabs/lda_hyperopt/lda_init_population.json --pabbo-model /Users/draiqws/Llabs/pabbo_method/results/PABBO/PABBO_GP1D_quick_20251104_043738/ckpt.tar
+2025-11-04 05:20:51,612 [INFO] ✓ Completed in 1498.77s
+2025-11-04 05:20:51,613 [INFO] 
+============================================================
+2025-11-04 05:20:51,613 [INFO] Dataset: 20news | Run: 2/10
+2025-11-04 05:20:51,613 [INFO] Algorithms: GA, ES, PABBO_Full
+2025-11-04 05:20:51,613 [INFO] ============================================================
+2025-11-04 05:20:51,613 [INFO] Command: /Users/draiqws/Llabs/.venv/bin/python /Users/draiqws/Llabs/lda_hyperopt/run.py --data /Users/draiqws/Llabs/data/X_20news_val_bow.npz --algorithms GA ES PABBO_Full --iterations 200 --seed 43 --outdir /Users/draiqws/Llabs/lda_pipeline_results/run_20251104_043736/experiments/20news/run_1 --init /Users/draiqws/Llabs/lda_hyperopt/lda_init_population.json --pabbo-model /Users/draiqws/Llabs/pabbo_method/results/PABBO/PABBO_GP1D_quick_20251104_043738/ckpt.tar
+2025-11-04 05:43:18,093 [INFO] ✓ Completed in 1346.48s
+2025-11-04 05:43:18,094 [INFO] 
+============================================================
+2025-11-04 05:43:18,094 [INFO] Dataset: 20news | Run: 3/10
+2025-11-04 05:43:18,094 [INFO] Algorithms: GA, ES, PABBO_Full
+2025-11-04 05:43:18,094 [INFO] ============================================================
+2025-11-04 05:43:18,094 [INFO] Command: /Users/draiqws/Llabs/.venv/bin/python /Users/draiqws/Llabs/lda_hyperopt/run.py --data /Users/draiqws/Llabs/data/X_20news_val_bow.npz --algorithms GA ES PABBO_Full --iterations 200 --seed 44 --outdir /Users/draiqws/Llabs/lda_pipeline_results/run_20251104_043736/experiments/20news/run_2 --init /Users/draiqws/Llabs/lda_hyperopt/lda_init_population.json --pabbo-model /Users/draiqws/Llabs/pabbo_method/results/PABBO/PABBO_GP1D_quick_20251104_043738/ckpt.tar
+2025-11-04 06:07:43,821 [INFO] ✓ Completed in 1465.73s
+2025-11-04 06:07:43,822 [INFO] 
+============================================================
+2025-11-04 06:07:43,822 [INFO] Dataset: 20news | Run: 4/10
+2025-11-04 06:07:43,822 [INFO] Algorithms: GA, ES, PABBO_Full
+2025-11-04 06:07:43,822 [INFO] ============================================================
+2025-11-04 06:07:43,822 [INFO] Command: /Users/draiqws/Llabs/.venv/bin/python /Users/draiqws/Llabs/lda_hyperopt/run.py --data /Users/draiqws/Llabs/data/X_20news_val_bow.npz --algorithms GA ES PABBO_Full --iterations 200 --seed 45 --outdir /Users/draiqws/Llabs/lda_pipeline_results/run_20251104_043736/experiments/20news/run_3 --init /Users/draiqws/Llabs/lda_hyperopt/lda_init_population.json --pabbo-model /Users/draiqws/Llabs/pabbo_method/results/PABBO/PABBO_GP1D_quick_20251104_043738/ckpt.tar
+2025-11-04 06:27:22,007 [INFO] ✓ Completed in 1178.18s
+2025-11-04 06:27:22,008 [INFO] 
+============================================================
+2025-11-04 06:27:22,008 [INFO] Dataset: 20news | Run: 5/10
+2025-11-04 06:27:22,008 [INFO] Algorithms: GA, ES, PABBO_Full
+2025-11-04 06:27:22,008 [INFO] ============================================================
+2025-11-04 06:27:22,008 [INFO] Command: /Users/draiqws/Llabs/.venv/bin/python /Users/draiqws/Llabs/lda_hyperopt/run.py --data /Users/draiqws/Llabs/data/X_20news_val_bow.npz --algorithms GA ES PABBO_Full --iterations 200 --seed 46 --outdir /Users/draiqws/Llabs/lda_pipeline_results/run_20251104_043736/experiments/20news/run_4 --init /Users/draiqws/Llabs/lda_hyperopt/lda_init_population.json --pabbo-model /Users/draiqws/Llabs/pabbo_method/results/PABBO/PABBO_GP1D_quick_20251104_043738/ckpt.tar
+2025-11-04 06:51:55,585 [INFO] ✓ Completed in 1473.58s
+2025-11-04 06:51:55,586 [INFO] 
+============================================================
+2025-11-04 06:51:55,586 [INFO] Dataset: 20news | Run: 6/10
+2025-11-04 06:51:55,586 [INFO] Algorithms: GA, ES, PABBO_Full
+2025-11-04 06:51:55,586 [INFO] ============================================================
+2025-11-04 06:51:55,586 [INFO] Command: /Users/draiqws/Llabs/.venv/bin/python /Users/draiqws/Llabs/lda_hyperopt/run.py --data /Users/draiqws/Llabs/data/X_20news_val_bow.npz --algorithms GA ES PABBO_Full --iterations 200 --seed 47 --outdir /Users/draiqws/Llabs/lda_pipeline_results/run_20251104_043736/experiments/20news/run_5 --init /Users/draiqws/Llabs/lda_hyperopt/lda_init_population.json --pabbo-model /Users/draiqws/Llabs/pabbo_method/results/PABBO/PABBO_GP1D_quick_20251104_043738/ckpt.tar
+2025-11-04 07:15:45,778 [INFO] ✓ Completed in 1430.19s
+2025-11-04 07:15:45,779 [INFO] 
+============================================================
+2025-11-04 07:15:45,779 [INFO] Dataset: 20news | Run: 7/10
+2025-11-04 07:15:45,779 [INFO] Algorithms: GA, ES, PABBO_Full
+2025-11-04 07:15:45,779 [INFO] ============================================================
+2025-11-04 07:15:45,779 [INFO] Command: /Users/draiqws/Llabs/.venv/bin/python /Users/draiqws/Llabs/lda_hyperopt/run.py --data /Users/draiqws/Llabs/data/X_20news_val_bow.npz --algorithms GA ES PABBO_Full --iterations 200 --seed 48 --outdir /Users/draiqws/Llabs/lda_pipeline_results/run_20251104_043736/experiments/20news/run_6 --init /Users/draiqws/Llabs/lda_hyperopt/lda_init_population.json --pabbo-model /Users/draiqws/Llabs/pabbo_method/results/PABBO/PABBO_GP1D_quick_20251104_043738/ckpt.tar
+2025-11-04 07:43:00,896 [INFO] ✓ Completed in 1635.12s
+2025-11-04 07:43:00,896 [INFO] 
+============================================================
+2025-11-04 07:43:00,897 [INFO] Dataset: 20news | Run: 8/10
+2025-11-04 07:43:00,897 [INFO] Algorithms: GA, ES, PABBO_Full
+2025-11-04 07:43:00,897 [INFO] ============================================================
+2025-11-04 07:43:00,897 [INFO] Command: /Users/draiqws/Llabs/.venv/bin/python /Users/draiqws/Llabs/lda_hyperopt/run.py --data /Users/draiqws/Llabs/data/X_20news_val_bow.npz --algorithms GA ES PABBO_Full --iterations 200 --seed 49 --outdir /Users/draiqws/Llabs/lda_pipeline_results/run_20251104_043736/experiments/20news/run_7 --init /Users/draiqws/Llabs/lda_hyperopt/lda_init_population.json --pabbo-model /Users/draiqws/Llabs/pabbo_method/results/PABBO/PABBO_GP1D_quick_20251104_043738/ckpt.tar
+2025-11-04 08:06:04,852 [INFO] ✓ Completed in 1383.95s
+2025-11-04 08:06:04,853 [INFO] 
+============================================================
+2025-11-04 08:06:04,853 [INFO] Dataset: 20news | Run: 9/10
+2025-11-04 08:06:04,853 [INFO] Algorithms: GA, ES, PABBO_Full
+2025-11-04 08:06:04,853 [INFO] ============================================================
+2025-11-04 08:06:04,853 [INFO] Command: /Users/draiqws/Llabs/.venv/bin/python /Users/draiqws/Llabs/lda_hyperopt/run.py --data /Users/draiqws/Llabs/data/X_20news_val_bow.npz --algorithms GA ES PABBO_Full --iterations 200 --seed 50 --outdir /Users/draiqws/Llabs/lda_pipeline_results/run_20251104_043736/experiments/20news/run_8 --init /Users/draiqws/Llabs/lda_hyperopt/lda_init_population.json --pabbo-model /Users/draiqws/Llabs/pabbo_method/results/PABBO/PABBO_GP1D_quick_20251104_043738/ckpt.tar
+2025-11-04 08:27:30,127 [INFO] ✓ Completed in 1285.27s
+2025-11-04 08:27:30,127 [INFO] 
+============================================================
+2025-11-04 08:27:30,127 [INFO] Dataset: 20news | Run: 10/10
+2025-11-04 08:27:30,127 [INFO] Algorithms: GA, ES, PABBO_Full
+2025-11-04 08:27:30,127 [INFO] ============================================================
+2025-11-04 08:27:30,127 [INFO] Command: /Users/draiqws/Llabs/.venv/bin/python /Users/draiqws/Llabs/lda_hyperopt/run.py --data /Users/draiqws/Llabs/data/X_20news_val_bow.npz --algorithms GA ES PABBO_Full --iterations 200 --seed 51 --outdir /Users/draiqws/Llabs/lda_pipeline_results/run_20251104_043736/experiments/20news/run_9 --init /Users/draiqws/Llabs/lda_hyperopt/lda_init_population.json --pabbo-model /Users/draiqws/Llabs/pabbo_method/results/PABBO/PABBO_GP1D_quick_20251104_043738/ckpt.tar
+2025-11-04 10:18:31,216 [INFO] ✓ Completed in 6661.09s
+2025-11-04 10:18:31,217 [INFO] 
+============================================================
+2025-11-04 10:18:31,217 [INFO] Dataset: agnews | Run: 1/10
+2025-11-04 10:18:31,217 [INFO] Algorithms: GA, ES, PABBO_Full
+2025-11-04 10:18:31,217 [INFO] ============================================================
+2025-11-04 10:18:31,225 [INFO] Command: /Users/draiqws/Llabs/.venv/bin/python /Users/draiqws/Llabs/lda_hyperopt/run.py --data /Users/draiqws/Llabs/data/X_agnews_val_bow.npz --algorithms GA ES PABBO_Full --iterations 200 --seed 42 --outdir /Users/draiqws/Llabs/lda_pipeline_results/run_20251104_043736/experiments/agnews/run_0 --init /Users/draiqws/Llabs/lda_hyperopt/lda_init_population.json --pabbo-model /Users/draiqws/Llabs/pabbo_method/results/PABBO/PABBO_GP1D_quick_20251104_043738/ckpt.tar
+2025-11-04 10:38:56,797 [INFO] ✓ Completed in 1225.58s
+2025-11-04 10:38:56,798 [INFO] 
+============================================================
+2025-11-04 10:38:56,798 [INFO] Dataset: agnews | Run: 2/10
+2025-11-04 10:38:56,798 [INFO] Algorithms: GA, ES, PABBO_Full
+2025-11-04 10:38:56,798 [INFO] ============================================================
+2025-11-04 10:38:56,799 [INFO] Command: /Users/draiqws/Llabs/.venv/bin/python /Users/draiqws/Llabs/lda_hyperopt/run.py --data /Users/draiqws/Llabs/data/X_agnews_val_bow.npz --algorithms GA ES PABBO_Full --iterations 200 --seed 43 --outdir /Users/draiqws/Llabs/lda_pipeline_results/run_20251104_043736/experiments/agnews/run_1 --init /Users/draiqws/Llabs/lda_hyperopt/lda_init_population.json --pabbo-model /Users/draiqws/Llabs/pabbo_method/results/PABBO/PABBO_GP1D_quick_20251104_043738/ckpt.tar
+2025-11-04 10:57:54,225 [INFO] ✓ Completed in 1137.43s
+2025-11-04 10:57:54,226 [INFO] 
+============================================================
+2025-11-04 10:57:54,226 [INFO] Dataset: agnews | Run: 3/10
+2025-11-04 10:57:54,226 [INFO] Algorithms: GA, ES, PABBO_Full
+2025-11-04 10:57:54,226 [INFO] ============================================================
+2025-11-04 10:57:54,226 [INFO] Command: /Users/draiqws/Llabs/.venv/bin/python /Users/draiqws/Llabs/lda_hyperopt/run.py --data /Users/draiqws/Llabs/data/X_agnews_val_bow.npz --algorithms GA ES PABBO_Full --iterations 200 --seed 44 --outdir /Users/draiqws/Llabs/lda_pipeline_results/run_20251104_043736/experiments/agnews/run_2 --init /Users/draiqws/Llabs/lda_hyperopt/lda_init_population.json --pabbo-model /Users/draiqws/Llabs/pabbo_method/results/PABBO/PABBO_GP1D_quick_20251104_043738/ckpt.tar
+2025-11-04 11:16:21,918 [INFO] ✓ Completed in 1107.69s
+2025-11-04 11:16:21,919 [INFO] 
+============================================================
+2025-11-04 11:16:21,919 [INFO] Dataset: agnews | Run: 4/10
+2025-11-04 11:16:21,919 [INFO] Algorithms: GA, ES, PABBO_Full
+2025-11-04 11:16:21,919 [INFO] ============================================================
+2025-11-04 11:16:21,920 [INFO] Command: /Users/draiqws/Llabs/.venv/bin/python /Users/draiqws/Llabs/lda_hyperopt/run.py --data /Users/draiqws/Llabs/data/X_agnews_val_bow.npz --algorithms GA ES PABBO_Full --iterations 200 --seed 45 --outdir /Users/draiqws/Llabs/lda_pipeline_results/run_20251104_043736/experiments/agnews/run_3 --init /Users/draiqws/Llabs/lda_hyperopt/lda_init_population.json --pabbo-model /Users/draiqws/Llabs/pabbo_method/results/PABBO/PABBO_GP1D_quick_20251104_043738/ckpt.tar
+2025-11-04 11:28:09,303 [INFO] ✓ Completed in 707.38s
+2025-11-04 11:28:09,303 [INFO] 
+============================================================
+2025-11-04 11:28:09,303 [INFO] Dataset: agnews | Run: 5/10
+2025-11-04 11:28:09,303 [INFO] Algorithms: GA, ES, PABBO_Full
+2025-11-04 11:28:09,303 [INFO] ============================================================
+2025-11-04 11:28:09,305 [INFO] Command: /Users/draiqws/Llabs/.venv/bin/python /Users/draiqws/Llabs/lda_hyperopt/run.py --data /Users/draiqws/Llabs/data/X_agnews_val_bow.npz --algorithms GA ES PABBO_Full --iterations 200 --seed 46 --outdir /Users/draiqws/Llabs/lda_pipeline_results/run_20251104_043736/experiments/agnews/run_4 --init /Users/draiqws/Llabs/lda_hyperopt/lda_init_population.json --pabbo-model /Users/draiqws/Llabs/pabbo_method/results/PABBO/PABBO_GP1D_quick_20251104_043738/ckpt.tar
