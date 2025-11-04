@@ -308,7 +308,9 @@ def main():
             seed=args.seed,
             cxpb=0.9,
             mutpb=0.2,
-            elite=5
+            elite=5,
+            early_stop_eps_pct=0.005,
+            max_no_improvement=5,
         )
         ga_result['algorithm'] = 'GA'
         results.append(ga_result)
@@ -327,7 +329,9 @@ def main():
             outdir=os.path.join(args.outdir, 'ES'),
             seed=args.seed,
             mu=5,
-            lmbda=10
+            lmbda=10,
+            early_stop_eps_pct=0.005,
+            max_no_improvement=5,
         )
         es_result['algorithm'] = 'ES'
         results.append(es_result)
@@ -346,7 +350,9 @@ def main():
             iterations=args.iterations,
             outdir=os.path.join(args.outdir, 'PABBO_Simple'),
             seed=args.seed,
-            exploration_rate=0.3
+            exploration_rate=0.3,
+            early_stop_eps_pct=0.005,
+            max_no_improvement=5,
         )
         pabbo_result['algorithm'] = 'PABBO_Simple'
         results.append(pabbo_result)
@@ -366,7 +372,8 @@ def main():
             seed=args.seed,
             model_path=args.pabbo_model,
             exploration_rate=0.3,
-            max_no_improvement=3
+            early_stop_eps_pct=0.005,
+            max_no_improvement=5,
         )
         pabbo_full_result['algorithm'] = 'PABBO_Full'
         results.append(pabbo_full_result)
