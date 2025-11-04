@@ -46,16 +46,10 @@ MANIFEST
 .installed.cfg
 
 # --- Логи и временные файлы ---
-# Игнорируем общие логи, но НЕ результаты экспериментов
 pip-log.txt
 pip-delete-this-directory.txt
 
-# Игнорируем детальные логи оптимизации (они большие и дублируют информацию)
-*_optimization.log
-# Игнорируем main.log только в lda_hyperopt (не в pipeline results)
-lda_hyperopt/results/main.log
-
-# Игнорируем TensorBoard логи (они огромные)
+# Игнорируем только TensorBoard логи (они слишком огромные)
 **/tensorboard/
 
 # --- Тесты и покрытие ---
@@ -106,20 +100,17 @@ node_modules/
 *.session-journal
 
 # --- Результаты экспериментов ---
-# Игнорируем промежуточные большие результаты, но оставляем финальные
+# Игнорируем ВСЕ результаты экспериментов
 
-# Игнорируем промежуточные результаты PABBO (могут быть большие модели)
+# Результаты PABBO
 pabbo_method/results/
 PABBO/results/
 
-# Игнорируем промежуточные результаты отдельных запусков LDA
+# Результаты LDA hyperopt
 lda_hyperopt/results/
 
-# Для результатов pipeline оставляем только агрегированные данные
-# Игнорируем отдельные эксперименты (они огромные)
-lda_pipeline_results/*/experiments/
-# Но оставляем logs и aggregated_results
-!lda_pipeline_results/*/logs/
-!lda_pipeline_results/*/aggregated_results/
-# Игнорируем детальные JSON (они большие)
-lda_pipeline_results/*/all_results.json
+# Результаты pipeline
+lda_pipeline_results/
+
+# Результаты test_function_opt
+test_function_opt/test_results/
