@@ -1,0 +1,282 @@
+[
+  {
+    "status": "FAILED",
+    "dataset": "20news",
+    "run_id": 0,
+    "elapsed": 1.4064130783081055,
+    "error": "Traceback (most recent call last):\n  File \"/Users/draiqws/Llabs/lda_hyperopt/run.py\", line 34, in <module>\n    from optimizers import GAOptimizer, ESOptimizer, PABBOSimpleOptimizer, PABBOFullOptimizer, PABBOOptimizer\n  File \"/Users/draiqws/Llabs/lda_hyperopt/optimizers/__init__.py\", line 11, in <module>\n    from .ga import GAOptimizer\n  File \"/Users/draiqws/Llabs/lda_hyperopt/optimizers/ga.py\", line 22, in <module>\n    from lda_hyperopt.utils import BaseOptimizer, clamp, ensure_dir\nModuleNotFoundError: No module named 'lda_hyperopt'\n"
+  },
+  {
+    "status": "FAILED",
+    "dataset": "20news",
+    "run_id": 1,
+    "elapsed": 1.3590309619903564,
+    "error": "Traceback (most recent call last):\n  File \"/Users/draiqws/Llabs/lda_hyperopt/run.py\", line 34, in <module>\n    from optimizers import GAOptimizer, ESOptimizer, PABBOSimpleOptimizer, PABBOFullOptimizer, PABBOOptimizer\n  File \"/Users/draiqws/Llabs/lda_hyperopt/optimizers/__init__.py\", line 11, in <module>\n    from .ga import GAOptimizer\n  File \"/Users/draiqws/Llabs/lda_hyperopt/optimizers/ga.py\", line 22, in <module>\n    from lda_hyperopt.utils import BaseOptimizer, clamp, ensure_dir\nModuleNotFoundError: No module named 'lda_hyperopt'\n"
+  },
+  {
+    "status": "FAILED",
+    "dataset": "20news",
+    "run_id": 2,
+    "elapsed": 1.3435678482055664,
+    "error": "Traceback (most recent call last):\n  File \"/Users/draiqws/Llabs/lda_hyperopt/run.py\", line 34, in <module>\n    from optimizers import GAOptimizer, ESOptimizer, PABBOSimpleOptimizer, PABBOFullOptimizer, PABBOOptimizer\n  File \"/Users/draiqws/Llabs/lda_hyperopt/optimizers/__init__.py\", line 11, in <module>\n    from .ga import GAOptimizer\n  File \"/Users/draiqws/Llabs/lda_hyperopt/optimizers/ga.py\", line 22, in <module>\n    from lda_hyperopt.utils import BaseOptimizer, clamp, ensure_dir\nModuleNotFoundError: No module named 'lda_hyperopt'\n"
+  },
+  {
+    "status": "FAILED",
+    "dataset": "20news",
+    "run_id": 3,
+    "elapsed": 1.3485679626464844,
+    "error": "Traceback (most recent call last):\n  File \"/Users/draiqws/Llabs/lda_hyperopt/run.py\", line 34, in <module>\n    from optimizers import GAOptimizer, ESOptimizer, PABBOSimpleOptimizer, PABBOFullOptimizer, PABBOOptimizer\n  File \"/Users/draiqws/Llabs/lda_hyperopt/optimizers/__init__.py\", line 11, in <module>\n    from .ga import GAOptimizer\n  File \"/Users/draiqws/Llabs/lda_hyperopt/optimizers/ga.py\", line 22, in <module>\n    from lda_hyperopt.utils import BaseOptimizer, clamp, ensure_dir\nModuleNotFoundError: No module named 'lda_hyperopt'\n"
+  },
+  {
+    "status": "FAILED",
+    "dataset": "20news",
+    "run_id": 4,
+    "elapsed": 1.3534789085388184,
+    "error": "Traceback (most recent call last):\n  File \"/Users/draiqws/Llabs/lda_hyperopt/run.py\", line 34, in <module>\n    from optimizers import GAOptimizer, ESOptimizer, PABBOSimpleOptimizer, PABBOFullOptimizer, PABBOOptimizer\n  File \"/Users/draiqws/Llabs/lda_hyperopt/optimizers/__init__.py\", line 11, in <module>\n    from .ga import GAOptimizer\n  File \"/Users/draiqws/Llabs/lda_hyperopt/optimizers/ga.py\", line 22, in <module>\n    from lda_hyperopt.utils import BaseOptimizer, clamp, ensure_dir\nModuleNotFoundError: No module named 'lda_hyperopt'\n"
+  },
+  {
+    "status": "FAILED",
+    "dataset": "20news",
+    "run_id": 5,
+    "elapsed": 1.340116024017334,
+    "error": "Traceback (most recent call last):\n  File \"/Users/draiqws/Llabs/lda_hyperopt/run.py\", line 34, in <module>\n    from optimizers import GAOptimizer, ESOptimizer, PABBOSimpleOptimizer, PABBOFullOptimizer, PABBOOptimizer\n  File \"/Users/draiqws/Llabs/lda_hyperopt/optimizers/__init__.py\", line 11, in <module>\n    from .ga import GAOptimizer\n  File \"/Users/draiqws/Llabs/lda_hyperopt/optimizers/ga.py\", line 22, in <module>\n    from lda_hyperopt.utils import BaseOptimizer, clamp, ensure_dir\nModuleNotFoundError: No module named 'lda_hyperopt'\n"
+  },
+  {
+    "status": "FAILED",
+    "dataset": "20news",
+    "run_id": 6,
+    "elapsed": 1.3300731182098389,
+    "error": "Traceback (most recent call last):\n  File \"/Users/draiqws/Llabs/lda_hyperopt/run.py\", line 34, in <module>\n    from optimizers import GAOptimizer, ESOptimizer, PABBOSimpleOptimizer, PABBOFullOptimizer, PABBOOptimizer\n  File \"/Users/draiqws/Llabs/lda_hyperopt/optimizers/__init__.py\", line 11, in <module>\n    from .ga import GAOptimizer\n  File \"/Users/draiqws/Llabs/lda_hyperopt/optimizers/ga.py\", line 22, in <module>\n    from lda_hyperopt.utils import BaseOptimizer, clamp, ensure_dir\nModuleNotFoundError: No module named 'lda_hyperopt'\n"
+  },
+  {
+    "status": "FAILED",
+    "dataset": "20news",
+    "run_id": 7,
+    "elapsed": 1.3434839248657227,
+    "error": "Traceback (most recent call last):\n  File \"/Users/draiqws/Llabs/lda_hyperopt/run.py\", line 34, in <module>\n    from optimizers import GAOptimizer, ESOptimizer, PABBOSimpleOptimizer, PABBOFullOptimizer, PABBOOptimizer\n  File \"/Users/draiqws/Llabs/lda_hyperopt/optimizers/__init__.py\", line 11, in <module>\n    from .ga import GAOptimizer\n  File \"/Users/draiqws/Llabs/lda_hyperopt/optimizers/ga.py\", line 22, in <module>\n    from lda_hyperopt.utils import BaseOptimizer, clamp, ensure_dir\nModuleNotFoundError: No module named 'lda_hyperopt'\n"
+  },
+  {
+    "status": "FAILED",
+    "dataset": "20news",
+    "run_id": 8,
+    "elapsed": 1.3479230403900146,
+    "error": "Traceback (most recent call last):\n  File \"/Users/draiqws/Llabs/lda_hyperopt/run.py\", line 34, in <module>\n    from optimizers import GAOptimizer, ESOptimizer, PABBOSimpleOptimizer, PABBOFullOptimizer, PABBOOptimizer\n  File \"/Users/draiqws/Llabs/lda_hyperopt/optimizers/__init__.py\", line 11, in <module>\n    from .ga import GAOptimizer\n  File \"/Users/draiqws/Llabs/lda_hyperopt/optimizers/ga.py\", line 22, in <module>\n    from lda_hyperopt.utils import BaseOptimizer, clamp, ensure_dir\nModuleNotFoundError: No module named 'lda_hyperopt'\n"
+  },
+  {
+    "status": "FAILED",
+    "dataset": "20news",
+    "run_id": 9,
+    "elapsed": 1.337752103805542,
+    "error": "Traceback (most recent call last):\n  File \"/Users/draiqws/Llabs/lda_hyperopt/run.py\", line 34, in <module>\n    from optimizers import GAOptimizer, ESOptimizer, PABBOSimpleOptimizer, PABBOFullOptimizer, PABBOOptimizer\n  File \"/Users/draiqws/Llabs/lda_hyperopt/optimizers/__init__.py\", line 11, in <module>\n    from .ga import GAOptimizer\n  File \"/Users/draiqws/Llabs/lda_hyperopt/optimizers/ga.py\", line 22, in <module>\n    from lda_hyperopt.utils import BaseOptimizer, clamp, ensure_dir\nModuleNotFoundError: No module named 'lda_hyperopt'\n"
+  },
+  {
+    "status": "FAILED",
+    "dataset": "agnews",
+    "run_id": 0,
+    "elapsed": 1.3447167873382568,
+    "error": "Traceback (most recent call last):\n  File \"/Users/draiqws/Llabs/lda_hyperopt/run.py\", line 34, in <module>\n    from optimizers import GAOptimizer, ESOptimizer, PABBOSimpleOptimizer, PABBOFullOptimizer, PABBOOptimizer\n  File \"/Users/draiqws/Llabs/lda_hyperopt/optimizers/__init__.py\", line 11, in <module>\n    from .ga import GAOptimizer\n  File \"/Users/draiqws/Llabs/lda_hyperopt/optimizers/ga.py\", line 22, in <module>\n    from lda_hyperopt.utils import BaseOptimizer, clamp, ensure_dir\nModuleNotFoundError: No module named 'lda_hyperopt'\n"
+  },
+  {
+    "status": "FAILED",
+    "dataset": "agnews",
+    "run_id": 1,
+    "elapsed": 1.3416950702667236,
+    "error": "Traceback (most recent call last):\n  File \"/Users/draiqws/Llabs/lda_hyperopt/run.py\", line 34, in <module>\n    from optimizers import GAOptimizer, ESOptimizer, PABBOSimpleOptimizer, PABBOFullOptimizer, PABBOOptimizer\n  File \"/Users/draiqws/Llabs/lda_hyperopt/optimizers/__init__.py\", line 11, in <module>\n    from .ga import GAOptimizer\n  File \"/Users/draiqws/Llabs/lda_hyperopt/optimizers/ga.py\", line 22, in <module>\n    from lda_hyperopt.utils import BaseOptimizer, clamp, ensure_dir\nModuleNotFoundError: No module named 'lda_hyperopt'\n"
+  },
+  {
+    "status": "FAILED",
+    "dataset": "agnews",
+    "run_id": 2,
+    "elapsed": 1.345365047454834,
+    "error": "Traceback (most recent call last):\n  File \"/Users/draiqws/Llabs/lda_hyperopt/run.py\", line 34, in <module>\n    from optimizers import GAOptimizer, ESOptimizer, PABBOSimpleOptimizer, PABBOFullOptimizer, PABBOOptimizer\n  File \"/Users/draiqws/Llabs/lda_hyperopt/optimizers/__init__.py\", line 11, in <module>\n    from .ga import GAOptimizer\n  File \"/Users/draiqws/Llabs/lda_hyperopt/optimizers/ga.py\", line 22, in <module>\n    from lda_hyperopt.utils import BaseOptimizer, clamp, ensure_dir\nModuleNotFoundError: No module named 'lda_hyperopt'\n"
+  },
+  {
+    "status": "FAILED",
+    "dataset": "agnews",
+    "run_id": 3,
+    "elapsed": 1.3473072052001953,
+    "error": "Traceback (most recent call last):\n  File \"/Users/draiqws/Llabs/lda_hyperopt/run.py\", line 34, in <module>\n    from optimizers import GAOptimizer, ESOptimizer, PABBOSimpleOptimizer, PABBOFullOptimizer, PABBOOptimizer\n  File \"/Users/draiqws/Llabs/lda_hyperopt/optimizers/__init__.py\", line 11, in <module>\n    from .ga import GAOptimizer\n  File \"/Users/draiqws/Llabs/lda_hyperopt/optimizers/ga.py\", line 22, in <module>\n    from lda_hyperopt.utils import BaseOptimizer, clamp, ensure_dir\nModuleNotFoundError: No module named 'lda_hyperopt'\n"
+  },
+  {
+    "status": "FAILED",
+    "dataset": "agnews",
+    "run_id": 4,
+    "elapsed": 1.3385539054870605,
+    "error": "Traceback (most recent call last):\n  File \"/Users/draiqws/Llabs/lda_hyperopt/run.py\", line 34, in <module>\n    from optimizers import GAOptimizer, ESOptimizer, PABBOSimpleOptimizer, PABBOFullOptimizer, PABBOOptimizer\n  File \"/Users/draiqws/Llabs/lda_hyperopt/optimizers/__init__.py\", line 11, in <module>\n    from .ga import GAOptimizer\n  File \"/Users/draiqws/Llabs/lda_hyperopt/optimizers/ga.py\", line 22, in <module>\n    from lda_hyperopt.utils import BaseOptimizer, clamp, ensure_dir\nModuleNotFoundError: No module named 'lda_hyperopt'\n"
+  },
+  {
+    "status": "FAILED",
+    "dataset": "agnews",
+    "run_id": 5,
+    "elapsed": 1.346738338470459,
+    "error": "Traceback (most recent call last):\n  File \"/Users/draiqws/Llabs/lda_hyperopt/run.py\", line 34, in <module>\n    from optimizers import GAOptimizer, ESOptimizer, PABBOSimpleOptimizer, PABBOFullOptimizer, PABBOOptimizer\n  File \"/Users/draiqws/Llabs/lda_hyperopt/optimizers/__init__.py\", line 11, in <module>\n    from .ga import GAOptimizer\n  File \"/Users/draiqws/Llabs/lda_hyperopt/optimizers/ga.py\", line 22, in <module>\n    from lda_hyperopt.utils import BaseOptimizer, clamp, ensure_dir\nModuleNotFoundError: No module named 'lda_hyperopt'\n"
+  },
+  {
+    "status": "FAILED",
+    "dataset": "agnews",
+    "run_id": 6,
+    "elapsed": 1.3462157249450684,
+    "error": "Traceback (most recent call last):\n  File \"/Users/draiqws/Llabs/lda_hyperopt/run.py\", line 34, in <module>\n    from optimizers import GAOptimizer, ESOptimizer, PABBOSimpleOptimizer, PABBOFullOptimizer, PABBOOptimizer\n  File \"/Users/draiqws/Llabs/lda_hyperopt/optimizers/__init__.py\", line 11, in <module>\n    from .ga import GAOptimizer\n  File \"/Users/draiqws/Llabs/lda_hyperopt/optimizers/ga.py\", line 22, in <module>\n    from lda_hyperopt.utils import BaseOptimizer, clamp, ensure_dir\nModuleNotFoundError: No module named 'lda_hyperopt'\n"
+  },
+  {
+    "status": "FAILED",
+    "dataset": "agnews",
+    "run_id": 7,
+    "elapsed": 1.3322677612304688,
+    "error": "Traceback (most recent call last):\n  File \"/Users/draiqws/Llabs/lda_hyperopt/run.py\", line 34, in <module>\n    from optimizers import GAOptimizer, ESOptimizer, PABBOSimpleOptimizer, PABBOFullOptimizer, PABBOOptimizer\n  File \"/Users/draiqws/Llabs/lda_hyperopt/optimizers/__init__.py\", line 11, in <module>\n    from .ga import GAOptimizer\n  File \"/Users/draiqws/Llabs/lda_hyperopt/optimizers/ga.py\", line 22, in <module>\n    from lda_hyperopt.utils import BaseOptimizer, clamp, ensure_dir\nModuleNotFoundError: No module named 'lda_hyperopt'\n"
+  },
+  {
+    "status": "FAILED",
+    "dataset": "agnews",
+    "run_id": 8,
+    "elapsed": 1.3445181846618652,
+    "error": "Traceback (most recent call last):\n  File \"/Users/draiqws/Llabs/lda_hyperopt/run.py\", line 34, in <module>\n    from optimizers import GAOptimizer, ESOptimizer, PABBOSimpleOptimizer, PABBOFullOptimizer, PABBOOptimizer\n  File \"/Users/draiqws/Llabs/lda_hyperopt/optimizers/__init__.py\", line 11, in <module>\n    from .ga import GAOptimizer\n  File \"/Users/draiqws/Llabs/lda_hyperopt/optimizers/ga.py\", line 22, in <module>\n    from lda_hyperopt.utils import BaseOptimizer, clamp, ensure_dir\nModuleNotFoundError: No module named 'lda_hyperopt'\n"
+  },
+  {
+    "status": "FAILED",
+    "dataset": "agnews",
+    "run_id": 9,
+    "elapsed": 1.3586208820343018,
+    "error": "Traceback (most recent call last):\n  File \"/Users/draiqws/Llabs/lda_hyperopt/run.py\", line 34, in <module>\n    from optimizers import GAOptimizer, ESOptimizer, PABBOSimpleOptimizer, PABBOFullOptimizer, PABBOOptimizer\n  File \"/Users/draiqws/Llabs/lda_hyperopt/optimizers/__init__.py\", line 11, in <module>\n    from .ga import GAOptimizer\n  File \"/Users/draiqws/Llabs/lda_hyperopt/optimizers/ga.py\", line 22, in <module>\n    from lda_hyperopt.utils import BaseOptimizer, clamp, ensure_dir\nModuleNotFoundError: No module named 'lda_hyperopt'\n"
+  },
+  {
+    "status": "FAILED",
+    "dataset": "val_out",
+    "run_id": 0,
+    "elapsed": 1.3456408977508545,
+    "error": "Traceback (most recent call last):\n  File \"/Users/draiqws/Llabs/lda_hyperopt/run.py\", line 34, in <module>\n    from optimizers import GAOptimizer, ESOptimizer, PABBOSimpleOptimizer, PABBOFullOptimizer, PABBOOptimizer\n  File \"/Users/draiqws/Llabs/lda_hyperopt/optimizers/__init__.py\", line 11, in <module>\n    from .ga import GAOptimizer\n  File \"/Users/draiqws/Llabs/lda_hyperopt/optimizers/ga.py\", line 22, in <module>\n    from lda_hyperopt.utils import BaseOptimizer, clamp, ensure_dir\nModuleNotFoundError: No module named 'lda_hyperopt'\n"
+  },
+  {
+    "status": "FAILED",
+    "dataset": "val_out",
+    "run_id": 1,
+    "elapsed": 1.3429369926452637,
+    "error": "Traceback (most recent call last):\n  File \"/Users/draiqws/Llabs/lda_hyperopt/run.py\", line 34, in <module>\n    from optimizers import GAOptimizer, ESOptimizer, PABBOSimpleOptimizer, PABBOFullOptimizer, PABBOOptimizer\n  File \"/Users/draiqws/Llabs/lda_hyperopt/optimizers/__init__.py\", line 11, in <module>\n    from .ga import GAOptimizer\n  File \"/Users/draiqws/Llabs/lda_hyperopt/optimizers/ga.py\", line 22, in <module>\n    from lda_hyperopt.utils import BaseOptimizer, clamp, ensure_dir\nModuleNotFoundError: No module named 'lda_hyperopt'\n"
+  },
+  {
+    "status": "FAILED",
+    "dataset": "val_out",
+    "run_id": 2,
+    "elapsed": 1.3396210670471191,
+    "error": "Traceback (most recent call last):\n  File \"/Users/draiqws/Llabs/lda_hyperopt/run.py\", line 34, in <module>\n    from optimizers import GAOptimizer, ESOptimizer, PABBOSimpleOptimizer, PABBOFullOptimizer, PABBOOptimizer\n  File \"/Users/draiqws/Llabs/lda_hyperopt/optimizers/__init__.py\", line 11, in <module>\n    from .ga import GAOptimizer\n  File \"/Users/draiqws/Llabs/lda_hyperopt/optimizers/ga.py\", line 22, in <module>\n    from lda_hyperopt.utils import BaseOptimizer, clamp, ensure_dir\nModuleNotFoundError: No module named 'lda_hyperopt'\n"
+  },
+  {
+    "status": "FAILED",
+    "dataset": "val_out",
+    "run_id": 3,
+    "elapsed": 1.360158920288086,
+    "error": "Traceback (most recent call last):\n  File \"/Users/draiqws/Llabs/lda_hyperopt/run.py\", line 34, in <module>\n    from optimizers import GAOptimizer, ESOptimizer, PABBOSimpleOptimizer, PABBOFullOptimizer, PABBOOptimizer\n  File \"/Users/draiqws/Llabs/lda_hyperopt/optimizers/__init__.py\", line 11, in <module>\n    from .ga import GAOptimizer\n  File \"/Users/draiqws/Llabs/lda_hyperopt/optimizers/ga.py\", line 22, in <module>\n    from lda_hyperopt.utils import BaseOptimizer, clamp, ensure_dir\nModuleNotFoundError: No module named 'lda_hyperopt'\n"
+  },
+  {
+    "status": "FAILED",
+    "dataset": "val_out",
+    "run_id": 4,
+    "elapsed": 1.3568201065063477,
+    "error": "Traceback (most recent call last):\n  File \"/Users/draiqws/Llabs/lda_hyperopt/run.py\", line 34, in <module>\n    from optimizers import GAOptimizer, ESOptimizer, PABBOSimpleOptimizer, PABBOFullOptimizer, PABBOOptimizer\n  File \"/Users/draiqws/Llabs/lda_hyperopt/optimizers/__init__.py\", line 11, in <module>\n    from .ga import GAOptimizer\n  File \"/Users/draiqws/Llabs/lda_hyperopt/optimizers/ga.py\", line 22, in <module>\n    from lda_hyperopt.utils import BaseOptimizer, clamp, ensure_dir\nModuleNotFoundError: No module named 'lda_hyperopt'\n"
+  },
+  {
+    "status": "FAILED",
+    "dataset": "val_out",
+    "run_id": 5,
+    "elapsed": 1.3300790786743164,
+    "error": "Traceback (most recent call last):\n  File \"/Users/draiqws/Llabs/lda_hyperopt/run.py\", line 34, in <module>\n    from optimizers import GAOptimizer, ESOptimizer, PABBOSimpleOptimizer, PABBOFullOptimizer, PABBOOptimizer\n  File \"/Users/draiqws/Llabs/lda_hyperopt/optimizers/__init__.py\", line 11, in <module>\n    from .ga import GAOptimizer\n  File \"/Users/draiqws/Llabs/lda_hyperopt/optimizers/ga.py\", line 22, in <module>\n    from lda_hyperopt.utils import BaseOptimizer, clamp, ensure_dir\nModuleNotFoundError: No module named 'lda_hyperopt'\n"
+  },
+  {
+    "status": "FAILED",
+    "dataset": "val_out",
+    "run_id": 6,
+    "elapsed": 1.3535969257354736,
+    "error": "Traceback (most recent call last):\n  File \"/Users/draiqws/Llabs/lda_hyperopt/run.py\", line 34, in <module>\n    from optimizers import GAOptimizer, ESOptimizer, PABBOSimpleOptimizer, PABBOFullOptimizer, PABBOOptimizer\n  File \"/Users/draiqws/Llabs/lda_hyperopt/optimizers/__init__.py\", line 11, in <module>\n    from .ga import GAOptimizer\n  File \"/Users/draiqws/Llabs/lda_hyperopt/optimizers/ga.py\", line 22, in <module>\n    from lda_hyperopt.utils import BaseOptimizer, clamp, ensure_dir\nModuleNotFoundError: No module named 'lda_hyperopt'\n"
+  },
+  {
+    "status": "FAILED",
+    "dataset": "val_out",
+    "run_id": 7,
+    "elapsed": 1.3652689456939697,
+    "error": "Traceback (most recent call last):\n  File \"/Users/draiqws/Llabs/lda_hyperopt/run.py\", line 34, in <module>\n    from optimizers import GAOptimizer, ESOptimizer, PABBOSimpleOptimizer, PABBOFullOptimizer, PABBOOptimizer\n  File \"/Users/draiqws/Llabs/lda_hyperopt/optimizers/__init__.py\", line 11, in <module>\n    from .ga import GAOptimizer\n  File \"/Users/draiqws/Llabs/lda_hyperopt/optimizers/ga.py\", line 22, in <module>\n    from lda_hyperopt.utils import BaseOptimizer, clamp, ensure_dir\nModuleNotFoundError: No module named 'lda_hyperopt'\n"
+  },
+  {
+    "status": "FAILED",
+    "dataset": "val_out",
+    "run_id": 8,
+    "elapsed": 1.334143877029419,
+    "error": "Traceback (most recent call last):\n  File \"/Users/draiqws/Llabs/lda_hyperopt/run.py\", line 34, in <module>\n    from optimizers import GAOptimizer, ESOptimizer, PABBOSimpleOptimizer, PABBOFullOptimizer, PABBOOptimizer\n  File \"/Users/draiqws/Llabs/lda_hyperopt/optimizers/__init__.py\", line 11, in <module>\n    from .ga import GAOptimizer\n  File \"/Users/draiqws/Llabs/lda_hyperopt/optimizers/ga.py\", line 22, in <module>\n    from lda_hyperopt.utils import BaseOptimizer, clamp, ensure_dir\nModuleNotFoundError: No module named 'lda_hyperopt'\n"
+  },
+  {
+    "status": "FAILED",
+    "dataset": "val_out",
+    "run_id": 9,
+    "elapsed": 1.3403940200805664,
+    "error": "Traceback (most recent call last):\n  File \"/Users/draiqws/Llabs/lda_hyperopt/run.py\", line 34, in <module>\n    from optimizers import GAOptimizer, ESOptimizer, PABBOSimpleOptimizer, PABBOFullOptimizer, PABBOOptimizer\n  File \"/Users/draiqws/Llabs/lda_hyperopt/optimizers/__init__.py\", line 11, in <module>\n    from .ga import GAOptimizer\n  File \"/Users/draiqws/Llabs/lda_hyperopt/optimizers/ga.py\", line 22, in <module>\n    from lda_hyperopt.utils import BaseOptimizer, clamp, ensure_dir\nModuleNotFoundError: No module named 'lda_hyperopt'\n"
+  },
+  {
+    "status": "FAILED",
+    "dataset": "yelp",
+    "run_id": 0,
+    "elapsed": 1.3666391372680664,
+    "error": "Traceback (most recent call last):\n  File \"/Users/draiqws/Llabs/lda_hyperopt/run.py\", line 34, in <module>\n    from optimizers import GAOptimizer, ESOptimizer, PABBOSimpleOptimizer, PABBOFullOptimizer, PABBOOptimizer\n  File \"/Users/draiqws/Llabs/lda_hyperopt/optimizers/__init__.py\", line 11, in <module>\n    from .ga import GAOptimizer\n  File \"/Users/draiqws/Llabs/lda_hyperopt/optimizers/ga.py\", line 22, in <module>\n    from lda_hyperopt.utils import BaseOptimizer, clamp, ensure_dir\nModuleNotFoundError: No module named 'lda_hyperopt'\n"
+  },
+  {
+    "status": "FAILED",
+    "dataset": "yelp",
+    "run_id": 1,
+    "elapsed": 1.3413128852844238,
+    "error": "Traceback (most recent call last):\n  File \"/Users/draiqws/Llabs/lda_hyperopt/run.py\", line 34, in <module>\n    from optimizers import GAOptimizer, ESOptimizer, PABBOSimpleOptimizer, PABBOFullOptimizer, PABBOOptimizer\n  File \"/Users/draiqws/Llabs/lda_hyperopt/optimizers/__init__.py\", line 11, in <module>\n    from .ga import GAOptimizer\n  File \"/Users/draiqws/Llabs/lda_hyperopt/optimizers/ga.py\", line 22, in <module>\n    from lda_hyperopt.utils import BaseOptimizer, clamp, ensure_dir\nModuleNotFoundError: No module named 'lda_hyperopt'\n"
+  },
+  {
+    "status": "FAILED",
+    "dataset": "yelp",
+    "run_id": 2,
+    "elapsed": 1.342087984085083,
+    "error": "Traceback (most recent call last):\n  File \"/Users/draiqws/Llabs/lda_hyperopt/run.py\", line 34, in <module>\n    from optimizers import GAOptimizer, ESOptimizer, PABBOSimpleOptimizer, PABBOFullOptimizer, PABBOOptimizer\n  File \"/Users/draiqws/Llabs/lda_hyperopt/optimizers/__init__.py\", line 11, in <module>\n    from .ga import GAOptimizer\n  File \"/Users/draiqws/Llabs/lda_hyperopt/optimizers/ga.py\", line 22, in <module>\n    from lda_hyperopt.utils import BaseOptimizer, clamp, ensure_dir\nModuleNotFoundError: No module named 'lda_hyperopt'\n"
+  },
+  {
+    "status": "FAILED",
+    "dataset": "yelp",
+    "run_id": 3,
+    "elapsed": 1.3330259323120117,
+    "error": "Traceback (most recent call last):\n  File \"/Users/draiqws/Llabs/lda_hyperopt/run.py\", line 34, in <module>\n    from optimizers import GAOptimizer, ESOptimizer, PABBOSimpleOptimizer, PABBOFullOptimizer, PABBOOptimizer\n  File \"/Users/draiqws/Llabs/lda_hyperopt/optimizers/__init__.py\", line 11, in <module>\n    from .ga import GAOptimizer\n  File \"/Users/draiqws/Llabs/lda_hyperopt/optimizers/ga.py\", line 22, in <module>\n    from lda_hyperopt.utils import BaseOptimizer, clamp, ensure_dir\nModuleNotFoundError: No module named 'lda_hyperopt'\n"
+  },
+  {
+    "status": "FAILED",
+    "dataset": "yelp",
+    "run_id": 4,
+    "elapsed": 1.360321044921875,
+    "error": "Traceback (most recent call last):\n  File \"/Users/draiqws/Llabs/lda_hyperopt/run.py\", line 34, in <module>\n    from optimizers import GAOptimizer, ESOptimizer, PABBOSimpleOptimizer, PABBOFullOptimizer, PABBOOptimizer\n  File \"/Users/draiqws/Llabs/lda_hyperopt/optimizers/__init__.py\", line 11, in <module>\n    from .ga import GAOptimizer\n  File \"/Users/draiqws/Llabs/lda_hyperopt/optimizers/ga.py\", line 22, in <module>\n    from lda_hyperopt.utils import BaseOptimizer, clamp, ensure_dir\nModuleNotFoundError: No module named 'lda_hyperopt'\n"
+  },
+  {
+    "status": "FAILED",
+    "dataset": "yelp",
+    "run_id": 5,
+    "elapsed": 1.3518710136413574,
+    "error": "Traceback (most recent call last):\n  File \"/Users/draiqws/Llabs/lda_hyperopt/run.py\", line 34, in <module>\n    from optimizers import GAOptimizer, ESOptimizer, PABBOSimpleOptimizer, PABBOFullOptimizer, PABBOOptimizer\n  File \"/Users/draiqws/Llabs/lda_hyperopt/optimizers/__init__.py\", line 11, in <module>\n    from .ga import GAOptimizer\n  File \"/Users/draiqws/Llabs/lda_hyperopt/optimizers/ga.py\", line 22, in <module>\n    from lda_hyperopt.utils import BaseOptimizer, clamp, ensure_dir\nModuleNotFoundError: No module named 'lda_hyperopt'\n"
+  },
+  {
+    "status": "FAILED",
+    "dataset": "yelp",
+    "run_id": 6,
+    "elapsed": 1.3287410736083984,
+    "error": "Traceback (most recent call last):\n  File \"/Users/draiqws/Llabs/lda_hyperopt/run.py\", line 34, in <module>\n    from optimizers import GAOptimizer, ESOptimizer, PABBOSimpleOptimizer, PABBOFullOptimizer, PABBOOptimizer\n  File \"/Users/draiqws/Llabs/lda_hyperopt/optimizers/__init__.py\", line 11, in <module>\n    from .ga import GAOptimizer\n  File \"/Users/draiqws/Llabs/lda_hyperopt/optimizers/ga.py\", line 22, in <module>\n    from lda_hyperopt.utils import BaseOptimizer, clamp, ensure_dir\nModuleNotFoundError: No module named 'lda_hyperopt'\n"
+  },
+  {
+    "status": "FAILED",
+    "dataset": "yelp",
+    "run_id": 7,
+    "elapsed": 1.3560090065002441,
+    "error": "Traceback (most recent call last):\n  File \"/Users/draiqws/Llabs/lda_hyperopt/run.py\", line 34, in <module>\n    from optimizers import GAOptimizer, ESOptimizer, PABBOSimpleOptimizer, PABBOFullOptimizer, PABBOOptimizer\n  File \"/Users/draiqws/Llabs/lda_hyperopt/optimizers/__init__.py\", line 11, in <module>\n    from .ga import GAOptimizer\n  File \"/Users/draiqws/Llabs/lda_hyperopt/optimizers/ga.py\", line 22, in <module>\n    from lda_hyperopt.utils import BaseOptimizer, clamp, ensure_dir\nModuleNotFoundError: No module named 'lda_hyperopt'\n"
+  },
+  {
+    "status": "FAILED",
+    "dataset": "yelp",
+    "run_id": 8,
+    "elapsed": 1.3719301223754883,
+    "error": "Traceback (most recent call last):\n  File \"/Users/draiqws/Llabs/lda_hyperopt/run.py\", line 34, in <module>\n    from optimizers import GAOptimizer, ESOptimizer, PABBOSimpleOptimizer, PABBOFullOptimizer, PABBOOptimizer\n  File \"/Users/draiqws/Llabs/lda_hyperopt/optimizers/__init__.py\", line 11, in <module>\n    from .ga import GAOptimizer\n  File \"/Users/draiqws/Llabs/lda_hyperopt/optimizers/ga.py\", line 22, in <module>\n    from lda_hyperopt.utils import BaseOptimizer, clamp, ensure_dir\nModuleNotFoundError: No module named 'lda_hyperopt'\n"
+  },
+  {
+    "status": "FAILED",
+    "dataset": "yelp",
+    "run_id": 9,
+    "elapsed": 1.3351728916168213,
+    "error": "Traceback (most recent call last):\n  File \"/Users/draiqws/Llabs/lda_hyperopt/run.py\", line 34, in <module>\n    from optimizers import GAOptimizer, ESOptimizer, PABBOSimpleOptimizer, PABBOFullOptimizer, PABBOOptimizer\n  File \"/Users/draiqws/Llabs/lda_hyperopt/optimizers/__init__.py\", line 11, in <module>\n    from .ga import GAOptimizer\n  File \"/Users/draiqws/Llabs/lda_hyperopt/optimizers/ga.py\", line 22, in <module>\n    from lda_hyperopt.utils import BaseOptimizer, clamp, ensure_dir\nModuleNotFoundError: No module named 'lda_hyperopt'\n"
+  }
+]
