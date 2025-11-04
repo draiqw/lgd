@@ -493,7 +493,7 @@ class PABBOFullOptimizer(BaseOptimizer):
             if no_improvement_count >= self.max_no_improvement:
                 rel_improvement = abs(best_fitness - history[-self.max_no_improvement]['best_perplexity']) / (abs(history[-self.max_no_improvement]['best_perplexity']) + 1e-10)
                 self.logger.info(
-                    f"Early stopping: |Δ perplexity|/prev ≤ {self.early_stop_eps_pct*100:.2f}% "
+                    f"Early stopping: |delta perplexity|/prev ≤ {self.early_stop_eps_pct*100:.2f}% "
                     f"for {self.max_no_improvement} iterations"
                 )
                 break

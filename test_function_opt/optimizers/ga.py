@@ -412,7 +412,7 @@ class GAOptimizer(BaseOptimizer):
             # Early stopping
             if no_improvement_count >= self.max_no_improvement:
                 self.logger.info(
-                    f"Early stopping: |Δ perplexity|/prev ≤ {self.early_stop_eps_pct*100:.2f}% "
+                    f"Early stopping: |delta perplexity|/prev ≤ {self.early_stop_eps_pct*100:.2f}% "
                     f"for {self.max_no_improvement} iterations"
                 )
                 break
