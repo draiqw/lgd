@@ -31,7 +31,10 @@ try:
     if pabbo_path not in sys.path:
         sys.path.insert(0, pabbo_path)
 
-    from policies.transformer import TransformerModel
+    try:
+        from pabbo_method.policies.transformer import TransformerModel
+    except ModuleNotFoundError:
+        from policies.transformer import TransformerModel
     TORCH_AVAILABLE = True
 except ImportError:
     TORCH_AVAILABLE = False

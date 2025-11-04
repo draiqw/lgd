@@ -1,25 +1,23 @@
+import time
+from itertools import combinations
+from typing import Tuple, Callable, Union
+
 import torch
 import numpy as np
-from typing import Tuple, Callable, Union
-from itertools import combinations
 import botorch
-from botorch.models.pairwise_gp import PairwiseGP, PairwiseLaplaceMarginalLogLikelihood
-from botorch.fit import fit_gpytorch_mll
-from botorch.models.model import Model
-from botorch.utils.sampling import draw_sobol_samples
 from botorch.sampling import SobolQMCNormalSampler
 from botorch.generation import MaxPosteriorSampling
-from botorch.acquisition.preference import (
-    qExpectedUtilityOfBestOption,
-)
-from botorch.acquisition import qNoisyExpectedImprovement
-from botorch.acquisition.monte_carlo import (
-    qExpectedImprovement,
-)
 from botorch.optim.optimize import optimize_acqf, optimize_acqf_discrete
-from data.utils import My1DInterpolator, MyNDInterpolator
-from policies.mpes import MultinomialPredictiveEntropySearch
-import time
+from botorch.acquisition import qNoisyExpectedImprovement
+from botorch.acquisition.monte_carlo import qExpectedImprovement
+from botorch.models.model import Model
+from botorch.utils.sampling import draw_sobol_samples
+from botorch.fit import fit_gpytorch_mll
+from botorch.acquisition.preference import qExpectedUtilityOfBestOption
+from botorch.models.pairwise_gp import PairwiseGP, PairwiseLaplaceMarginalLogLikelihood
+
+from ..data.utils import My1DInterpolator, MyNDInterpolator
+from .mpes import MultinomialPredictiveEntropySearch
 
 RAW_SAMPLES = 1024  # the number of raw samples before acqf optimization
 NUM_RESTARTS = 20  # the number of best candidates from the raw samples for further local optimization

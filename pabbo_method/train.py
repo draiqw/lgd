@@ -8,16 +8,16 @@ import wandb
 
 from omegaconf import DictConfig, OmegaConf
 import hydra
-from wandb_wrapper import init as wandb_init, save_artifact
-from policies.transformer import TransformerModel
-from data.sampler import OptimizationSampler
-from data.environment import generate_pair_set, sample_random_pairs_from_Q
-from data.utils import *
-from data.hpob import *
-from policy_learning import *
-from utils.paths import RESULT_PATH, DATASETS_PATH
-from utils.log import get_logger, Averager
-from utils.losses import preference_cls_loss, accuracy, kendalltau_correlation
+from .wandb_wrapper import init as wandb_init, save_artifact
+from .policies.transformer import TransformerModel
+from .data.sampler import OptimizationSampler
+from .data.environment import generate_pair_set, sample_random_pairs_from_Q
+from .data.utils import *
+from .data.hpob import *
+from .policy_learning import *
+from .utils.paths import RESULT_PATH, DATASETS_PATH
+from .utils.log import get_logger, Averager
+from .utils.losses import preference_cls_loss, accuracy, kendalltau_correlation
 
 
 @hydra.main(version_base=None, config_path="configs")

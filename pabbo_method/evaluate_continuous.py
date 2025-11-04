@@ -1,5 +1,5 @@
 import time
-from wandb_wrapper import init as wandb_init
+from .wandb_wrapper import init as wandb_init
 from omegaconf import DictConfig
 import torch
 import numpy as np
@@ -8,21 +8,22 @@ import os
 import hydra
 import wandb
 from tqdm import tqdm
-from utils.paths import DATASETS_PATH, RESULT_PATH
 from typing import Dict
-from policies.transformer import TransformerModel
-from data.utils import set_all_seeds
-from data.sampler import SimpleGPSampler, OptimizationFunction, UtilitySampler
-from data.kernel import *
-from data.utils import scale_from_domain_1_to_domain_2
-from data.environment import generate_pair_set
-from data.evaluation import *
-from data.candy_data_handler import *
-from data.sushi_data_handler import *
-from policy_learning import *
-from utils.losses import kendalltau_correlation
-from utils.plot import *
 import matplotlib.pyplot as plt
+
+from .utils.paths import DATASETS_PATH, RESULT_PATH
+from .policies.transformer import TransformerModel
+from .data.utils import set_all_seeds
+from .data.sampler import SimpleGPSampler, OptimizationFunction, UtilitySampler
+from .data.kernel import *
+from .data.utils import scale_from_domain_1_to_domain_2
+from .data.environment import generate_pair_set
+from .data.evaluation import *
+from .data.candy_data_handler import *
+from .data.sushi_data_handler import *
+from .policy_learning import *
+from .utils.losses import kendalltau_correlation
+from .utils.plot import *
 
 
 @hydra.main(version_base=None, config_path="configs")
