@@ -335,7 +335,11 @@ def plot_series(
     plt.grid(True, alpha=0.3)
     plt.tight_layout()
     ensure_dir(os.path.dirname(path))
-    plt.savefig(path, dpi=150)
+
+    # Save in both PNG and SVG formats
+    base_path = os.path.splitext(path)[0]  # Remove extension
+    plt.savefig(f"{base_path}.png", dpi=150, bbox_inches='tight')
+    plt.savefig(f"{base_path}.svg", format='svg', bbox_inches='tight')
     plt.close()
 
 
@@ -401,7 +405,10 @@ def plot_optimization_results(
         plt.legend()
         plt.grid(True, alpha=0.3)
         plt.tight_layout()
-        plt.savefig(os.path.join(outdir, "population_stats.png"), dpi=150)
+
+        # Save in both PNG and SVG formats
+        plt.savefig(os.path.join(outdir, "population_stats.png"), dpi=150, bbox_inches='tight')
+        plt.savefig(os.path.join(outdir, "population_stats.svg"), format='svg', bbox_inches='tight')
         plt.close()
 
 

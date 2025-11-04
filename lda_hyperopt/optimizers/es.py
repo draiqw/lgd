@@ -338,7 +338,7 @@ class ESOptimizer(BaseOptimizer):
 
             # TensorBoard logging
             if writer:
-                iter_num = s + 1
+                iter_num = s
                 writer.add_scalar("ES/Best/perplexity", best_metrics['perplexity'], iter_num)
                 writer.add_scalar("ES/Best/T", Tb, iter_num)
                 writer.add_scalar("ES/Best/alpha", ab, iter_num)

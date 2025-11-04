@@ -373,7 +373,7 @@ class GAOptimizer(BaseOptimizer):
 
             # TensorBoard logging
             if writer:
-                iter_num = g + 1
+                iter_num = g
                 writer.add_scalar("GA/Best/perplexity", best_metrics['perplexity'], iter_num)
                 writer.add_scalar("GA/Best/T", Tb, iter_num)
                 writer.add_scalar("GA/Best/alpha", ab, iter_num)

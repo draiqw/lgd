@@ -413,6 +413,21 @@ class PABBOFullOptimizer(BaseOptimizer):
             best_T = self._sample_exploration()
             best_fitness = self._evaluate_point(best_T)
 
+        # Add initial point to history (iteration -1 for consistency with GA/ES)
+        history.append({
+            'iter': -1,
+            'T_best': best_T,
+            'best_perplexity': best_fitness,
+            'T_current': best_T,
+            'current_fitness': best_fitness,
+            'strategy': 'initial',
+            'temperature': 1.0,
+            'improvement': False,
+            'step_time': 0.0,
+            'cum_time': 0.0,
+            'no_improvement_count': 0
+        })
+
         # Optimization loop
         temperature = 1.0
         no_improvement_count = 0
@@ -460,7 +475,7 @@ class PABBOFullOptimizer(BaseOptimizer):
             cum_time = time.perf_counter() - start_time
 
             history.append({
-                'iter': iteration + 1,
+                'iter': iteration,
                 'T_best': best_T,
                 'best_perplexity': best_fitness,
                 'T_current': T_new,
@@ -484,10 +499,10 @@ class PABBOFullOptimizer(BaseOptimizer):
 
             # TensorBoard logging
             if writer:
-                writer.add_scalar('Best/perplexity', best_fitness, iteration + 1)
-                writer.add_scalar('Best/T', best_T, iteration + 1)
-                writer.add_scalar('Current/fitness', fitness_new, iteration + 1)
-                writer.add_scalar('Temperature', temperature, iteration + 1)
+                writer.add_scalar('Best/perplexity', best_fitness, iteration)
+                writer.add_scalar('Best/T', best_T, iteration)
+                writer.add_scalar('Current/fitness', fitness_new, iteration)
+                writer.add_scalar('Temperature', temperature, iteration)
 
             # Early stopping
             if no_improvement_count >= self.max_no_improvement:
