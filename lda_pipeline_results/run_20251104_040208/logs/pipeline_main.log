@@ -1,0 +1,711 @@
+2025-11-04 04:02:08,590 [INFO] Pipeline started
+2025-11-04 04:02:08,590 [INFO] 
+================================================================================
+2025-11-04 04:02:08,590 [INFO] STAGE 1: Training PABBO Model (Light Version)
+2025-11-04 04:02:08,590 [INFO] ================================================================================
+2025-11-04 04:02:08,590 [INFO] Command: /Users/draiqws/Llabs/.venv/bin/python /Users/draiqws/Llabs/pabbo_method/train.py --config-name=train_rastrigin1d_test experiment.wandb=false
+2025-11-04 04:02:08,590 [INFO] Training in progress...
+2025-11-04 04:18:19,486 [INFO] ================================================================================
+2025-11-04 04:18:19,486 [INFO] Stage: PABBO_Training
+2025-11-04 04:18:19,486 [INFO] Status: SUCCESS
+2025-11-04 04:18:19,487 [INFO] Duration: 970.90s (16.18min)
+2025-11-04 04:18:19,487 [INFO] model_path: /Users/draiqws/Llabs/pabbo_method/results/PABBO/PABBO_GP1D_quick_20251104_040211/ckpt.tar
+2025-11-04 04:18:19,487 [INFO] config: train_rastrigin1d_test
+2025-11-04 04:18:19,487 [INFO] ================================================================================
+2025-11-04 04:18:19,487 [INFO] ✓ PABBO model trained: /Users/draiqws/Llabs/pabbo_method/results/PABBO/PABBO_GP1D_quick_20251104_040211/ckpt.tar
+2025-11-04 04:18:19,487 [INFO] ✓ Training time: 970.90s (16.18min)
+2025-11-04 04:18:19,487 [INFO] 
+================================================================================
+2025-11-04 04:18:19,487 [INFO] STAGE 2: Evaluating PABBO Model
+2025-11-04 04:18:19,487 [INFO] ================================================================================
+2025-11-04 04:18:19,487 [INFO] Command: /Users/draiqws/Llabs/.venv/bin/python /Users/draiqws/Llabs/pabbo_method/evaluate_continuous.py --config-name=evaluate experiment.expid=PABBO_GP1D_quick_20251104_040211 experiment.model=PABBO experiment.device=cpu experiment.wandb=false data.name=GP1D data.d_x=1 data.x_range="[[-1,1]]" data.min_num_ctx=5 data.max_num_ctx=20 eval.eval_num_query_points=256 model.d_model=32 model.n_layers=3 model.nhead=2 model.dim_feedforward=64 model.emb_depth=2
+2025-11-04 04:20:41,096 [INFO] ================================================================================
+2025-11-04 04:20:41,096 [INFO] Stage: PABBO_Evaluation
+2025-11-04 04:20:41,096 [INFO] Status: SUCCESS
+2025-11-04 04:20:41,096 [INFO] Duration: 141.61s (2.36min)
+2025-11-04 04:20:41,096 [INFO] ================================================================================
+2025-11-04 04:20:41,096 [INFO] ✓ Evaluation completed: SUCCESS
+2025-11-04 04:20:41,097 [INFO] Found 4 datasets: ['agnews', 'yelp', '20news', 'val_out']
+2025-11-04 04:20:41,097 [INFO] 
+================================================================================
+2025-11-04 04:20:41,097 [INFO] STAGE 3: Running LDA Experiments
+2025-11-04 04:20:41,097 [INFO] Datasets: 4
+2025-11-04 04:20:41,097 [INFO] Algorithms: ['GA', 'ES', 'PABBO_Full']
+2025-11-04 04:20:41,097 [INFO] Iterations per run: 200
+2025-11-04 04:20:41,097 [INFO] Repetitions: 10
+2025-11-04 04:20:41,097 [INFO] Total experiments: 40
+2025-11-04 04:20:41,097 [INFO] ================================================================================
+2025-11-04 04:20:41,112 [INFO] 
+============================================================
+2025-11-04 04:20:41,112 [INFO] Dataset: 20news | Run: 1/10
+2025-11-04 04:20:41,112 [INFO] Algorithms: GA, ES, PABBO_Full
+2025-11-04 04:20:41,112 [INFO] ============================================================
+2025-11-04 04:20:41,113 [INFO] Command: /Users/draiqws/Llabs/.venv/bin/python /Users/draiqws/Llabs/lda_hyperopt/run.py --data /Users/draiqws/Llabs/data/X_20news_val_bow.npz --algorithms GA ES PABBO_Full --iterations 200 --seed 42 --outdir /Users/draiqws/Llabs/lda_pipeline_results/run_20251104_040208/experiments/20news/run_0 --init /Users/draiqws/Llabs/lda_hyperopt/lda_init_population.json --pabbo-model /Users/draiqws/Llabs/pabbo_method/results/PABBO/PABBO_GP1D_quick_20251104_040211/ckpt.tar
+2025-11-04 04:20:42,519 [ERROR] Experiment failed for 20news run 0
+2025-11-04 04:20:42,519 [ERROR] STDERR: Traceback (most recent call last):
+  File "/Users/draiqws/Llabs/lda_hyperopt/run.py", line 34, in <module>
+    from optimizers import GAOptimizer, ESOptimizer, PABBOSimpleOptimizer, PABBOFullOptimizer, PABBOOptimizer
+  File "/Users/draiqws/Llabs/lda_hyperopt/optimizers/__init__.py", line 11, in <module>
+    from .ga import GAOptimizer
+  File "/Users/draiqws/Llabs/lda_hyperopt/optimizers/ga.py", line 22, in <module>
+    from lda_hyperopt.utils import BaseOptimizer, clamp, ensure_dir
+ModuleNotFoundError: No module named 'lda_hyperopt'
+
+2025-11-04 04:20:42,519 [INFO] 
+============================================================
+2025-11-04 04:20:42,519 [INFO] Dataset: 20news | Run: 2/10
+2025-11-04 04:20:42,519 [INFO] Algorithms: GA, ES, PABBO_Full
+2025-11-04 04:20:42,519 [INFO] ============================================================
+2025-11-04 04:20:42,519 [INFO] Command: /Users/draiqws/Llabs/.venv/bin/python /Users/draiqws/Llabs/lda_hyperopt/run.py --data /Users/draiqws/Llabs/data/X_20news_val_bow.npz --algorithms GA ES PABBO_Full --iterations 200 --seed 43 --outdir /Users/draiqws/Llabs/lda_pipeline_results/run_20251104_040208/experiments/20news/run_1 --init /Users/draiqws/Llabs/lda_hyperopt/lda_init_population.json --pabbo-model /Users/draiqws/Llabs/pabbo_method/results/PABBO/PABBO_GP1D_quick_20251104_040211/ckpt.tar
+2025-11-04 04:20:43,878 [ERROR] Experiment failed for 20news run 1
+2025-11-04 04:20:43,878 [ERROR] STDERR: Traceback (most recent call last):
+  File "/Users/draiqws/Llabs/lda_hyperopt/run.py", line 34, in <module>
+    from optimizers import GAOptimizer, ESOptimizer, PABBOSimpleOptimizer, PABBOFullOptimizer, PABBOOptimizer
+  File "/Users/draiqws/Llabs/lda_hyperopt/optimizers/__init__.py", line 11, in <module>
+    from .ga import GAOptimizer
+  File "/Users/draiqws/Llabs/lda_hyperopt/optimizers/ga.py", line 22, in <module>
+    from lda_hyperopt.utils import BaseOptimizer, clamp, ensure_dir
+ModuleNotFoundError: No module named 'lda_hyperopt'
+
+2025-11-04 04:20:43,879 [INFO] 
+============================================================
+2025-11-04 04:20:43,879 [INFO] Dataset: 20news | Run: 3/10
+2025-11-04 04:20:43,879 [INFO] Algorithms: GA, ES, PABBO_Full
+2025-11-04 04:20:43,879 [INFO] ============================================================
+2025-11-04 04:20:43,879 [INFO] Command: /Users/draiqws/Llabs/.venv/bin/python /Users/draiqws/Llabs/lda_hyperopt/run.py --data /Users/draiqws/Llabs/data/X_20news_val_bow.npz --algorithms GA ES PABBO_Full --iterations 200 --seed 44 --outdir /Users/draiqws/Llabs/lda_pipeline_results/run_20251104_040208/experiments/20news/run_2 --init /Users/draiqws/Llabs/lda_hyperopt/lda_init_population.json --pabbo-model /Users/draiqws/Llabs/pabbo_method/results/PABBO/PABBO_GP1D_quick_20251104_040211/ckpt.tar
+2025-11-04 04:20:45,222 [ERROR] Experiment failed for 20news run 2
+2025-11-04 04:20:45,222 [ERROR] STDERR: Traceback (most recent call last):
+  File "/Users/draiqws/Llabs/lda_hyperopt/run.py", line 34, in <module>
+    from optimizers import GAOptimizer, ESOptimizer, PABBOSimpleOptimizer, PABBOFullOptimizer, PABBOOptimizer
+  File "/Users/draiqws/Llabs/lda_hyperopt/optimizers/__init__.py", line 11, in <module>
+    from .ga import GAOptimizer
+  File "/Users/draiqws/Llabs/lda_hyperopt/optimizers/ga.py", line 22, in <module>
+    from lda_hyperopt.utils import BaseOptimizer, clamp, ensure_dir
+ModuleNotFoundError: No module named 'lda_hyperopt'
+
+2025-11-04 04:20:45,223 [INFO] 
+============================================================
+2025-11-04 04:20:45,223 [INFO] Dataset: 20news | Run: 4/10
+2025-11-04 04:20:45,223 [INFO] Algorithms: GA, ES, PABBO_Full
+2025-11-04 04:20:45,223 [INFO] ============================================================
+2025-11-04 04:20:45,223 [INFO] Command: /Users/draiqws/Llabs/.venv/bin/python /Users/draiqws/Llabs/lda_hyperopt/run.py --data /Users/draiqws/Llabs/data/X_20news_val_bow.npz --algorithms GA ES PABBO_Full --iterations 200 --seed 45 --outdir /Users/draiqws/Llabs/lda_pipeline_results/run_20251104_040208/experiments/20news/run_3 --init /Users/draiqws/Llabs/lda_hyperopt/lda_init_population.json --pabbo-model /Users/draiqws/Llabs/pabbo_method/results/PABBO/PABBO_GP1D_quick_20251104_040211/ckpt.tar
+2025-11-04 04:20:46,571 [ERROR] Experiment failed for 20news run 3
+2025-11-04 04:20:46,571 [ERROR] STDERR: Traceback (most recent call last):
+  File "/Users/draiqws/Llabs/lda_hyperopt/run.py", line 34, in <module>
+    from optimizers import GAOptimizer, ESOptimizer, PABBOSimpleOptimizer, PABBOFullOptimizer, PABBOOptimizer
+  File "/Users/draiqws/Llabs/lda_hyperopt/optimizers/__init__.py", line 11, in <module>
+    from .ga import GAOptimizer
+  File "/Users/draiqws/Llabs/lda_hyperopt/optimizers/ga.py", line 22, in <module>
+    from lda_hyperopt.utils import BaseOptimizer, clamp, ensure_dir
+ModuleNotFoundError: No module named 'lda_hyperopt'
+
+2025-11-04 04:20:46,571 [INFO] 
+============================================================
+2025-11-04 04:20:46,571 [INFO] Dataset: 20news | Run: 5/10
+2025-11-04 04:20:46,572 [INFO] Algorithms: GA, ES, PABBO_Full
+2025-11-04 04:20:46,572 [INFO] ============================================================
+2025-11-04 04:20:46,572 [INFO] Command: /Users/draiqws/Llabs/.venv/bin/python /Users/draiqws/Llabs/lda_hyperopt/run.py --data /Users/draiqws/Llabs/data/X_20news_val_bow.npz --algorithms GA ES PABBO_Full --iterations 200 --seed 46 --outdir /Users/draiqws/Llabs/lda_pipeline_results/run_20251104_040208/experiments/20news/run_4 --init /Users/draiqws/Llabs/lda_hyperopt/lda_init_population.json --pabbo-model /Users/draiqws/Llabs/pabbo_method/results/PABBO/PABBO_GP1D_quick_20251104_040211/ckpt.tar
+2025-11-04 04:20:47,925 [ERROR] Experiment failed for 20news run 4
+2025-11-04 04:20:47,925 [ERROR] STDERR: Traceback (most recent call last):
+  File "/Users/draiqws/Llabs/lda_hyperopt/run.py", line 34, in <module>
+    from optimizers import GAOptimizer, ESOptimizer, PABBOSimpleOptimizer, PABBOFullOptimizer, PABBOOptimizer
+  File "/Users/draiqws/Llabs/lda_hyperopt/optimizers/__init__.py", line 11, in <module>
+    from .ga import GAOptimizer
+  File "/Users/draiqws/Llabs/lda_hyperopt/optimizers/ga.py", line 22, in <module>
+    from lda_hyperopt.utils import BaseOptimizer, clamp, ensure_dir
+ModuleNotFoundError: No module named 'lda_hyperopt'
+
+2025-11-04 04:20:47,925 [INFO] 
+============================================================
+2025-11-04 04:20:47,925 [INFO] Dataset: 20news | Run: 6/10
+2025-11-04 04:20:47,925 [INFO] Algorithms: GA, ES, PABBO_Full
+2025-11-04 04:20:47,925 [INFO] ============================================================
+2025-11-04 04:20:47,926 [INFO] Command: /Users/draiqws/Llabs/.venv/bin/python /Users/draiqws/Llabs/lda_hyperopt/run.py --data /Users/draiqws/Llabs/data/X_20news_val_bow.npz --algorithms GA ES PABBO_Full --iterations 200 --seed 47 --outdir /Users/draiqws/Llabs/lda_pipeline_results/run_20251104_040208/experiments/20news/run_5 --init /Users/draiqws/Llabs/lda_hyperopt/lda_init_population.json --pabbo-model /Users/draiqws/Llabs/pabbo_method/results/PABBO/PABBO_GP1D_quick_20251104_040211/ckpt.tar
+2025-11-04 04:20:49,266 [ERROR] Experiment failed for 20news run 5
+2025-11-04 04:20:49,266 [ERROR] STDERR: Traceback (most recent call last):
+  File "/Users/draiqws/Llabs/lda_hyperopt/run.py", line 34, in <module>
+    from optimizers import GAOptimizer, ESOptimizer, PABBOSimpleOptimizer, PABBOFullOptimizer, PABBOOptimizer
+  File "/Users/draiqws/Llabs/lda_hyperopt/optimizers/__init__.py", line 11, in <module>
+    from .ga import GAOptimizer
+  File "/Users/draiqws/Llabs/lda_hyperopt/optimizers/ga.py", line 22, in <module>
+    from lda_hyperopt.utils import BaseOptimizer, clamp, ensure_dir
+ModuleNotFoundError: No module named 'lda_hyperopt'
+
+2025-11-04 04:20:49,266 [INFO] 
+============================================================
+2025-11-04 04:20:49,266 [INFO] Dataset: 20news | Run: 7/10
+2025-11-04 04:20:49,266 [INFO] Algorithms: GA, ES, PABBO_Full
+2025-11-04 04:20:49,266 [INFO] ============================================================
+2025-11-04 04:20:49,266 [INFO] Command: /Users/draiqws/Llabs/.venv/bin/python /Users/draiqws/Llabs/lda_hyperopt/run.py --data /Users/draiqws/Llabs/data/X_20news_val_bow.npz --algorithms GA ES PABBO_Full --iterations 200 --seed 48 --outdir /Users/draiqws/Llabs/lda_pipeline_results/run_20251104_040208/experiments/20news/run_6 --init /Users/draiqws/Llabs/lda_hyperopt/lda_init_population.json --pabbo-model /Users/draiqws/Llabs/pabbo_method/results/PABBO/PABBO_GP1D_quick_20251104_040211/ckpt.tar
+2025-11-04 04:20:50,596 [ERROR] Experiment failed for 20news run 6
+2025-11-04 04:20:50,596 [ERROR] STDERR: Traceback (most recent call last):
+  File "/Users/draiqws/Llabs/lda_hyperopt/run.py", line 34, in <module>
+    from optimizers import GAOptimizer, ESOptimizer, PABBOSimpleOptimizer, PABBOFullOptimizer, PABBOOptimizer
+  File "/Users/draiqws/Llabs/lda_hyperopt/optimizers/__init__.py", line 11, in <module>
+    from .ga import GAOptimizer
+  File "/Users/draiqws/Llabs/lda_hyperopt/optimizers/ga.py", line 22, in <module>
+    from lda_hyperopt.utils import BaseOptimizer, clamp, ensure_dir
+ModuleNotFoundError: No module named 'lda_hyperopt'
+
+2025-11-04 04:20:50,596 [INFO] 
+============================================================
+2025-11-04 04:20:50,596 [INFO] Dataset: 20news | Run: 8/10
+2025-11-04 04:20:50,596 [INFO] Algorithms: GA, ES, PABBO_Full
+2025-11-04 04:20:50,596 [INFO] ============================================================
+2025-11-04 04:20:50,596 [INFO] Command: /Users/draiqws/Llabs/.venv/bin/python /Users/draiqws/Llabs/lda_hyperopt/run.py --data /Users/draiqws/Llabs/data/X_20news_val_bow.npz --algorithms GA ES PABBO_Full --iterations 200 --seed 49 --outdir /Users/draiqws/Llabs/lda_pipeline_results/run_20251104_040208/experiments/20news/run_7 --init /Users/draiqws/Llabs/lda_hyperopt/lda_init_population.json --pabbo-model /Users/draiqws/Llabs/pabbo_method/results/PABBO/PABBO_GP1D_quick_20251104_040211/ckpt.tar
+2025-11-04 04:20:51,940 [ERROR] Experiment failed for 20news run 7
+2025-11-04 04:20:51,940 [ERROR] STDERR: Traceback (most recent call last):
+  File "/Users/draiqws/Llabs/lda_hyperopt/run.py", line 34, in <module>
+    from optimizers import GAOptimizer, ESOptimizer, PABBOSimpleOptimizer, PABBOFullOptimizer, PABBOOptimizer
+  File "/Users/draiqws/Llabs/lda_hyperopt/optimizers/__init__.py", line 11, in <module>
+    from .ga import GAOptimizer
+  File "/Users/draiqws/Llabs/lda_hyperopt/optimizers/ga.py", line 22, in <module>
+    from lda_hyperopt.utils import BaseOptimizer, clamp, ensure_dir
+ModuleNotFoundError: No module named 'lda_hyperopt'
+
+2025-11-04 04:20:51,940 [INFO] 
+============================================================
+2025-11-04 04:20:51,940 [INFO] Dataset: 20news | Run: 9/10
+2025-11-04 04:20:51,940 [INFO] Algorithms: GA, ES, PABBO_Full
+2025-11-04 04:20:51,940 [INFO] ============================================================
+2025-11-04 04:20:51,940 [INFO] Command: /Users/draiqws/Llabs/.venv/bin/python /Users/draiqws/Llabs/lda_hyperopt/run.py --data /Users/draiqws/Llabs/data/X_20news_val_bow.npz --algorithms GA ES PABBO_Full --iterations 200 --seed 50 --outdir /Users/draiqws/Llabs/lda_pipeline_results/run_20251104_040208/experiments/20news/run_8 --init /Users/draiqws/Llabs/lda_hyperopt/lda_init_population.json --pabbo-model /Users/draiqws/Llabs/pabbo_method/results/PABBO/PABBO_GP1D_quick_20251104_040211/ckpt.tar
+2025-11-04 04:20:53,288 [ERROR] Experiment failed for 20news run 8
+2025-11-04 04:20:53,288 [ERROR] STDERR: Traceback (most recent call last):
+  File "/Users/draiqws/Llabs/lda_hyperopt/run.py", line 34, in <module>
+    from optimizers import GAOptimizer, ESOptimizer, PABBOSimpleOptimizer, PABBOFullOptimizer, PABBOOptimizer
+  File "/Users/draiqws/Llabs/lda_hyperopt/optimizers/__init__.py", line 11, in <module>
+    from .ga import GAOptimizer
+  File "/Users/draiqws/Llabs/lda_hyperopt/optimizers/ga.py", line 22, in <module>
+    from lda_hyperopt.utils import BaseOptimizer, clamp, ensure_dir
+ModuleNotFoundError: No module named 'lda_hyperopt'
+
+2025-11-04 04:20:53,288 [INFO] 
+============================================================
+2025-11-04 04:20:53,288 [INFO] Dataset: 20news | Run: 10/10
+2025-11-04 04:20:53,288 [INFO] Algorithms: GA, ES, PABBO_Full
+2025-11-04 04:20:53,288 [INFO] ============================================================
+2025-11-04 04:20:53,289 [INFO] Command: /Users/draiqws/Llabs/.venv/bin/python /Users/draiqws/Llabs/lda_hyperopt/run.py --data /Users/draiqws/Llabs/data/X_20news_val_bow.npz --algorithms GA ES PABBO_Full --iterations 200 --seed 51 --outdir /Users/draiqws/Llabs/lda_pipeline_results/run_20251104_040208/experiments/20news/run_9 --init /Users/draiqws/Llabs/lda_hyperopt/lda_init_population.json --pabbo-model /Users/draiqws/Llabs/pabbo_method/results/PABBO/PABBO_GP1D_quick_20251104_040211/ckpt.tar
+2025-11-04 04:20:54,626 [ERROR] Experiment failed for 20news run 9
+2025-11-04 04:20:54,626 [ERROR] STDERR: Traceback (most recent call last):
+  File "/Users/draiqws/Llabs/lda_hyperopt/run.py", line 34, in <module>
+    from optimizers import GAOptimizer, ESOptimizer, PABBOSimpleOptimizer, PABBOFullOptimizer, PABBOOptimizer
+  File "/Users/draiqws/Llabs/lda_hyperopt/optimizers/__init__.py", line 11, in <module>
+    from .ga import GAOptimizer
+  File "/Users/draiqws/Llabs/lda_hyperopt/optimizers/ga.py", line 22, in <module>
+    from lda_hyperopt.utils import BaseOptimizer, clamp, ensure_dir
+ModuleNotFoundError: No module named 'lda_hyperopt'
+
+2025-11-04 04:20:54,627 [INFO] 
+============================================================
+2025-11-04 04:20:54,627 [INFO] Dataset: agnews | Run: 1/10
+2025-11-04 04:20:54,627 [INFO] Algorithms: GA, ES, PABBO_Full
+2025-11-04 04:20:54,627 [INFO] ============================================================
+2025-11-04 04:20:54,627 [INFO] Command: /Users/draiqws/Llabs/.venv/bin/python /Users/draiqws/Llabs/lda_hyperopt/run.py --data /Users/draiqws/Llabs/data/X_agnews_val_bow.npz --algorithms GA ES PABBO_Full --iterations 200 --seed 42 --outdir /Users/draiqws/Llabs/lda_pipeline_results/run_20251104_040208/experiments/agnews/run_0 --init /Users/draiqws/Llabs/lda_hyperopt/lda_init_population.json --pabbo-model /Users/draiqws/Llabs/pabbo_method/results/PABBO/PABBO_GP1D_quick_20251104_040211/ckpt.tar
+2025-11-04 04:20:55,971 [ERROR] Experiment failed for agnews run 0
+2025-11-04 04:20:55,971 [ERROR] STDERR: Traceback (most recent call last):
+  File "/Users/draiqws/Llabs/lda_hyperopt/run.py", line 34, in <module>
+    from optimizers import GAOptimizer, ESOptimizer, PABBOSimpleOptimizer, PABBOFullOptimizer, PABBOOptimizer
+  File "/Users/draiqws/Llabs/lda_hyperopt/optimizers/__init__.py", line 11, in <module>
+    from .ga import GAOptimizer
+  File "/Users/draiqws/Llabs/lda_hyperopt/optimizers/ga.py", line 22, in <module>
+    from lda_hyperopt.utils import BaseOptimizer, clamp, ensure_dir
+ModuleNotFoundError: No module named 'lda_hyperopt'
+
+2025-11-04 04:20:55,972 [INFO] 
+============================================================
+2025-11-04 04:20:55,972 [INFO] Dataset: agnews | Run: 2/10
+2025-11-04 04:20:55,972 [INFO] Algorithms: GA, ES, PABBO_Full
+2025-11-04 04:20:55,972 [INFO] ============================================================
+2025-11-04 04:20:55,972 [INFO] Command: /Users/draiqws/Llabs/.venv/bin/python /Users/draiqws/Llabs/lda_hyperopt/run.py --data /Users/draiqws/Llabs/data/X_agnews_val_bow.npz --algorithms GA ES PABBO_Full --iterations 200 --seed 43 --outdir /Users/draiqws/Llabs/lda_pipeline_results/run_20251104_040208/experiments/agnews/run_1 --init /Users/draiqws/Llabs/lda_hyperopt/lda_init_population.json --pabbo-model /Users/draiqws/Llabs/pabbo_method/results/PABBO/PABBO_GP1D_quick_20251104_040211/ckpt.tar
+2025-11-04 04:20:57,313 [ERROR] Experiment failed for agnews run 1
+2025-11-04 04:20:57,314 [ERROR] STDERR: Traceback (most recent call last):
+  File "/Users/draiqws/Llabs/lda_hyperopt/run.py", line 34, in <module>
+    from optimizers import GAOptimizer, ESOptimizer, PABBOSimpleOptimizer, PABBOFullOptimizer, PABBOOptimizer
+  File "/Users/draiqws/Llabs/lda_hyperopt/optimizers/__init__.py", line 11, in <module>
+    from .ga import GAOptimizer
+  File "/Users/draiqws/Llabs/lda_hyperopt/optimizers/ga.py", line 22, in <module>
+    from lda_hyperopt.utils import BaseOptimizer, clamp, ensure_dir
+ModuleNotFoundError: No module named 'lda_hyperopt'
+
+2025-11-04 04:20:57,314 [INFO] 
+============================================================
+2025-11-04 04:20:57,314 [INFO] Dataset: agnews | Run: 3/10
+2025-11-04 04:20:57,314 [INFO] Algorithms: GA, ES, PABBO_Full
+2025-11-04 04:20:57,314 [INFO] ============================================================
+2025-11-04 04:20:57,314 [INFO] Command: /Users/draiqws/Llabs/.venv/bin/python /Users/draiqws/Llabs/lda_hyperopt/run.py --data /Users/draiqws/Llabs/data/X_agnews_val_bow.npz --algorithms GA ES PABBO_Full --iterations 200 --seed 44 --outdir /Users/draiqws/Llabs/lda_pipeline_results/run_20251104_040208/experiments/agnews/run_2 --init /Users/draiqws/Llabs/lda_hyperopt/lda_init_population.json --pabbo-model /Users/draiqws/Llabs/pabbo_method/results/PABBO/PABBO_GP1D_quick_20251104_040211/ckpt.tar
+2025-11-04 04:20:58,659 [ERROR] Experiment failed for agnews run 2
+2025-11-04 04:20:58,659 [ERROR] STDERR: Traceback (most recent call last):
+  File "/Users/draiqws/Llabs/lda_hyperopt/run.py", line 34, in <module>
+    from optimizers import GAOptimizer, ESOptimizer, PABBOSimpleOptimizer, PABBOFullOptimizer, PABBOOptimizer
+  File "/Users/draiqws/Llabs/lda_hyperopt/optimizers/__init__.py", line 11, in <module>
+    from .ga import GAOptimizer
+  File "/Users/draiqws/Llabs/lda_hyperopt/optimizers/ga.py", line 22, in <module>
+    from lda_hyperopt.utils import BaseOptimizer, clamp, ensure_dir
+ModuleNotFoundError: No module named 'lda_hyperopt'
+
+2025-11-04 04:20:58,659 [INFO] 
+============================================================
+2025-11-04 04:20:58,660 [INFO] Dataset: agnews | Run: 4/10
+2025-11-04 04:20:58,660 [INFO] Algorithms: GA, ES, PABBO_Full
+2025-11-04 04:20:58,660 [INFO] ============================================================
+2025-11-04 04:20:58,660 [INFO] Command: /Users/draiqws/Llabs/.venv/bin/python /Users/draiqws/Llabs/lda_hyperopt/run.py --data /Users/draiqws/Llabs/data/X_agnews_val_bow.npz --algorithms GA ES PABBO_Full --iterations 200 --seed 45 --outdir /Users/draiqws/Llabs/lda_pipeline_results/run_20251104_040208/experiments/agnews/run_3 --init /Users/draiqws/Llabs/lda_hyperopt/lda_init_population.json --pabbo-model /Users/draiqws/Llabs/pabbo_method/results/PABBO/PABBO_GP1D_quick_20251104_040211/ckpt.tar
+2025-11-04 04:21:00,007 [ERROR] Experiment failed for agnews run 3
+2025-11-04 04:21:00,007 [ERROR] STDERR: Traceback (most recent call last):
+  File "/Users/draiqws/Llabs/lda_hyperopt/run.py", line 34, in <module>
+    from optimizers import GAOptimizer, ESOptimizer, PABBOSimpleOptimizer, PABBOFullOptimizer, PABBOOptimizer
+  File "/Users/draiqws/Llabs/lda_hyperopt/optimizers/__init__.py", line 11, in <module>
+    from .ga import GAOptimizer
+  File "/Users/draiqws/Llabs/lda_hyperopt/optimizers/ga.py", line 22, in <module>
+    from lda_hyperopt.utils import BaseOptimizer, clamp, ensure_dir
+ModuleNotFoundError: No module named 'lda_hyperopt'
+
+2025-11-04 04:21:00,007 [INFO] 
+============================================================
+2025-11-04 04:21:00,007 [INFO] Dataset: agnews | Run: 5/10
+2025-11-04 04:21:00,007 [INFO] Algorithms: GA, ES, PABBO_Full
+2025-11-04 04:21:00,007 [INFO] ============================================================
+2025-11-04 04:21:00,007 [INFO] Command: /Users/draiqws/Llabs/.venv/bin/python /Users/draiqws/Llabs/lda_hyperopt/run.py --data /Users/draiqws/Llabs/data/X_agnews_val_bow.npz --algorithms GA ES PABBO_Full --iterations 200 --seed 46 --outdir /Users/draiqws/Llabs/lda_pipeline_results/run_20251104_040208/experiments/agnews/run_4 --init /Users/draiqws/Llabs/lda_hyperopt/lda_init_population.json --pabbo-model /Users/draiqws/Llabs/pabbo_method/results/PABBO/PABBO_GP1D_quick_20251104_040211/ckpt.tar
+2025-11-04 04:21:01,346 [ERROR] Experiment failed for agnews run 4
+2025-11-04 04:21:01,346 [ERROR] STDERR: Traceback (most recent call last):
+  File "/Users/draiqws/Llabs/lda_hyperopt/run.py", line 34, in <module>
+    from optimizers import GAOptimizer, ESOptimizer, PABBOSimpleOptimizer, PABBOFullOptimizer, PABBOOptimizer
+  File "/Users/draiqws/Llabs/lda_hyperopt/optimizers/__init__.py", line 11, in <module>
+    from .ga import GAOptimizer
+  File "/Users/draiqws/Llabs/lda_hyperopt/optimizers/ga.py", line 22, in <module>
+    from lda_hyperopt.utils import BaseOptimizer, clamp, ensure_dir
+ModuleNotFoundError: No module named 'lda_hyperopt'
+
+2025-11-04 04:21:01,346 [INFO] 
+============================================================
+2025-11-04 04:21:01,346 [INFO] Dataset: agnews | Run: 6/10
+2025-11-04 04:21:01,346 [INFO] Algorithms: GA, ES, PABBO_Full
+2025-11-04 04:21:01,346 [INFO] ============================================================
+2025-11-04 04:21:01,346 [INFO] Command: /Users/draiqws/Llabs/.venv/bin/python /Users/draiqws/Llabs/lda_hyperopt/run.py --data /Users/draiqws/Llabs/data/X_agnews_val_bow.npz --algorithms GA ES PABBO_Full --iterations 200 --seed 47 --outdir /Users/draiqws/Llabs/lda_pipeline_results/run_20251104_040208/experiments/agnews/run_5 --init /Users/draiqws/Llabs/lda_hyperopt/lda_init_population.json --pabbo-model /Users/draiqws/Llabs/pabbo_method/results/PABBO/PABBO_GP1D_quick_20251104_040211/ckpt.tar
+2025-11-04 04:21:02,693 [ERROR] Experiment failed for agnews run 5
+2025-11-04 04:21:02,693 [ERROR] STDERR: Traceback (most recent call last):
+  File "/Users/draiqws/Llabs/lda_hyperopt/run.py", line 34, in <module>
+    from optimizers import GAOptimizer, ESOptimizer, PABBOSimpleOptimizer, PABBOFullOptimizer, PABBOOptimizer
+  File "/Users/draiqws/Llabs/lda_hyperopt/optimizers/__init__.py", line 11, in <module>
+    from .ga import GAOptimizer
+  File "/Users/draiqws/Llabs/lda_hyperopt/optimizers/ga.py", line 22, in <module>
+    from lda_hyperopt.utils import BaseOptimizer, clamp, ensure_dir
+ModuleNotFoundError: No module named 'lda_hyperopt'
+
+2025-11-04 04:21:02,693 [INFO] 
+============================================================
+2025-11-04 04:21:02,693 [INFO] Dataset: agnews | Run: 7/10
+2025-11-04 04:21:02,693 [INFO] Algorithms: GA, ES, PABBO_Full
+2025-11-04 04:21:02,693 [INFO] ============================================================
+2025-11-04 04:21:02,693 [INFO] Command: /Users/draiqws/Llabs/.venv/bin/python /Users/draiqws/Llabs/lda_hyperopt/run.py --data /Users/draiqws/Llabs/data/X_agnews_val_bow.npz --algorithms GA ES PABBO_Full --iterations 200 --seed 48 --outdir /Users/draiqws/Llabs/lda_pipeline_results/run_20251104_040208/experiments/agnews/run_6 --init /Users/draiqws/Llabs/lda_hyperopt/lda_init_population.json --pabbo-model /Users/draiqws/Llabs/pabbo_method/results/PABBO/PABBO_GP1D_quick_20251104_040211/ckpt.tar
+2025-11-04 04:21:04,039 [ERROR] Experiment failed for agnews run 6
+2025-11-04 04:21:04,040 [ERROR] STDERR: Traceback (most recent call last):
+  File "/Users/draiqws/Llabs/lda_hyperopt/run.py", line 34, in <module>
+    from optimizers import GAOptimizer, ESOptimizer, PABBOSimpleOptimizer, PABBOFullOptimizer, PABBOOptimizer
+  File "/Users/draiqws/Llabs/lda_hyperopt/optimizers/__init__.py", line 11, in <module>
+    from .ga import GAOptimizer
+  File "/Users/draiqws/Llabs/lda_hyperopt/optimizers/ga.py", line 22, in <module>
+    from lda_hyperopt.utils import BaseOptimizer, clamp, ensure_dir
+ModuleNotFoundError: No module named 'lda_hyperopt'
+
+2025-11-04 04:21:04,040 [INFO] 
+============================================================
+2025-11-04 04:21:04,040 [INFO] Dataset: agnews | Run: 8/10
+2025-11-04 04:21:04,040 [INFO] Algorithms: GA, ES, PABBO_Full
+2025-11-04 04:21:04,040 [INFO] ============================================================
+2025-11-04 04:21:04,040 [INFO] Command: /Users/draiqws/Llabs/.venv/bin/python /Users/draiqws/Llabs/lda_hyperopt/run.py --data /Users/draiqws/Llabs/data/X_agnews_val_bow.npz --algorithms GA ES PABBO_Full --iterations 200 --seed 49 --outdir /Users/draiqws/Llabs/lda_pipeline_results/run_20251104_040208/experiments/agnews/run_7 --init /Users/draiqws/Llabs/lda_hyperopt/lda_init_population.json --pabbo-model /Users/draiqws/Llabs/pabbo_method/results/PABBO/PABBO_GP1D_quick_20251104_040211/ckpt.tar
+2025-11-04 04:21:05,372 [ERROR] Experiment failed for agnews run 7
+2025-11-04 04:21:05,372 [ERROR] STDERR: Traceback (most recent call last):
+  File "/Users/draiqws/Llabs/lda_hyperopt/run.py", line 34, in <module>
+    from optimizers import GAOptimizer, ESOptimizer, PABBOSimpleOptimizer, PABBOFullOptimizer, PABBOOptimizer
+  File "/Users/draiqws/Llabs/lda_hyperopt/optimizers/__init__.py", line 11, in <module>
+    from .ga import GAOptimizer
+  File "/Users/draiqws/Llabs/lda_hyperopt/optimizers/ga.py", line 22, in <module>
+    from lda_hyperopt.utils import BaseOptimizer, clamp, ensure_dir
+ModuleNotFoundError: No module named 'lda_hyperopt'
+
+2025-11-04 04:21:05,372 [INFO] 
+============================================================
+2025-11-04 04:21:05,372 [INFO] Dataset: agnews | Run: 9/10
+2025-11-04 04:21:05,372 [INFO] Algorithms: GA, ES, PABBO_Full
+2025-11-04 04:21:05,372 [INFO] ============================================================
+2025-11-04 04:21:05,373 [INFO] Command: /Users/draiqws/Llabs/.venv/bin/python /Users/draiqws/Llabs/lda_hyperopt/run.py --data /Users/draiqws/Llabs/data/X_agnews_val_bow.npz --algorithms GA ES PABBO_Full --iterations 200 --seed 50 --outdir /Users/draiqws/Llabs/lda_pipeline_results/run_20251104_040208/experiments/agnews/run_8 --init /Users/draiqws/Llabs/lda_hyperopt/lda_init_population.json --pabbo-model /Users/draiqws/Llabs/pabbo_method/results/PABBO/PABBO_GP1D_quick_20251104_040211/ckpt.tar
+2025-11-04 04:21:06,717 [ERROR] Experiment failed for agnews run 8
+2025-11-04 04:21:06,717 [ERROR] STDERR: Traceback (most recent call last):
+  File "/Users/draiqws/Llabs/lda_hyperopt/run.py", line 34, in <module>
+    from optimizers import GAOptimizer, ESOptimizer, PABBOSimpleOptimizer, PABBOFullOptimizer, PABBOOptimizer
+  File "/Users/draiqws/Llabs/lda_hyperopt/optimizers/__init__.py", line 11, in <module>
+    from .ga import GAOptimizer
+  File "/Users/draiqws/Llabs/lda_hyperopt/optimizers/ga.py", line 22, in <module>
+    from lda_hyperopt.utils import BaseOptimizer, clamp, ensure_dir
+ModuleNotFoundError: No module named 'lda_hyperopt'
+
+2025-11-04 04:21:06,717 [INFO] 
+============================================================
+2025-11-04 04:21:06,717 [INFO] Dataset: agnews | Run: 10/10
+2025-11-04 04:21:06,717 [INFO] Algorithms: GA, ES, PABBO_Full
+2025-11-04 04:21:06,717 [INFO] ============================================================
+2025-11-04 04:21:06,718 [INFO] Command: /Users/draiqws/Llabs/.venv/bin/python /Users/draiqws/Llabs/lda_hyperopt/run.py --data /Users/draiqws/Llabs/data/X_agnews_val_bow.npz --algorithms GA ES PABBO_Full --iterations 200 --seed 51 --outdir /Users/draiqws/Llabs/lda_pipeline_results/run_20251104_040208/experiments/agnews/run_9 --init /Users/draiqws/Llabs/lda_hyperopt/lda_init_population.json --pabbo-model /Users/draiqws/Llabs/pabbo_method/results/PABBO/PABBO_GP1D_quick_20251104_040211/ckpt.tar
+2025-11-04 04:21:08,076 [ERROR] Experiment failed for agnews run 9
+2025-11-04 04:21:08,076 [ERROR] STDERR: Traceback (most recent call last):
+  File "/Users/draiqws/Llabs/lda_hyperopt/run.py", line 34, in <module>
+    from optimizers import GAOptimizer, ESOptimizer, PABBOSimpleOptimizer, PABBOFullOptimizer, PABBOOptimizer
+  File "/Users/draiqws/Llabs/lda_hyperopt/optimizers/__init__.py", line 11, in <module>
+    from .ga import GAOptimizer
+  File "/Users/draiqws/Llabs/lda_hyperopt/optimizers/ga.py", line 22, in <module>
+    from lda_hyperopt.utils import BaseOptimizer, clamp, ensure_dir
+ModuleNotFoundError: No module named 'lda_hyperopt'
+
+2025-11-04 04:21:08,076 [INFO] 
+============================================================
+2025-11-04 04:21:08,076 [INFO] Dataset: val_out | Run: 1/10
+2025-11-04 04:21:08,076 [INFO] Algorithms: GA, ES, PABBO_Full
+2025-11-04 04:21:08,076 [INFO] ============================================================
+2025-11-04 04:21:08,077 [INFO] Command: /Users/draiqws/Llabs/.venv/bin/python /Users/draiqws/Llabs/lda_hyperopt/run.py --data /Users/draiqws/Llabs/data/X_val_out_val_bow.npz --algorithms GA ES PABBO_Full --iterations 200 --seed 42 --outdir /Users/draiqws/Llabs/lda_pipeline_results/run_20251104_040208/experiments/val_out/run_0 --init /Users/draiqws/Llabs/lda_hyperopt/lda_init_population.json --pabbo-model /Users/draiqws/Llabs/pabbo_method/results/PABBO/PABBO_GP1D_quick_20251104_040211/ckpt.tar
+2025-11-04 04:21:09,422 [ERROR] Experiment failed for val_out run 0
+2025-11-04 04:21:09,422 [ERROR] STDERR: Traceback (most recent call last):
+  File "/Users/draiqws/Llabs/lda_hyperopt/run.py", line 34, in <module>
+    from optimizers import GAOptimizer, ESOptimizer, PABBOSimpleOptimizer, PABBOFullOptimizer, PABBOOptimizer
+  File "/Users/draiqws/Llabs/lda_hyperopt/optimizers/__init__.py", line 11, in <module>
+    from .ga import GAOptimizer
+  File "/Users/draiqws/Llabs/lda_hyperopt/optimizers/ga.py", line 22, in <module>
+    from lda_hyperopt.utils import BaseOptimizer, clamp, ensure_dir
+ModuleNotFoundError: No module named 'lda_hyperopt'
+
+2025-11-04 04:21:09,422 [INFO] 
+============================================================
+2025-11-04 04:21:09,422 [INFO] Dataset: val_out | Run: 2/10
+2025-11-04 04:21:09,422 [INFO] Algorithms: GA, ES, PABBO_Full
+2025-11-04 04:21:09,422 [INFO] ============================================================
+2025-11-04 04:21:09,423 [INFO] Command: /Users/draiqws/Llabs/.venv/bin/python /Users/draiqws/Llabs/lda_hyperopt/run.py --data /Users/draiqws/Llabs/data/X_val_out_val_bow.npz --algorithms GA ES PABBO_Full --iterations 200 --seed 43 --outdir /Users/draiqws/Llabs/lda_pipeline_results/run_20251104_040208/experiments/val_out/run_1 --init /Users/draiqws/Llabs/lda_hyperopt/lda_init_population.json --pabbo-model /Users/draiqws/Llabs/pabbo_method/results/PABBO/PABBO_GP1D_quick_20251104_040211/ckpt.tar
+2025-11-04 04:21:10,765 [ERROR] Experiment failed for val_out run 1
+2025-11-04 04:21:10,766 [ERROR] STDERR: Traceback (most recent call last):
+  File "/Users/draiqws/Llabs/lda_hyperopt/run.py", line 34, in <module>
+    from optimizers import GAOptimizer, ESOptimizer, PABBOSimpleOptimizer, PABBOFullOptimizer, PABBOOptimizer
+  File "/Users/draiqws/Llabs/lda_hyperopt/optimizers/__init__.py", line 11, in <module>
+    from .ga import GAOptimizer
+  File "/Users/draiqws/Llabs/lda_hyperopt/optimizers/ga.py", line 22, in <module>
+    from lda_hyperopt.utils import BaseOptimizer, clamp, ensure_dir
+ModuleNotFoundError: No module named 'lda_hyperopt'
+
+2025-11-04 04:21:10,766 [INFO] 
+============================================================
+2025-11-04 04:21:10,766 [INFO] Dataset: val_out | Run: 3/10
+2025-11-04 04:21:10,766 [INFO] Algorithms: GA, ES, PABBO_Full
+2025-11-04 04:21:10,766 [INFO] ============================================================
+2025-11-04 04:21:10,766 [INFO] Command: /Users/draiqws/Llabs/.venv/bin/python /Users/draiqws/Llabs/lda_hyperopt/run.py --data /Users/draiqws/Llabs/data/X_val_out_val_bow.npz --algorithms GA ES PABBO_Full --iterations 200 --seed 44 --outdir /Users/draiqws/Llabs/lda_pipeline_results/run_20251104_040208/experiments/val_out/run_2 --init /Users/draiqws/Llabs/lda_hyperopt/lda_init_population.json --pabbo-model /Users/draiqws/Llabs/pabbo_method/results/PABBO/PABBO_GP1D_quick_20251104_040211/ckpt.tar
+2025-11-04 04:21:12,105 [ERROR] Experiment failed for val_out run 2
+2025-11-04 04:21:12,105 [ERROR] STDERR: Traceback (most recent call last):
+  File "/Users/draiqws/Llabs/lda_hyperopt/run.py", line 34, in <module>
+    from optimizers import GAOptimizer, ESOptimizer, PABBOSimpleOptimizer, PABBOFullOptimizer, PABBOOptimizer
+  File "/Users/draiqws/Llabs/lda_hyperopt/optimizers/__init__.py", line 11, in <module>
+    from .ga import GAOptimizer
+  File "/Users/draiqws/Llabs/lda_hyperopt/optimizers/ga.py", line 22, in <module>
+    from lda_hyperopt.utils import BaseOptimizer, clamp, ensure_dir
+ModuleNotFoundError: No module named 'lda_hyperopt'
+
+2025-11-04 04:21:12,106 [INFO] 
+============================================================
+2025-11-04 04:21:12,106 [INFO] Dataset: val_out | Run: 4/10
+2025-11-04 04:21:12,106 [INFO] Algorithms: GA, ES, PABBO_Full
+2025-11-04 04:21:12,106 [INFO] ============================================================
+2025-11-04 04:21:12,106 [INFO] Command: /Users/draiqws/Llabs/.venv/bin/python /Users/draiqws/Llabs/lda_hyperopt/run.py --data /Users/draiqws/Llabs/data/X_val_out_val_bow.npz --algorithms GA ES PABBO_Full --iterations 200 --seed 45 --outdir /Users/draiqws/Llabs/lda_pipeline_results/run_20251104_040208/experiments/val_out/run_3 --init /Users/draiqws/Llabs/lda_hyperopt/lda_init_population.json --pabbo-model /Users/draiqws/Llabs/pabbo_method/results/PABBO/PABBO_GP1D_quick_20251104_040211/ckpt.tar
+2025-11-04 04:21:13,466 [ERROR] Experiment failed for val_out run 3
+2025-11-04 04:21:13,466 [ERROR] STDERR: Traceback (most recent call last):
+  File "/Users/draiqws/Llabs/lda_hyperopt/run.py", line 34, in <module>
+    from optimizers import GAOptimizer, ESOptimizer, PABBOSimpleOptimizer, PABBOFullOptimizer, PABBOOptimizer
+  File "/Users/draiqws/Llabs/lda_hyperopt/optimizers/__init__.py", line 11, in <module>
+    from .ga import GAOptimizer
+  File "/Users/draiqws/Llabs/lda_hyperopt/optimizers/ga.py", line 22, in <module>
+    from lda_hyperopt.utils import BaseOptimizer, clamp, ensure_dir
+ModuleNotFoundError: No module named 'lda_hyperopt'
+
+2025-11-04 04:21:13,466 [INFO] 
+============================================================
+2025-11-04 04:21:13,466 [INFO] Dataset: val_out | Run: 5/10
+2025-11-04 04:21:13,466 [INFO] Algorithms: GA, ES, PABBO_Full
+2025-11-04 04:21:13,466 [INFO] ============================================================
+2025-11-04 04:21:13,466 [INFO] Command: /Users/draiqws/Llabs/.venv/bin/python /Users/draiqws/Llabs/lda_hyperopt/run.py --data /Users/draiqws/Llabs/data/X_val_out_val_bow.npz --algorithms GA ES PABBO_Full --iterations 200 --seed 46 --outdir /Users/draiqws/Llabs/lda_pipeline_results/run_20251104_040208/experiments/val_out/run_4 --init /Users/draiqws/Llabs/lda_hyperopt/lda_init_population.json --pabbo-model /Users/draiqws/Llabs/pabbo_method/results/PABBO/PABBO_GP1D_quick_20251104_040211/ckpt.tar
+2025-11-04 04:21:14,823 [ERROR] Experiment failed for val_out run 4
+2025-11-04 04:21:14,823 [ERROR] STDERR: Traceback (most recent call last):
+  File "/Users/draiqws/Llabs/lda_hyperopt/run.py", line 34, in <module>
+    from optimizers import GAOptimizer, ESOptimizer, PABBOSimpleOptimizer, PABBOFullOptimizer, PABBOOptimizer
+  File "/Users/draiqws/Llabs/lda_hyperopt/optimizers/__init__.py", line 11, in <module>
+    from .ga import GAOptimizer
+  File "/Users/draiqws/Llabs/lda_hyperopt/optimizers/ga.py", line 22, in <module>
+    from lda_hyperopt.utils import BaseOptimizer, clamp, ensure_dir
+ModuleNotFoundError: No module named 'lda_hyperopt'
+
+2025-11-04 04:21:14,823 [INFO] 
+============================================================
+2025-11-04 04:21:14,823 [INFO] Dataset: val_out | Run: 6/10
+2025-11-04 04:21:14,823 [INFO] Algorithms: GA, ES, PABBO_Full
+2025-11-04 04:21:14,823 [INFO] ============================================================
+2025-11-04 04:21:14,824 [INFO] Command: /Users/draiqws/Llabs/.venv/bin/python /Users/draiqws/Llabs/lda_hyperopt/run.py --data /Users/draiqws/Llabs/data/X_val_out_val_bow.npz --algorithms GA ES PABBO_Full --iterations 200 --seed 47 --outdir /Users/draiqws/Llabs/lda_pipeline_results/run_20251104_040208/experiments/val_out/run_5 --init /Users/draiqws/Llabs/lda_hyperopt/lda_init_population.json --pabbo-model /Users/draiqws/Llabs/pabbo_method/results/PABBO/PABBO_GP1D_quick_20251104_040211/ckpt.tar
+2025-11-04 04:21:16,154 [ERROR] Experiment failed for val_out run 5
+2025-11-04 04:21:16,154 [ERROR] STDERR: Traceback (most recent call last):
+  File "/Users/draiqws/Llabs/lda_hyperopt/run.py", line 34, in <module>
+    from optimizers import GAOptimizer, ESOptimizer, PABBOSimpleOptimizer, PABBOFullOptimizer, PABBOOptimizer
+  File "/Users/draiqws/Llabs/lda_hyperopt/optimizers/__init__.py", line 11, in <module>
+    from .ga import GAOptimizer
+  File "/Users/draiqws/Llabs/lda_hyperopt/optimizers/ga.py", line 22, in <module>
+    from lda_hyperopt.utils import BaseOptimizer, clamp, ensure_dir
+ModuleNotFoundError: No module named 'lda_hyperopt'
+
+2025-11-04 04:21:16,154 [INFO] 
+============================================================
+2025-11-04 04:21:16,154 [INFO] Dataset: val_out | Run: 7/10
+2025-11-04 04:21:16,154 [INFO] Algorithms: GA, ES, PABBO_Full
+2025-11-04 04:21:16,154 [INFO] ============================================================
+2025-11-04 04:21:16,154 [INFO] Command: /Users/draiqws/Llabs/.venv/bin/python /Users/draiqws/Llabs/lda_hyperopt/run.py --data /Users/draiqws/Llabs/data/X_val_out_val_bow.npz --algorithms GA ES PABBO_Full --iterations 200 --seed 48 --outdir /Users/draiqws/Llabs/lda_pipeline_results/run_20251104_040208/experiments/val_out/run_6 --init /Users/draiqws/Llabs/lda_hyperopt/lda_init_population.json --pabbo-model /Users/draiqws/Llabs/pabbo_method/results/PABBO/PABBO_GP1D_quick_20251104_040211/ckpt.tar
+2025-11-04 04:21:17,508 [ERROR] Experiment failed for val_out run 6
+2025-11-04 04:21:17,508 [ERROR] STDERR: Traceback (most recent call last):
+  File "/Users/draiqws/Llabs/lda_hyperopt/run.py", line 34, in <module>
+    from optimizers import GAOptimizer, ESOptimizer, PABBOSimpleOptimizer, PABBOFullOptimizer, PABBOOptimizer
+  File "/Users/draiqws/Llabs/lda_hyperopt/optimizers/__init__.py", line 11, in <module>
+    from .ga import GAOptimizer
+  File "/Users/draiqws/Llabs/lda_hyperopt/optimizers/ga.py", line 22, in <module>
+    from lda_hyperopt.utils import BaseOptimizer, clamp, ensure_dir
+ModuleNotFoundError: No module named 'lda_hyperopt'
+
+2025-11-04 04:21:17,508 [INFO] 
+============================================================
+2025-11-04 04:21:17,508 [INFO] Dataset: val_out | Run: 8/10
+2025-11-04 04:21:17,508 [INFO] Algorithms: GA, ES, PABBO_Full
+2025-11-04 04:21:17,508 [INFO] ============================================================
+2025-11-04 04:21:17,508 [INFO] Command: /Users/draiqws/Llabs/.venv/bin/python /Users/draiqws/Llabs/lda_hyperopt/run.py --data /Users/draiqws/Llabs/data/X_val_out_val_bow.npz --algorithms GA ES PABBO_Full --iterations 200 --seed 49 --outdir /Users/draiqws/Llabs/lda_pipeline_results/run_20251104_040208/experiments/val_out/run_7 --init /Users/draiqws/Llabs/lda_hyperopt/lda_init_population.json --pabbo-model /Users/draiqws/Llabs/pabbo_method/results/PABBO/PABBO_GP1D_quick_20251104_040211/ckpt.tar
+2025-11-04 04:21:18,873 [ERROR] Experiment failed for val_out run 7
+2025-11-04 04:21:18,873 [ERROR] STDERR: Traceback (most recent call last):
+  File "/Users/draiqws/Llabs/lda_hyperopt/run.py", line 34, in <module>
+    from optimizers import GAOptimizer, ESOptimizer, PABBOSimpleOptimizer, PABBOFullOptimizer, PABBOOptimizer
+  File "/Users/draiqws/Llabs/lda_hyperopt/optimizers/__init__.py", line 11, in <module>
+    from .ga import GAOptimizer
+  File "/Users/draiqws/Llabs/lda_hyperopt/optimizers/ga.py", line 22, in <module>
+    from lda_hyperopt.utils import BaseOptimizer, clamp, ensure_dir
+ModuleNotFoundError: No module named 'lda_hyperopt'
+
+2025-11-04 04:21:18,873 [INFO] 
+============================================================
+2025-11-04 04:21:18,873 [INFO] Dataset: val_out | Run: 9/10
+2025-11-04 04:21:18,874 [INFO] Algorithms: GA, ES, PABBO_Full
+2025-11-04 04:21:18,874 [INFO] ============================================================
+2025-11-04 04:21:18,874 [INFO] Command: /Users/draiqws/Llabs/.venv/bin/python /Users/draiqws/Llabs/lda_hyperopt/run.py --data /Users/draiqws/Llabs/data/X_val_out_val_bow.npz --algorithms GA ES PABBO_Full --iterations 200 --seed 50 --outdir /Users/draiqws/Llabs/lda_pipeline_results/run_20251104_040208/experiments/val_out/run_8 --init /Users/draiqws/Llabs/lda_hyperopt/lda_init_population.json --pabbo-model /Users/draiqws/Llabs/pabbo_method/results/PABBO/PABBO_GP1D_quick_20251104_040211/ckpt.tar
+2025-11-04 04:21:20,208 [ERROR] Experiment failed for val_out run 8
+2025-11-04 04:21:20,208 [ERROR] STDERR: Traceback (most recent call last):
+  File "/Users/draiqws/Llabs/lda_hyperopt/run.py", line 34, in <module>
+    from optimizers import GAOptimizer, ESOptimizer, PABBOSimpleOptimizer, PABBOFullOptimizer, PABBOOptimizer
+  File "/Users/draiqws/Llabs/lda_hyperopt/optimizers/__init__.py", line 11, in <module>
+    from .ga import GAOptimizer
+  File "/Users/draiqws/Llabs/lda_hyperopt/optimizers/ga.py", line 22, in <module>
+    from lda_hyperopt.utils import BaseOptimizer, clamp, ensure_dir
+ModuleNotFoundError: No module named 'lda_hyperopt'
+
+2025-11-04 04:21:20,208 [INFO] 
+============================================================
+2025-11-04 04:21:20,208 [INFO] Dataset: val_out | Run: 10/10
+2025-11-04 04:21:20,208 [INFO] Algorithms: GA, ES, PABBO_Full
+2025-11-04 04:21:20,208 [INFO] ============================================================
+2025-11-04 04:21:20,208 [INFO] Command: /Users/draiqws/Llabs/.venv/bin/python /Users/draiqws/Llabs/lda_hyperopt/run.py --data /Users/draiqws/Llabs/data/X_val_out_val_bow.npz --algorithms GA ES PABBO_Full --iterations 200 --seed 51 --outdir /Users/draiqws/Llabs/lda_pipeline_results/run_20251104_040208/experiments/val_out/run_9 --init /Users/draiqws/Llabs/lda_hyperopt/lda_init_population.json --pabbo-model /Users/draiqws/Llabs/pabbo_method/results/PABBO/PABBO_GP1D_quick_20251104_040211/ckpt.tar
+2025-11-04 04:21:21,549 [ERROR] Experiment failed for val_out run 9
+2025-11-04 04:21:21,549 [ERROR] STDERR: Traceback (most recent call last):
+  File "/Users/draiqws/Llabs/lda_hyperopt/run.py", line 34, in <module>
+    from optimizers import GAOptimizer, ESOptimizer, PABBOSimpleOptimizer, PABBOFullOptimizer, PABBOOptimizer
+  File "/Users/draiqws/Llabs/lda_hyperopt/optimizers/__init__.py", line 11, in <module>
+    from .ga import GAOptimizer
+  File "/Users/draiqws/Llabs/lda_hyperopt/optimizers/ga.py", line 22, in <module>
+    from lda_hyperopt.utils import BaseOptimizer, clamp, ensure_dir
+ModuleNotFoundError: No module named 'lda_hyperopt'
+
+2025-11-04 04:21:21,549 [INFO] 
+============================================================
+2025-11-04 04:21:21,549 [INFO] Dataset: yelp | Run: 1/10
+2025-11-04 04:21:21,549 [INFO] Algorithms: GA, ES, PABBO_Full
+2025-11-04 04:21:21,549 [INFO] ============================================================
+2025-11-04 04:21:21,549 [INFO] Command: /Users/draiqws/Llabs/.venv/bin/python /Users/draiqws/Llabs/lda_hyperopt/run.py --data /Users/draiqws/Llabs/data/X_yelp_val_bow.npz --algorithms GA ES PABBO_Full --iterations 200 --seed 42 --outdir /Users/draiqws/Llabs/lda_pipeline_results/run_20251104_040208/experiments/yelp/run_0 --init /Users/draiqws/Llabs/lda_hyperopt/lda_init_population.json --pabbo-model /Users/draiqws/Llabs/pabbo_method/results/PABBO/PABBO_GP1D_quick_20251104_040211/ckpt.tar
+2025-11-04 04:21:22,916 [ERROR] Experiment failed for yelp run 0
+2025-11-04 04:21:22,916 [ERROR] STDERR: Traceback (most recent call last):
+  File "/Users/draiqws/Llabs/lda_hyperopt/run.py", line 34, in <module>
+    from optimizers import GAOptimizer, ESOptimizer, PABBOSimpleOptimizer, PABBOFullOptimizer, PABBOOptimizer
+  File "/Users/draiqws/Llabs/lda_hyperopt/optimizers/__init__.py", line 11, in <module>
+    from .ga import GAOptimizer
+  File "/Users/draiqws/Llabs/lda_hyperopt/optimizers/ga.py", line 22, in <module>
+    from lda_hyperopt.utils import BaseOptimizer, clamp, ensure_dir
+ModuleNotFoundError: No module named 'lda_hyperopt'
+
+2025-11-04 04:21:22,916 [INFO] 
+============================================================
+2025-11-04 04:21:22,916 [INFO] Dataset: yelp | Run: 2/10
+2025-11-04 04:21:22,916 [INFO] Algorithms: GA, ES, PABBO_Full
+2025-11-04 04:21:22,916 [INFO] ============================================================
+2025-11-04 04:21:22,916 [INFO] Command: /Users/draiqws/Llabs/.venv/bin/python /Users/draiqws/Llabs/lda_hyperopt/run.py --data /Users/draiqws/Llabs/data/X_yelp_val_bow.npz --algorithms GA ES PABBO_Full --iterations 200 --seed 43 --outdir /Users/draiqws/Llabs/lda_pipeline_results/run_20251104_040208/experiments/yelp/run_1 --init /Users/draiqws/Llabs/lda_hyperopt/lda_init_population.json --pabbo-model /Users/draiqws/Llabs/pabbo_method/results/PABBO/PABBO_GP1D_quick_20251104_040211/ckpt.tar
+2025-11-04 04:21:24,257 [ERROR] Experiment failed for yelp run 1
+2025-11-04 04:21:24,257 [ERROR] STDERR: Traceback (most recent call last):
+  File "/Users/draiqws/Llabs/lda_hyperopt/run.py", line 34, in <module>
+    from optimizers import GAOptimizer, ESOptimizer, PABBOSimpleOptimizer, PABBOFullOptimizer, PABBOOptimizer
+  File "/Users/draiqws/Llabs/lda_hyperopt/optimizers/__init__.py", line 11, in <module>
+    from .ga import GAOptimizer
+  File "/Users/draiqws/Llabs/lda_hyperopt/optimizers/ga.py", line 22, in <module>
+    from lda_hyperopt.utils import BaseOptimizer, clamp, ensure_dir
+ModuleNotFoundError: No module named 'lda_hyperopt'
+
+2025-11-04 04:21:24,257 [INFO] 
+============================================================
+2025-11-04 04:21:24,258 [INFO] Dataset: yelp | Run: 3/10
+2025-11-04 04:21:24,258 [INFO] Algorithms: GA, ES, PABBO_Full
+2025-11-04 04:21:24,258 [INFO] ============================================================
+2025-11-04 04:21:24,258 [INFO] Command: /Users/draiqws/Llabs/.venv/bin/python /Users/draiqws/Llabs/lda_hyperopt/run.py --data /Users/draiqws/Llabs/data/X_yelp_val_bow.npz --algorithms GA ES PABBO_Full --iterations 200 --seed 44 --outdir /Users/draiqws/Llabs/lda_pipeline_results/run_20251104_040208/experiments/yelp/run_2 --init /Users/draiqws/Llabs/lda_hyperopt/lda_init_population.json --pabbo-model /Users/draiqws/Llabs/pabbo_method/results/PABBO/PABBO_GP1D_quick_20251104_040211/ckpt.tar
+2025-11-04 04:21:25,600 [ERROR] Experiment failed for yelp run 2
+2025-11-04 04:21:25,600 [ERROR] STDERR: Traceback (most recent call last):
+  File "/Users/draiqws/Llabs/lda_hyperopt/run.py", line 34, in <module>
+    from optimizers import GAOptimizer, ESOptimizer, PABBOSimpleOptimizer, PABBOFullOptimizer, PABBOOptimizer
+  File "/Users/draiqws/Llabs/lda_hyperopt/optimizers/__init__.py", line 11, in <module>
+    from .ga import GAOptimizer
+  File "/Users/draiqws/Llabs/lda_hyperopt/optimizers/ga.py", line 22, in <module>
+    from lda_hyperopt.utils import BaseOptimizer, clamp, ensure_dir
+ModuleNotFoundError: No module named 'lda_hyperopt'
+
+2025-11-04 04:21:25,600 [INFO] 
+============================================================
+2025-11-04 04:21:25,600 [INFO] Dataset: yelp | Run: 4/10
+2025-11-04 04:21:25,600 [INFO] Algorithms: GA, ES, PABBO_Full
+2025-11-04 04:21:25,600 [INFO] ============================================================
+2025-11-04 04:21:25,600 [INFO] Command: /Users/draiqws/Llabs/.venv/bin/python /Users/draiqws/Llabs/lda_hyperopt/run.py --data /Users/draiqws/Llabs/data/X_yelp_val_bow.npz --algorithms GA ES PABBO_Full --iterations 200 --seed 45 --outdir /Users/draiqws/Llabs/lda_pipeline_results/run_20251104_040208/experiments/yelp/run_3 --init /Users/draiqws/Llabs/lda_hyperopt/lda_init_population.json --pabbo-model /Users/draiqws/Llabs/pabbo_method/results/PABBO/PABBO_GP1D_quick_20251104_040211/ckpt.tar
+2025-11-04 04:21:26,933 [ERROR] Experiment failed for yelp run 3
+2025-11-04 04:21:26,933 [ERROR] STDERR: Traceback (most recent call last):
+  File "/Users/draiqws/Llabs/lda_hyperopt/run.py", line 34, in <module>
+    from optimizers import GAOptimizer, ESOptimizer, PABBOSimpleOptimizer, PABBOFullOptimizer, PABBOOptimizer
+  File "/Users/draiqws/Llabs/lda_hyperopt/optimizers/__init__.py", line 11, in <module>
+    from .ga import GAOptimizer
+  File "/Users/draiqws/Llabs/lda_hyperopt/optimizers/ga.py", line 22, in <module>
+    from lda_hyperopt.utils import BaseOptimizer, clamp, ensure_dir
+ModuleNotFoundError: No module named 'lda_hyperopt'
+
+2025-11-04 04:21:26,933 [INFO] 
+============================================================
+2025-11-04 04:21:26,933 [INFO] Dataset: yelp | Run: 5/10
+2025-11-04 04:21:26,933 [INFO] Algorithms: GA, ES, PABBO_Full
+2025-11-04 04:21:26,933 [INFO] ============================================================
+2025-11-04 04:21:26,934 [INFO] Command: /Users/draiqws/Llabs/.venv/bin/python /Users/draiqws/Llabs/lda_hyperopt/run.py --data /Users/draiqws/Llabs/data/X_yelp_val_bow.npz --algorithms GA ES PABBO_Full --iterations 200 --seed 46 --outdir /Users/draiqws/Llabs/lda_pipeline_results/run_20251104_040208/experiments/yelp/run_4 --init /Users/draiqws/Llabs/lda_hyperopt/lda_init_population.json --pabbo-model /Users/draiqws/Llabs/pabbo_method/results/PABBO/PABBO_GP1D_quick_20251104_040211/ckpt.tar
+2025-11-04 04:21:28,294 [ERROR] Experiment failed for yelp run 4
+2025-11-04 04:21:28,294 [ERROR] STDERR: Traceback (most recent call last):
+  File "/Users/draiqws/Llabs/lda_hyperopt/run.py", line 34, in <module>
+    from optimizers import GAOptimizer, ESOptimizer, PABBOSimpleOptimizer, PABBOFullOptimizer, PABBOOptimizer
+  File "/Users/draiqws/Llabs/lda_hyperopt/optimizers/__init__.py", line 11, in <module>
+    from .ga import GAOptimizer
+  File "/Users/draiqws/Llabs/lda_hyperopt/optimizers/ga.py", line 22, in <module>
+    from lda_hyperopt.utils import BaseOptimizer, clamp, ensure_dir
+ModuleNotFoundError: No module named 'lda_hyperopt'
+
+2025-11-04 04:21:28,294 [INFO] 
+============================================================
+2025-11-04 04:21:28,294 [INFO] Dataset: yelp | Run: 6/10
+2025-11-04 04:21:28,294 [INFO] Algorithms: GA, ES, PABBO_Full
+2025-11-04 04:21:28,294 [INFO] ============================================================
+2025-11-04 04:21:28,294 [INFO] Command: /Users/draiqws/Llabs/.venv/bin/python /Users/draiqws/Llabs/lda_hyperopt/run.py --data /Users/draiqws/Llabs/data/X_yelp_val_bow.npz --algorithms GA ES PABBO_Full --iterations 200 --seed 47 --outdir /Users/draiqws/Llabs/lda_pipeline_results/run_20251104_040208/experiments/yelp/run_5 --init /Users/draiqws/Llabs/lda_hyperopt/lda_init_population.json --pabbo-model /Users/draiqws/Llabs/pabbo_method/results/PABBO/PABBO_GP1D_quick_20251104_040211/ckpt.tar
+2025-11-04 04:21:29,646 [ERROR] Experiment failed for yelp run 5
+2025-11-04 04:21:29,646 [ERROR] STDERR: Traceback (most recent call last):
+  File "/Users/draiqws/Llabs/lda_hyperopt/run.py", line 34, in <module>
+    from optimizers import GAOptimizer, ESOptimizer, PABBOSimpleOptimizer, PABBOFullOptimizer, PABBOOptimizer
+  File "/Users/draiqws/Llabs/lda_hyperopt/optimizers/__init__.py", line 11, in <module>
+    from .ga import GAOptimizer
+  File "/Users/draiqws/Llabs/lda_hyperopt/optimizers/ga.py", line 22, in <module>
+    from lda_hyperopt.utils import BaseOptimizer, clamp, ensure_dir
+ModuleNotFoundError: No module named 'lda_hyperopt'
+
+2025-11-04 04:21:29,646 [INFO] 
+============================================================
+2025-11-04 04:21:29,646 [INFO] Dataset: yelp | Run: 7/10
+2025-11-04 04:21:29,646 [INFO] Algorithms: GA, ES, PABBO_Full
+2025-11-04 04:21:29,646 [INFO] ============================================================
+2025-11-04 04:21:29,647 [INFO] Command: /Users/draiqws/Llabs/.venv/bin/python /Users/draiqws/Llabs/lda_hyperopt/run.py --data /Users/draiqws/Llabs/data/X_yelp_val_bow.npz --algorithms GA ES PABBO_Full --iterations 200 --seed 48 --outdir /Users/draiqws/Llabs/lda_pipeline_results/run_20251104_040208/experiments/yelp/run_6 --init /Users/draiqws/Llabs/lda_hyperopt/lda_init_population.json --pabbo-model /Users/draiqws/Llabs/pabbo_method/results/PABBO/PABBO_GP1D_quick_20251104_040211/ckpt.tar
+2025-11-04 04:21:30,975 [ERROR] Experiment failed for yelp run 6
+2025-11-04 04:21:30,975 [ERROR] STDERR: Traceback (most recent call last):
+  File "/Users/draiqws/Llabs/lda_hyperopt/run.py", line 34, in <module>
+    from optimizers import GAOptimizer, ESOptimizer, PABBOSimpleOptimizer, PABBOFullOptimizer, PABBOOptimizer
+  File "/Users/draiqws/Llabs/lda_hyperopt/optimizers/__init__.py", line 11, in <module>
+    from .ga import GAOptimizer
+  File "/Users/draiqws/Llabs/lda_hyperopt/optimizers/ga.py", line 22, in <module>
+    from lda_hyperopt.utils import BaseOptimizer, clamp, ensure_dir
+ModuleNotFoundError: No module named 'lda_hyperopt'
+
+2025-11-04 04:21:30,975 [INFO] 
+============================================================
+2025-11-04 04:21:30,975 [INFO] Dataset: yelp | Run: 8/10
+2025-11-04 04:21:30,975 [INFO] Algorithms: GA, ES, PABBO_Full
+2025-11-04 04:21:30,975 [INFO] ============================================================
+2025-11-04 04:21:30,976 [INFO] Command: /Users/draiqws/Llabs/.venv/bin/python /Users/draiqws/Llabs/lda_hyperopt/run.py --data /Users/draiqws/Llabs/data/X_yelp_val_bow.npz --algorithms GA ES PABBO_Full --iterations 200 --seed 49 --outdir /Users/draiqws/Llabs/lda_pipeline_results/run_20251104_040208/experiments/yelp/run_7 --init /Users/draiqws/Llabs/lda_hyperopt/lda_init_population.json --pabbo-model /Users/draiqws/Llabs/pabbo_method/results/PABBO/PABBO_GP1D_quick_20251104_040211/ckpt.tar
+2025-11-04 04:21:32,332 [ERROR] Experiment failed for yelp run 7
+2025-11-04 04:21:32,332 [ERROR] STDERR: Traceback (most recent call last):
+  File "/Users/draiqws/Llabs/lda_hyperopt/run.py", line 34, in <module>
+    from optimizers import GAOptimizer, ESOptimizer, PABBOSimpleOptimizer, PABBOFullOptimizer, PABBOOptimizer
+  File "/Users/draiqws/Llabs/lda_hyperopt/optimizers/__init__.py", line 11, in <module>
+    from .ga import GAOptimizer
+  File "/Users/draiqws/Llabs/lda_hyperopt/optimizers/ga.py", line 22, in <module>
+    from lda_hyperopt.utils import BaseOptimizer, clamp, ensure_dir
+ModuleNotFoundError: No module named 'lda_hyperopt'
+
+2025-11-04 04:21:32,332 [INFO] 
+============================================================
+2025-11-04 04:21:32,332 [INFO] Dataset: yelp | Run: 9/10
+2025-11-04 04:21:32,332 [INFO] Algorithms: GA, ES, PABBO_Full
+2025-11-04 04:21:32,332 [INFO] ============================================================
+2025-11-04 04:21:32,332 [INFO] Command: /Users/draiqws/Llabs/.venv/bin/python /Users/draiqws/Llabs/lda_hyperopt/run.py --data /Users/draiqws/Llabs/data/X_yelp_val_bow.npz --algorithms GA ES PABBO_Full --iterations 200 --seed 50 --outdir /Users/draiqws/Llabs/lda_pipeline_results/run_20251104_040208/experiments/yelp/run_8 --init /Users/draiqws/Llabs/lda_hyperopt/lda_init_population.json --pabbo-model /Users/draiqws/Llabs/pabbo_method/results/PABBO/PABBO_GP1D_quick_20251104_040211/ckpt.tar
+2025-11-04 04:21:33,704 [ERROR] Experiment failed for yelp run 8
+2025-11-04 04:21:33,704 [ERROR] STDERR: Traceback (most recent call last):
+  File "/Users/draiqws/Llabs/lda_hyperopt/run.py", line 34, in <module>
+    from optimizers import GAOptimizer, ESOptimizer, PABBOSimpleOptimizer, PABBOFullOptimizer, PABBOOptimizer
+  File "/Users/draiqws/Llabs/lda_hyperopt/optimizers/__init__.py", line 11, in <module>
+    from .ga import GAOptimizer
+  File "/Users/draiqws/Llabs/lda_hyperopt/optimizers/ga.py", line 22, in <module>
+    from lda_hyperopt.utils import BaseOptimizer, clamp, ensure_dir
+ModuleNotFoundError: No module named 'lda_hyperopt'
+
+2025-11-04 04:21:33,704 [INFO] 
+============================================================
+2025-11-04 04:21:33,704 [INFO] Dataset: yelp | Run: 10/10
+2025-11-04 04:21:33,704 [INFO] Algorithms: GA, ES, PABBO_Full
+2025-11-04 04:21:33,704 [INFO] ============================================================
+2025-11-04 04:21:33,704 [INFO] Command: /Users/draiqws/Llabs/.venv/bin/python /Users/draiqws/Llabs/lda_hyperopt/run.py --data /Users/draiqws/Llabs/data/X_yelp_val_bow.npz --algorithms GA ES PABBO_Full --iterations 200 --seed 51 --outdir /Users/draiqws/Llabs/lda_pipeline_results/run_20251104_040208/experiments/yelp/run_9 --init /Users/draiqws/Llabs/lda_hyperopt/lda_init_population.json --pabbo-model /Users/draiqws/Llabs/pabbo_method/results/PABBO/PABBO_GP1D_quick_20251104_040211/ckpt.tar
+2025-11-04 04:21:35,039 [ERROR] Experiment failed for yelp run 9
+2025-11-04 04:21:35,040 [ERROR] STDERR: Traceback (most recent call last):
+  File "/Users/draiqws/Llabs/lda_hyperopt/run.py", line 34, in <module>
+    from optimizers import GAOptimizer, ESOptimizer, PABBOSimpleOptimizer, PABBOFullOptimizer, PABBOOptimizer
+  File "/Users/draiqws/Llabs/lda_hyperopt/optimizers/__init__.py", line 11, in <module>
+    from .ga import GAOptimizer
+  File "/Users/draiqws/Llabs/lda_hyperopt/optimizers/ga.py", line 22, in <module>
+    from lda_hyperopt.utils import BaseOptimizer, clamp, ensure_dir
+ModuleNotFoundError: No module named 'lda_hyperopt'
+
+2025-11-04 04:21:35,040 [INFO] ================================================================================
+2025-11-04 04:21:35,040 [INFO] Stage: LDA_Experiments
+2025-11-04 04:21:35,040 [INFO] Status: COMPLETED
+2025-11-04 04:21:35,040 [INFO] Duration: 53.94s (0.90min)
+2025-11-04 04:21:35,040 [INFO] total_experiments: 40
+2025-11-04 04:21:35,040 [INFO] successes: 0
+2025-11-04 04:21:35,040 [INFO] failures: 40
+2025-11-04 04:21:35,040 [INFO] ================================================================================
+2025-11-04 04:21:35,040 [INFO] 
+================================================================================
+2025-11-04 04:21:35,040 [INFO] STAGE 4: Aggregating Results
+2025-11-04 04:21:35,041 [INFO] ================================================================================
+2025-11-04 04:21:35,047 [ERROR] 
+================================================================================
+2025-11-04 04:21:35,047 [ERROR] PIPELINE FAILED!
+2025-11-04 04:21:35,047 [ERROR] Error: 'dataset'
+2025-11-04 04:21:35,047 [ERROR] ================================================================================
+2025-11-04 04:21:35,050 [ERROR] Traceback (most recent call last):
+  File "/Users/draiqws/Llabs/lda.py", line 699, in main
+    aggregator.aggregate_results(all_results, results_dir)
+  File "/Users/draiqws/Llabs/lda.py", line 482, in aggregate_results
+    stats = self._compute_statistics(df)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/draiqws/Llabs/lda.py", line 523, in _compute_statistics
+    for dataset in df['dataset'].unique():
+                   ~~^^^^^^^^^^^
+  File "/Users/draiqws/Llabs/.venv/lib/python3.12/site-packages/pandas/core/frame.py", line 4113, in __getitem__
+    indexer = self.columns.get_loc(key)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/draiqws/Llabs/.venv/lib/python3.12/site-packages/pandas/core/indexes/range.py", line 417, in get_loc
+    raise KeyError(key)
+KeyError: 'dataset'
+
+2025-11-04 04:21:35,051 [INFO] Metrics saved to /Users/draiqws/Llabs/lda_pipeline_results/run_20251104_040208/logs/pipeline_metrics.json
