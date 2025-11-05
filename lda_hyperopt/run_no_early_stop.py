@@ -234,8 +234,12 @@ def plot_comparison(results: List[Dict], outdir: str):
 
 def main():
     parser = argparse.ArgumentParser(description='LDA Hyperparameter Optimization (No Early Stopping)')
-    parser.add_argument('--data', type=str, required=True,
-                       help='Path to validation data (.npz file)')
+    parser.add_argument(
+        '--data',
+        type=str,
+        required=True,
+        help='Path to validation data (.npz file)'
+    )
     parser.add_argument('--init', type=str, default='lda_init_population.json',
                        help='Path to initial population JSON file')
     parser.add_argument('--iterations', type=int, default=50,
