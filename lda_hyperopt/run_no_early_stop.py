@@ -35,7 +35,7 @@ from utils import (
 )
 
 # Import optimizers
-from optimizers import GAOptimizer, ESOptimizer, PABBOSimpleOptimizer, PABBOFullOptimizer, PABBOOptimizer
+from optimizers import GAOptimizer, ESOptimizer, PABBOSimpleOptimizer, PABBOFullOptimizer, PABBOOptimizer, SABOOptimizer
 
 
 def load_initial_population(json_path: str) -> List[int]:
@@ -250,7 +250,7 @@ def main():
                        help='LDA batch size')
     parser.add_argument('--algorithms', type=str, nargs='+',
                        default=['GA', 'ES', 'PABBO_Simple'],
-                       choices=['GA', 'ES', 'PABBO', 'PABBO_Simple', 'PABBO_Full'],
+                       choices=['GA', 'ES', 'PABBO', 'PABBO_Simple', 'PABBO_Full', 'SABO'],
                        help='Algorithms to run (PABBO defaults to PABBO_Simple)')
     parser.add_argument('--pabbo-model', type=str, default=None,
                        help='Path to trained PABBO Transformer model (for PABBO_Full)')
@@ -385,6 +385,30 @@ def main():
         )
         pabbo_full_result['algorithm'] = 'PABBO_Full'
         results.append(pabbo_full_result)
+
+    if 'SABO' in args.algorithms:
+        logger.info("\n" + "=" * 80)
+        logger.info("Running SABO (Stochastic Adaptive Bayesian Optimization) - NO EARLY STOPPING")
+        logger.info("=" * 80)
+        sabo_result = run_single_optimizer(
+            algorithm_name='SABO',
+            optimizer_class=SABOOptimizer,
+            obj=obj,
+            eval_func=eval_func,
+            initial_population=initial_population.copy(),
+            iterations=args.iterations,
+            outdir=os.path.join(args.outdir, 'SABO'),
+            seed=args.seed,
+            rho=0.1,
+            beta_t=0.01,
+            delta_Sigma=0.5,
+            delta_mu=0.5,
+            N_batch=5,  # Reduced from 10 to 5 for faster LDA evaluations
+            early_stop_eps_pct=0.0,  # DISABLED
+            max_no_improvement=999999,  # EFFECTIVELY DISABLED
+        )
+        sabo_result['algorithm'] = 'SABO'
+        results.append(sabo_result)
 
     # Plot comparison
     if len(results) > 1:

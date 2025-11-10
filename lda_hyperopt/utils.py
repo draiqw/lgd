@@ -283,14 +283,26 @@ def write_history_csv(history: List[Dict], path: str):
     if not history:
         return
 
+    # Ensure output directory exists
     ensure_dir(os.path.dirname(path))
-    fields = list(history[0].keys())
+
+    # Collect fields in a stable order: start with keys from first record
+    # then append any new keys encountered in later records in their
+    # appearance order. This makes the CSV robust to algorithms that
+    # add per-iteration diagnostics (e.g. gradients) only after init.
+    fields: List[str] = []
+    for rec in history:
+        for k in rec.keys():
+            if k not in fields:
+                fields.append(k)
 
     with open(path, "w", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=fields)
         writer.writeheader()
         for row in history:
-            writer.writerow(row)
+            # Ensure row contains all fields; missing ones -> empty string
+            out_row = {k: (row[k] if k in row else "") for k in fields}
+            writer.writerow(out_row)
 
 
 def save_json(data: Dict, path: str):
