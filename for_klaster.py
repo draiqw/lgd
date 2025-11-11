@@ -198,7 +198,7 @@ class PABBOTrainer:
             cmd.extend([
                 "data.name=GP1D",
                 "data.d_x=1",
-                'data.x_range="[[-1.0, 1.0]]"',
+                "data.x_range=[[-1.0,1.0]]",
                 "data.min_num_ctx=1",
                 "data.max_num_ctx=20",
                 "experiment.device=cpu",
@@ -291,7 +291,7 @@ class PABBOTrainer:
             "experiment.wandb=false",
             "data.name=GP1D",
             "data.d_x=1",
-            'data.x_range="[[-1,1]]"',
+            "data.x_range=[[-1.0,1.0]]",
             "data.min_num_ctx=5",
             "data.max_num_ctx=20",
             "eval.eval_num_query_points=256",

@@ -2,6 +2,10 @@
 logs/
 runs/
 runs_corpus_ppl/
+results/
+lda_pipeline_results/
+local_results/
+*.sqsh
 
 # Python cache
 __pycache__/

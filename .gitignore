@@ -114,3 +114,6 @@ lda_pipeline_results/
 
 # Результаты test_function_opt
 test_function_opt/test_results/
+draiqws+llabs_lda_hyperopt+v1.sqsh
+local_results/
+*.sqsh

@@ -3,12 +3,12 @@
 #SBATCH --job-name=lda_hyperopt
 #SBATCH --nodes=1
 #SBATCH --cpus-per-task=128
-#SBATCH --gpus=0
-#SBATCH --time=24:00:00
+#SBATCH --gpus=1
+#SBATCH --time=48:00:00
 #SBATCH --output=slurm-%j.out
 #SBATCH --error=slurm-%j.err
 
-CONTAINER_IMAGE="./draiqws+llabs_lda_hyperopt+v1.sqsh"
+CONTAINER_IMAGE="./draiqws+llabs_lda_hyperopt+latest.sqsh"
 
 RESULTS_DIR="/scratch/akramovrr/lda_results"
 
