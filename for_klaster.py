@@ -214,7 +214,6 @@ class PABBOTrainer:
                 cwd=str(self.pabbo_dir),
                 capture_output=True,
                 text=True,
-                timeout=7200,  # 2 hours timeout (large model takes longer)
                 env=_subprocess_env(),
             )
 
@@ -310,7 +309,6 @@ class PABBOTrainer:
                 cwd=str(self.pabbo_dir),
                 capture_output=True,
                 text=True,
-                timeout=1800,  # 30 min timeout
                 env=_subprocess_env(),
             )
 
@@ -432,7 +430,6 @@ class ClusterLDAExperimentRunner:
                 cwd=str(self.lda_dir),
                 capture_output=True,
                 text=True,
-                timeout=7200,  # 2 hours timeout
                 env=_subprocess_env(),
             )
 

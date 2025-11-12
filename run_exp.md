@@ -1,110 +1,45 @@
-# 🚀 Инструкция по запуску эксперимента на кластере
-
-Полное руководство по запуску `for_klaster.py` на SLURM кластере.
-
----
-
-## 📋 Содержание
-
-1. [Предварительная подготовка](#1-предварительная-подготовка)
-2. [Сборка Docker образа](#2-сборка-docker-образа)
-3. [Публикация в Docker Hub](#3-публикация-в-docker-hub)
-4. [Конвертация образа через enroot](#4-конвертация-образа-через-enroot)
-5. [Загрузка на slurm-master](#5-загрузка-на-slurm-master)
-6. [Запуск эксперимента](#6-запуск-эксперимента)
-7. [Мониторинг и получение результатов](#7-мониторинг-и-получение-результатов)
-8. [Полезные команды SLURM](#8-полезные-команды-slurm)
-
----
-
-## 1. Предварительная подготовка
-
-### Проверьте структуру проекта
-
-Убедитесь, что у вас есть все необходимые файлы:
-
-```
-Llabs/
-├── for_klaster.py          # Основной скрипт эксперимента
-├── Dockerfile              # Конфигурация Docker образа
-├── .dockerignore           # Исключения для Docker
-├── run.sh                  # Скрипт для sbatch
-├── requirements.txt        # Зависимости Python
-├── pyproject.toml          # Конфигурация Poetry
-├── data/                   # Данные для LDA (должны быть включены!)
-│   ├── X_*_val_bow.npz     # Валидационные датасеты
-│   └── ...
-├── pabbo_method/           # PABBO библиотека
-├── lda_hyperopt/           # LDA оптимизация
-└── ...
-```
-
-### Убедитесь, что данные присутствуют
-
-Скрипт `for_klaster.py` ищет датасеты в директории `data/`:
-
-```bash
-ls data/X_*_val_bow.npz
-```
-
-Если датасеты отсутствуют, скопируйте их в `data/` или обновите пути в коде.
-
----
-
-## 2. Сборка Docker образа
+## 1. Сборка Docker образа
 
 ### Для Linux/Intel Mac:
 
 ```bash
-docker build -t llabs_lda_hyperopt .
+docker build --load -t llabs_lda_hyperopt .
 ```
 
 ### Для Apple Silicon (M1/M2/M3):
 
 ```bash
-docker buildx build --platform linux/amd64 -t llabs_lda_hyperopt .
+docker buildx build --platform linux/amd64 --load -t llabs_lda_hyperopt .
 ```
-
-**Важно:** Кластер использует архитектуру x86_64, поэтому нужна платформа `linux/amd64`.
 
 ### Проверка образа (опционально):
 
 ```bash
-# Проверить, что образ собрался
 docker images | grep llabs_lda_hyperopt
-
-# Тестовый запуск локально
-docker run --rm llabs_lda_hyperopt python3 -c "import torch; print('OK')"
 ```
 
 ---
 
-## 3. Публикация в Docker Hub
-
-### Авторизация в Docker Hub:
-
-```bash
-docker login
-# Введите username и password
-```
+## 2. Публикация в Docker Hub
 
 ### Тегирование и публикация:
 
 Замените `YOUR_DOCKERHUB_USERNAME` на ваш username:
 
 ```bash
-# Тегируем образ
 docker tag llabs_lda_hyperopt YOUR_DOCKERHUB_USERNAME/llabs_lda_hyperopt:latest
-
-# Публикуем в Docker Hub
+```
+```bash
 docker push YOUR_DOCKERHUB_USERNAME/llabs_lda_hyperopt:latest
 ```
-
-**Пример:**
+Пример
 ```bash
-docker tag llabs_lda_hyperopt pansershrek/llabs_lda_hyperopt:v1
-docker push pansershrek/llabs_lda_hyperopt:v1
+docker tag llabs_lda_hyperopt draiqws/llabs_lda_hyperopt:latest
 ```
+```bash
+docker push draiqws/llabs_lda_hyperopt:latest
+```
+
 
 ---
 
@@ -119,13 +54,12 @@ ssh -p 2295 mmp@188.44.41.125
 ### Конвертация Docker образа в .sqsh:
 
 ```bash
-# Импортируем образ из Docker Hub
 sudo enroot import docker://YOUR_DOCKERHUB_USERNAME/llabs_lda_hyperopt:latest
 ```
 
 **Пример:**
 ```bash
-sudo enroot import docker://pansershrek/llabs_lda_hyperopt:v1
+sudo enroot import docker://draiqws/llabs_lda_hyperopt:latest
 ```
 
 После завершения enroot выведет путь к `.sqsh` файлу:
@@ -147,7 +81,7 @@ sudo enroot import docker://pansershrek/llabs_lda_hyperopt:v1
 Откройте **новый терминал** на вашем компьютере:
 
 ```bash
-scp -P 2295 mmp@188.44.41.125:/home/mmp/YOUR_DOCKERHUB_USERNAME+llabs_lda_hyperopt+v1.sqsh .
+scp -P 2295 mmp@188.44.41.125:/home/mmp/akramovrr/draiqws+llabs_lda_hyperopt+latest.sqsh .
 ```
 
 ### Загрузить на slurm-master:
@@ -155,18 +89,14 @@ scp -P 2295 mmp@188.44.41.125:/home/mmp/YOUR_DOCKERHUB_USERNAME+llabs_lda_hypero
 Замените `YOUR_USERNAME` на ваш username на slurm-master:
 
 ```bash
-scp llabs_lda_hyperopt.sqsh YOUR_USERNAME@10.36.60.202:/scratch/YOUR_USERNAME/
+scp draiqws+llabs_lda_hyperopt+latest.sqsh akramovrr@10.36.60.202:/scratch/akramovrr/
 ```
 
-**Пример:**
-```bash
-scp YOUR_DOCKERHUB_USERNAME+llabs_lda_hyperopt+v1.sqsh g.skiba@10.36.60.202:/scratch/g.skiba/llabs_lda_hyperopt.sqsh
-```
 
 ### Загрузить run.sh на slurm-master:
 
 ```bash
-scp run.sh YOUR_USERNAME@10.36.60.202:/scratch/YOUR_USERNAME/
+scp run.sh akramovrr@10.36.60.202:/scratch/akramovrr/
 ```
 
 ---
@@ -176,7 +106,7 @@ scp run.sh YOUR_USERNAME@10.36.60.202:/scratch/YOUR_USERNAME/
 ### Подключение к slurm-master:
 
 ```bash
-ssh YOUR_USERNAME@10.36.60.202
+ssh akramovrr@10.36.60.202
 ```
 
 ### Использование tmux (рекомендуется):
@@ -184,7 +114,6 @@ ssh YOUR_USERNAME@10.36.60.202
 Если планируется отключаться от сессии, используйте `tmux`:
 
 ```bash
-# Создать новую сессию
 tmux new -s lda_experiment
 
 # Отключиться от сессии (не завершая её): Ctrl+b, затем d
@@ -196,19 +125,6 @@ tmux a -t lda_experiment
 
 ```bash
 cd /scratch/$USER
-```
-
-### Проверить run.sh:
-
-Откройте `run.sh` и убедитесь, что путь к контейнеру правильный:
-
-```bash
-nano run.sh
-```
-
-Проверьте строку:
-```bash
-CONTAINER_IMAGE="./llabs_lda_hyperopt.sqsh"
 ```
 
 ### Запустить задачу через sbatch:
@@ -243,10 +159,10 @@ squeue -u $USER
 ### Просмотр логов в реальном времени:
 
 ```bash
-# Основной лог (заменить 12345 на ваш job ID)
 tail -f slurm-12345.out
+```
 
-# Лог ошибок
+```bash
 tail -f slurm-12345.err
 ```
 
@@ -259,14 +175,13 @@ http://10.36.60.3:3000/
 
 ### Просмотр результатов:
 
-Результаты сохраняются в:
 ```bash
-/scratch/$USER/lda_results/
+/scratch/akramovrr/lda_results/
 ```
 
 Проверить структуру результатов:
 ```bash
-ls -lh /scratch/$USER/lda_results/
+ls -lh /scratch/akramovrr/lda_results/
 ```
 
 ### Скачать результаты на локальный компьютер:
@@ -274,11 +189,7 @@ ls -lh /scratch/$USER/lda_results/
 Откройте терминал на **вашем компьютере**:
 
 ```bash
-# Скачать всю директорию с результатами
-scp -r YOUR_USERNAME@10.36.60.202:/scratch/YOUR_USERNAME/lda_results/ ./local_results/
-
-# Или скачать конкретные файлы
-scp YOUR_USERNAME@10.36.60.202:/scratch/YOUR_USERNAME/lda_results/run_cluster_*/logs/pipeline_main.log ./
+scp -r akramovrr@10.36.60.202:/scratch/akramovrr/lda_results/ ./local_results/
 ```
 
 ---
@@ -290,167 +201,20 @@ scp YOUR_USERNAME@10.36.60.202:/scratch/YOUR_USERNAME/lda_results/run_cluster_*/
 ```bash
 # Все задачи в очереди
 squeue
-
+```
+```bash
 # Только ваши задачи
 squeue -u $USER
-
+```
+```bash
 # Детальная информация о задаче
 scontrol show job 12345
 ```
-
-### Отмена задачи:
-
 ```bash
 # Отменить конкретную задачу
 scancel 12345
-
+```
+```bash
 # Отменить все ваши задачи
 scancel -u $USER
 ```
-
-### Информация о кластере:
-
-```bash
-# Информация о нодах
-sinfo
-
-# Информация о доступных ресурсах
-sinfo -N -l
-```
-
-### Просмотр истории задач:
-
-```bash
-# История выполненных задач
-sacct -u $USER
-
-# Детальная информация о завершенной задаче
-sacct -j 12345 --format=JobID,JobName,State,ExitCode,Elapsed,MaxRSS
-```
-
----
-
-## 🔧 Устранение проблем
-
-### Проблема: Контейнер не находится
-
-**Ошибка:**
-```
-srun: error: Unable to open container image
-```
-
-**Решение:**
-- Проверьте, что `.sqsh` файл находится в `/scratch/$USER/`
-- Проверьте путь в `run.sh` (должен быть абсолютный или относительный)
-- Убедитесь, что файл имеет права на чтение:
-  ```bash
-  chmod 644 /scratch/$USER/llabs_lda_hyperopt.sqsh
-  ```
-
-### Проблема: Данные не найдены в контейнере
-
-**Ошибка в логах:**
-```
-FileNotFoundError: No such file or directory: '/app/data/...'
-```
-
-**Решение:**
-- Убедитесь, что данные включены в Docker образ (проверьте `.dockerignore`)
-- Или смонтируйте данные извне, обновив `run.sh`:
-  ```bash
-  --container-mounts "$RESULTS_DIR:/app/lda_pipeline_results,/scratch/$USER/data:/app/data"
-  ```
-
-### Проблема: Недостаточно памяти
-
-**Ошибка:**
-```
-slurmstepd: error: Detected ... OOM (Out Of Memory) event
-```
-
-**Решение:**
-Добавьте в `run.sh`:
-```bash
-#SBATCH --mem=256G  # Запросить 256GB RAM
-```
-
-### Проблема: Задача висит в очереди (PD) долго
-
-**Причина:** Недостаточно свободных ресурсов на кластере
-
-**Решение:**
-- Проверьте очередь: `squeue`
-- Уменьшите запрашиваемые ресурсы в `run.sh`
-- Подождите, пока освободятся ресурсы
-
----
-
-## 📊 Структура результатов
-
-После успешного выполнения в `/scratch/$USER/lda_results/` будет:
-
-```
-lda_results/
-└── run_cluster_4core_YYYYMMDD_HHMMSS/
-    ├── logs/
-    │   ├── pipeline_main.log          # Главный лог
-    │   └── pipeline_metrics.json       # Метрики выполнения
-    ├── experiments/                    # Результаты экспериментов
-    │   ├── 20news/
-    │   │   ├── GA/
-    │   │   ├── ES/
-    │   │   ├── PABBO_Small/
-    │   │   └── PABBO_Large/
-    │   └── ...
-    ├── aggregated_results/             # Агрегированные результаты
-    │   ├── all_results.csv
-    │   ├── statistics.json
-    │   ├── perplexity_comparison.png
-    │   ├── time_comparison.png
-    │   └── perplexity_boxplots.png
-    └── all_results.json                # Полные результаты в JSON
-```
-
----
-
-## 🎯 Быстрый старт (шпаргалка)
-
-```bash
-# 1. Сборка образа (на вашем компьютере)
-docker buildx build --platform linux/amd64 -t llabs_lda_hyperopt .
-
-# 2. Публикация в Docker Hub
-docker tag llabs_lda_hyperopt YOUR_USERNAME/llabs_lda_hyperopt:v1
-docker push YOUR_USERNAME/llabs_lda_hyperopt:v1
-
-# 3. Конвертация в .sqsh (на виртуалке с enroot)
-ssh -p 2295 mmp@188.44.41.125
-sudo enroot import docker://YOUR_USERNAME/llabs_lda_hyperopt:v1
-exit
-
-# 4. Копирование на slurm-master
-scp -P 2295 mmp@188.44.41.125:/home/mmp/YOUR_USERNAME+llabs_lda_hyperopt+v1.sqsh .
-scp YOUR_USERNAME+llabs_lda_hyperopt+v1.sqsh YOUR_USERNAME@10.36.60.202:/scratch/$USER/llabs_lda_hyperopt.sqsh
-scp run.sh YOUR_USERNAME@10.36.60.202:/scratch/$USER/
-
-# 5. Запуск на кластере
-ssh YOUR_USERNAME@10.36.60.202
-cd /scratch/$USER
-sbatch run.sh
-
-# 6. Мониторинг
-squeue -u $USER
-tail -f slurm-*.out
-```
-
----
-
-## 📞 Контакты и поддержка
-
-- Документация SLURM: https://slurm.schedmd.com/
-- Grafana мониторинг: http://10.36.60.3:3000/
-- При проблемах проверяйте логи в `slurm-*.out` и `slurm-*.err`
-
----
-
-**Удачи с запуском экспериментов! 🚀**

@@ -3,7 +3,7 @@
 #SBATCH --job-name=lda_hyperopt
 #SBATCH --nodes=1
 #SBATCH --cpus-per-task=128
-#SBATCH --gpus=1
+#SBATCH --gpus=2
 #SBATCH --time=48:00:00
 #SBATCH --output=slurm-%j.out
 #SBATCH --error=slurm-%j.err
