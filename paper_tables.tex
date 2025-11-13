@@ -1,0 +1,252 @@
+% ============================================================================
+% TABLES FOR THE PAPER
+% ============================================================================
+
+% ----------------------------------------------------------------------------
+% Table 1: Algorithm Hyperparameters
+% ----------------------------------------------------------------------------
+
+\begin{table}[htbp]
+\centering
+\caption{Hyperparameters of optimization algorithms}
+\label{tab:algorithm_params}
+\begin{tabular}{llc}
+\hline
+\textbf{Algorithm} & \textbf{Parameter} & \textbf{Value} \\
+\hline
+\multirow{5}{*}{GA}
+    & Population size & 20 \\
+    & Crossover probability ($p_c$) & 0.9 \\
+    & Mutation probability ($p_m$) & 0.2 \\
+    & Elite size & 5 \\
+    & Tournament size & 3 \\
+\hline
+\multirow{2}{*}{ES}
+    & Parents ($\mu$) & 5 \\
+    & Offspring ($\lambda$) & 10 \\
+\hline
+\multirow{7}{*}{PABBO Full}
+    & Model dimension ($d_{\text{model}}$) & 32 \\
+    & Number of layers & 3 \\
+    & Attention heads & 2 \\
+    & Feedforward dimension & 64 \\
+    & Embedding depth & 2 \\
+    & Exploration rate ($\epsilon$) & 0.3 \\
+    & Pre-trained on & GP1D, Rastrigin1D \\
+\hline
+\multicolumn{3}{l}{\textbf{Common parameters}} \\
+\hline
+    & Search space & $T \in [2, 1000]$ \\
+    & Optimization budget & 20 iterations \\
+    & Initial population size & 20 \\
+    & Random seed (init) & 42 \\
+    & Random seeds (runs) & $42, 43, \ldots, 51$ \\
+    & Number of repetitions & 10 \\
+    & Early stopping & Disabled \\
+\hline
+\end{tabular}
+\end{table}
+
+% ----------------------------------------------------------------------------
+% Table 2: LDA Training Configuration
+% ----------------------------------------------------------------------------
+
+\begin{table}[htbp]
+\centering
+\caption{LDA model training configuration}
+\label{tab:lda_config}
+\begin{tabular}{lc}
+\hline
+\textbf{Parameter} & \textbf{Value} \\
+\hline
+Learning method & Online variational inference \\
+Maximum iterations & 60 \\
+Batch size & 2048 documents \\
+Prior hyperparameters & $\alpha = \eta = 1/T$ \\
+Random seed & $42 + r$ (run index) \\
+Evaluation metric & Perplexity on $\mathcal{D}_{\text{val}}$ \\
+\hline
+\end{tabular}
+\end{table}
+
+% ----------------------------------------------------------------------------
+% Table 3: Dataset Statistics (TEMPLATE - fill with actual data)
+% ----------------------------------------------------------------------------
+
+\begin{table}[htbp]
+\centering
+\caption{Text corpora used in experiments}
+\label{tab:datasets}
+\begin{tabular}{lrrr}
+\hline
+\textbf{Dataset} & \textbf{Documents ($M$)} & \textbf{Vocabulary ($V$)} & \textbf{Avg. Length} \\
+\hline
+20 Newsgroups & 11,314 & 130,107 & 221.3 \\
+Reuters       & 7,769  & 18,933  & 145.2 \\
+% Add more datasets as needed
+% WikiText      & X,XXX  & XX,XXX  & XXX.X \\
+\hline
+\end{tabular}
+\end{table}
+
+% ----------------------------------------------------------------------------
+% Table 4: Experimental Results (TEMPLATE - fill after experiments)
+% ----------------------------------------------------------------------------
+
+\begin{table}[htbp]
+\centering
+\caption{Optimization results: mean perplexity $\pm$ standard deviation over 10 runs}
+\label{tab:results_perplexity}
+\begin{tabular}{lccc}
+\hline
+\textbf{Dataset} & \textbf{GA} & \textbf{ES} & \textbf{PABBO Full} \\
+\hline
+20 Newsgroups & $XXXX \pm YY$ & $XXXX \pm YY$ & $\mathbf{XXXX \pm YY}$ \\
+Reuters       & $XXXX \pm YY$ & $XXXX \pm YY$ & $\mathbf{XXXX \pm YY}$ \\
+% Add more datasets
+\hline
+\textbf{Mean rank} & X.XX & X.XX & \textbf{X.XX} \\
+\hline
+\end{tabular}
+\vspace{0.5em}
+\\ \footnotesize{Bold values indicate the best result for each dataset.}
+\end{table}
+
+% ----------------------------------------------------------------------------
+% Table 5: Time Comparison (TEMPLATE)
+% ----------------------------------------------------------------------------
+
+\begin{table}[htbp]
+\centering
+\caption{Mean optimization time (seconds) over 10 runs}
+\label{tab:results_time}
+\begin{tabular}{lccc}
+\hline
+\textbf{Dataset} & \textbf{GA} & \textbf{ES} & \textbf{PABBO Full} \\
+\hline
+20 Newsgroups & $XXX \pm YY$ & $XXX \pm YY$ & $XXX \pm YY$ \\
+Reuters       & $XXX \pm YY$ & $XXX \pm YY$ & $XXX \pm YY$ \\
+% Add more datasets
+\hline
+\textbf{Average} & $XXX$ & $XXX$ & $XXX$ \\
+\hline
+\end{tabular}
+\end{table}
+
+% ----------------------------------------------------------------------------
+% Table 6: Statistical Significance Tests (TEMPLATE)
+% ----------------------------------------------------------------------------
+
+\begin{table}[htbp]
+\centering
+\caption{Statistical significance of pairwise comparisons (Wilcoxon signed-rank test)}
+\label{tab:statistical_tests}
+\begin{tabular}{lccc}
+\hline
+\textbf{Dataset} & \textbf{GA vs ES} & \textbf{GA vs PABBO} & \textbf{ES vs PABBO} \\
+\hline
+20 Newsgroups & $p = X.XXX$ & $p = X.XXX^{**}$ & $p = X.XXX^{*}$ \\
+Reuters       & $p = X.XXX$ & $p = X.XXX^{**}$ & $p = X.XXX$ \\
+% Add more datasets
+\hline
+\multicolumn{4}{l}{\footnotesize{$^{*}p < 0.05$, $^{**}p < 0.01$, $^{***}p < 0.001$}} \\
+\end{tabular}
+\end{table}
+
+% ----------------------------------------------------------------------------
+% Table 7: Optimal T values found (TEMPLATE)
+% ----------------------------------------------------------------------------
+
+\begin{table}[htbp]
+\centering
+\caption{Best number of topics $T^*$ found by each algorithm (median over 10 runs)}
+\label{tab:optimal_T}
+\begin{tabular}{lccc}
+\hline
+\textbf{Dataset} & \textbf{GA} & \textbf{ES} & \textbf{PABBO Full} \\
+\hline
+20 Newsgroups & XXX & XXX & XXX \\
+Reuters       & XXX & XXX & XXX \\
+% Add more datasets
+\hline
+\end{tabular}
+\vspace{0.5em}
+\\ \footnotesize{Median is reported to be robust to outliers across runs.}
+\end{table}
+
+% ----------------------------------------------------------------------------
+% Table 8: Algorithm Characteristics Summary
+% ----------------------------------------------------------------------------
+
+\begin{table}[htbp]
+\centering
+\caption{Qualitative comparison of optimization algorithms}
+\label{tab:algorithm_comparison}
+\begin{tabular}{lccc}
+\hline
+\textbf{Characteristic} & \textbf{GA} & \textbf{ES} & \textbf{PABBO Full} \\
+\hline
+Requires gradients & No & No & No \\
+Uses pairwise preferences & No & No & Yes \\
+Meta-learned & No & No & Yes \\
+Needs pre-training & No & No & Yes \\
+Population-based & Yes & Yes & No (history-based) \\
+Crossover operation & Yes & No & No \\
+Adaptive step size & No & Yes & Implicit \\
+Exploration strategy & Mutation & Mutation & Acquisition function \\
+\hline
+\end{tabular}
+\end{table}
+
+% ----------------------------------------------------------------------------
+% Additional compact table: Initial Population
+% ----------------------------------------------------------------------------
+
+\begin{table}[htbp]
+\centering
+\caption{Initial population of $T$ values used in all experiments (seed=42)}
+\label{tab:initial_population}
+\begin{tabular}{cccccccccc}
+\hline
+733 & 811 & 133 & 355 & 777 & 115 & 452 & 940 & 879 & 345 \\
+576 & 153 & 950 & 602 & 162 & 238 & 422 & 511 & 660 & 285 \\
+\hline
+\end{tabular}
+\vspace{0.5em}
+\\ \footnotesize{All algorithms start from these 20 values for fair comparison.}
+\end{table}
+
+% ============================================================================
+% ADDITIONAL HELPER TABLES (can be in appendix)
+% ============================================================================
+
+% ----------------------------------------------------------------------------
+% Appendix Table: Full Results (All Runs)
+% ----------------------------------------------------------------------------
+
+\begin{table}[htbp]
+\centering
+\caption{Detailed results for 20 Newsgroups dataset (all 10 runs)}
+\label{tab:detailed_results_20news}
+\begin{tabular}{ccccccc}
+\hline
+\multirow{2}{*}{\textbf{Run}} & \multicolumn{2}{c}{\textbf{GA}} & \multicolumn{2}{c}{\textbf{ES}} & \multicolumn{2}{c}{\textbf{PABBO Full}} \\
+\cline{2-7}
+ & $T^*$ & Perplexity & $T^*$ & Perplexity & $T^*$ & Perplexity \\
+\hline
+0 & XXX & XXXX.XX & XXX & XXXX.XX & XXX & XXXX.XX \\
+1 & XXX & XXXX.XX & XXX & XXXX.XX & XXX & XXXX.XX \\
+2 & XXX & XXXX.XX & XXX & XXXX.XX & XXX & XXXX.XX \\
+3 & XXX & XXXX.XX & XXX & XXXX.XX & XXX & XXXX.XX \\
+4 & XXX & XXXX.XX & XXX & XXXX.XX & XXX & XXXX.XX \\
+5 & XXX & XXXX.XX & XXX & XXXX.XX & XXX & XXXX.XX \\
+6 & XXX & XXXX.XX & XXX & XXXX.XX & XXX & XXXX.XX \\
+7 & XXX & XXXX.XX & XXX & XXXX.XX & XXX & XXXX.XX \\
+8 & XXX & XXXX.XX & XXX & XXXX.XX & XXX & XXXX.XX \\
+9 & XXX & XXXX.XX & XXX & XXXX.XX & XXX & XXXX.XX \\
+\hline
+Mean & --- & XXXX.XX & --- & XXXX.XX & --- & \textbf{XXXX.XX} \\
+Std  & --- & YY.YY & --- & YY.YY & --- & YY.YY \\
+\hline
+\end{tabular}
+\end{table}

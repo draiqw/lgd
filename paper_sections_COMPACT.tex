@@ -1,0 +1,34 @@
+% ============================================================================
+% COMPACT VERSION - Algorithms & Setup (for space-constrained journals)
+% ============================================================================
+
+\subsection{Algorithms}
+
+We compare three black-box optimization methods for finding the optimal number of topics $T \in [2, 1000]$ that minimizes LDA perplexity. All algorithms share the same initial population of 20 random $T$ values and run for exactly 20 iterations without early stopping.
+
+\textbf{Genetic Algorithm (GA)} maintains a population of 20 candidates, evolving them via tournament selection, binary crossover (prob.\ 0.9), mutation (prob.\ 0.2), and elitism (top 5 preserved). Crossover combines binary representations of parent $T$ values to generate offspring inheriting properties from both.
+
+\textbf{Evolution Strategy (ES)} follows a $(\mu, \lambda)$-ES with $\mu=5$ parents generating $\lambda=10$ offspring through Gaussian mutation. Only the best $\mu$ offspring (comma-selection) survive to the next generation, ensuring no stagnation.
+
+\textbf{PABBO Full} leverages a pre-trained Transformer model (3 layers, 32-dim, 2 heads) that learns from preference-based feedback. Given optimization history $H_t$, the model predicts promising regions and selects the next $T$ via an acquisition function balancing exploration ($\epsilon=0.3$) and exploitation. The Transformer is meta-trained on synthetic functions (GP1D, Rastrigin) enabling zero-shot transfer to LDA optimization.
+
+All algorithms use the same $T$ search space $[2,1000]$, initial population (seed 42), and hyperparameters $\alpha=\eta=1/T$.
+
+% ----------------------------------------------------------------------------
+
+\subsection{Experimental Setup}
+
+\textbf{Pipeline.} The experimental pipeline consists of four stages: (1) train PABBO Transformer on synthetic tasks, (2) validate the model, (3) optimize LDA hyperparameters on real corpora, (4) aggregate and visualize results.
+
+\textbf{Datasets.} We use multiple text corpora in bag-of-words format (e.g., 20 Newsgroups, Reuters), represented as sparse matrices $N \in \mathbb{N}^{M \times V}$ with $M$ documents and $V$ vocabulary terms.
+
+\textbf{LDA training.} For each candidate $T$, we train LDA via online variational inference (max 60 iterations, batch size 2048, $\alpha=\eta=1/T$) and compute perplexity on validation data:
+\[
+\text{Perplexity} = \exp\left( -\frac{\sum_{d,w} n_{dw} \ln p(w \mid d)}{\sum_{d,w} n_{dw}} \right).
+\]
+
+\textbf{Optimization protocol.} For each dataset, we run 10 independent trials (seeds 42--51). In each trial, GA, ES, and PABBO Full start from the same initial population and optimize for exactly 20 iterations. We record best $T^*$, best perplexity, optimization time, and full trajectories.
+
+\textbf{Evaluation metrics.} For each (dataset, algorithm) pair, we compute mean $\pm$ std perplexity, min/max values, and mean time across 10 runs. Statistical significance is assessed via Wilcoxon signed-rank tests (pairwise) and Friedman test (overall).
+
+\textbf{Reproducibility.} All seeds are fixed (initial population: 42, runs: 42--51), hyperparameters are logged, and early stopping is disabled to ensure fair comparison. Total runtime: $\sim$40--80 hours sequential, or $\sim$4--8 hours with 10-way parallelization.
