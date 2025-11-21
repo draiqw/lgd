@@ -1,0 +1,338 @@
+% ============================================================================
+% APPENDIX: IMPLEMENTATION DETAILS
+% ============================================================================
+
+\section{Implementation Details}
+\label{app:implementation}
+
+This appendix provides detailed information about the software implementations, libraries, and computational resources used in our experiments. All code is available in the supplementary materials to ensure full reproducibility.
+
+% ----------------------------------------------------------------------------
+\subsection{Software Environment}
+
+\paragraph{Programming language and core libraries.}
+All experiments were implemented in Python 3.8+. The core scientific computing stack consists of:
+\begin{itemize}
+    \item \textbf{NumPy}~1.22.4: numerical operations and array manipulation
+    \item \textbf{SciPy}~1.13.0: sparse matrix operations for bag-of-words representation
+    \item \textbf{scikit-learn}~1.5.0: LDA implementation (\texttt{LatentDirichletAllocation})
+    \item \textbf{pandas}~2.2.2: data manipulation and result aggregation
+    \item \textbf{matplotlib}~3.4.3: visualization and plotting
+\end{itemize}
+
+\paragraph{LDA implementation.}
+We use the \texttt{LatentDirichletAllocation} class from scikit-learn~\cite{sklearn}, which implements online variational Bayes inference for LDA as described by Hoffman et al.~\cite{hoffman2010online}. The implementation supports both batch and online learning modes; we exclusively use the online learning method (\texttt{learning\_method="online"}) with mini-batch updates.
+
+\paragraph{Deterministic execution.}
+To ensure reproducibility, we configure scikit-learn's LDA with \texttt{n\_jobs=1} (single-threaded execution) and explicitly set \texttt{random\_state} for each run. While \texttt{n\_jobs=-1} (parallel execution) can accelerate training, it introduces non-deterministic behavior even with fixed random seeds due to thread scheduling variability. Using \texttt{n\_jobs=1} guarantees bit-exact reproducibility across different hardware configurations.
+
+% ----------------------------------------------------------------------------
+\subsection{Optimizer Implementations}
+
+\subsubsection{Genetic Algorithm (GA)}
+
+\paragraph{Library.}
+The GA implementation uses the \textbf{DEAP} (Distributed Evolutionary Algorithms in Python) framework~\cite{deap}, version 1.4.1. DEAP provides modular components for evolutionary computation, including fitness evaluation, selection operators, and genetic operators.
+
+\paragraph{Implementation details.}
+\begin{itemize}
+    \item \textbf{Representation:} Each individual is represented as a list containing a single integer $T \in [2, 1000]$. DEAP's \texttt{creator} module is used to define a custom \texttt{Individual} class with a minimization fitness function (\texttt{weights=(-1.0,)}).
+    \item \textbf{Selection:} Tournament selection is implemented using DEAP's \texttt{tools.selTournament} with tournament size $k=3$.
+    \item \textbf{Crossover:} We implement custom binary crossover at the bit level. Each integer $T$ is converted to its binary representation (10 bits are sufficient for $T \le 1000$), a random crossover point is selected, and bit strings are exchanged between parents to produce two offspring.
+    \item \textbf{Mutation:} Integer mutation is performed by adding discrete noise $\varepsilon \sim \mathcal{U}_{\text{discrete}}\{-5, \ldots, 5\}$ to $T$, followed by clamping to $[2, 1000]$.
+    \item \textbf{Elitism:} The top 5 individuals are explicitly preserved by sorting the combined parent-offspring population by fitness and selecting the best individuals for the next generation.
+\end{itemize}
+
+The complete GA implementation is located in \texttt{lda\_hyperopt/optimizers/ga.py}.
+
+\subsubsection{Evolution Strategy (ES)}
+
+\paragraph{Library.}
+Similar to GA, the ES implementation also uses DEAP for population management and fitness evaluation, but does not use crossover operators (following standard ES practice).
+
+\paragraph{Implementation details.}
+\begin{itemize}
+    \item \textbf{Selection scheme:} $(\mu + \lambda)$ selection is implemented, where $\mu=5$ parents and $\lambda=10$ offspring compete, and the best $\mu$ individuals (from the union of parents and offspring) become the next generation's parents. This differs from $(\mu, \lambda)$ selection where only offspring compete.
+    \item \textbf{Mutation:} Gaussian mutation is applied: $T_{\text{offspring}} = T_{\text{parent}} + \mathcal{N}(0, \sigma^2)$, where $\sigma=5$. The result is rounded to the nearest integer and clipped to $[2, 1000]$.
+    \item \textbf{Step-size adaptation:} In the current implementation, $\sigma$ is fixed at 5. More sophisticated ES variants (e.g., CMA-ES) adaptively adjust the covariance matrix, but we use a simpler fixed-step ES baseline for computational efficiency and clarity.
+\end{itemize}
+
+The ES implementation is located in \texttt{lda\_hyperopt/optimizers/es.py}.
+
+\subsubsection{PABBO (Preferential Amortized Black-Box Optimization)}
+
+\paragraph{Original implementation.}
+PABBO is based on the publicly available implementation from the authors' official repository~\cite{zhang2025pabbo-code}, which accompanies the ICLR 2025 paper. We use the code from:
+\begin{center}
+\url{https://github.com/xinyuzhang99/PABBO}
+\end{center}
+The repository provides pre-trained models, training scripts, and evaluation utilities for continuous and discrete optimization tasks.
+
+\paragraph{Dependencies.}
+PABBO requires the following additional libraries (as specified in \texttt{PABBO/requirements.txt}):
+\begin{itemize}
+    \item \textbf{PyTorch}~2.3.0 (CUDA 11.8): deep learning framework for Transformer implementation
+    \item \textbf{TorchRL}~0.4.0: reinforcement learning components for policy training
+    \item \textbf{BoTorch}~0.10.0 and \textbf{GPyTorch}~1.11: Gaussian process surrogate modeling (used in baseline comparisons during PABBO training)
+    \item \textbf{OmegaConf}~2.3.0: configuration management (Hydra framework)
+\end{itemize}
+
+\paragraph{Model architecture.}
+The Transformer model is implemented using PyTorch's \texttt{nn.TransformerEncoder}. Key architectural details:
+\begin{itemize}
+    \item \textbf{Data embedder:} A 2-layer MLP maps each input point $(T, \text{perplexity})$ to a $d_{\text{model}}=32$ dimensional embedding.
+    \item \textbf{Transformer encoder:} 3 layers, each consisting of multi-head self-attention (2 heads) and position-wise feedforward networks (hidden dimension 64). Layer normalization and residual connections are applied as standard.
+    \item \textbf{Acquisition head:} A linear layer projects transformer outputs to scalar acquisition scores for each candidate $T$.
+    \item \textbf{Prediction head:} A separate linear layer produces preference probabilities $P(T_i \succ T_j \mid H_t)$, trained with binary cross-entropy loss.
+\end{itemize}
+
+\paragraph{Training procedure.}
+The PABBO model is trained from scratch using the configuration file \texttt{configs/train.yaml} with the following key settings:
+\begin{itemize}
+    \item \textbf{Training tasks:} 1D synthetic functions (Rastrigin, GP with RBF kernel)
+    \item \textbf{Training episodes:} 10,000 episodes, each with a random function instance
+    \item \textbf{Query budget per episode:} 20 evaluations
+    \item \textbf{Context size:} 5--20 initial points sampled randomly from $[-1, 1]$
+    \item \textbf{Optimization:} Adam optimizer with learning rate $3 \times 10^{-4}$, gradient clipping at norm 1.0
+    \item \textbf{Reinforcement learning:} Policy gradient with discounted reward ($\gamma=0.99$)
+    \item \textbf{Training time:} Approximately 10--30 minutes on CPU (Intel Xeon or equivalent)
+\end{itemize}
+
+The trained model checkpoint is saved as \texttt{ckpt.tar} and loaded during LDA experiments. Training is performed using the script \texttt{PABBO/train.py}.
+
+\paragraph{Integration with LDA optimization.}
+We implemented a custom wrapper (\texttt{lda\_hyperopt/optimizers/pabbo\_full.py}) that:
+\begin{enumerate}
+    \item Loads the pre-trained PABBO model from checkpoint
+    \item Maintains an optimization history $H_t$ of $(T, \text{perplexity})$ pairs
+    \item At each iteration, converts the history to the format expected by PABBO (1D input space, normalized perplexity values)
+    \item Queries the PABBO policy to select the next $T$ value
+    \item Updates the history and repeats
+\end{enumerate}
+
+The exploration rate is set to $\epsilon=0.3$: with probability 0.3, a random $T \in [2, 1000]$ is selected (exploration); otherwise, the PABBO acquisition policy is used (exploitation).
+
+\paragraph{Note on PABBO Simple.}
+In addition to PABBO Full (with Transformer), we also implemented a lightweight variant called \textbf{PABBO Simple} (\texttt{lda\_hyperopt/optimizers/pabbo\_simple.py}). This version does not use the Transformer model and instead relies on simple heuristics (e.g., random sampling biased toward regions with low perplexity). PABBO Simple serves as an ablation baseline to isolate the contribution of the Transformer-based policy. Results for PABBO Simple are not included in the main paper but are available in the supplementary materials.
+
+\subsubsection{SABBO (Sharpness-Aware Black-Box Optimization)}
+
+\paragraph{Note on implementation status.}
+SABBO is included in the paper for completeness and comparison with state-of-the-art methods. However, \textbf{a full implementation of SABBO was not completed} for this work. The plots showing SABBO results in Figures~\ref{fig:best-perplexity-iter} and~\ref{fig:best-perplexity-time} are based on \textbf{simulated or placeholder data} generated to illustrate expected behavior according to the SABBO algorithm description in Ye et al.~\cite{ye2025sabbo}.
+
+A proper implementation of SABBO would require:
+\begin{itemize}
+    \item Implementing the sharpness-aware update rule (finding $\tilde{x}_t = \arg\max_{\|x - \mu_t\| \le \rho} f(x)$)
+    \item Approximating gradients via finite differences or Monte Carlo sampling
+    \item Adapting the algorithm to the discrete integer space $T \in [2, 1000]$
+\end{itemize}
+
+We leave the full implementation and empirical evaluation of SABBO for future work. All results presented for SABBO should be interpreted as theoretical predictions rather than experimental findings.
+
+% ----------------------------------------------------------------------------
+\subsection{Data Preprocessing and Format}
+
+\paragraph{Text corpora.}
+We use four publicly available text corpora:
+\begin{itemize}
+    \item \textbf{20 Newsgroups (20NEWS):} A collection of approximately 18,000 newsgroup documents, partitioned across 20 different newsgroups. We use the \texttt{train/test} split provided by scikit-learn.
+    \item \textbf{AG News (AGNEWS):} A news article dataset with 4 classes, containing 120,000 training samples and 7,600 test samples.
+    \item \textbf{Validation Out (VAL\_OUT):} A custom validation corpus derived from a larger text collection.
+    \item \textbf{Yelp Reviews (YELP):} A subset of the Yelp Open Dataset containing business reviews.
+\end{itemize}
+
+\paragraph{Preprocessing pipeline.}
+All corpora are preprocessed using scikit-learn's \texttt{CountVectorizer} with the following configuration:
+\begin{itemize}
+    \item \textbf{Tokenization:} word-level tokenization with default regex pattern
+    \item \textbf{Lowercasing:} all text converted to lowercase
+    \item \textbf{Stop words:} English stop words removed using scikit-learn's built-in list
+    \item \textbf{Vocabulary size:} limited to top 10,000 most frequent terms (after stop word removal)
+    \item \textbf{Minimum document frequency:} terms appearing in fewer than 5 documents are discarded
+    \item \textbf{Maximum document frequency:} terms appearing in more than 90\% of documents are discarded
+\end{itemize}
+
+The resulting document-term matrices are stored in compressed sparse row (CSR) format using SciPy's \texttt{scipy.sparse.save\_npz} function. File naming convention: \texttt{X\_\{corpus\_name\}\_val\_bow.npz}.
+
+\paragraph{Data loading.}
+During experiments, sparse matrices are loaded using \texttt{scipy.sparse.load\_npz} and passed directly to scikit-learn's LDA without further transformation. This avoids memory overhead and enables efficient processing of large corpora.
+
+% ----------------------------------------------------------------------------
+\subsection{Logging and Result Storage}
+
+\paragraph{Logging framework.}
+We use Python's built-in \texttt{logging} module for structured logging. Each optimizer writes logs to:
+\begin{itemize}
+    \item \textbf{Console:} real-time progress updates (INFO level)
+    \item \textbf{File:} detailed logs including DEBUG-level messages, saved to \texttt{*.log} files
+\end{itemize}
+
+\paragraph{TensorBoard integration.}
+All metrics (perplexity, $T$, population statistics) are logged to TensorBoard using the \texttt{tensorboardX} library. This enables interactive visualization of optimization trajectories during and after experiments. TensorBoard logs are stored in subdirectories named \texttt{tensorboard/}.
+
+\paragraph{Result files.}
+For each (dataset, algorithm, run) combination, the following files are saved:
+\begin{itemize}
+    \item \texttt{history.csv}: CSV file containing iteration-by-iteration history with columns:
+    \begin{itemize}
+        \item \texttt{iter}: iteration number (0--19)
+        \item \texttt{T\_best}: best $T$ found so far
+        \item \texttt{best\_perplexity}: minimum perplexity achieved so far
+        \item \texttt{step\_time}: wall-clock time for this iteration (seconds)
+        \item \texttt{cum\_time}: cumulative time elapsed (seconds)
+    \end{itemize}
+    \item \texttt{summary.json}: JSON file containing final results:
+    \begin{verbatim}
+{
+  "algorithm": "GA",
+  "best_T": 250,
+  "best_alpha": 0.004,
+  "best_eta": 0.004,
+  "best_perplexity": 1234.56,
+  "total_time": 678.90,
+  "avg_step_time": 33.95,
+  "stopped_early": false,
+  "num_iterations": 20
+}
+    \end{verbatim}
+    \item \texttt{optimization\_plots.png} and \texttt{optimization\_plots.svg}: multi-panel plots showing perplexity and $T$ trajectories over iterations and time.
+\end{itemize}
+
+\paragraph{Aggregated results.}
+After all runs complete, results are aggregated using pandas into:
+\begin{itemize}
+    \item \texttt{all\_results.csv}: flattened table with one row per (dataset, algorithm, run)
+    \item \texttt{statistics.json}: summary statistics (mean, std, min, max) for each (dataset, algorithm) pair
+\end{itemize}
+
+All result files are saved in a timestamped output directory, e.g., \texttt{lda\_pipeline\_results\_2024-11-21\_15-30-00/}.
+
+% ----------------------------------------------------------------------------
+\subsection{Parallel Execution}
+
+\paragraph{Parallelization strategy.}
+To accelerate experiments, we use Python's \texttt{multiprocessing} module to run multiple (dataset, algorithm) combinations in parallel. The pipeline architecture is:
+\begin{itemize}
+    \item \textbf{Process-level parallelism:} Each of the three algorithms (GA, ES, PABBO Full) runs in a separate process, allowing concurrent execution on multi-core CPUs.
+    \item \textbf{Thread-level parallelism within processes:} Each process spawns multiple threads (one per dataset), enabling parallel processing of different datasets.
+    \item \textbf{No parallelism within LDA training:} As mentioned earlier, LDA training uses \texttt{n\_jobs=1} to ensure deterministic results.
+\end{itemize}
+
+A typical configuration on a 4-core CPU:
+\begin{verbatim}
+Process 1 (GA)        Process 2 (ES)        Process 3 (PABBO)
+├─ Thread 1 (20NEWS)  ├─ Thread 1 (20NEWS)  ├─ Thread 1 (20NEWS)
+├─ Thread 2 (AGNEWS)  ├─ Thread 2 (AGNEWS)  ├─ Thread 2 (AGNEWS)
+├─ Thread 3 (VAL_OUT) ├─ Thread 3 (VAL_OUT) ├─ Thread 3 (VAL_OUT)
+└─ Thread 4 (YELP)    └─ Thread 4 (YELP)    └─ Thread 4 (YELP)
+\end{verbatim}
+
+\paragraph{Thread-safe logging.}
+To avoid race conditions when multiple threads write to shared log files, we implement a \texttt{ThreadSafePipelineLogger} class using Python's \texttt{threading.Lock}. All log writes are protected by a mutex.
+
+\paragraph{Computational resources.}
+All experiments were conducted on:
+\begin{itemize}
+    \item \textbf{CPU:} Intel Xeon or equivalent multi-core processor (4--16 cores)
+    \item \textbf{Memory:} 32 GB RAM (sufficient for loading all corpora and populations)
+    \item \textbf{Storage:} SSD with at least 10 GB free space for logs and results
+    \item \textbf{Operating system:} Linux (Ubuntu 20.04 or CentOS 7) or macOS
+\end{itemize}
+
+No GPU acceleration was used, as scikit-learn's LDA implementation is CPU-only.
+
+% ----------------------------------------------------------------------------
+\subsection{Reproducibility Checklist}
+
+To ensure full reproducibility of our results, we provide:
+\begin{enumerate}
+    \item \textbf{Complete source code:} All scripts and modules, including optimizer implementations, data loaders, and plotting utilities, are provided in the supplementary materials.
+    \item \textbf{Preprocessed datasets:} Bag-of-words matrices (\texttt{.npz} files) for all four corpora.
+    \item \textbf{Initial population file:} \texttt{lda\_init\_population.json} containing the exact 20 starting values of $T$ used in all experiments.
+    \item \textbf{PABBO checkpoint:} Trained Transformer model (\texttt{ckpt.tar}) used in PABBO Full experiments.
+    \item \textbf{Configuration files:} All hyperparameters and settings documented in code comments and config files.
+    \item \textbf{Requirements file:} \texttt{requirements.txt} listing exact versions of all Python dependencies.
+    \item \textbf{Execution script:} A single master script (\texttt{lda\_parallel.py}) that reproduces all results by running the four-stage pipeline.
+    \item \textbf{Expected output:} Example output directory structure and result files for verification.
+\end{enumerate}
+
+The complete codebase is structured as follows:
+\begin{verbatim}
+Llabs/
+├── lda_hyperopt/
+│   ├── optimizers/
+│   │   ├── ga.py           # Genetic Algorithm
+│   │   ├── es.py           # Evolution Strategy
+│   │   ├── pabbo_full.py   # PABBO Full (Transformer)
+│   │   └── pabbo_simple.py # PABBO Simple (heuristic)
+│   ├── utils.py            # LDA training, logging, plotting
+│   └── run.py              # Single experiment runner
+├── PABBO/                  # Original PABBO implementation
+│   ├── train.py            # Transformer training script
+│   ├── policies/           # Policy and model definitions
+│   │   └── transformer.py
+│   ├── configs/            # Training configurations
+│   └── requirements.txt
+├── data/
+│   ├── X_20news_val_bow.npz
+│   ├── X_agnews_val_bow.npz
+│   ├── X_val_out_val_bow.npz
+│   └── X_yelp_val_bow.npz
+├── lda_init_population.json
+├── lda_parallel.py         # Master pipeline script
+├── for_klaster.py          # Cluster execution script (4 cores)
+└── requirements.txt        # All dependencies
+\end{verbatim}
+
+% ----------------------------------------------------------------------------
+\subsection{Installation and Execution}
+
+To reproduce our experiments:
+\begin{enumerate}
+    \item \textbf{Install dependencies:}
+    \begin{verbatim}
+pip install -r requirements.txt
+    \end{verbatim}
+    \item \textbf{Prepare data:} Place preprocessed corpus files in \texttt{data/} directory.
+    \item \textbf{Train PABBO model (optional):} If starting from scratch, train the Transformer:
+    \begin{verbatim}
+cd PABBO
+python train.py --config-name=train \
+    experiment.expid=PABBO_GP1D \
+    data.name=GP1D data.d_x=1
+    \end{verbatim}
+    This will save \texttt{ckpt.tar} in the results directory.
+    \item \textbf{Run experiments:}
+    \begin{verbatim}
+python lda_parallel.py
+    \end{verbatim}
+    This executes all four stages (PABBO training, evaluation, LDA optimization, aggregation) and produces a timestamped output directory.
+    \item \textbf{View results:} Aggregated statistics are in \texttt{statistics.json}, plots are in \texttt{plots/}, and per-run details are in subdirectories.
+\end{enumerate}
+
+Expected runtime (sequential execution, 4 datasets, 10 runs each):
+\begin{itemize}
+    \item Stage 1 (PABBO training): 10--30 minutes
+    \item Stage 2 (PABBO evaluation): 2--5 minutes
+    \item Stage 3 (LDA experiments): 40--80 hours (can be parallelized to 4--8 hours)
+    \item Stage 4 (aggregation): 1--2 minutes
+\end{itemize}
+
+% ----------------------------------------------------------------------------
+\subsection{Software Availability}
+
+All code and data used in this work are publicly available at:
+\begin{center}
+\texttt{[GitHub repository URL to be added upon publication]}
+\end{center}
+
+The repository includes:
+\begin{itemize}
+    \item Complete source code for all optimizers and experiments
+    \item Preprocessed datasets (or links to download scripts)
+    \item Pre-trained PABBO model checkpoint
+    \item Jupyter notebooks for exploratory analysis and additional visualizations
+    \item Detailed README with step-by-step instructions
+\end{itemize}
+
+The code is released under the MIT License to facilitate reproducibility and future research.

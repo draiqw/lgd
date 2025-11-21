@@ -153,6 +153,8 @@ def _fit_eval_on_val(
         print(f"[LDA] {log_msg}")
 
     # Train LDA
+    # NOTE: n_jobs=1 to ensure deterministic results with fixed random_state
+    # Using n_jobs=-1 can cause non-deterministic behavior even with fixed seed
     lda = LatentDirichletAllocation(
         n_components=int(T),
         doc_topic_prior=float(alpha),
@@ -162,7 +164,7 @@ def _fit_eval_on_val(
         batch_size=int(batch_size),
         random_state=int(seed),
         evaluate_every=-1,
-        n_jobs=-1
+        n_jobs=1  # Changed from -1 to 1 for deterministic results
     )
 
     t0 = time.perf_counter()

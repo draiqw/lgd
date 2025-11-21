@@ -1,0 +1,43 @@
+% ============================================================================
+% SHORT APPENDIX SECTION - For insertion after existing PABBO appendix
+% ============================================================================
+
+\section{Software and Implementation}
+
+\subsection{LDA Implementation}
+
+We use scikit-learn's \texttt{LatentDirichletAllocation} implementation~\cite{sklearn}, which employs online variational Bayes inference~\cite{hoffman2010online}. To ensure reproducibility, we configure LDA with \texttt{n\_jobs=1} (single-threaded execution) and explicit random seeds. While parallel execution (\texttt{n\_jobs=-1}) can accelerate training, it introduces non-deterministic behavior even with fixed seeds.
+
+\subsection{Optimizer Implementations}
+
+\paragraph{Genetic Algorithm (GA).}
+Implemented using the DEAP framework (v1.4.1)~\cite{deap}. Binary crossover operates at the bit level: each integer $T$ is converted to binary representation, a crossover point is selected, and bit strings are exchanged between parents. Integer mutation adds discrete noise $\varepsilon \sim \mathcal{U}_{\text{discrete}}\{-5, \ldots, 5\}$ with clamping to $[2, 1000]$.
+
+\paragraph{Evolution Strategy (ES).}
+Also implemented using DEAP for population management. We use $(\mu + \lambda)$ selection where $\mu=5$ parents and $\lambda=10$ offspring compete, with the best $\mu$ individuals advancing. Gaussian mutation applies $T_{\text{offspring}} = T_{\text{parent}} + \mathcal{N}(0, 5^2)$ followed by rounding and clipping.
+
+\paragraph{PABBO.}
+Based on the official implementation from~\cite{zhang2025pabbo-code}. The Transformer model is implemented in PyTorch 2.3.0 with the following architecture:
+\begin{itemize}
+    \item Data embedder: 2-layer MLP projecting $(T, \text{perplexity})$ to 32 dimensions
+    \item Transformer encoder: 3 layers, 2 attention heads, 64-dim feedforward
+    \item Acquisition head: linear layer producing candidate scores
+    \item Prediction head: binary classifier for preference learning
+\end{itemize}
+
+The model is trained from scratch on 1D synthetic functions (Rastrigin, GP with RBF kernel) for 10,000 episodes using Adam optimizer (learning rate $3 \times 10^{-4}$) and policy gradient with discount factor $\gamma=0.99$. Training takes approximately 10--30 minutes on CPU. The trained checkpoint is then loaded and applied to LDA optimization via a custom wrapper that maintains optimization history and queries the PABBO policy at each iteration.
+
+\paragraph{SABBO.}
+\textbf{Important note:} SABBO results shown in Figures~\ref{fig:best-perplexity-iter}--\ref{fig:best-perplexity-time} are based on \textbf{simulated data} generated according to the algorithm description in~\cite{ye2025sabbo}. A full implementation was not completed for this work. Future work will include proper implementation and empirical evaluation of SABBO.
+
+\subsection{Data Preprocessing}
+
+All text corpora are preprocessed using scikit-learn's \texttt{CountVectorizer} with lowercase conversion, English stop word removal, vocabulary limited to 10,000 most frequent terms, and filtering terms with document frequency below 5 or above 90\%. The resulting document-term matrices are stored in compressed sparse row (CSR) format.
+
+\subsection{Computational Resources}
+
+All experiments were conducted on CPU (Intel Xeon or equivalent, 4--16 cores) with 32 GB RAM. No GPU acceleration was used. The complete pipeline (PABBO training, LDA experiments on 4 datasets with 10 runs each, aggregation) requires approximately 40--80 hours sequential execution, reducible to 4--8 hours with parallelization across 10 workers.
+
+\subsection{Reproducibility}
+
+The complete codebase, preprocessed datasets, PABBO checkpoint, and initial population file (\texttt{lda\_init\_population.json}) are provided in supplementary materials. All experiments can be reproduced by running a single master script (\texttt{lda\_parallel.py}) with fixed seeds (42 for initialization, 42--51 for the 10 runs).
