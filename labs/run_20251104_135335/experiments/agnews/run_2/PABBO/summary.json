@@ -1,0 +1,33 @@
+{
+  "algorithm": "PABBO_Full",
+  "best_T": 2,
+  "best_alpha": 0.5,
+  "best_eta": 0.5,
+  "best_perplexity": 2217.4871200165826,
+  "total_time": 436.45458490005694,
+  "avg_step_time": 20.783551661907474,
+  "stopped_early": false,
+  "num_iterations": 21,
+  "initial_population": [
+    733,
+    811,
+    133,
+    355,
+    777,
+    115,
+    452,
+    940,
+    879,
+    345,
+    576,
+    153,
+    950,
+    602,
+    162,
+    238,
+    422,
+    511,
+    660,
+    285
+  ]
+}

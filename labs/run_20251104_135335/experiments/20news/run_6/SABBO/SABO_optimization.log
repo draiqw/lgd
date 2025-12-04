@@ -1,0 +1,35 @@
+[2025-11-12 13:27:08] [SABO_opt] [INFO] ================================================================================
+[2025-11-12 13:27:08] [SABO_opt] [INFO] SABO Optimization Starting (NO EARLY STOPPING)
+[2025-11-12 13:27:08] [SABO_opt] [INFO] ================================================================================
+[2025-11-12 13:27:08] [SABO_opt] [INFO] Initial population: [733, 811, 133, 355, 777, 115, 452, 940, 879, 345, 576, 153, 950, 602, 162, 238, 422, 511, 660, 285]
+[2025-11-12 13:27:08] [SABO_opt] [INFO] Iterations: 20
+[2025-11-12 13:27:08] [SABO_opt] [INFO] Output directory: C:\Users\klass\OneDrive\Рабочий стол\lgd-SABO\lda_pipeline_results\run_20251112_100135\experiments\20news\run_6\SABO
+[2025-11-12 13:27:08] [SABO_opt] [INFO] ================================================================================
+[2025-11-12 13:27:08] [SABO_opt] [INFO] SABO initialized: rho=0.1, beta_t=0.01, N_batch=5, d=1
+[2025-11-12 13:27:08] [SABO_opt] [INFO] ================================================================================
+[2025-11-12 13:27:08] [SABO_opt] [INFO] Starting SABO optimization
+[2025-11-12 13:27:08] [SABO_opt] [INFO] Iterations: 20, Initial samples: 10, Batch size: 5
+[2025-11-12 13:27:08] [SABO_opt] [INFO] T bounds: (2, 1000), alpha=1/T, eta=1/T
+[2025-11-12 13:27:08] [SABO_opt] [INFO] ================================================================================
+[2025-11-12 13:27:08] [SABO_opt] [INFO] Using provided initial population
+[2025-11-12 13:27:08] [SABO_opt] [INFO] Evaluating initial samples...
+[2025-11-12 13:28:49] [SABO_opt] [INFO] Initial: New best found! T=733, fitness=38311542052.6641
+[2025-11-12 13:30:50] [SABO_opt] [INFO] Initial: New best found! T=133, fitness=3043.4012
+[2025-11-12 13:33:28] [SABO_opt] [INFO] Initial: New best found! T=115, fitness=2705.0466
+[2025-11-12 13:48:31] [SABO_opt] [INFO] Initial best: T=115, alpha=0.008696, eta=0.008696, perplexity=2705.0466
+[2025-11-12 13:50:15] [SABO_opt] [INFO] Iter 1: New best found! T=36, fitness=1837.8878
+[2025-11-12 13:53:10] [SABO_opt] [INFO] Iter 2: New best from perturbed! T=5, fitness=1679.3259
+[2025-11-12 13:53:35] [SABO_opt] [INFO] Iter 3: New best from perturbed! T=6, fitness=1660.5924
+[2025-11-12 13:54:08] [SABO_opt] [INFO] Iter 4: New best from perturbed! T=7, fitness=1646.2786
+[2025-11-12 14:00:34] [SABO_opt] [INFO] ================================================================================
+[2025-11-12 14:00:34] [SABO_opt] [INFO] SABO Optimization Complete!
+[2025-11-12 14:00:34] [SABO_opt] [INFO] Total time: 2006.70s
+[2025-11-12 14:00:34] [SABO_opt] [INFO] Total evaluations: 260
+[2025-11-12 14:00:34] [SABO_opt] [INFO] Final best: T=7, alpha=0.142857, eta=0.142857, perplexity=1646.2786
+[2025-11-12 14:00:34] [SABO_opt] [INFO] ================================================================================
+[2025-11-12 14:00:36] [SABO_opt] [INFO] ================================================================================
+[2025-11-12 14:00:36] [SABO_opt] [INFO] SABO Optimization Complete!
+[2025-11-12 14:00:36] [SABO_opt] [INFO] Best T: 7, alpha: 0.142857, eta: 0.142857
+[2025-11-12 14:00:36] [SABO_opt] [INFO] Best perplexity: 1646.2786
+[2025-11-12 14:00:36] [SABO_opt] [INFO] Total time: 2006.70s
+[2025-11-12 14:00:36] [SABO_opt] [INFO] ================================================================================

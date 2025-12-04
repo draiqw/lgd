@@ -1,0 +1,118 @@
+{
+  "20news": {
+    "GA": {
+      "mean_perplexity": 1776.3456026112813,
+      "std_perplexity": 185.93608053012525,
+      "min_perplexity": 1646.278574044963,
+      "max_perplexity": 2257.016703077256,
+      "mean_time": 1808.189844609995,
+      "std_time": 164.7709932945675,
+      "num_runs": 10
+    },
+    "ES": {
+      "mean_perplexity": 2056.9097290708683,
+      "std_perplexity": 173.28797840937605,
+      "min_perplexity": 1841.4059990314238,
+      "max_perplexity": 2395.806714486709,
+      "mean_time": 454.07279907001646,
+      "std_time": 109.23944470387488,
+      "num_runs": 10
+    },
+    "PABBO_Full": {
+      "mean_perplexity": 1809.5491607611978,
+      "std_perplexity": 103.79286465219698,
+      "min_perplexity": 1675.1231684104946,
+      "max_perplexity": 2005.2338328681892,
+      "mean_time": 511.90407664001685,
+      "std_time": 113.89424328470744,
+      "num_runs": 10
+    }
+  },
+  "agnews": {
+    "GA": {
+      "mean_perplexity": 2154.9839058005387,
+      "std_perplexity": 23.821034549167614,
+      "min_perplexity": 2118.457663127479,
+      "max_perplexity": 2192.8603705018736,
+      "mean_time": 1362.1420965900063,
+      "std_time": 100.57854199151397,
+      "num_runs": 10
+    },
+    "ES": {
+      "mean_perplexity": 3800.0693637561208,
+      "std_perplexity": 359.6867050820125,
+      "min_perplexity": 3179.1275714041453,
+      "max_perplexity": 4355.230849804077,
+      "mean_time": 425.93760954998436,
+      "std_time": 45.109343260834734,
+      "num_runs": 10
+    },
+    "PABBO_Full": {
+      "mean_perplexity": 2184.545937364734,
+      "std_perplexity": 40.17302752018585,
+      "min_perplexity": 2118.457663127479,
+      "max_perplexity": 2259.092289527277,
+      "mean_time": 362.0428727700026,
+      "std_time": 102.35872208620738,
+      "num_runs": 10
+    }
+  },
+  "val_out": {
+    "GA": {
+      "mean_perplexity": 1653.4919786012863,
+      "std_perplexity": 196.90794322789603,
+      "min_perplexity": 1519.6865876810566,
+      "max_perplexity": 2045.5666614675356,
+      "mean_time": 1360.153967130021,
+      "std_time": 103.63545487793411,
+      "num_runs": 10
+    },
+    "ES": {
+      "mean_perplexity": 2448.867232163354,
+      "std_perplexity": 201.27790240231516,
+      "min_perplexity": 2081.3077937145026,
+      "max_perplexity": 2708.9856521794177,
+      "mean_time": 422.2748527699965,
+      "std_time": 55.23700074145984,
+      "num_runs": 10
+    },
+    "PABBO_Full": {
+      "mean_perplexity": 1565.985719326251,
+      "std_perplexity": 27.30591420646266,
+      "min_perplexity": 1519.6865876810566,
+      "max_perplexity": 1594.80343672643,
+      "mean_time": 362.8192071800004,
+      "std_time": 97.77811774325792,
+      "num_runs": 10
+    }
+  },
+  "yelp": {
+    "GA": {
+      "mean_perplexity": 1378.8088615232646,
+      "std_perplexity": 104.88412601101784,
+      "min_perplexity": 1325.7964302952557,
+      "max_perplexity": 1672.723826606293,
+      "mean_time": 1744.0135489199893,
+      "std_time": 87.09557774903914,
+      "num_runs": 10
+    },
+    "ES": {
+      "mean_perplexity": 1822.719355609846,
+      "std_perplexity": 54.551728763585395,
+      "min_perplexity": 1761.4922827596881,
+      "max_perplexity": 1918.4395886884438,
+      "mean_time": 529.3428129799897,
+      "std_time": 93.8357837622065,
+      "num_runs": 10
+    },
+    "PABBO_Full": {
+      "mean_perplexity": 1356.9837735976464,
+      "std_perplexity": 32.48187305154675,
+      "min_perplexity": 1325.7964302952557,
+      "max_perplexity": 1407.5119924268931,
+      "mean_time": 482.3989238900016,
+      "std_time": 133.53997163016936,
+      "num_runs": 10
+    }
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "algorithm": "GA",
+  "best_T": 2,
+  "best_alpha": 0.5,
+  "best_eta": 0.5,
+  "best_perplexity": 2134.7602765168094,
+  "total_time": 1493.0449644000037,
+  "avg_step_time": 33.29355107143056,
+  "stopped_early": false,
+  "num_iterations": 21,
+  "initial_population": [
+    733,
+    811,
+    133,
+    355,
+    777,
+    115,
+    452,
+    940,
+    879,
+    345,
+    576,
+    153,
+    950,
+    602,
+    162,
+    238,
+    422,
+    511,
+    660,
+    285
+  ]
+}

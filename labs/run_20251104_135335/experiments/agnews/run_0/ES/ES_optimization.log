@@ -1,0 +1,66 @@
+[2025-11-04 23:01:09] [ES_opt] [INFO] ================================================================================
+[2025-11-04 23:01:09] [ES_opt] [INFO] ES Optimization Starting (NO EARLY STOPPING)
+[2025-11-04 23:01:09] [ES_opt] [INFO] ================================================================================
+[2025-11-04 23:01:09] [ES_opt] [INFO] Initial population: [733, 811, 133, 355, 777, 115, 452, 940, 879, 345, 576, 153, 950, 602, 162, 238, 422, 511, 660, 285]
+[2025-11-04 23:01:09] [ES_opt] [INFO] Iterations: 20
+[2025-11-04 23:01:09] [ES_opt] [INFO] Output directory: c:\Users\Roman\Downloads\lgd-main\lgd-main\lda_pipeline_results\run_20251104_135335\experiments\agnews\run_0\ES
+[2025-11-04 23:01:09] [ES_opt] [INFO] ================================================================================
+[2025-11-04 23:01:09] [ES_opt] [INFO] ES initialized: mu=5, lambda=10, dT=5
+[2025-11-04 23:01:09] [ES_opt] [INFO] ================================================================================
+[2025-11-04 23:01:09] [ES_opt] [INFO] Starting ES optimization
+[2025-11-04 23:01:09] [ES_opt] [INFO] Steps: 20, mu=5, lambda=10
+[2025-11-04 23:01:09] [ES_opt] [INFO] T bounds: (2, 1000), alpha=1/T, eta=1/T
+[2025-11-04 23:01:09] [ES_opt] [INFO] ================================================================================
+[2025-11-04 23:01:09] [ES_opt] [INFO] Using provided initial population
+[2025-11-04 23:01:09] [ES_opt] [INFO] Evaluating initial population...
+[2025-11-04 23:01:09] [ES_opt] [INFO] Selected best 5 parents from 20 initial individuals
+[2025-11-04 23:01:09] [ES_opt] [INFO] Initial best: T=115, alpha=0.008696, eta=0.008696, perplexity=9953.4896
+[2025-11-04 23:02:53] [ES_opt] [INFO] Step 1: New best found! Fitness=8489.2333
+[2025-11-04 23:02:53] [ES_opt] [INFO] Step 1/20 | Best: T=110, perplexity=8489.2333 | Parents: mean=9775.5144, std=1397.6289 | Time: 104.83s | No improvement: 0/999999
+[2025-11-04 23:03:51] [ES_opt] [INFO] Step 2: New best found! Fitness=8168.8879
+[2025-11-04 23:03:51] [ES_opt] [INFO] Step 2/20 | Best: T=107, perplexity=8168.8879 | Parents: mean=8401.1402, std=125.0984 | Time: 57.35s | No improvement: 0/999999
+[2025-11-04 23:04:27] [ES_opt] [INFO] Step 3: New best found! Fitness=7649.8729
+[2025-11-04 23:04:27] [ES_opt] [INFO] Step 3/20 | Best: T=102, perplexity=7649.8729 | Parents: mean=8124.4937, std=264.7246 | Time: 36.74s | No improvement: 0/999999
+[2025-11-04 23:04:54] [ES_opt] [INFO] Step 4: New best found! Fitness=7203.2245
+[2025-11-04 23:04:54] [ES_opt] [INFO] Step 4/20 | Best: T=100, perplexity=7203.2245 | Parents: mean=7706.8718, std=301.9466 | Time: 26.90s | No improvement: 0/999999
+[2025-11-04 23:05:03] [ES_opt] [INFO] Step 5: New best found! Fitness=6774.9350
+[2025-11-04 23:05:03] [ES_opt] [INFO] Step 5/20 | Best: T=97, perplexity=6774.9350 | Parents: mean=6998.3232, std=192.4270 | Time: 8.52s | No improvement: 0/999999
+[2025-11-04 23:05:11] [ES_opt] [INFO] Step 6: New best found! Fitness=6134.0928
+[2025-11-04 23:05:11] [ES_opt] [INFO] Step 6/20 | Best: T=95, perplexity=6134.0928 | Parents: mean=6579.8917, std=257.7889 | Time: 8.32s | No improvement: 0/999999
+[2025-11-04 23:05:11] [ES_opt] [INFO] Step 7/20 | Best: T=95, perplexity=6134.0928 | Parents: mean=6579.8917, std=257.7889 | Time: 0.00s | No improvement: 1/999999
+[2025-11-04 23:05:20] [ES_opt] [INFO] Step 8: New best found! Fitness=6092.1896
+[2025-11-04 23:05:20] [ES_opt] [INFO] Step 8/20 | Best: T=90, perplexity=6092.1896 | Parents: mean=6248.2992, std=157.7246 | Time: 8.45s | No improvement: 0/999999
+[2025-11-04 23:05:28] [ES_opt] [INFO] Step 9: New best found! Fitness=5346.2535
+[2025-11-04 23:05:28] [ES_opt] [INFO] Step 9/20 | Best: T=86, perplexity=5346.2535 | Parents: mean=5759.8472, std=343.3451 | Time: 8.15s | No improvement: 0/999999
+[2025-11-04 23:05:51] [ES_opt] [INFO] Step 10/20 | Best: T=86, perplexity=5346.2535 | Parents: mean=5521.7782, std=227.6975 | Time: 23.62s | No improvement: 1/999999
+[2025-11-04 23:06:30] [ES_opt] [INFO] Step 11: New best found! Fitness=5203.8364
+[2025-11-04 23:06:30] [ES_opt] [INFO] Step 11/20 | Best: T=80, perplexity=5203.8364 | Parents: mean=5303.4920, std=61.9440 | Time: 38.62s | No improvement: 0/999999
+[2025-11-04 23:06:37] [ES_opt] [INFO] Step 12: New best found! Fitness=5000.4334
+[2025-11-04 23:06:37] [ES_opt] [INFO] Step 12/20 | Best: T=78, perplexity=5000.4334 | Parents: mean=5230.9817, std=127.4376 | Time: 7.45s | No improvement: 0/999999
+[2025-11-04 23:06:52] [ES_opt] [INFO] Step 13: New best found! Fitness=4601.6928
+[2025-11-04 23:06:52] [ES_opt] [INFO] Step 13/20 | Best: T=73, perplexity=4601.6928 | Parents: mean=4924.4827, std=202.7479 | Time: 14.67s | No improvement: 0/999999
+[2025-11-04 23:07:14] [ES_opt] [INFO] Step 14: New best found! Fitness=4357.4888
+[2025-11-04 23:07:14] [ES_opt] [INFO] Step 14/20 | Best: T=71, perplexity=4357.4888 | Parents: mean=4528.5829, std=90.1309 | Time: 22.32s | No improvement: 0/999999
+[2025-11-04 23:07:29] [ES_opt] [INFO] Step 15: New best found! Fitness=4325.8639
+[2025-11-04 23:07:29] [ES_opt] [INFO] Step 15/20 | Best: T=66, perplexity=4325.8639 | Parents: mean=4395.8248, std=61.3453 | Time: 14.37s | No improvement: 0/999999
+[2025-11-04 23:07:29] [ES_opt] [INFO] Step 16: New best found! Fitness=4042.3585
+[2025-11-04 23:07:29] [ES_opt] [INFO] Step 16/20 | Best: T=67, perplexity=4042.3585 | Parents: mean=4281.8128, std=120.5596 | Time: 0.00s | No improvement: 0/999999
+[2025-11-04 23:07:44] [ES_opt] [INFO] Step 17: New best found! Fitness=3858.7931
+[2025-11-04 23:07:44] [ES_opt] [INFO] Step 17/20 | Best: T=64, perplexity=3858.7931 | Parents: mean=3971.2886, std=91.9529 | Time: 14.90s | No improvement: 0/999999
+[2025-11-04 23:07:51] [ES_opt] [INFO] Step 18: New best found! Fitness=3611.3499
+[2025-11-04 23:07:51] [ES_opt] [INFO] Step 18/20 | Best: T=57, perplexity=3611.3499 | Parents: mean=3733.7350, std=104.3214 | Time: 7.16s | No improvement: 0/999999
+[2025-11-04 23:07:58] [ES_opt] [INFO] Step 19: New best found! Fitness=3594.3096
+[2025-11-04 23:07:58] [ES_opt] [INFO] Step 19/20 | Best: T=54, perplexity=3594.3096 | Parents: mean=3631.3497, std=32.0609 | Time: 6.72s | No improvement: 0/999999
+[2025-11-04 23:08:24] [ES_opt] [INFO] Step 20: New best found! Fitness=3179.1276
+[2025-11-04 23:08:24] [ES_opt] [INFO] Step 20/20 | Best: T=51, perplexity=3179.1276 | Parents: mean=3346.6368, std=136.0832 | Time: 26.70s | No improvement: 0/999999
+[2025-11-04 23:08:24] [ES_opt] [INFO] ================================================================================
+[2025-11-04 23:08:24] [ES_opt] [INFO] ES Optimization Complete!
+[2025-11-04 23:08:24] [ES_opt] [INFO] Total time: 435.80s
+[2025-11-04 23:08:24] [ES_opt] [INFO] Final best: T=51, alpha=0.019608, eta=0.019608, perplexity=3179.1276
+[2025-11-04 23:08:24] [ES_opt] [INFO] ================================================================================
+[2025-11-04 23:08:25] [ES_opt] [INFO] ================================================================================
+[2025-11-04 23:08:25] [ES_opt] [INFO] ES Optimization Complete!
+[2025-11-04 23:08:25] [ES_opt] [INFO] Best T: 51, alpha: 0.019608, eta: 0.019608
+[2025-11-04 23:08:25] [ES_opt] [INFO] Best perplexity: 3179.1276
+[2025-11-04 23:08:25] [ES_opt] [INFO] Total time: 435.80s
+[2025-11-04 23:08:25] [ES_opt] [INFO] ================================================================================

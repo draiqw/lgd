@@ -1,0 +1,33 @@
+{
+  "algorithm": "SABO",
+  "best_T": 5,
+  "best_alpha": 0.2,
+  "best_eta": 0.2,
+  "best_perplexity": 1530.9177538642225,
+  "total_time": 1983.4929539000004,
+  "avg_step_time": 39.24019515238061,
+  "stopped_early": false,
+  "num_iterations": 21,
+  "initial_population": [
+    733,
+    811,
+    133,
+    355,
+    777,
+    115,
+    452,
+    940,
+    879,
+    345,
+    576,
+    153,
+    950,
+    602,
+    162,
+    238,
+    422,
+    511,
+    660,
+    285
+  ]
+}

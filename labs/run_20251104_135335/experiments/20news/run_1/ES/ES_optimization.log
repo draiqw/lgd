@@ -1,0 +1,51 @@
+[2025-11-04 16:10:51] [ES_opt] [INFO] ================================================================================
+[2025-11-04 16:10:51] [ES_opt] [INFO] ES Optimization Starting (NO EARLY STOPPING)
+[2025-11-04 16:10:51] [ES_opt] [INFO] ================================================================================
+[2025-11-04 16:10:51] [ES_opt] [INFO] Initial population: [733, 811, 133, 355, 777, 115, 452, 940, 879, 345, 576, 153, 950, 602, 162, 238, 422, 511, 660, 285]
+[2025-11-04 16:10:51] [ES_opt] [INFO] Iterations: 20
+[2025-11-04 16:10:51] [ES_opt] [INFO] Output directory: c:\Users\Roman\Downloads\lgd-main\lgd-main\lda_pipeline_results\run_20251104_135335\experiments\20news\run_1\ES
+[2025-11-04 16:10:51] [ES_opt] [INFO] ================================================================================
+[2025-11-04 16:10:51] [ES_opt] [INFO] ES initialized: mu=5, lambda=10, dT=5
+[2025-11-04 16:10:51] [ES_opt] [INFO] ================================================================================
+[2025-11-04 16:10:51] [ES_opt] [INFO] Starting ES optimization
+[2025-11-04 16:10:51] [ES_opt] [INFO] Steps: 20, mu=5, lambda=10
+[2025-11-04 16:10:51] [ES_opt] [INFO] T bounds: (2, 1000), alpha=1/T, eta=1/T
+[2025-11-04 16:10:51] [ES_opt] [INFO] ================================================================================
+[2025-11-04 16:10:51] [ES_opt] [INFO] Using provided initial population
+[2025-11-04 16:10:51] [ES_opt] [INFO] Evaluating initial population...
+[2025-11-04 16:10:51] [ES_opt] [INFO] Selected best 5 parents from 20 initial individuals
+[2025-11-04 16:10:51] [ES_opt] [INFO] Initial best: T=115, alpha=0.008696, eta=0.008696, perplexity=2509.1320
+[2025-11-04 16:13:37] [ES_opt] [INFO] Step 1/20 | Best: T=115, perplexity=2509.1320 | Parents: mean=2739.7014, std=208.3070 | Time: 166.33s | No improvement: 1/999999
+[2025-11-04 16:14:38] [ES_opt] [INFO] Step 2: New best found! Fitness=2412.0324
+[2025-11-04 16:14:38] [ES_opt] [INFO] Step 2/20 | Best: T=110, perplexity=2412.0324 | Parents: mean=2466.1080, std=33.9640 | Time: 60.60s | No improvement: 0/999999
+[2025-11-04 16:15:02] [ES_opt] [INFO] Step 3: New best found! Fitness=2332.9223
+[2025-11-04 16:15:02] [ES_opt] [INFO] Step 3/20 | Best: T=106, perplexity=2332.9223 | Parents: mean=2380.3884, std=38.7559 | Time: 24.72s | No improvement: 0/999999
+[2025-11-04 16:15:02] [ES_opt] [INFO] Step 4: New best found! Fitness=2257.0167
+[2025-11-04 16:15:02] [ES_opt] [INFO] Step 4/20 | Best: T=102, perplexity=2257.0167 | Parents: mean=2333.5632, std=49.0266 | Time: 0.00s | No improvement: 0/999999
+[2025-11-04 16:15:02] [ES_opt] [INFO] Step 5/20 | Best: T=102, perplexity=2257.0167 | Parents: mean=2290.1317, std=29.7329 | Time: 0.00s | No improvement: 1/999999
+[2025-11-04 16:15:24] [ES_opt] [INFO] Step 6/20 | Best: T=102, perplexity=2257.0167 | Parents: mean=2271.8356, std=18.1493 | Time: 21.47s | No improvement: 2/999999
+[2025-11-04 16:15:24] [ES_opt] [INFO] Step 7/20 | Best: T=102, perplexity=2257.0167 | Parents: mean=2261.3324, std=8.6314 | Time: 0.00s | No improvement: 3/999999
+[2025-11-04 16:15:24] [ES_opt] [INFO] Step 8/20 | Best: T=102, perplexity=2257.0167 | Parents: mean=2261.3324, std=8.6314 | Time: 0.00s | No improvement: 4/999999
+[2025-11-04 16:15:24] [ES_opt] [INFO] Step 9/20 | Best: T=102, perplexity=2257.0167 | Parents: mean=2257.0167, std=0.0000 | Time: 0.00s | No improvement: 5/999999
+[2025-11-04 16:15:24] [ES_opt] [INFO] Step 10/20 | Best: T=102, perplexity=2257.0167 | Parents: mean=2257.0167, std=0.0000 | Time: 0.00s | No improvement: 6/999999
+[2025-11-04 16:15:24] [ES_opt] [INFO] Step 11/20 | Best: T=102, perplexity=2257.0167 | Parents: mean=2257.0167, std=0.0000 | Time: 0.00s | No improvement: 7/999999
+[2025-11-04 16:15:24] [ES_opt] [INFO] Step 12/20 | Best: T=102, perplexity=2257.0167 | Parents: mean=2257.0167, std=0.0000 | Time: 0.00s | No improvement: 8/999999
+[2025-11-04 16:15:24] [ES_opt] [INFO] Step 13/20 | Best: T=102, perplexity=2257.0167 | Parents: mean=2257.0167, std=0.0000 | Time: 0.00s | No improvement: 9/999999
+[2025-11-04 16:15:24] [ES_opt] [INFO] Step 14/20 | Best: T=102, perplexity=2257.0167 | Parents: mean=2257.0167, std=0.0000 | Time: 0.00s | No improvement: 10/999999
+[2025-11-04 16:15:24] [ES_opt] [INFO] Step 15/20 | Best: T=102, perplexity=2257.0167 | Parents: mean=2257.0167, std=0.0000 | Time: 0.00s | No improvement: 11/999999
+[2025-11-04 16:15:24] [ES_opt] [INFO] Step 16/20 | Best: T=102, perplexity=2257.0167 | Parents: mean=2257.0167, std=0.0000 | Time: 0.00s | No improvement: 12/999999
+[2025-11-04 16:15:24] [ES_opt] [INFO] Step 17/20 | Best: T=102, perplexity=2257.0167 | Parents: mean=2257.0167, std=0.0000 | Time: 0.00s | No improvement: 13/999999
+[2025-11-04 16:15:24] [ES_opt] [INFO] Step 18/20 | Best: T=102, perplexity=2257.0167 | Parents: mean=2257.0167, std=0.0000 | Time: 0.00s | No improvement: 14/999999
+[2025-11-04 16:15:24] [ES_opt] [INFO] Step 19/20 | Best: T=102, perplexity=2257.0167 | Parents: mean=2257.0167, std=0.0000 | Time: 0.00s | No improvement: 15/999999
+[2025-11-04 16:15:24] [ES_opt] [INFO] Step 20/20 | Best: T=102, perplexity=2257.0167 | Parents: mean=2257.0167, std=0.0000 | Time: 0.00s | No improvement: 16/999999
+[2025-11-04 16:15:24] [ES_opt] [INFO] ================================================================================
+[2025-11-04 16:15:24] [ES_opt] [INFO] ES Optimization Complete!
+[2025-11-04 16:15:24] [ES_opt] [INFO] Total time: 273.16s
+[2025-11-04 16:15:24] [ES_opt] [INFO] Final best: T=102, alpha=0.009804, eta=0.009804, perplexity=2257.0167
+[2025-11-04 16:15:24] [ES_opt] [INFO] ================================================================================
+[2025-11-04 16:15:24] [ES_opt] [INFO] ================================================================================
+[2025-11-04 16:15:24] [ES_opt] [INFO] ES Optimization Complete!
+[2025-11-04 16:15:24] [ES_opt] [INFO] Best T: 102, alpha: 0.009804, eta: 0.009804
+[2025-11-04 16:15:24] [ES_opt] [INFO] Best perplexity: 2257.0167
+[2025-11-04 16:15:24] [ES_opt] [INFO] Total time: 273.16s
+[2025-11-04 16:15:24] [ES_opt] [INFO] ================================================================================

@@ -1,0 +1,53 @@
+[2025-11-05 00:23:32] [PABBO_Full_opt] [INFO] ================================================================================
+[2025-11-05 00:23:32] [PABBO_Full_opt] [INFO] PABBO_Full Optimization Starting (NO EARLY STOPPING)
+[2025-11-05 00:23:32] [PABBO_Full_opt] [INFO] ================================================================================
+[2025-11-05 00:23:32] [PABBO_Full_opt] [INFO] Initial population: [733, 811, 133, 355, 777, 115, 452, 940, 879, 345, 576, 153, 950, 602, 162, 238, 422, 511, 660, 285]
+[2025-11-05 00:23:32] [PABBO_Full_opt] [INFO] Iterations: 20
+[2025-11-05 00:23:32] [PABBO_Full_opt] [INFO] Output directory: c:\Users\Roman\Downloads\lgd-main\lgd-main\lda_pipeline_results\run_20251104_135335\experiments\agnews\run_2\PABBO_Full
+[2025-11-05 00:23:32] [PABBO_Full_opt] [INFO] ================================================================================
+[2025-11-05 00:23:32] [PABBO_Full_opt] [INFO] PABBO Full initialized with Transformer model from c:\Users\Roman\Downloads\lgd-main\lgd-main\pabbo_method\results\PABBO\PABBO_GP1D_quick_20251104_135342\ckpt.tar
+[2025-11-05 00:23:32] [PABBO_Full_opt] [INFO] PABBO initialized: exploration_rate=0.3, temperature_decay=0.95, use_transformer=True
+[2025-11-05 00:23:32] [PABBO_Full_opt] [INFO] ================================================================================
+[2025-11-05 00:23:32] [PABBO_Full_opt] [INFO] Starting PABBO Full optimization
+[2025-11-05 00:23:32] [PABBO_Full_opt] [INFO] Iterations: 20, Initial samples: 20
+[2025-11-05 00:23:32] [PABBO_Full_opt] [INFO] T bounds: (2, 1000), alpha=1/T, eta=1/T
+[2025-11-05 00:23:32] [PABBO_Full_opt] [INFO] Using Transformer: True
+[2025-11-05 00:23:32] [PABBO_Full_opt] [INFO] ================================================================================
+[2025-11-05 00:23:32] [PABBO_Full_opt] [INFO] Using provided initial population
+[2025-11-05 00:23:32] [PABBO_Full_opt] [INFO] Evaluating initial samples...
+[2025-11-05 00:23:32] [PABBO_Full_opt] [INFO] Initial: New best found! T=733, fitness=172550658130620057191536656384.0000
+[2025-11-05 00:23:32] [PABBO_Full_opt] [INFO] Initial: New best found! T=133, fitness=15175.0665
+[2025-11-05 00:23:32] [PABBO_Full_opt] [INFO] Initial: New best found! T=115, fitness=9583.1523
+[2025-11-05 00:23:32] [PABBO_Full_opt] [INFO] Initial best: T=115, alpha=0.008696, eta=0.008696, perplexity=9583.1523
+[2025-11-05 00:23:35] [PABBO_Full_opt] [INFO] Iter 1/20 | Best: T=13, perplexity=2328.7485 | Current: T=13, fitness=2328.7485 (transformer) | Temp: 0.950 | No improvement: 0/999999
+[2025-11-05 00:24:06] [PABBO_Full_opt] [INFO] Iter 2/20 | Best: T=13, perplexity=2328.7485 | Current: T=407, fitness=445302266115.4114 (transformer) | Temp: 0.902 | No improvement: 1/999999
+[2025-11-05 00:24:24] [PABBO_Full_opt] [INFO] Iter 3/20 | Best: T=13, perplexity=2328.7485 | Current: T=232, fitness=1002795.1981 (exploration) | Temp: 0.857 | No improvement: 2/999999
+[2025-11-05 00:24:24] [PABBO_Full_opt] [INFO] Iter 4/20 | Best: T=13, perplexity=2328.7485 | Current: T=232, fitness=1002795.1981 (exploration) | Temp: 0.815 | No improvement: 3/999999
+[2025-11-05 00:24:27] [PABBO_Full_opt] [INFO] Iter 5/20 | Best: T=11, perplexity=2249.2084 | Current: T=11, fitness=2249.2084 (exploration) | Temp: 0.774 | No improvement: 0/999999
+[2025-11-05 00:25:29] [PABBO_Full_opt] [INFO] Iter 6/20 | Best: T=11, perplexity=2249.2084 | Current: T=795, fitness=2583592464804428585547240518451200.0000 (exploration) | Temp: 0.735 | No improvement: 1/999999
+[2025-11-05 00:26:06] [PABBO_Full_opt] [INFO] Iter 7/20 | Best: T=11, perplexity=2249.2084 | Current: T=488, fitness=1749936187096034.5000 (transformer) | Temp: 0.698 | No improvement: 2/999999
+[2025-11-05 00:26:06] [PABBO_Full_opt] [INFO] Iter 8/20 | Best: T=2, perplexity=2217.4871 | Current: T=2, fitness=2217.4871 (transformer) | Temp: 0.663 | No improvement: 0/999999
+[2025-11-05 00:26:06] [PABBO_Full_opt] [INFO] Iter 9/20 | Best: T=2, perplexity=2217.4871 | Current: T=2, fitness=2217.4871 (transformer) | Temp: 0.630 | No improvement: 1/999999
+[2025-11-05 00:26:06] [PABBO_Full_opt] [INFO] Iter 10/20 | Best: T=2, perplexity=2217.4871 | Current: T=2, fitness=2217.4871 (transformer) | Temp: 0.599 | No improvement: 2/999999
+[2025-11-05 00:26:49] [PABBO_Full_opt] [INFO] Iter 11/20 | Best: T=2, perplexity=2217.4871 | Current: T=570, fitness=28204502757222703104.0000 (transformer) | Temp: 0.569 | No improvement: 3/999999
+[2025-11-05 00:27:29] [PABBO_Full_opt] [INFO] Iter 12/20 | Best: T=2, perplexity=2217.4871 | Current: T=525, fitness=126669230968342864.0000 (exploration) | Temp: 0.540 | No improvement: 4/999999
+[2025-11-05 00:27:29] [PABBO_Full_opt] [INFO] Iter 13/20 | Best: T=2, perplexity=2217.4871 | Current: T=98, fitness=7105.7149 (exploration) | Temp: 0.513 | No improvement: 5/999999
+[2025-11-05 00:27:53] [PABBO_Full_opt] [INFO] Iter 14/20 | Best: T=2, perplexity=2217.4871 | Current: T=324, fitness=369779047.2870 (exploration) | Temp: 0.488 | No improvement: 6/999999
+[2025-11-05 00:28:42] [PABBO_Full_opt] [INFO] Iter 15/20 | Best: T=2, perplexity=2217.4871 | Current: T=642, fitness=349692941143729065951232.0000 (exploration) | Temp: 0.463 | No improvement: 7/999999
+[2025-11-05 00:28:42] [PABBO_Full_opt] [INFO] Iter 16/20 | Best: T=2, perplexity=2217.4871 | Current: T=28, fitness=2646.7808 (transformer) | Temp: 0.440 | No improvement: 8/999999
+[2025-11-05 00:29:12] [PABBO_Full_opt] [INFO] Iter 17/20 | Best: T=2, perplexity=2217.4871 | Current: T=397, fitness=197371644591.1941 (exploration) | Temp: 0.418 | No improvement: 9/999999
+[2025-11-05 00:29:48] [PABBO_Full_opt] [INFO] Iter 18/20 | Best: T=2, perplexity=2217.4871 | Current: T=489, fitness=2031390552340841.0000 (exploration) | Temp: 0.397 | No improvement: 10/999999
+[2025-11-05 00:29:48] [PABBO_Full_opt] [INFO] Iter 19/20 | Best: T=2, perplexity=2217.4871 | Current: T=2, fitness=2217.4871 (transformer) | Temp: 0.377 | No improvement: 11/999999
+[2025-11-05 00:30:48] [PABBO_Full_opt] [INFO] Iter 20/20 | Best: T=2, perplexity=2217.4871 | Current: T=767, fitness=30874259555195208875737484361728.0000 (exploration) | Temp: 0.358 | No improvement: 12/999999
+[2025-11-05 00:30:48] [PABBO_Full_opt] [INFO] ================================================================================
+[2025-11-05 00:30:48] [PABBO_Full_opt] [INFO] PABBO Full Optimization Complete!
+[2025-11-05 00:30:48] [PABBO_Full_opt] [INFO] Total time: 436.45s
+[2025-11-05 00:30:48] [PABBO_Full_opt] [INFO] Total evaluations: 40
+[2025-11-05 00:30:48] [PABBO_Full_opt] [INFO] Final best: T=2, alpha=0.500000, eta=0.500000, perplexity=2217.4871
+[2025-11-05 00:30:48] [PABBO_Full_opt] [INFO] ================================================================================
+[2025-11-05 00:30:49] [PABBO_Full_opt] [INFO] ================================================================================
+[2025-11-05 00:30:49] [PABBO_Full_opt] [INFO] PABBO_Full Optimization Complete!
+[2025-11-05 00:30:49] [PABBO_Full_opt] [INFO] Best T: 2, alpha: 0.500000, eta: 0.500000
+[2025-11-05 00:30:49] [PABBO_Full_opt] [INFO] Best perplexity: 2217.4871
+[2025-11-05 00:30:49] [PABBO_Full_opt] [INFO] Total time: 436.45s
+[2025-11-05 00:30:49] [PABBO_Full_opt] [INFO] ================================================================================

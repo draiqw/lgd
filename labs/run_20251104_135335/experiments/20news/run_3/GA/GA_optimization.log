@@ -1,0 +1,54 @@
+[2025-11-04 17:11:30] [GA_opt] [INFO] ================================================================================
+[2025-11-04 17:11:30] [GA_opt] [INFO] GA Optimization Starting (NO EARLY STOPPING)
+[2025-11-04 17:11:30] [GA_opt] [INFO] ================================================================================
+[2025-11-04 17:11:30] [GA_opt] [INFO] Initial population: [733, 811, 133, 355, 777, 115, 452, 940, 879, 345, 576, 153, 950, 602, 162, 238, 422, 511, 660, 285]
+[2025-11-04 17:11:30] [GA_opt] [INFO] Iterations: 20
+[2025-11-04 17:11:30] [GA_opt] [INFO] Output directory: c:\Users\Roman\Downloads\lgd-main\lgd-main\lda_pipeline_results\run_20251104_135335\experiments\20news\run_3\GA
+[2025-11-04 17:11:30] [GA_opt] [INFO] ================================================================================
+[2025-11-04 17:11:30] [GA_opt] [INFO] GA initialized: cxpb=0.9, mutpb=0.2, elite=5, dT=5
+[2025-11-04 17:11:30] [GA_opt] [INFO] ================================================================================
+[2025-11-04 17:11:30] [GA_opt] [INFO] Starting GA optimization
+[2025-11-04 17:11:30] [GA_opt] [INFO] Generations: 20, Population size: 10
+[2025-11-04 17:11:30] [GA_opt] [INFO] T bounds: (2, 1000), alpha=1/T, eta=1/T
+[2025-11-04 17:11:30] [GA_opt] [INFO] ================================================================================
+[2025-11-04 17:11:30] [GA_opt] [INFO] Using provided initial population
+[2025-11-04 17:11:30] [GA_opt] [INFO] Evaluating initial population...
+[2025-11-04 17:28:59] [GA_opt] [INFO] Initial best: T=115, alpha=0.008696, eta=0.008696, perplexity=2598.7258
+[2025-11-04 17:32:03] [GA_opt] [INFO] Gen 1/20 | Best: T=115, perplexity=2598.7258 | Pop: mean=12186567446.8548, std=53119772837.2635 | Time: 183.75s | No improvement: 1/999999
+[2025-11-04 17:33:36] [GA_opt] [INFO] Gen 2: New best found! Fitness=2410.4669
+[2025-11-04 17:33:36] [GA_opt] [INFO] Gen 2/20 | Best: T=101, perplexity=2410.4669 | Pop: mean=3944.5807, std=3871.4343 | Time: 93.76s | No improvement: 0/999999
+[2025-11-04 17:34:11] [GA_opt] [INFO] Gen 3: New best found! Fitness=2334.8968
+[2025-11-04 17:34:11] [GA_opt] [INFO] Gen 3/20 | Best: T=98, perplexity=2334.8968 | Pop: mean=2686.0312, std=293.2039 | Time: 34.21s | No improvement: 0/999999
+[2025-11-04 17:34:22] [GA_opt] [INFO] Gen 4/20 | Best: T=98, perplexity=2334.8968 | Pop: mean=2462.1840, std=130.4570 | Time: 11.48s | No improvement: 1/999999
+[2025-11-04 17:34:45] [GA_opt] [INFO] Gen 5/20 | Best: T=98, perplexity=2334.8968 | Pop: mean=2386.5952, std=43.4832 | Time: 22.99s | No improvement: 2/999999
+[2025-11-04 17:34:45] [GA_opt] [INFO] Gen 6/20 | Best: T=98, perplexity=2334.8968 | Pop: mean=2358.3227, std=43.7793 | Time: 0.00s | No improvement: 3/999999
+[2025-11-04 17:34:56] [GA_opt] [INFO] Gen 7: New best found! Fitness=2289.6318
+[2025-11-04 17:34:56] [GA_opt] [INFO] Gen 7/20 | Best: T=97, perplexity=2289.6318 | Pop: mean=2346.4795, std=47.7587 | Time: 10.65s | No improvement: 0/999999
+[2025-11-04 17:34:56] [GA_opt] [INFO] Gen 8/20 | Best: T=97, perplexity=2289.6318 | Pop: mean=2335.9112, std=49.3540 | Time: 0.00s | No improvement: 1/999999
+[2025-11-04 17:35:39] [GA_opt] [INFO] Gen 9: New best found! Fitness=2223.2089
+[2025-11-04 17:35:39] [GA_opt] [INFO] Gen 9/20 | Best: T=93, perplexity=2223.2089 | Pop: mean=2337.7104, std=78.9620 | Time: 43.36s | No improvement: 0/999999
+[2025-11-04 17:35:56] [GA_opt] [INFO] Gen 10: New best found! Fitness=1895.8980
+[2025-11-04 17:35:56] [GA_opt] [INFO] Gen 10/20 | Best: T=65, perplexity=1895.8980 | Pop: mean=2317.7397, std=239.0043 | Time: 16.68s | No improvement: 0/999999
+[2025-11-04 17:36:49] [GA_opt] [INFO] Gen 11/20 | Best: T=65, perplexity=1895.8980 | Pop: mean=2142.6366, std=256.5604 | Time: 53.19s | No improvement: 1/999999
+[2025-11-04 17:36:49] [GA_opt] [INFO] Gen 12/20 | Best: T=65, perplexity=1895.8980 | Pop: mean=1938.2097, std=95.6539 | Time: 0.00s | No improvement: 2/999999
+[2025-11-04 17:36:49] [GA_opt] [INFO] Gen 13/20 | Best: T=65, perplexity=1895.8980 | Pop: mean=1900.3254, std=9.3021 | Time: 0.00s | No improvement: 3/999999
+[2025-11-04 17:36:57] [GA_opt] [INFO] Gen 14: New best found! Fitness=1895.8392
+[2025-11-04 17:36:57] [GA_opt] [INFO] Gen 14/20 | Best: T=61, perplexity=1895.8392 | Pop: mean=1895.8950, std=0.0128 | Time: 8.06s | No improvement: 0/999999
+[2025-11-04 17:37:35] [GA_opt] [INFO] Gen 15: New best found! Fitness=1751.5976
+[2025-11-04 17:37:35] [GA_opt] [INFO] Gen 15/20 | Best: T=33, perplexity=1751.5976 | Pop: mean=1925.3007, std=134.9259 | Time: 38.04s | No improvement: 0/999999
+[2025-11-04 17:37:49] [GA_opt] [INFO] Gen 16/20 | Best: T=33, perplexity=1751.5976 | Pop: mean=1859.7351, std=105.0947 | Time: 14.19s | No improvement: 1/999999
+[2025-11-04 17:38:17] [GA_opt] [INFO] Gen 17/20 | Best: T=33, perplexity=1751.5976 | Pop: mean=1783.8672, std=53.6878 | Time: 27.34s | No improvement: 2/999999
+[2025-11-04 17:38:29] [GA_opt] [INFO] Gen 18/20 | Best: T=33, perplexity=1751.5976 | Pop: mean=1755.9733, std=14.4362 | Time: 12.56s | No improvement: 3/999999
+[2025-11-04 17:38:29] [GA_opt] [INFO] Gen 19/20 | Best: T=33, perplexity=1751.5976 | Pop: mean=1752.7180, std=3.5957 | Time: 0.00s | No improvement: 4/999999
+[2025-11-04 17:38:36] [GA_opt] [INFO] Gen 20/20 | Best: T=33, perplexity=1751.5976 | Pop: mean=1758.4438, std=26.9680 | Time: 6.27s | No improvement: 5/999999
+[2025-11-04 17:38:36] [GA_opt] [INFO] ================================================================================
+[2025-11-04 17:38:36] [GA_opt] [INFO] GA Optimization Complete!
+[2025-11-04 17:38:36] [GA_opt] [INFO] Total time: 1625.39s
+[2025-11-04 17:38:36] [GA_opt] [INFO] Final best: T=33, alpha=0.030303, eta=0.030303, perplexity=1751.5976
+[2025-11-04 17:38:36] [GA_opt] [INFO] ================================================================================
+[2025-11-04 17:38:36] [GA_opt] [INFO] ================================================================================
+[2025-11-04 17:38:36] [GA_opt] [INFO] GA Optimization Complete!
+[2025-11-04 17:38:36] [GA_opt] [INFO] Best T: 33, alpha: 0.030303, eta: 0.030303
+[2025-11-04 17:38:36] [GA_opt] [INFO] Best perplexity: 1751.5976
+[2025-11-04 17:38:36] [GA_opt] [INFO] Total time: 1625.39s
+[2025-11-04 17:38:36] [GA_opt] [INFO] ================================================================================

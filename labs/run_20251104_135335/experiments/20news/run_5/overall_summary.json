@@ -1,0 +1,24 @@
+{
+  "results": [
+    {
+      "algorithm": "GA",
+      "best_T": 33,
+      "best_perplexity": 1726.8822676653235,
+      "total_time": 1862.3088380999397
+    },
+    {
+      "algorithm": "ES",
+      "best_T": 72,
+      "best_perplexity": 1987.9390313281904,
+      "total_time": 465.4572863000212
+    },
+    {
+      "algorithm": "PABBO_Full",
+      "best_T": 2,
+      "best_perplexity": 1852.8517395665883,
+      "total_time": 594.8557326999726
+    }
+  ],
+  "best_algorithm": "GA",
+  "best_perplexity": 1726.8822676653235
+}

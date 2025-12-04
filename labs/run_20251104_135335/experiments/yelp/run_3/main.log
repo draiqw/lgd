@@ -1,0 +1,42 @@
+[2025-11-05 12:58:12] [main] [INFO] ================================================================================
+[2025-11-05 12:58:12] [main] [INFO] LDA Hyperparameter Optimization (NO EARLY STOPPING)
+[2025-11-05 12:58:12] [main] [INFO] ================================================================================
+[2025-11-05 12:58:12] [main] [INFO] Data: c:\Users\Roman\Downloads\lgd-main\lgd-main\data\X_yelp_val_bow.npz
+[2025-11-05 12:58:12] [main] [INFO] Initial population file: c:\Users\Roman\Downloads\lgd-main\lgd-main\lda_hyperopt\lda_init_population.json
+[2025-11-05 12:58:12] [main] [INFO] Iterations: 20
+[2025-11-05 12:58:12] [main] [INFO] Seed: 45
+[2025-11-05 12:58:12] [main] [INFO] Output directory: c:\Users\Roman\Downloads\lgd-main\lgd-main\lda_pipeline_results\run_20251104_135335\experiments\yelp\run_3
+[2025-11-05 12:58:12] [main] [INFO] Algorithms: ['GA', 'ES', 'PABBO_Full']
+[2025-11-05 12:58:12] [main] [INFO] ================================================================================
+[2025-11-05 12:58:12] [main] [INFO] Loading validation data...
+[2025-11-05 12:58:12] [main] [INFO] Loaded: 2000 documents, 5000 vocabulary
+[2025-11-05 12:58:12] [main] [INFO] Loading initial population from c:\Users\Roman\Downloads\lgd-main\lgd-main\lda_hyperopt\lda_init_population.json...
+[2025-11-05 12:58:12] [main] [INFO] Initial population: [733, 811, 133, 355, 777, 115, 452, 940, 879, 345, 576, 153, 950, 602, 162, 238, 422, 511, 660, 285]
+[2025-11-05 12:58:12] [main] [INFO] 
+================================================================================
+[2025-11-05 12:58:12] [main] [INFO] Running Genetic Algorithm (GA) - NO EARLY STOPPING
+[2025-11-05 12:58:12] [main] [INFO] ================================================================================
+[2025-11-05 13:25:31] [main] [INFO] 
+================================================================================
+[2025-11-05 13:25:31] [main] [INFO] Running Evolution Strategy (ES) - NO EARLY STOPPING
+[2025-11-05 13:25:31] [main] [INFO] ================================================================================
+[2025-11-05 13:32:23] [main] [INFO] 
+================================================================================
+[2025-11-05 13:32:23] [main] [INFO] Running PABBO Full (with Transformer) - NO EARLY STOPPING
+[2025-11-05 13:32:23] [main] [INFO] ================================================================================
+[2025-11-05 13:39:29] [main] [INFO] 
+Generating comparison plots...
+[2025-11-05 13:39:29] [main] [INFO] 
+================================================================================
+[2025-11-05 13:39:29] [main] [INFO] OPTIMIZATION SUMMARY
+[2025-11-05 13:39:29] [main] [INFO] ================================================================================
+[2025-11-05 13:39:29] [main] [INFO] Algorithm  Best T     Best Perplexity      Time (s)       
+[2025-11-05 13:39:29] [main] [INFO] --------------------------------------------------------------------------------
+[2025-11-05 13:39:29] [main] [INFO] GA         2          1331.4961            1638.57        
+[2025-11-05 13:39:29] [main] [INFO] ES         63         1857.8273            411.56         
+[2025-11-05 13:39:29] [main] [INFO] PABBO_Full 2          1331.4961            425.49         
+[2025-11-05 13:39:29] [main] [INFO] --------------------------------------------------------------------------------
+[2025-11-05 13:39:29] [main] [INFO] Best algorithm: GA (perplexity: 1331.4961)
+[2025-11-05 13:39:29] [main] [INFO] ================================================================================
+[2025-11-05 13:39:29] [main] [INFO] 
+All results saved to: c:\Users\Roman\Downloads\lgd-main\lgd-main\lda_pipeline_results\run_20251104_135335\experiments\yelp\run_3
