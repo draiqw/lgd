@@ -1,0 +1,196 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T2A]{fontenc}
+\usepackage[russian]{babel}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{geometry}
+\geometry{margin=2cm}
+
+\title{\S 11. Идеальные квантовые газы в равновесном состоянии}
+\author{Конспект формул}
+\date{}
+
+\begin{document}
+\maketitle
+
+%═══════════════════════════════════════════════════════════════════
+\section{Краткая теория}
+%═══════════════════════════════════════════════════════════════════
+
+\subsection{Типы квантовых частиц}
+
+\begin{itemize}
+    \item \textbf{Бозоны} --- частицы с целым спином (фотоны, $\pi$-мезоны, $K$-мезоны). Подчиняются статистике Бозе--Эйнштейна. Числа заполнения $N_l$ могут быть любыми: $0 \leq N_l \leq \infty$.
+    \item \textbf{Фермионы} --- частицы с полуцелым спином (электроны, протоны, нейтроны). Подчиняются статистике Ферми--Дирака. Принцип Паули: $N_l \in \{0, 1\}$.
+\end{itemize}
+
+\subsection{Предельный переход}
+
+При высоких температурах ($T \gg T^*$) распределения Бозе и Ферми переходят в классическое распределение Больцмана.
+
+%═══════════════════════════════════════════════════════════════════
+\section{Основные формулы}
+%═══════════════════════════════════════════════════════════════════
+
+\subsection{Число частиц в квантовом состоянии $l$}
+
+\begin{equation}
+    \boxed{N_l = \sum_{i=1}^{N} \delta_{l, n_i}}
+    \tag{11.1}
+\end{equation}
+
+\textbf{Условие сохранения числа частиц:}
+\begin{equation}
+    \boxed{\sum_l N_l = N}
+    \tag{11.2}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Большое каноническое распределение}
+
+\begin{equation}
+    \boxed{P_{n_1, n_2, \ldots, n_s}(N, T) = \exp\left(\frac{\Omega + \sum_l (\mu - E_l) N_l}{kT}\right)}
+    \tag{11.3}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Распределение Бозе--Эйнштейна}
+
+\begin{equation}
+    \boxed{\bar{N}_l = \frac{1}{\exp[(E_l - \mu)/kT] - 1}}
+    \tag{11.8}
+\end{equation}
+
+Для бозонов: $\mu \leq E_{\min}$ (иначе $\bar{N}_l < 0$).
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Распределение Ферми--Дирака}
+
+\begin{equation}
+    \boxed{\bar{N}_l = \frac{1}{\exp[(E_l - \mu)/kT] + 1}}
+    \tag{11.9}
+\end{equation}
+
+При $T \to 0$: $\bar{N}_l \to 1$ если $E_l < \mu$, и $\bar{N}_l \to 0$ если $E_l > \mu$.
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Температура вырождения}
+
+\begin{equation}
+    \boxed{T^* = \frac{N^{2/3} 2\pi \hbar^2}{V^{2/3} mk}}
+\end{equation}
+
+При $T \gg T^*$ --- классический предел (распределение Больцмана).\\
+При $T \lesssim T^*$ --- квантовые эффекты существенны.
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Большой термодинамический потенциал (бозе-газ)}
+
+\begin{equation}
+    \boxed{\Omega = kT \sum_l \ln\{1 - \exp[(\mu - E_l)/kT]\}}
+    \tag{11.17}
+\end{equation}
+
+В интегральной форме:
+\begin{equation}
+    \boxed{\Omega = -\frac{2^{1/2} V m^{3/2}}{3\pi^2 \hbar^3} \int_0^{\infty} \frac{E^{3/2}}{\exp[(E - \mu)/kT] - 1}\, dE}
+    \tag{11.20}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Большой термодинамический потенциал (ферми-газ)}
+
+\begin{equation}
+    \boxed{\Omega = -2kT \sum_l \ln\{1 + \exp[(\mu - E_l)/kT]\}}
+    \tag{11.24}
+\end{equation}
+
+В интегральной форме:
+\begin{equation}
+    \boxed{\Omega = -\frac{2^{3/2} V m^{3/2}}{3\pi^2 \hbar^3} \int_0^{\infty} \frac{E^{3/2}}{\exp[(E - \mu)/kT] + 1}\, dE}
+    \tag{11.27}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Внутренняя энергия}
+
+\begin{equation}
+    \boxed{U = \Omega - T\left(\frac{\partial \Omega}{\partial T}\right)_\mu - \mu\left(\frac{\partial \Omega}{\partial \mu}\right)_T}
+    \tag{11.21}
+\end{equation}
+
+%═══════════════════════════════════════════════════════════════════
+\section{Полезные соотношения из примеров}
+%═══════════════════════════════════════════════════════════════════
+
+\subsection{Энергия Ферми}
+
+При $T = 0$ для электронного газа:
+\begin{equation}
+    \boxed{E_F = \frac{(3\pi^2 \bar{N}/V)^{2/3} \hbar^2}{2m}}
+\end{equation}
+
+\textbf{Внутренняя энергия при $T = 0$:}
+\begin{equation}
+    \boxed{U = \frac{3\bar{N} E_F}{5}}
+\end{equation}
+
+\textbf{Давление при $T = 0$:}
+\begin{equation}
+    \boxed{p' = \frac{2U}{3V} = \frac{(3\pi^2)^{2/3} \hbar^2}{5m} \left(\frac{N}{V}\right)^{5/3}}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Квантовый гармонический осциллятор}
+
+\textbf{Уровни энергии:}
+\begin{equation}
+    E_n = \left(n + \frac{1}{2}\right)\hbar\omega, \quad n = 0, 1, 2, \ldots
+\end{equation}
+
+\textbf{Статистическая сумма:}
+\begin{equation}
+    \boxed{Z_1 = \frac{\exp(-\hbar\omega/2kT)}{1 - \exp(-\hbar\omega/kT)}}
+    \tag{11.30}
+\end{equation}
+
+\textbf{Внутренняя энергия осциллятора:}
+\begin{equation}
+    \boxed{U = \frac{\hbar\omega}{2} + \frac{\hbar\omega}{\exp(\hbar\omega/kT) - 1}}
+    \tag{11.31}
+\end{equation}
+
+\textbf{Предельные случаи:}
+\begin{itemize}
+    \item $T = 0$: $U = \hbar\omega/2$ (нулевые колебания)
+    \item $T \gg \hbar\omega/k$: $U \approx kT$ (классический предел)
+\end{itemize}
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Теплоёмкость кристалла (модель Эйнштейна)}
+
+Для $3N$ осцилляторов:
+\begin{equation}
+    \boxed{\tilde{C}_V = 3Nk \left(\frac{\hbar\omega}{kT}\right)^2 \frac{\exp(\hbar\omega/kT)}{[\exp(\hbar\omega/kT) - 1]^2}}
+    \tag{11.32}
+\end{equation}
+
+\textbf{Предельные случаи:}
+\begin{itemize}
+    \item $\hbar\omega/kT \ll 1$: $\tilde{C}_V \approx 3Nk$ (закон Дюлонга--Пти)
+    \item $T \to 0$: $\tilde{C}_V \to 0$ (экспоненциально)
+\end{itemize}
+
+\textbf{Примечание:} эксперимент даёт $\tilde{C}_V \sim T^3$ при низких $T$ (модель Дебая).
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Температура вырождения для электронов в металле}
+
+Для $m \approx 10^{-30}$ кг и $N/V \approx 5 \cdot 10^{28}$ м$^{-3}$:
+\begin{equation}
+    T^* \sim 10^4 \text{ K}
+\end{equation}
+
+Поэтому для электронов в металлах \textbf{всегда} используется распределение Ферми.
+
+\end{document}

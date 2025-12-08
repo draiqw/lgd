@@ -1,0 +1,249 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T2A]{fontenc}
+\usepackage[russian]{babel}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{geometry}
+\geometry{margin=2cm}
+
+\title{\S 8. Распределение Максвелла}
+\author{Конспект формул}
+\date{}
+
+\begin{document}
+\maketitle
+
+%═══════════════════════════════════════════════════════════════════
+\section{Краткая теория}
+%═══════════════════════════════════════════════════════════════════
+
+\subsection{Суть распределения Максвелла}
+
+Распределение Максвелла описывает распределение молекул идеального газа по импульсам (скоростям) в состоянии термодинамического равновесия. Является следствием канонического распределения Гиббса.
+
+\subsection{Основные характеристики}
+
+\begin{itemize}
+    \item \textbf{Наивероятнейшая скорость} $v^*$ --- скорость, при которой плотность вероятности максимальна
+    \item \textbf{Средняя скорость} $\bar{v}$ --- математическое ожидание модуля скорости
+    \item \textbf{Среднеквадратичная скорость} $\sqrt{\overline{v^2}}$ --- корень из среднего квадрата скорости
+\end{itemize}
+
+Соотношение: $v^* < \bar{v} < \sqrt{\overline{v^2}}$.
+
+%═══════════════════════════════════════════════════════════════════
+\section{Основные формулы}
+%═══════════════════════════════════════════════════════════════════
+
+\subsection{Распределение по импульсам (3D)}
+
+\begin{equation}
+    \boxed{w^{(3)}(\vec{p}) = (2\pi mkT)^{-3/2} \exp\left(-\frac{\vec{p}^2}{2mkT}\right)}
+    \tag{8.1}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Распределение по проекции импульса}
+
+\begin{equation}
+    \boxed{w(p_x) = (2\pi mkT)^{-1/2} \exp\left(-\frac{p_x^2}{2mkT}\right)}
+    \tag{8.2}
+\end{equation}
+
+Это одномерное распределение Гаусса с дисперсией $\sigma^2 = mkT$.
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Распределение по модулю импульса}
+
+\begin{equation}
+    \boxed{w(p) = \frac{4\pi p^2}{(2\pi mkT)^{3/2}} \exp\left(-\frac{p^2}{2mkT}\right)}
+    \tag{8.3}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Распределение по углам}
+
+\begin{equation}
+    \boxed{w(\theta) = \frac{\sin\theta}{2}}, \qquad w(\varphi) = \frac{1}{2\pi}
+    \tag{8.4}
+\end{equation}
+
+Совместное распределение: $w^{(3)}(p, \theta, \varphi) = w(p)w(\theta)w(\varphi)$.
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Распределение по энергиям}
+
+\begin{equation}
+    \boxed{w(E) = \frac{2\pi}{(\pi kT)^{3/2}} \sqrt{E} \exp\left(-\frac{E}{kT}\right)}
+    \tag{8.5}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Характерные значения импульса}
+
+\textbf{Наивероятнейший импульс:}
+\begin{equation}
+    \boxed{p^* = \sqrt{2mkT}}
+\end{equation}
+
+\textbf{Средний импульс:}
+\begin{equation}
+    \boxed{\bar{p} = \sqrt{\frac{8mkT}{\pi}}}
+\end{equation}
+
+\textbf{Среднеквадратичный импульс:}
+\begin{equation}
+    \boxed{\sqrt{\overline{p^2}} = \sqrt{3mkT}}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Характерные значения скорости}
+
+\textbf{Наивероятнейшая скорость:}
+\begin{equation}
+    \boxed{v^* = \sqrt{\frac{2kT}{m}} = \sqrt{\frac{2RT}{\mu}}}
+\end{equation}
+
+\textbf{Средняя скорость:}
+\begin{equation}
+    \boxed{\bar{v} = \sqrt{\frac{8kT}{\pi m}} = \sqrt{\frac{8RT}{\pi\mu}}}
+\end{equation}
+
+\textbf{Среднеквадратичная скорость:}
+\begin{equation}
+    \boxed{\sqrt{\overline{v^2}} = \sqrt{\frac{3kT}{m}} = \sqrt{\frac{3RT}{\mu}}}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Характерные значения энергии}
+
+\textbf{Наивероятнейшая энергия:}
+\begin{equation}
+    \boxed{E^* = \frac{kT}{2}}
+\end{equation}
+
+\textbf{Средняя энергия:}
+\begin{equation}
+    \boxed{\bar{E} = \frac{3kT}{2}}
+    \tag{8.6}
+\end{equation}
+
+\textbf{Дисперсия энергии:}
+\begin{equation}
+    \boxed{\sigma^2(E) = \frac{3(kT)^2}{2}}
+\end{equation}
+
+\textbf{Относительная флуктуация энергии одной молекулы:}
+\begin{equation}
+    \boxed{\delta(E) = \sqrt{\frac{2}{3}}}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Флуктуации энергии газа из $N$ частиц}
+
+\begin{equation}
+    \boxed{\delta(E_N) = \sqrt{\frac{2}{3N}}}
+\end{equation}
+
+При $N \gg 1$ относительные флуктуации пренебрежимо малы.
+
+%═══════════════════════════════════════════════════════════════════
+\section{Полезные соотношения из примеров}
+%═══════════════════════════════════════════════════════════════════
+
+\subsection{Число ударов молекул о стенку}
+
+За время $\tau$ о поверхность площадью $S$ ударяется:
+\begin{equation}
+    \boxed{N = \frac{Sn\tau\bar{v}}{4} = \frac{Sn\tau}{4}\sqrt{\frac{8kT}{\pi m}}}
+    \tag{8.10}
+\end{equation}
+
+где $n$ --- концентрация молекул.
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Эффузия (истечение газа через малое отверстие)}
+
+\textbf{Средняя скорость вылетающих молекул:}
+\begin{equation}
+    \boxed{\bar{v}_{\text{выл}} = 3\sqrt{\frac{\pi kT}{8m}} = \frac{3\pi}{8}\bar{v}}
+    \tag{8.11}
+\end{equation}
+
+\textbf{Средняя энергия вылетающих молекул:}
+\begin{equation}
+    \boxed{\bar{E}_{\text{выл}} = 2kT > \frac{3kT}{2}}
+\end{equation}
+
+(больше средней энергии молекул в объёме!)
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Распределение скоростей вылетающих молекул}
+
+\begin{equation}
+    \boxed{w^{(1)}(v) = \frac{m^2 v^3}{2(kT)^2} \exp\left(-\frac{mv^2}{2kT}\right)}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Средняя скорость относительного движения двух молекул}
+
+\begin{equation}
+    \boxed{\bar{u} = |\vec{v}_1 - \vec{v}_2| = 4\sqrt{\frac{kT}{\pi m}} = \sqrt{2}\,\bar{v}}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Заполнение сосуда через малое отверстие}
+
+Концентрация газа в первоначально пустом сосуде:
+\begin{equation}
+    \boxed{n(t) = n_0\left[1 - \exp\left(-\frac{t}{\tau}\right)\right]}
+    \tag{8.12}
+\end{equation}
+
+\textbf{Характерное время:}
+\begin{equation}
+    \boxed{\tau = \frac{4V}{S\bar{v}}}
+\end{equation}
+
+где $V$ --- объём сосуда, $S$ --- площадь отверстия.
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Двумерный газ (плёнка)}
+
+\textbf{Распределение по модулю импульса:}
+\begin{equation}
+    \boxed{w(p) = \frac{p}{mkT} \exp\left(-\frac{p^2}{2mkT}\right)}
+    \tag{8.8}
+\end{equation}
+
+\textbf{Распределение по энергиям:}
+\begin{equation}
+    \boxed{w(E) = \frac{1}{kT} \exp\left(-\frac{E}{kT}\right)}
+\end{equation}
+
+\textbf{Наивероятнейшая энергия:} $E^* = 0$
+
+\textbf{Средняя энергия:} $\bar{E} = kT$
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Давление фотонного газа}
+
+\begin{equation}
+    \boxed{p = \frac{n\hbar\omega}{3} = \frac{u}{3}}
+\end{equation}
+
+где $u = n\hbar\omega$ --- плотность энергии излучения.
+
+Сравнение: для идеального газа $p = nkT = 2u_0/3$.
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Распределение скоростей смеси газов}
+
+Для смеси газов с молекулами масс $m_1$ и $m_2$:
+\begin{equation}
+    \boxed{\tilde{w}(v) = \sum_{i=1}^{2} \frac{N_i m_i^{3/2}}{(N_1 + N_2)} \cdot \frac{4\pi v^2}{(2\pi kT)^{3/2}} \exp\left(-\frac{m_i v^2}{2kT}\right)}
+\end{equation}
+
+При $m_1 \neq m_2$ и $N_1 m_1^{3/2} \approx N_2 m_2^{3/2}$ наблюдаются два максимума.
+
+\end{document}

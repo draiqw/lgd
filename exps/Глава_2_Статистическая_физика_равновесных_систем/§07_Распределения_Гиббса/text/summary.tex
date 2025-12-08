@@ -1,0 +1,282 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T2A]{fontenc}
+\usepackage[russian]{babel}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{geometry}
+\geometry{margin=2cm}
+
+\title{\S 7. Распределения Гиббса}
+\author{Конспект формул}
+\date{}
+
+\begin{document}
+\maketitle
+
+%═══════════════════════════════════════════════════════════════════
+\section{Краткая теория}
+%═══════════════════════════════════════════════════════════════════
+
+\subsection{Микросостояние системы}
+
+Состояние системы из $N$ частиц определяется координатами и импульсами всех частиц: $X = (x_1, x_2, \ldots, x_N) = (\vec{r}_1, \vec{r}_2, \ldots, \vec{r}_N, \vec{p}_1, \vec{p}_2, \ldots, \vec{p}_N)$, где $x_i = (\vec{r}_i, \vec{p}_i)$.
+
+\subsection{Функция Гамильтона}
+
+Эволюция системы описывается уравнениями Гамильтона с гамильтонианом, включающим кинетическую энергию, внешний потенциал $U_0$ и межчастичное взаимодействие $\Phi$.
+
+\subsection{Типы распределений}
+
+\begin{itemize}
+    \item \textbf{Микроканоническое} --- для изолированной системы с фиксированной энергией $E$
+    \item \textbf{Каноническое} --- для системы в термостате с фиксированной температурой $T$
+    \item \textbf{Большое каноническое} --- для системы с переменным числом частиц (фиксирован химический потенциал $\mu$)
+\end{itemize}
+
+\subsection{Энтропия и термодинамика}
+
+Энтропия выражается через функцию распределения и достигает максимума в состоянии равновесия. Это даёт статистическое обоснование второго начала термодинамики.
+
+%═══════════════════════════════════════════════════════════════════
+\section{Основные формулы}
+%═══════════════════════════════════════════════════════════════════
+
+\subsection{Уравнения Гамильтона}
+
+\begin{equation}
+    \boxed{\frac{d\vec{r}_i}{dt} = \frac{\partial H(X)}{\partial \vec{p}_i}, \qquad \frac{d\vec{p}_i}{dt} = -\frac{\partial H(X)}{\partial \vec{r}_i}}
+    \tag{7.1}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Функция Гамильтона}
+
+\begin{equation}
+    \boxed{H(X) = \sum_{i=1}^{N} \frac{\vec{p}_i^2}{2m} + U(\vec{r}_1, \ldots, \vec{r}_N) = \sum_{i=1}^{N} \left(\frac{\vec{p}_i^2}{2m} + U_0(\vec{r}_i)\right) + \sum_{i<j} \Phi(|\vec{r}_i - \vec{r}_j|)}
+    \tag{7.2}
+\end{equation}
+
+где $m$ --- масса частицы, $U_0$ --- потенциал внешнего поля, $\Phi$ --- потенциал межчастичного взаимодействия.
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Микроканоническое распределение Гиббса}
+
+Для изолированной системы с энергией $E$:
+\begin{equation}
+    \boxed{w_N(X, a, E) = \frac{\delta(H(X, a) - E)}{\tilde{\Omega}(a, E)}}
+    \tag{7.4}
+\end{equation}
+
+\textbf{Статистический вес:}
+\begin{equation}
+    \tilde{\Omega}(a, E) = \int \delta(H(X, a) - E)\,dX
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Каноническое распределение Гиббса (классическое)}
+
+Для системы в термостате с температурой $T$:
+\begin{equation}
+    \boxed{w_N(X, a, T) = \frac{\exp(-H(X, a)/kT)}{Z(a, T)}}
+    \tag{7.5}
+\end{equation}
+
+\textbf{Статистический интеграл:}
+\begin{equation}
+    \boxed{Z(a, T) = \int \exp(-H(X, a)/kT)\,dX}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Факторизация канонического распределения}
+
+Если $H(X) = \sum_{\alpha=1}^{m} H_\alpha(X_\alpha)$, то:
+\begin{equation}
+    \boxed{w_N(X) = \prod_{\alpha=1}^{m} \frac{\exp(-H_\alpha(X_\alpha)/kT)}{Z_\alpha(a, T, N_\alpha)}}
+    \tag{7.6}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Квантовое микроканоническое распределение}
+
+\begin{equation}
+    \boxed{P_n(N, a, E) = \frac{\delta_{E, E_n}}{\Omega_1(a, N, E)}}
+    \tag{7.7}
+\end{equation}
+
+где $\Omega_1 = \sum_n \delta_{E, E_n}$ --- число микросостояний с энергией $E$.
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Квантовое каноническое распределение}
+
+\begin{equation}
+    \boxed{P_n(N, a, T) = \frac{\exp(-E_n/kT)}{Z_1(a, N, E)} = \exp\left(\frac{F - E_n}{kT}\right)}
+    \tag{7.8}
+\end{equation}
+
+\textbf{Статистическая сумма:}
+\begin{equation}
+    \boxed{Z_1 = \sum_n \exp(-E_n/kT)}
+    \tag{7.9}
+\end{equation}
+
+\textbf{Связь со свободной энергией:}
+\begin{equation}
+    \boxed{F = -kT \ln Z_1(a, N, E)}
+    \tag{7.10}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Переход от квантовой суммы к классическому интегралу}
+
+\begin{equation}
+    \boxed{Z_1 = \sum_n \exp(-E_n/kT) \to \vartheta(N) Z(a, T)}
+    \tag{7.11}
+\end{equation}
+
+где $\vartheta(N) = [(2\pi\hbar)^{3N} N!]^{-1}$, $\hbar = 1{,}0546 \cdot 10^{-34}$ Дж$\cdot$с.
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Большое каноническое распределение}
+
+Для системы с переменным числом частиц:
+\begin{equation}
+    \boxed{P_{n,N}(a, T, \mu) = \frac{\exp[(\mu N - E_{n,N})/kT]}{Z_2(a, T, \mu)}}
+    \tag{7.12}
+\end{equation}
+
+\textbf{Большая статистическая сумма:}
+\begin{equation}
+    \boxed{Z_2 = \sum_{N,n} \exp[(\mu N - E_{n,N})/kT]}
+    \tag{7.13}
+\end{equation}
+
+\textbf{Связь с большим потенциалом:}
+\begin{equation}
+    \boxed{\Omega = -kT \ln Z_2 = F - \mu N}
+    \tag{7.14}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Среднее число частиц}
+
+\begin{equation}
+    \boxed{N(a, T, \mu) = -\left(\frac{\partial \Omega}{\partial \mu}\right)_{a,T}}
+    \tag{7.16}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Энтропия через функцию распределения}
+
+\textbf{Квантовый случай:}
+\begin{equation}
+    \boxed{S(a, T, \mu) = -k \sum_{n,N} P_{n,N} \ln P_{n,N}}
+    \tag{7.19}
+\end{equation}
+
+\textbf{Классический случай:}
+\begin{equation}
+    \boxed{S(a, T, \mu) = -k \sum_N \vartheta(N) \int w_N \ln(w_N)\,dX = -k \ln w_N}
+    \tag{7.20}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Теорема о равномерном распределении энергии}
+
+\begin{equation}
+    \boxed{\bar{H} = \left(\frac{s_1}{2} + \frac{s_2}{\eta}\right)kT}
+    \tag{7.21}
+\end{equation}
+
+где $s_1$ --- полное число степеней свободы, $s_2$ --- число колебательных степеней свободы.
+
+\textbf{Для потенциала} $U(\lambda\vec{r}_1, \ldots, \lambda\vec{r}_N) = \lambda^\eta U(\vec{r}_1, \ldots, \vec{r}_N)$.
+
+\textbf{Следствие:} На каждую поступательную или вращательную степень свободы приходится энергия $kT/2$, на колебательную --- $kT$.
+
+%═══════════════════════════════════════════════════════════════════
+\section{Полезные соотношения из примеров}
+%═══════════════════════════════════════════════════════════════════
+
+\subsection{Гауссов интеграл}
+
+\begin{equation}
+    \boxed{\int_{-\infty}^{\infty} u^{2n} \exp(-\alpha u^2)\,du = \frac{(2n-1)!!}{(2\alpha)^n} \sqrt{\frac{\pi}{\alpha}}}
+    \tag{7.22}
+\end{equation}
+
+где $(2n-1)!! = 1 \cdot 3 \cdot 5 \cdots (2n-1)$ при $n \geq 1$, и $(-1)!! = 1$.
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Статистический интеграл идеального газа}
+
+Для $N$ частиц в объёме $V$:
+\begin{equation}
+    \boxed{Z(a, T) = V^N (2\pi mkT)^{3N/2}}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Свободная энергия идеального газа}
+
+\begin{equation}
+    \boxed{F = -kTN\left\{1 + \ln\left[\frac{V(2\pi mkT)^{3/2}}{N(2\pi\hbar)^3}\right]\right\}}
+    \tag{7.32}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Уравнение состояния}
+
+\begin{equation}
+    \boxed{p = -\left(\frac{\partial F}{\partial V}\right)_T = \frac{kTN}{V} \quad \Rightarrow \quad pV = \nu RT}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Внутренняя энергия идеального газа}
+
+\begin{equation}
+    \boxed{U = F - T\left(\frac{\partial F}{\partial T}\right)_V = \frac{3kTN}{2} = \frac{3\nu RT}{2}}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Энтропия идеального газа (формула Сакура--Тетроде)}
+
+\begin{equation}
+    \boxed{S = -\left(\frac{\partial F}{\partial T}\right)_{V,N} = kN\left\{\frac{5}{2} + \ln\left[\frac{(2\pi mkT)^{3/2}V}{(2\pi\hbar)^3 N}\right]\right\}}
+    \tag{7.33}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Химический потенциал идеального газа}
+
+\begin{equation}
+    \boxed{\mu = kT \ln\left[\frac{N(2\pi\hbar)^3}{V(2\pi mkT)^{3/2}}\right]}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Теплоёмкость газа в поле тяжести}
+
+\begin{equation}
+    \boxed{\tilde{C}_V = \frac{5kN}{2}}
+\end{equation}
+
+(больше, чем $3kN/2$ для свободного газа, из-за потенциальной энергии)
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Ультрарелятивистский газ ($E = cp$)}
+
+\textbf{Теплоёмкость:}
+\begin{equation}
+    \boxed{\tilde{C}_V = 3Nk = 3\nu R}
+\end{equation}
+(в 2 раза больше нерелятивистского)
+
+\textbf{Уравнение состояния:} $pV = \nu RT$ (такое же, как у нерелятивистского газа)
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Внутренняя энергия двухатомного газа}
+
+Для молекул с поступательными, вращательными и колебательными степенями свободы:
+\begin{equation}
+    \boxed{U = \frac{7RT}{2}} \quad (s_1 = 6, \, s_2 = 1, \, \eta = 2)
+\end{equation}
+
+\end{document}

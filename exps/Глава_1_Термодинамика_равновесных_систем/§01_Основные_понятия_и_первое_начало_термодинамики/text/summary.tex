@@ -1,0 +1,269 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T2A]{fontenc}
+\usepackage[russian]{babel}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{geometry}
+\geometry{margin=2cm}
+
+\title{\S 1. Основные понятия и первое начало термодинамики}
+\author{Конспект формул}
+\date{}
+
+\begin{document}
+\maketitle
+
+%═══════════════════════════════════════════════════════════════════
+\section{Краткая теория}
+%═══════════════════════════════════════════════════════════════════
+
+\subsection{Основные определения}
+
+\textbf{Термодинамическая система} --- совокупность $N \sim N_A$ хаотически движущихся частиц в ограниченной области пространства.
+
+\textbf{Параметры системы:}
+\begin{itemize}
+    \item \textbf{Внешние} $a_i$ $(i = 1, 2, \ldots, n)$ --- определяются состоянием тел вне системы
+    \item \textbf{Внутренние} $b_j$ --- определяются движением частиц системы
+    \item \textbf{Интенсивные} --- не зависят от массы (давление, температура)
+    \item \textbf{Экстенсивные} --- пропорциональны массе (объём, энергия)
+\end{itemize}
+
+\textbf{Термодинамическое равновесие} --- состояние изолированной системы, из которого она самопроизвольно выйти не может. Характеризуется абсолютной температурой $T$ [K].
+
+\textbf{Равновесный (квазистатический) процесс} --- процесс, при котором система в каждый момент времени находится в состоянии термодинамического равновесия.
+
+\textbf{Теплоёмкость} $\tilde{C} = \delta Q / dT$ --- количество теплоты для изменения температуры на $dT$.
+
+\textbf{Адиабатический процесс} --- процесс без теплообмена с окружающей средой ($\delta Q = 0$).
+
+%═══════════════════════════════════════════════════════════════════
+\section{Основные формулы}
+%═══════════════════════════════════════════════════════════════════
+
+\subsection{Фундаментальные константы}
+
+\begin{align}
+    N_A &= 6{,}02 \cdot 10^{23} \text{ моль}^{-1} && \text{(число Авогадро)} \\[6pt]
+    R &= 8{,}31 \text{ Дж/(моль$\cdot$К)} && \text{(универсальная газовая постоянная)} \\[6pt]
+    k &= \frac{R}{N_A} = 1{,}38 \cdot 10^{-23} \text{ Дж/К} && \text{(постоянная Больцмана)}
+\end{align}
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Уравнения состояния}
+
+\textbf{Термическое уравнение состояния (общий вид):}
+\begin{equation}
+    B_i = B_i(a_1, a_2, \ldots, T)
+    \tag{1.1}
+\end{equation}
+где $B_i$ --- обобщённая термодинамическая сила, сопряжённая параметру $a_i$.
+
+\textbf{Уравнение Клапейрона--Менделеева (идеальный газ):}
+\begin{equation}
+    \boxed{pV = \frac{m}{\mu}RT = \nu RT}
+    \tag{1.2}
+\end{equation}
+где $\nu = m/\mu$ --- число молей, $\mu$ --- молярная масса.
+
+\textbf{Калорическое уравнение состояния (внутренняя энергия идеального газа):}
+\begin{equation}
+    \boxed{U = \frac{i}{2}kTN = \frac{i}{2}\frac{m}{\mu}RT}
+    \tag{1.3}
+\end{equation}
+где $i$ --- число степеней свободы молекулы.
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Условие равновесного процесса}
+
+\begin{equation}
+    \frac{da_i}{dt} \ll \frac{\Delta a_i}{\tau}, \qquad \frac{db_j}{dt} \ll \frac{\Delta b_j}{\tau}
+    \tag{1.4}
+\end{equation}
+где $\tau$ --- время релаксации системы.
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Работа и теплота}
+
+\textbf{Элементарная работа (общий случай):}
+\begin{equation}
+    \delta A = \sum_{i=1}^{n} B_i \, da_i
+    \tag{1.5}
+\end{equation}
+
+\textbf{Работа газа при изменении объёма:}
+\begin{equation}
+    \boxed{A = \int_{V_0}^{V_1} p(V) \, dV}
+    \tag{1.6}
+\end{equation}
+
+\textbf{Теплоёмкость системы:}
+\begin{equation}
+    \tilde{C} \equiv \frac{\delta Q}{dT}
+    \tag{1.7}
+\end{equation}
+
+Связь теплоёмкостей: $C = \tilde{C}/\nu$, \quad $c = \tilde{C}/m$, \quad где $\nu = m/\mu$.
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Первое начало термодинамики}
+
+\begin{equation}
+    \boxed{\delta Q = dU(a_1, \ldots, a_n, T) + \delta A}
+    \tag{1.8}
+\end{equation}
+
+\textbf{Для кругового процесса (цикла):}
+\begin{equation}
+    A = Q_1 + Q_2 = Q_1 - |Q_2|
+    \tag{1.9}
+\end{equation}
+где $Q_1$ --- теплота от нагревателя, $Q_2$ --- теплота холодильнику.
+
+\textbf{КПД тепловой машины:}
+\begin{equation}
+    \boxed{\eta = \frac{A}{Q_1}}
+\end{equation}
+
+\textbf{Холодильный коэффициент:}
+\begin{equation}
+    \eta_x = \frac{|Q_2|}{A}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Теплоёмкость идеального газа}
+
+\textbf{Теплоёмкость при постоянном объёме:}
+\begin{equation}
+    \boxed{C_V = \frac{i}{2}R}
+\end{equation}
+
+\textbf{Теплоёмкость при постоянном давлении:}
+\begin{equation}
+    \boxed{C_p = C_V + R = \frac{i+2}{2}R}
+\end{equation}
+
+\textbf{Показатель адиабаты:}
+\begin{equation}
+    \boxed{\gamma = \frac{C_p}{C_V} = \frac{i+2}{i}}
+\end{equation}
+
+\textbf{Общая формула теплоёмкости:}
+\begin{equation}
+    C = C_V + p\frac{dV}{dT}
+    \tag{1.10}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Политропный процесс}
+
+\textbf{Уравнение политропы:}
+\begin{equation}
+    \boxed{pV^n = \text{const}}
+    \tag{1.11}
+\end{equation}
+
+\textbf{Показатель политропы:}
+\begin{equation}
+    n = \frac{C - C_p}{C - C_V}
+\end{equation}
+
+\textbf{Теплоёмкость в политропном процессе:}
+\begin{equation}
+    C(n) = C_V \frac{n - \gamma}{n - 1}
+\end{equation}
+
+\textbf{Частные случаи:}
+\begin{center}
+\begin{tabular}{|c|c|c|c|}
+\hline
+$n$ & Процесс & Условие & Теплоёмкость \\
+\hline
+$0$ & Изобарический & $p = \text{const}$ & $C_p$ \\
+$1$ & Изотермический & $T = \text{const}$ & $\pm\infty$ \\
+$\gamma$ & Адиабатический & $\delta Q = 0$ & $0$ \\
+$\infty$ & Изохорический & $V = \text{const}$ & $C_V$ \\
+\hline
+\end{tabular}
+\end{center}
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Термические коэффициенты}
+
+\textbf{Коэффициент объёмного расширения:}
+\begin{equation}
+    \alpha = \frac{1}{V_0}\left(\frac{\partial V}{\partial T}\right)_p
+\end{equation}
+
+\textbf{Температурный коэффициент давления:}
+\begin{equation}
+    \lambda = \frac{1}{p_0}\left(\frac{\partial p}{\partial T}\right)_V
+\end{equation}
+
+\textbf{Изотермическая сжимаемость:}
+\begin{equation}
+    \beta = -\frac{1}{V_0}\left(\frac{\partial V}{\partial p}\right)_T
+\end{equation}
+
+\textbf{Для идеального газа при $T_0 = 273$ К:}
+\begin{equation}
+    \alpha = \lambda = \frac{1}{T_0}, \qquad \beta = \frac{1}{p_0}, \qquad \alpha = p_0 \beta \lambda
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Цикл Карно}
+
+\textbf{КПД цикла Карно (идеальный газ):}
+\begin{equation}
+    \boxed{\eta = 1 - \frac{T_2}{T_1}}
+\end{equation}
+где $T_1$ --- температура нагревателя, $T_2$ --- температура холодильника.
+
+\textbf{Теплота на изотерме:}
+\begin{equation}
+    Q_{12} = \nu RT_1 \ln\frac{V_2}{V_1}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Разность теплоёмкостей (общий случай)}
+
+Для любого однородного изотропного вещества:
+\begin{equation}
+    \tilde{C}_p - \tilde{C}_V = \left[\left(\frac{\partial U}{\partial V}\right)_T + p\right]\left(\frac{\partial V}{\partial T}\right)_p
+\end{equation}
+
+%═══════════════════════════════════════════════════════════════════
+\section{Полезные соотношения из примеров}
+%═══════════════════════════════════════════════════════════════════
+
+\textbf{Изменение внутренней энергии идеального газа:}
+\begin{equation}
+    \Delta U = \frac{m}{\mu} C_V \Delta T = \nu C_V \Delta T
+\end{equation}
+
+\textbf{Теплота в изобарическом процессе:}
+\begin{equation}
+    Q_p = \nu C_p \Delta T
+\end{equation}
+
+\textbf{Теплота в изохорическом процессе:}
+\begin{equation}
+    Q_V = \nu C_V \Delta T = \Delta U
+\end{equation}
+
+\textbf{Работа в изобарическом процессе:}
+\begin{equation}
+    A = p \Delta V = \nu R \Delta T
+\end{equation}
+
+\textbf{Работа в изотермическом процессе:}
+\begin{equation}
+    A = \nu RT \ln\frac{V_2}{V_1}
+\end{equation}
+
+\textbf{Связь холодильного коэффициента и КПД (машина Карно):}
+\begin{equation}
+    \eta_x = \frac{|Q_2|}{A} = \frac{1-\eta}{\eta} = \eta^{-1} - 1
+\end{equation}
+
+\end{document}

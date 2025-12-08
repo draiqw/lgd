@@ -1,0 +1,166 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T2A]{fontenc}
+\usepackage[russian]{babel}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{geometry}
+\geometry{margin=2cm}
+
+\title{\S 10. Цепочка уравнений для равновесных функций распределения}
+\author{Конспект формул}
+\date{}
+
+\begin{document}
+\maketitle
+
+%═══════════════════════════════════════════════════════════════════
+\section{Краткая теория}
+%═══════════════════════════════════════════════════════════════════
+
+\subsection{Многочастичные функции распределения}
+
+Для учёта межмолекулярного взаимодействия вводятся $S$-частичные функции распределения $f_S(\vec{r}_1, \vec{r}_2, \ldots, \vec{r}_S)$, описывающие вероятность одновременного нахождения $S$ частиц в заданных точках пространства.
+
+\subsection{Цепочка ББГКИ}
+
+Функции распределения связаны бесконечной цепочкой интегро-дифференциальных уравнений: уравнение для $f_1$ содержит $f_2$, уравнение для $f_2$ содержит $f_3$ и т.д. Эта цепочка называется цепочкой ББГКИ (Боголюбова--Борна--Грина--Кирквуда--Ивона).
+
+\subsection{Разреженный газ}
+
+Для разреженного газа ($\varepsilon = Nr_0^3/V \ll 1$) цепочку уравнений можно решать методом теории возмущений по параметру плотности $\varepsilon$.
+
+%═══════════════════════════════════════════════════════════════════
+\section{Основные формулы}
+%═══════════════════════════════════════════════════════════════════
+
+\subsection{Факторизация канонического распределения}
+
+\begin{equation}
+    \boxed{w_N(\vec{p}_1, \ldots, \vec{p}_N, \vec{r}_1, \ldots, \vec{r}_N, T) = f_N(\vec{r}_1, \ldots, \vec{r}_N) \prod_{i=1}^{N} w^{(3)}(\vec{p}_i)}
+    \tag{10.1}
+\end{equation}
+
+где $w^{(3)}(\vec{p}_i)$ --- распределение Максвелла.
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Конфигурационная функция распределения}
+
+\begin{equation}
+    \boxed{f_N(\vec{r}_1, \ldots, \vec{r}_N) = Q_N^{-1} \exp\left[-\frac{1}{kT}\left(\sum_{i=1}^{N} U_0(\vec{r}_i) + \sum_{1 \leq i < j \leq N} \Phi(|\vec{r}_i - \vec{r}_j|)\right)\right]}
+    \tag{10.2}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Конфигурационный интеграл}
+
+\begin{equation}
+    \boxed{Q_N = \int \exp\left[-\frac{1}{kT}\left(\sum_{i=1}^{N} U_0(\vec{r}_i) + \sum_{1 \leq i < j \leq N} \Phi(|\vec{r}_i - \vec{r}_j|)\right)\right] d\vec{r}_1 \ldots d\vec{r}_N}
+    \tag{10.3}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Свободная энергия}
+
+\begin{equation}
+    \boxed{F = -kTN\left\{1 + \ln\left[\frac{V(2\pi mkT)^{3/2}}{N(2\pi\hbar)^3}\right]\right\} - kT \ln\left[\frac{Q_N}{V^N}\right]}
+    \tag{10.4}
+\end{equation}
+
+Последнее слагаемое --- поправка на взаимодействие.
+
+%───────────────────────────────────────────────────────────────────
+\subsection{$S$-частичные функции распределения}
+
+\begin{equation}
+    \boxed{f_S(\vec{r}_1, \ldots, \vec{r}_S) = V^S \int f_N(\vec{r}_1, \ldots, \vec{r}_N) d\vec{r}_{S+1} \ldots d\vec{r}_N}
+    \tag{10.5}
+\end{equation}
+
+\textbf{Условие нормировки:}
+\begin{equation}
+    \boxed{V^{-S} \int f_S(\vec{r}_1, \ldots, \vec{r}_S) d\vec{r}_1 \ldots d\vec{r}_S = 1}
+    \tag{10.6}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Первое уравнение цепочки}
+
+\begin{equation}
+    \boxed{\frac{\partial f_1(\vec{r}_1)}{\partial \vec{r}_1} + \frac{1}{kT}\frac{\partial U_0(\vec{r}_1)}{\partial \vec{r}_1} f_1(\vec{r}_1) = -\frac{N}{VkT} \int \frac{\partial \Phi(|\vec{r}_1 - \vec{r}_2|)}{\partial \vec{r}_1} f_2(\vec{r}_1, \vec{r}_2) d\vec{r}_2}
+    \tag{10.7}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Второе уравнение цепочки}
+
+\begin{multline}
+    \frac{\partial f_2(\vec{r}_1, \vec{r}_2)}{\partial \vec{r}_{1,2}} + \frac{1}{kT}\frac{\partial U_0(\vec{r}_{1,2})}{\partial \vec{r}_{1,2}} f_2 + \frac{1}{kT}\frac{\partial \Phi(|\vec{r}_1 - \vec{r}_2|)}{\partial \vec{r}_{1,2}} f_2 = \\
+    = -\frac{N}{VkT} \int \frac{\partial \Phi(|\vec{r}_{1,2} - \vec{r}_3|)}{\partial \vec{r}_{1,2}} f_3(\vec{r}_1, \vec{r}_2, \vec{r}_3) d\vec{r}_3
+    \tag{10.8}
+\end{multline}
+
+%═══════════════════════════════════════════════════════════════════
+\section{Полезные соотношения из примеров}
+%═══════════════════════════════════════════════════════════════════
+
+\subsection{Двухчастичная функция в нулевом приближении}
+
+При $U_0 = 0$ и $\Phi_0 \ll kT$:
+\begin{equation}
+    \boxed{f_2^{(0)}(\vec{r}_1, \vec{r}_2) = \exp\left[-\frac{\Phi(|\vec{r}_1 - \vec{r}_2|)}{kT}\right]}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Поправка к свободной энергии от взаимодействия}
+
+\begin{equation}
+    \boxed{F_1 = \frac{2\pi N^2}{V} \int_0^1 d\lambda \int_0^{\infty} r^2 \Phi(r) f_2(\lambda, r) \, dr}
+    \tag{10.19}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Свободная энергия с поправкой на взаимодействие}
+
+\begin{equation}
+    \boxed{F = -kTN\left\{1 + \ln\left[\frac{V(2\pi mkT)^{3/2}}{N(2\pi\hbar)^3}\right]\right\} + \frac{kTN^2}{V}\left[\tilde{b} - \frac{\tilde{a}}{kT}\right]}
+    \tag{10.21}
+\end{equation}
+
+где
+\begin{equation}
+    \tilde{b} = \frac{2\pi r_0^3}{3}, \qquad \tilde{a} = 2\pi \int_{r_0}^{\infty} |\Phi(r)| r^2 \, dr
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Уравнение состояния с поправкой}
+
+\begin{equation}
+    \boxed{p = \frac{NkT}{V}\left[1 + \frac{N(\tilde{b} - \tilde{a}/kT)}{V}\right]}
+    \tag{10.22}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Связь с константами Ван-дер-Ваальса}
+
+\begin{equation}
+    \boxed{a = N_A^2 \tilde{a}, \qquad b = N_A \tilde{b}}
+    \tag{10.23}
+\end{equation}
+
+где $N_A$ --- число Авогадро.
+
+При малой плотности ($b/V \ll 1$) уравнение Ван-дер-Ваальса:
+\begin{equation}
+    p \approx \frac{kNT}{V}\left(1 + \frac{\nu b}{V}\right) - \frac{\nu^2 a}{V^2}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Энтропия неидеального газа}
+
+\begin{equation}
+    S = kN\left\{\frac{5}{2} + \ln\left[\frac{V(2\pi mkT)^{3/2}}{N(2\pi\hbar)^3}\right]\right\} - \frac{N\tilde{b}}{V}
+\end{equation}
+
+Энтропия неидеального газа \textbf{меньше} энтропии идеального газа при тех же $\nu$, $V$, $T$ из-за ``занятого'' молекулами объёма.
+
+\end{document}

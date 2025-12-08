@@ -1,0 +1,182 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T2A]{fontenc}
+\usepackage[russian]{babel}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{geometry}
+\geometry{margin=2cm}
+
+\title{\S 14. Броуновское движение}
+\author{Конспект формул}
+\date{}
+
+\begin{document}
+\maketitle
+
+%═══════════════════════════════════════════════════════════════════
+\section{Краткая теория}
+%═══════════════════════════════════════════════════════════════════
+
+\subsection{Определение}
+
+\textbf{Броуновское движение} --- беспорядочное движение малых частиц (взвешенных в жидкости или газе) под действием ударов молекул окружающей среды. Причина --- флуктуации давления.
+
+\subsection{Характерные параметры}
+
+\begin{itemize}
+    \item $M$ --- масса броуновской частицы
+    \item $R_0$ --- радиус частицы
+    \item $\eta_0$ --- динамическая вязкость среды
+    \item $\gamma^{-1} = M/6\pi R_0\eta_0$ --- время релаксации импульса
+    \item $D = kT/M\gamma$ --- коэффициент диффузии
+\end{itemize}
+
+%═══════════════════════════════════════════════════════════════════
+\section{Основные формулы}
+%═══════════════════════════════════════════════════════════════════
+
+\subsection{Уравнение Фоккера--Планка}
+
+\begin{equation}
+    \boxed{\left(\frac{\partial}{\partial t} + \frac{\vec{p}}{M}\frac{\partial}{\partial \vec{r}} - \frac{\partial U_0(\vec{r})}{\partial \vec{r}}\frac{\partial}{\partial \vec{p}}\right)w_1 = \gamma MkT\frac{\partial^2 w_1}{\partial \vec{p}^2} + \frac{\partial}{\partial \vec{p}}[\gamma\vec{p}w_1]}
+    \tag{14.1}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Распределение по импульсам}
+
+При начальном импульсе $\vec{p}_0$:
+\begin{equation}
+    \boxed{w(\vec{p}, t) = \frac{1}{(2\pi MkT)^{3/2}[1 - \alpha^2(t)]^{3/2}} \exp\left(-\frac{[\vec{p} - \vec{p}_0\alpha(t)]^2}{2MkT[1 - \alpha^2(t)]}\right)}
+    \tag{14.2}
+\end{equation}
+
+где $\alpha(t) = \exp(-\gamma t)$.
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Распределение по координатам}
+
+При начальном положении $\vec{r} = 0$ и импульсе $\vec{p}_0$:
+\begin{equation}
+    \boxed{w(\vec{r}, t) = [4\pi D\beta(t)]^{-3/2} \exp\left(-\frac{\{\vec{r} - (\vec{p}_0/\gamma M)[1 - \alpha(t)]\}^2}{4D\beta(t)}\right)}
+    \tag{14.3}
+\end{equation}
+
+где $\beta(t) = [\gamma t + 4\alpha(t) - \alpha^2(t) - 3]/\gamma$, $D = kT/M\gamma$.
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Средний квадрат радиус-вектора}
+
+\begin{equation}
+    \boxed{\overline{r^2} = \frac{6kT[\gamma t + 4\alpha(t) - \alpha^2(t) - 3]}{M\gamma^2} + \frac{p_0^2[1 - \alpha(t)]^2}{\gamma^2 M^2}}
+    \tag{14.4}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Асимптотика при $t \gg \gamma^{-1}$}
+
+\begin{equation}
+    \boxed{w(\vec{r}, t) = (4\pi Dt)^{-3/2} \exp\left[-\frac{(\vec{r} - \vec{p}_0/\gamma M)^2}{4Dt}\right]}
+    \tag{14.5}
+\end{equation}
+
+\begin{equation}
+    \boxed{\overline{r^2} = 6Dt + \frac{p_0^2}{\gamma^2 M^2} = \frac{6kTt}{M\gamma} + \frac{p_0^2}{\gamma^2 M^2}}
+    \tag{14.6}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Уравнение диффузии для броуновских частиц}
+
+\begin{equation}
+    \boxed{\frac{\partial w(\vec{r}, t)}{\partial t} = D\Delta w(\vec{r}, t)}
+    \tag{14.7}
+\end{equation}
+
+Справедливо при $\gamma t \gg 1$.
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Формула Эйнштейна для дисперсии импульса}
+
+При $\tau_1 \ll t \ll \gamma^{-1}$:
+\begin{equation}
+    \boxed{(\Delta p)^2 = 2MkT\gamma t}
+\end{equation}
+
+%═══════════════════════════════════════════════════════════════════
+\section{Полезные соотношения из примеров}
+%═══════════════════════════════════════════════════════════════════
+
+\subsection{Коэффициент диффузии из наблюдений}
+
+Для двумерного случая (наблюдение в плоскости):
+\begin{equation}
+    \boxed{l^2 = 4Dt_0 \quad \Rightarrow \quad D = \frac{l^2}{4t_0}}
+\end{equation}
+
+\subsection{Плотность распределения первого достижения точки $z_0$}
+
+\begin{equation}
+    \boxed{w(t) = z_0(4\pi Dt^3)^{-1/2} \exp\left(-\frac{z_0^2}{4Dt}\right)}
+\end{equation}
+
+Максимум при $t^* = z_0^2/6D$.
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Движение в поле тяжести}
+
+При $t \gg \gamma^{-1}$:
+\begin{equation}
+    \boxed{\bar{z} - z_0 = \frac{gt}{\gamma}, \qquad \overline{(z - z_0)^2} = \left(\frac{gt}{\gamma}\right)^2 + \frac{2kTt}{M\gamma}}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Движение с отражающей стенкой}
+
+При наличии непроницаемой стенки в точке $z = 0$:
+\begin{equation}
+    \boxed{w(z, t) = (4\pi Dt)^{-1/2}\left\{\exp\left[-\frac{(z - z_0)^2}{4Dt}\right] + \exp\left[-\frac{(z + z_0)^2}{4Dt}\right]\right\}}
+\end{equation}
+
+При $t \gg z_0^2/D$:
+\begin{equation}
+    \boxed{\bar{z} - z_0 = 2\sqrt{\frac{Dt}{\pi}}}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Убывание свободной энергии}
+
+Для броуновских частиц в неравновесном состоянии:
+\begin{equation}
+    \boxed{\frac{dF(t)}{dt} = -(kT)^2 N\gamma \int \frac{M}{w_1}\left(\frac{\partial w_1}{\partial \vec{p}} + \frac{\vec{p}}{MkT}w_1\right)^2 d\vec{r}d\vec{p} \leq 0}
+    \tag{14.11}
+\end{equation}
+
+Свободная энергия убывает до достижения равновесия.
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Формула Стокса--Эйнштейна}
+
+Связь коэффициента диффузии с вязкостью среды:
+\begin{equation}
+    \boxed{D = \frac{kT}{6\pi\eta_0 R_0}}
+\end{equation}
+
+где $\eta_0$ --- динамическая вязкость, $R_0$ --- радиус частицы.
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Время релаксации импульса}
+
+\begin{equation}
+    \boxed{\gamma^{-1} = \frac{M}{6\pi R_0\eta_0}}
+    \tag{13.2}
+\end{equation}
+
+\subsection{Область применимости формул}
+
+\begin{itemize}
+    \item Формулы (14.5), (14.6) справедливы при $L^2/D \gg t \gg \gamma^{-1}$
+    \item $L$ --- характерный размер области движения частиц
+\end{itemize}
+
+\end{document}

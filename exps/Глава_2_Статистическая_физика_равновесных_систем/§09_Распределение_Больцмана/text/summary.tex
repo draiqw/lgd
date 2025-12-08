@@ -1,0 +1,175 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T2A]{fontenc}
+\usepackage[russian]{babel}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{geometry}
+\geometry{margin=2cm}
+
+\title{\S 9. Распределение Больцмана}
+\author{Конспект формул}
+\date{}
+
+\begin{document}
+\maketitle
+
+%═══════════════════════════════════════════════════════════════════
+\section{Краткая теория}
+%═══════════════════════════════════════════════════════════════════
+
+\subsection{Суть распределения Больцмана}
+
+Распределение Больцмана описывает распределение молекул идеального газа по координатам в присутствии внешнего потенциального поля $U_0(\vec{r})$. Является следствием канонического распределения Гиббса при пренебрежении межмолекулярным взаимодействием.
+
+\subsection{Применения}
+
+\begin{itemize}
+    \item Распределение молекул в поле тяжести (атмосфера)
+    \item Центрифугирование и разделение изотопов
+    \item Седиментация взвешенных частиц
+\end{itemize}
+
+%═══════════════════════════════════════════════════════════════════
+\section{Основные формулы}
+%═══════════════════════════════════════════════════════════════════
+
+\subsection{Плотность распределения вероятностей по координатам}
+
+\begin{equation}
+    \boxed{w^{(3)}(\vec{r}) = \frac{\exp(-U_0(\vec{r})/kT)}{\displaystyle\int_V \exp(-U_0(\vec{r})/kT)\,d\vec{r}}}
+    \tag{9.1}
+\end{equation}
+
+где $U_0(\vec{r})$ --- потенциальная энергия молекулы во внешнем поле, $V$ --- объём системы.
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Связь с концентрацией}
+
+\begin{equation}
+    \boxed{n(\vec{r}) = N w^{(3)}(\vec{r})}
+    \tag{9.2}
+\end{equation}
+
+где $N$ --- полное число молекул.
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Распределение в поле тяжести}
+
+Для потенциала $U_0(z) = mgz$:
+\begin{equation}
+    \boxed{w(z) = \frac{mg}{kT} \exp\left(-\frac{mgz}{kT}\right)}
+    \tag{9.3}
+\end{equation}
+
+\textbf{Высота центра масс газа:}
+\begin{equation}
+    \boxed{z_c = \bar{z} = \frac{kT}{mg}}
+    \tag{9.4}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Барометрическая формула}
+
+\textbf{Концентрация:}
+\begin{equation}
+    \boxed{n(z) = n(0) \exp\left(-\frac{m_0 gz}{kT}\right)}
+    \tag{9.5}
+\end{equation}
+
+\textbf{Давление:}
+\begin{equation}
+    \boxed{p(z) = p(0) \exp\left(-\frac{m_0 gz}{kT}\right)}
+    \tag{9.6}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Газ в цилиндрическом сосуде высотой $H$}
+
+\begin{equation}
+    \boxed{w(z) = \frac{mg}{kT} \cdot \frac{\exp(-mgz/kT)}{1 - \exp(-mgH/kT)}}
+    \tag{9.7}
+\end{equation}
+
+\textbf{Средняя потенциальная энергия:}
+\begin{equation}
+    \bar{U}_0 = kT - \frac{mgH}{\exp(mgH/kT) - 1}
+\end{equation}
+
+\textbf{Положение центра масс:}
+\begin{equation}
+    \boxed{z_c = \frac{kT}{mg} - \frac{H}{\exp(mgH/kT) - 1}}
+    \tag{9.8}
+\end{equation}
+
+\textbf{Предельные случаи:}
+\begin{itemize}
+    \item $mgH \ll kT$: $\bar{U}_0 \approx mgH/2$, $z_c \approx H/2$
+    \item $mgH \gg kT$: $\bar{U}_0 \approx kT$, $z_c \approx kT/mg$
+\end{itemize}
+
+%═══════════════════════════════════════════════════════════════════
+\section{Полезные соотношения из примеров}
+%═══════════════════════════════════════════════════════════════════
+
+\subsection{Флуктуации потенциальной энергии}
+
+Для газа в поле тяжести:
+\begin{equation}
+    \boxed{\bar{U}_0 = kT, \qquad \sigma^2(U_0) = (kT)^2, \qquad \delta(U_0) = 1}
+\end{equation}
+
+(относительная флуктуация равна единице!)
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Центрифугирование}
+
+\textbf{Потенциальная энергия} во вращающейся системе отсчёта:
+\begin{equation}
+    U_0 = -\frac{m\omega^2 r^2}{2}
+\end{equation}
+
+\textbf{Распределение концентрации:}
+\begin{equation}
+    \boxed{\frac{n_i(r)}{n_i(0)} = \exp\left(\frac{m_i \omega^2 r^2}{2kT}\right)}
+    \tag{9.10}
+\end{equation}
+
+\textbf{Коэффициент разделения изотопов:}
+\begin{equation}
+    \boxed{q = \frac{n_1(R)/n_1(0)}{n_2(R)/n_2(0)} = \exp\left[\frac{(m_1 - m_2)\omega^2 R^2}{2kT}\right]}
+\end{equation}
+
+Коэффициент разделения увеличивается при:
+\begin{itemize}
+    \item уменьшении температуры
+    \item увеличении разности масс $|m_1 - m_2|$
+    \item увеличении $\omega$ и $R$
+\end{itemize}
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Толщина слоя с заданным изменением концентрации}
+
+При изменении концентрации на $\Delta n/n$:
+\begin{equation}
+    \boxed{\Delta z \approx \frac{kT}{mg} \cdot \frac{\Delta n}{n}}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Центр масс смеси газов в поле тяжести}
+
+Для смеси из $N_1$ частиц массой $m_1$ и $N_2$ частиц массой $m_2$:
+\begin{equation}
+    \boxed{z_c = \frac{(N_1 + N_2)kT}{g(N_1 m_1 + N_2 m_2)}}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Доля молекул выше определённой высоты}
+
+Для полубесконечного столба газа, доля молекул на высоте $z > z_0$:
+\begin{equation}
+    \int_{z_0}^{\infty} w(z)\,dz = \exp\left(-\frac{mgz_0}{kT}\right)
+\end{equation}
+
+\textbf{Пример:} на высоте $z > 4z_c = 4kT/mg$ находится менее $e^{-4} \approx 1{,}8\%$ молекул.
+
+\end{document}

@@ -1,0 +1,4072 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T2A]{fontenc}
+\usepackage[russian]{babel}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{titlesec}
+\geometry{margin=2cm}
+
+\titleformat{\part}[display]{\Huge\bfseries\centering}{Часть \thepart}{20pt}{\Huge}
+\titlespacing*{\part}{0pt}{50pt}{40pt}
+
+\title{\Huge\textbf{Полная теория и формулы}\\[10pt]\Large Параграфы 4, 7, 12, 13 + Все формулы курса}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\newpage
+
+%═══════════════════════════════════════════════════════════════════════════════
+\part{Полная теория избранных параграфов}
+%═══════════════════════════════════════════════════════════════════════════════
+
+%═══════════════════════════════════════════════════════════════════════════════
+\section{\S 4. Реальные газы}
+%═══════════════════════════════════════════════════════════════════════════════
+
+\subsection{Краткие теоретические сведения}
+
+Зависимость потенциальной энергии взаимодействия $\Phi$ между любыми двумя частицами одноатомного газа от расстояния $r$ между ними показывает, что с уменьшением $r$ на малых расстояниях $\Phi$ растёт, что соответствует силам отталкивания между атомами. Становясь положительной, $\Phi$ очень быстро делается чрезвычайно большой, что соответствует <<непроницаемости>> атомов. На больших расстояниях потенциальная энергия взаимодействия медленно увеличивается, асимптотически приближаясь к нулю. Это соответствует взаимному притяжению атомов. При этом
+\[
+\Phi_0 = |\min\{\Phi(r)\}| \sim kT_K,
+\]
+где $k = 1{,}38\cdot 10^{-23}$ Дж/К --- постоянная Больцмана, $T_K$ --- критическая температура данного вещества.
+
+Для реальных газов эмпирически установлено более ста термических уравнений состояния. Наиболее простым из них является \textbf{уравнение Ван-дер-Ваальса}:
+\begin{equation}
+\boxed{\left(p + \frac{\nu^2 a}{V^2}\right)(V - \nu b) = \nu RT}
+\tag{4.1}
+\end{equation}
+
+Наличие сил притяжения приводит к появлению дополнительного давления на газ. Действие отталкивания сводится к тому, что молекула не допускает проникновения других молекул в занимаемый ею эффективный объём.
+
+\subsection{Примеры решения задач}
+
+\subsubsection{Пример 4.1. Изотермы газа Ван-дер-Ваальса}
+
+\textbf{Условие:} Изобразить на диаграмме $p-V$ изотермы газа Ван-дер-Ваальса при разных температурах и провести их качественный анализ.
+
+\textbf{Решение:} Среди изотерм одного моля газа Ван-дер-Ваальса при разных значениях $T$ выделяется изотерма, построенная при критической температуре $T_K$, имеющая характерный перегиб в точке $K$. Если $T > T_K$, то вещество существует только в газообразном состоянии. При $T < T_K$ изотермы имеют минимум и максимум, причём на возрастающем участке система неустойчива: малейшая флуктуация объёма, например, в сторону его увеличения, приводит к увеличению давления и к дальнейшему расширению газа. Построенная на основе данных эксперимента изотерма реального газа показана сплошной кривой $ABCD$. Участку $AB$ соответствует жидкость, участку $CD$ --- газ. На прямой $BC$ жидкость и насыщенный пар находятся в динамическом равновесии.
+
+\subsubsection{Пример 4.2. Критические параметры}
+
+\textbf{Условие:} Сосуд объёмом $V = 1{,}5\cdot 10^{-5}$ м$^3$ необходимо наполнить водой при температуре $t = 18$~°C с таким расчётом, чтобы при её нагревании до критической температуры $T_K = 647{,}3$~K в сосуде установилось критическое давление $p_K = 201{,}4\cdot 10^5$~Па. Найти необходимый объём воды.
+
+\textbf{Решение:} В критической точке равны нулю первая и вторая производные от давления по объёму. После дифференцирования уравнения Ван-дер-Ваальса по $V$ получим:
+\[
+\left(\frac{\partial p}{\partial V}\right)_{T_K} = -\frac{\nu RT_K}{(V_K - \nu b)^2} + \frac{2\nu^2 a}{V_K^3} = 0
+\]
+\[
+\left(\frac{\partial^2 p}{\partial V^2}\right)_{T_K} = \frac{2\nu RT_K}{(V_K - \nu b)^3} - \frac{6\nu^2 a}{V_K^4} = 0
+\]
+
+Отсюда можно выразить $a$, $b$ и $\nu$ через $p_K$, $V_K$ и $T_K$:
+\begin{equation}
+\boxed{a = \frac{27 R^2 T_K^2}{64 p_K}, \qquad b = \frac{RT_K}{8p_K}, \qquad \nu = \frac{8V_K p_K}{3RT_K}}
+\end{equation}
+
+Необходимый объём воды: $V_1 = \mu\nu/\rho = 8\mu V_K p_K/(3RT_K\rho) = 3\cdot 10^{-6}$~м$^3$.
+
+\subsubsection{Пример 4.3. Внутренняя энергия газа Ван-дер-Ваальса}
+
+\textbf{Условие:} Доказать, что теплоёмкость $\tilde{C}_V$ газа Ван-дер-Ваальса не зависит от объёма $V$, а может зависеть только от температуры $T$. Найти выражение для внутренней энергии $U$.
+
+\textbf{Решение:} Теплоёмкость $\tilde{C}_V = T(\partial S/\partial T)_V$ не будет зависеть от объёма $V$, если производная $(\partial \tilde{C}_V/\partial V)_T = T[\partial^2 S/(\partial T\partial V)]$ окажется равной нулю. Воспользовавшись одним из соотношений Максвелла (3.9), последнее соотношение можно переписать в виде:
+\[
+\left(\frac{\partial \tilde{C}_V}{\partial V}\right)_T = T\left(\frac{\partial^2 p}{\partial T^2}\right)_V
+\]
+
+В равенстве нулю $(\partial^2 p/\partial T^2)_V$ легко непосредственно убедиться, дважды продифференцировав уравнение Ван-дер-Ваальса.
+
+Перепишем соотношение (2.7) в виде $(\partial U/\partial V)_T = T(\partial p/\partial T)_V - p$ и подставим в него $p$ из уравнения Ван-дер-Ваальса. В итоге получим:
+\[
+\left(\frac{\partial U}{\partial V}\right)_T = \frac{\nu^2 a}{V^2}
+\]
+
+Если $\tilde{C}_V = (\partial U/\partial T)_V$ зависит только от температуры, то $U = -\nu^2 a/V + \int \tilde{C}_V(T)dT$. В частном случае $\tilde{C}_V = \nu C_V$, где $C_V = \text{const}$:
+\begin{equation}
+\boxed{U = -\frac{\nu^2 a}{V} + \nu C_V T}
+\end{equation}
+
+\subsubsection{Пример 4.4. Адиабатическое расширение в пустоту}
+
+\textbf{Условие:} Один моль двухатомного газа Ван-дер-Ваальса, константа $a$ которого известна, адиабатически расширяется в пустоту от объёма $V_1$ до объёма $V_2$. Найти изменение температуры газа.
+
+\textbf{Решение:} При адиабатическом расширении в пустоту газ не получает тепло и не совершает работу. Следовательно, его внутренняя энергия остаётся постоянной. Используя результаты предыдущего примера:
+\[
+C_V(T_2 - T_1) - \frac{a}{V_2} + \frac{a}{V_1} = 0
+\]
+
+Для двухатомного газа $C_V = 5R/2$, откуда:
+\begin{equation}
+\boxed{T_1 - T_2 = \frac{2a(V_2 - V_1)}{5RV_1V_2}}
+\end{equation}
+
+\subsubsection{Пример 4.5. Смешивание газов Ван-дер-Ваальса}
+
+\textbf{Условие:} Два сосуда с теплоизолированными стенками, имеющие объёмы $V_1$ и $V_2$, соединены трубкой с краном. При закрытом кране в каждом из них при температуре $T_1$ находится по одному молю одного и того же газа Ван-дер-Ваальса. Кран открывают. Определить температуру $T_2$ и давление $p$ после установления равновесия.
+
+\textbf{Решение:} При решении этой задачи нельзя пользоваться законом Дальтона, справедливым только для идеального газа. По условию стенки сосудов теплоизолированы, и при смешивании газы не совершают работу против внешних сил. Поэтому изменение внутренней энергии всей системы равно нулю:
+\[
+\Delta U = 2C_V T_2 - \frac{4a}{V_1 + V_2} - 2C_V T_1 + \frac{a}{V_1} + \frac{a}{V_2} = 0
+\]
+
+Откуда:
+\begin{equation}
+\boxed{T_2 = T_1 - \frac{a(V_2 - V_1)^2}{2C_V V_1 V_2(V_2 + V_1)}}
+\end{equation}
+
+Подставляя $T_2$ в уравнение Ван-дер-Ваальса:
+\begin{equation}
+\boxed{p = \frac{2RT_2}{V_1 + V_2 - 2b} - \frac{4a}{(V_1 + V_2)^2}}
+\end{equation}
+
+\subsubsection{Пример 4.6. Разность теплоёмкостей}
+
+\textbf{Условие:} Найти $C_p - C_V$ для одного моля газа Ван-дер-Ваальса.
+
+\textbf{Решение:} Воспользуемся формулой $C_p - C_V = T(\partial p/\partial T)_V(\partial V/\partial T)_p$. Входящие частные производные найдём из уравнения Ван-дер-Ваальса:
+\[
+\left(\frac{\partial T}{\partial V}\right)_p = \frac{TRV^3 - 2a(V - b)^2}{RV^3(V - b)}, \qquad \left(\frac{\partial p}{\partial T}\right)_V = \frac{R}{V - b}
+\]
+
+Подставляя их в выражение для разности теплоёмкостей:
+\begin{equation}
+\boxed{C_p - C_V = R\left[1 - \frac{2a(V-b)^2}{RTV^3}\right]^{-1}}
+\end{equation}
+
+Разность $C_p - C_V$ для газа Ван-дер-Ваальса оказывается больше, чем соответствующая величина у идеального газа.
+
+\subsubsection{Пример 4.7. Энтропия газа Ван-дер-Ваальса}
+
+\textbf{Условие:} Найти выражение для энтропии $\nu$ молей газа Ван-дер-Ваальса.
+
+\textbf{Решение:} Согласно определению, энтропия выражается формулой $dS = dU/T + (p/T)dV$. Подставим дифференциал внутренней энергии $dU = (\nu^2 a/V^2)dV + \nu C_V dT$ из примера 4.3 и давление $p$ газа Ван-дер-Ваальса. После приведения подобных членов:
+\[
+dS = \frac{\nu R\,dV}{V - b} + \frac{\nu C_V\,dT}{T}
+\]
+
+Интегрируя:
+\begin{equation}
+\boxed{S = \nu C_V \ln T + \nu R \ln(V - \nu b) + S_0}
+\end{equation}
+
+Энтропия газа Ван-дер-Ваальса меньше энтропии идеального газа для одних и тех же $\nu$, $V$ и $T$. Это объясняется тем, что из-за собственного объёма молекул неопределённость в их расположении меньше, чем у идеального газа.
+
+\subsubsection{Пример 4.9. Эффект Джоуля--Томсона}
+
+\textbf{Условие:} Оценить изменение температуры в процессе Джоуля--Томсона для газа Ван-дер-Ваальса.
+
+\textbf{Решение:} Найдём вид соотношения $(\partial T/\partial p)_H = [T(\partial V/\partial T)_p - V]/C_p$ для газа Ван-дер-Ваальса. Используя уравнение Ван-дер-Ваальса:
+\[
+\left(\frac{\partial T}{\partial V}\right)_p = \frac{T}{V - b} - \frac{2a}{RV^2} + \frac{2ab}{RV^3}
+\]
+
+Подставляя и упрощая при $b \ll V$ и $a/V^2 \ll p \approx RT/V$:
+\[
+\left(\frac{\partial T}{\partial p}\right)_H = \frac{2a/RT - b}{C_p}
+\]
+
+Из этого выражения видно, что изменение температуры газа Ван-дер-Ваальса при необратимом адиабатическом расширении обусловлено отличием его свойств от свойств идеального газа.
+
+\textbf{Температура инверсии:}
+\begin{equation}
+\boxed{T^* = \frac{2a}{bR}}
+\end{equation}
+
+Если $T < T^*$, газ охлаждается при расширении; если $T > T^*$ --- нагревается. Для большинства газов $T^*$ значительно выше комнатной температуры, поэтому они в процессе Джоуля--Томсона охлаждаются (азот, кислород). Температура инверсии водорода и гелия ниже комнатной, и при $T_0$ они нагреваются.
+
+%═══════════════════════════════════════════════════════════════════════════════
+\section{\S 7. Распределения Гиббса}
+%═══════════════════════════════════════════════════════════════════════════════
+
+\subsection{Краткие теоретические сведения}
+
+Состояние термодинамической системы из $N$ частиц определяется совокупностью координат и импульсов: $X = (x_1, x_2, \ldots, x_N) = (\vec{r}_1, \vec{r}_2, \ldots, \vec{r}_N, \vec{p}_1, \vec{p}_2, \ldots, \vec{p}_N)$.
+
+\textbf{Уравнения Гамильтона:}
+\begin{equation}
+\boxed{\frac{d\vec{r}_i}{dt} = \frac{\partial H(X)}{\partial \vec{p}_i}, \qquad \frac{d\vec{p}_i}{dt} = -\frac{\partial H(X)}{\partial \vec{r}_i}}
+\tag{7.1}
+\end{equation}
+
+\textbf{Функция Гамильтона:}
+\begin{equation}
+\boxed{H(X) = \sum_{i=1}^{N} \frac{\vec{p}_i^2}{2m} + U(\vec{r}_1, \ldots, \vec{r}_N) = \sum_{i=1}^{N} \left(\frac{\vec{p}_i^2}{2m} + U_0(\vec{r}_i)\right) + \sum_{i<j} \Phi(|\vec{r}_i - \vec{r}_j|)}
+\tag{7.2}
+\end{equation}
+
+\textbf{Уравнение Лиувилля:}
+\begin{equation}
+\frac{\partial w_N}{\partial t} + \sum_{i=1}^{N} \left(\frac{p_i}{m} \cdot \frac{\partial w_N}{\partial \vec{r}_i} - \frac{\partial U_0}{\partial \vec{r}_i} \cdot \frac{\partial w_N}{\partial \vec{p}_i} - \frac{\partial}{\partial \vec{r}_i} \sum_{j=1}^{N} \Phi(|\vec{r}_i - \vec{r}_j|) \cdot \frac{\partial w_N}{\partial \vec{p}_i}\right) = 0
+\tag{7.3}
+\end{equation}
+
+\subsubsection{Микроканоническое распределение Гиббса}
+
+Для изолированной системы с энергией $E$:
+\begin{equation}
+\boxed{w_N(X, a, E) = \frac{\delta(H(X, a) - E)}{\tilde{\Omega}(a, E)}}
+\tag{7.4}
+\end{equation}
+
+где $\tilde{\Omega}(a, E) = \int \delta(H(X, a) - E)\,dX$ --- статистический вес.
+
+\subsubsection{Каноническое распределение Гиббса}
+
+Для системы в термостате:
+\begin{equation}
+\boxed{w_N(X, a, T) = \frac{\exp(-H(X, a)/kT)}{Z(a, T)}}
+\tag{7.5}
+\end{equation}
+
+где $Z(a, T) = \int \exp(-H(X, a)/kT)\,dX$ --- статистический интеграл.
+
+\subsubsection{Квантовое каноническое распределение}
+
+\begin{equation}
+\boxed{P_n(N, a, T) = \frac{\exp(-E_n/kT)}{Z_1} = \exp\left(\frac{F - E_n}{kT}\right)}
+\tag{7.8}
+\end{equation}
+
+\textbf{Статистическая сумма:}
+\begin{equation}
+\boxed{Z_1 = \sum_n \exp(-E_n/kT)}
+\tag{7.9}
+\end{equation}
+
+\textbf{Связь со свободной энергией:}
+\begin{equation}
+\boxed{F = -kT \ln Z_1}
+\tag{7.10}
+\end{equation}
+
+\subsubsection{Большое каноническое распределение}
+
+Для системы с переменным числом частиц:
+\begin{equation}
+\boxed{P_{n,N}(a, T, \mu) = \frac{\exp[(\mu N - E_{n,N})/kT]}{Z_2}}
+\tag{7.12}
+\end{equation}
+
+\textbf{Большая статистическая сумма:}
+\begin{equation}
+\boxed{Z_2 = \sum_{N,n} \exp[(\mu N - E_{n,N})/kT]}
+\tag{7.13}
+\end{equation}
+
+\textbf{Большой термодинамический потенциал:}
+\begin{equation}
+\boxed{\Omega = -kT \ln Z_2 = F - \mu N}
+\tag{7.14}
+\end{equation}
+
+\subsubsection{Теорема о равномерном распределении энергии}
+
+\begin{equation}
+\boxed{\bar{H} = \left(\frac{s_1}{2} + \frac{s_2}{\eta}\right)kT}
+\tag{7.21}
+\end{equation}
+
+где $s_1$ --- полное число степеней свободы, $s_2$ --- число колебательных степеней свободы.
+
+\subsection{Примеры решения задач}
+
+\subsubsection{Пример 7.1. Плотность распределения для одной молекулы}
+
+\textbf{Условие:} Для идеального одноатомного газа записать плотность распределения вероятностей $w_1(\vec{r}, \vec{p})$ для координат и импульсов одной молекулы. Газ состоит из $N$ молекул, находится в сосуде объёмом $V$ и имеет температуру $T$. Масса молекулы $m$.
+
+\textbf{Решение:} Для идеального одноатомного газа в сосуде объёмом $V$ функция Гамильтона принимает вид:
+\[
+H(X) = \sum_{i=1}^{N} \left(\frac{p_i^2}{2m} + U_0(\vec{r}_i)\right),
+\]
+где $U_0(\vec{r}_i) = 0$, если $\vec{r}_i \in V$, и $U_0(\vec{r}_i) = \infty$, если $\vec{r}_i \notin V$.
+
+Используя формулу гауссова интеграла
+\[
+\int_{-\infty}^{\infty} u^{2n} \exp(-\alpha u^2)\,du = \frac{(2n-1)!!}{(2\alpha)^n} \sqrt{\frac{\pi}{\alpha}},
+\]
+вычислим статистический интеграл:
+\[
+Z(a, T) = \int\exp(-H(X, a)/kT)\,dX = V^N (2\pi mkT)^{3N/2}
+\]
+
+Искомая функция:
+\begin{equation}
+\boxed{w_1(x_i) = \frac{\exp(-\vec{p}_i^2/2mkT)}{V(2\pi mkT)^{3/2}}}
+\tag{7.23}
+\end{equation}
+
+Распределение частиц в пространстве $\int w_1(\vec{r}, \vec{p})\,d\vec{p} = 1/V$ равномерно внутри объёма $V$, а распределение частиц по импульсам является трёхмерным распределением Гаусса.
+
+\subsubsection{Пример 7.2. Теорема о равномерном распределении}
+
+\textbf{Условие:} Пользуясь каноническим распределением Гиббса, доказать формулу (7.21) при $s_1 = 3N$ и $\eta = 2$, т.е. $\bar{H} = 3NkT$.
+
+\textbf{Решение:} Пусть гамильтониан термодинамической системы из $N$ частиц:
+\[
+H = \sum_{i=1}^{N} \sum_{\alpha=1}^{3} \left(\frac{p_{i\alpha}^2}{2m} + \frac{A_{i\alpha} q_{i\alpha}^2}{2}\right),
+\]
+где $A_{i\alpha}$ --- положительные константы. Тогда $\overline{p_{i\alpha} \partial H/\partial p_{i\alpha}} = \overline{q_{i\alpha} \partial H/\partial q_{i\alpha}} = kT$.
+
+По определению среднего значения и используя гауссов интеграл, получаем:
+\[
+\overline{p_{i\alpha} \frac{\partial H}{\partial p_{i\alpha}}} = (2\pi mkT)^{-1/2} \int_{-\infty}^{\infty} \frac{p_{i\alpha}^2}{m} \exp\left(-\frac{p_{i\alpha}^2}{2mkT}\right) dp_{i\alpha} = kT
+\]
+
+Среднее значение гамильтониана:
+\[
+\bar{H} = \sum_{i=1}^{N} \sum_{\alpha=1}^{3} \left(\frac{\overline{p_{i\alpha}^2}}{2m} + \frac{A_{i\alpha}\overline{q_{i\alpha}^2}}{2}\right) = \frac{1}{2} \sum_{i=1}^{N} \sum_{\alpha=1}^{3} \left[\overline{p_{i\alpha} \frac{\partial H}{\partial p_{i\alpha}}} + \overline{q_{i\alpha} \frac{\partial H}{\partial q_{i\alpha}}}\right] = 3NkT
+\]
+
+\subsubsection{Пример 7.3. Внутренняя энергия двухатомного газа}
+
+\textbf{Условие:} Найти внутреннюю энергию одного моля идеального двухатомного газа, модель которого представляет молекулы из двух материальных точек, связанных пружиной с жёсткостью $\kappa$.
+
+\textbf{Решение:} Каждая молекула имеет шесть степеней свободы ($s_1 = 6N_A$). Из них одна --- колебательная ($s_2 = N_A$). Потенциальная энергия $\kappa(\lambda\xi_i)^2/2 = \lambda^2\kappa\xi_i^2/2$ удовлетворяет условию $\eta = 2$.
+
+По формуле (7.21):
+\begin{equation}
+\boxed{\bar{H} = \sum_{i=1}^{N_A} \bar{H}_i = N_A\left(\frac{s_1}{2} + \frac{s_2}{\eta}\right)kT = \frac{7N_A kT}{2} = \frac{7RT}{2}}
+\end{equation}
+
+\subsubsection{Пример 7.4. Термодинамика идеального газа}
+
+\textbf{Условие:} Найти уравнение состояния, внутреннюю энергию, энтропию и химический потенциал $\nu$ молей одноатомного идеального газа.
+
+\textbf{Решение:} Для идеального одноатомного газа классический статистический интеграл $Z(a, T) = V^N(2\pi mkT)^{3N/2}$ (см. пример 7.1).
+
+В соответствии с (7.10), (7.11): $F = -kT \ln Z_1$, где $Z_1 = [(2\pi\hbar)^{3N} N!]^{-1}Z$. Используя формулу Стирлинга $N! \sim N^N \exp(-N)$:
+\begin{equation}
+\boxed{F = -kTN\left\{1 + \ln\left[\frac{V(2\pi mkT)^{3/2}}{N(2\pi\hbar)^3}\right]\right\}}
+\tag{7.32}
+\end{equation}
+
+\textbf{Внутренняя энергия:} $U = F - T(\partial F/\partial T)_V = 3kTN/2$.
+
+\textbf{Давление:} $p = -(\partial F/\partial V)_T = kTN/V$, откуда $pV = \nu RT$.
+
+\textbf{Энтропия (формула Сакура--Тетроде):}
+\begin{equation}
+\boxed{S = -\left(\frac{\partial F}{\partial T}\right)_{V,N} = kN\left\{\frac{5}{2} + \ln\left[\frac{(2\pi mkT)^{3/2}V}{(2\pi\hbar)^3 N}\right]\right\}}
+\tag{7.33}
+\end{equation}
+
+\textbf{Химический потенциал:} Используя формулу $\mu = (\partial U/\partial N)_{T,V} - T(\partial S/\partial N)_{T,V}$:
+\begin{equation}
+\boxed{\mu = kT \ln\left[\frac{N(2\pi\hbar)^3}{V(2\pi mkT)^{3/2}}\right]}
+\end{equation}
+
+\subsubsection{Пример 7.5. Газ в поле тяжести}
+
+\textbf{Условие:} Вычислить теплоёмкость при постоянном объёме идеального одноатомного газа из $N$ частиц, находящегося при температуре $T$ в поле силы тяжести. Газ находится в полубесконечном прямом цилиндре с площадью основания $s$.
+
+\textbf{Решение:} В цилиндрической системе координат функция Гамильтона:
+\[
+H = \sum_{i=1}^{N} \left(\frac{p_i^2}{2m} + U_0(\rho_i) + mgz_i\right),
+\]
+где $U_0(\rho_i) = 0$, если $\rho_i \in s$, и $U_0(\rho_i) = \infty$, если $\rho_i \notin s$.
+
+Статистический интеграл:
+\[
+Z_1(T, V) = \frac{(2\pi mkT)^{3N/2}}{(2\pi\hbar)^{3N}N!} \left[\iint_s dx_i dy_i \int_0^\infty \exp(-mgz_i/kT)\,dz_i\right]^N = \frac{(2\pi mkT)^{3N/2} s^N (kT/mg)^N}{(2\pi\hbar)^{3N}N!}
+\]
+
+Свободная энергия:
+\[
+F = -kTN\left\{1 + \ln\left[\frac{(2\pi mkT)^{3/2}skT}{(2\pi\hbar)^3 mgN}\right]\right\}
+\]
+
+Теплоёмкость $\tilde{C}_V = -T(\partial^2 F/\partial T^2)_V$:
+\begin{equation}
+\boxed{\tilde{C}_V = \frac{5kN}{2}}
+\end{equation}
+
+Учёт потенциальной энергии гравитационного поля приводит к увеличению теплоёмкости газа (по сравнению с $3kN/2$ для свободного газа).
+
+\subsubsection{Пример 7.6. Газ в центрифуге}
+
+\textbf{Условие:} Найти изменение свободной энергии идеального газа, находящегося в центрифуге при температуре $T$, вызванное её вращением с угловой скоростью $\omega$. Радиус центрифуги $R$, высота $h_0$.
+
+\textbf{Решение:} Во вращающейся системе отсчёта функция Гамильтона:
+\[
+H = \sum_{i=1}^{N} \left(\frac{p_i^2}{2m} + U_0(z_i) - \frac{m\omega^2\rho_i^2}{2}\right)
+\]
+
+Статистический интеграл и свободная энергия:
+\[
+F = -kTN\left\{1 + \ln\left[\frac{(2\pi mkT)^{3/2}}{(2\pi\hbar)^3N}\right] + \ln\left[\frac{2\pi h_0 kT}{m\omega^2} \left(\exp\left(\frac{m\omega^2 R^2}{2kT}\right) - 1\right)\right]\right\}
+\]
+
+При больших скоростях вращения ($\omega^2 \gg 2kT/mR^2$):
+\begin{equation}
+\boxed{\Delta F \approx kTN\left[\ln\frac{m\omega^2 R^2}{2kT} - \frac{m\omega^2 R^2}{2kT}\right]}
+\end{equation}
+
+\subsubsection{Пример 7.7. Ультрарелятивистский газ}
+
+\textbf{Условие:} Найти теплоёмкость и уравнение состояния идеального газа в ультрарелятивистском случае (энергия частицы $E = cp$, где $c$ --- скорость света).
+
+\textbf{Решение:} Классический статистический интеграл:
+\[
+Z = \int\exp(-H/kT)\,dX = \left(4\pi \int_0^\infty p^2 \exp(-cp/kT)\,dp \cdot \int d\vec{r}\right)^N = [8\pi V(kT/c)^3]^N
+\]
+
+Свободная энергия с учётом формулы Стирлинга:
+\[
+F = -kTN\left\{1 + \ln\left[\frac{8\pi V(kT)^3}{N(2\pi\hbar)^3 c^3}\right]\right\}
+\]
+
+Теплоёмкость:
+\begin{equation}
+\boxed{\tilde{C}_V = -T\left(\frac{\partial^2 F}{\partial T^2}\right)_V = 3Nk = 3\nu R}
+\end{equation}
+
+Теплоёмкость в два раза превышает теплоёмкость нерелятивистского одноатомного газа.
+
+Давление: $p = -(\partial F/\partial V)_{T,N} = kTN/V$, или $pV = \nu RT$ --- такое же, как у нерелятивистского газа.
+
+%═══════════════════════════════════════════════════════════════════════════════
+\section{\S 12. Флуктуации в равновесных системах}
+%═══════════════════════════════════════════════════════════════════════════════
+
+\subsection{Краткие теоретические сведения}
+
+\textbf{Флуктуации} --- самопроизвольные отклонения функций динамических переменных $B_j(X)$ от их средних значений $\bar{B}_j$.
+
+\textbf{Дисперсия:}
+\[
+(B_j - \bar{B}_j)^2 = (\Delta B_j)^2 = \overline{B_j^2} - (\bar{B}_j)^2 = \sigma^2_{B_j}
+\]
+
+\textbf{Относительная флуктуация:} $\delta_{B_j} = \sigma_{B_j}/\bar{B}_j$
+
+\textbf{Коэффициент корреляции:} $K_{ij} = \overline{\Delta B_i \cdot \Delta B_j}$
+
+\subsubsection{Формула Эйнштейна}
+
+Вероятность перехода в квазиравновесное состояние:
+\begin{equation}
+\boxed{w = C \exp\left(-\frac{\Delta U + p\Delta V - \mu\Delta N - T\Delta S}{kT}\right)}
+\tag{12.2}
+\end{equation}
+
+\textbf{Частные случаи:}
+
+Изолированная система ($U, V, N = \text{const}$):
+\begin{equation}
+w = C \exp(\Delta S/k)
+\tag{12.3}
+\end{equation}
+
+Система в термостате ($T, V, N = \text{const}$):
+\begin{equation}
+w = C \exp(-\Delta F/kT)
+\tag{12.4}
+\end{equation}
+
+Система с переменным числом частиц ($T, V, \mu = \text{const}$):
+\begin{equation}
+w = C \exp(-\Delta\Omega/kT)
+\tag{12.5}
+\end{equation}
+
+\textbf{Общая формула для вероятности флуктуаций:}
+\begin{equation}
+\boxed{w = C \exp\left(\frac{\Delta p \Delta V - \Delta\mu \Delta N - \Delta T \Delta S}{2kT}\right)}
+\tag{12.6}
+\end{equation}
+
+\subsection{Примеры решения задач}
+
+\subsubsection{Пример 12.1. Флуктуации энергии}
+
+\textbf{Условие:} Для системы с переменным числом частиц доказать равенство $kT^2(\partial U/\partial T)_{V,N} = \overline{H^2} - \bar{U}^2$, где $U$ --- среднее значение гамильтониана $H(X)$.
+
+\textbf{Решение:} Продифференцируем по $T$ при постоянных $V$ и $N$ внутреннюю энергию системы:
+\[
+U = \int H(X)\exp\{[\Omega + \mu N - H(X)]/kT\}\,dX
+\]
+
+Умножим $(\partial U/\partial T)_{V,N}$ на $kT^2$:
+\[
+kT^2\left(\frac{\partial U}{\partial T}\right)_{V,N} = kT^2 \int H(X)\exp\left[\frac{\Omega + \mu N - H(X)}{kT}\right] \times \left[\frac{1}{kT}\left(\frac{\partial \Omega}{\partial T}\right)_{V,\mu} - \frac{\Omega + \mu N - H(X)}{kT^2}\right]dX
+\]
+\[
+= U\left[T\left(\frac{\partial \Omega}{\partial T}\right)_{V,\mu} - (\Omega + \mu N)\right] + \overline{H^2(X)}
+\]
+
+После подстановки $(\partial \Omega/\partial T)_V = -S$ и учёта равенства $\Omega = U - TS - \mu N$:
+\begin{equation}
+\boxed{kT^2\left(\frac{\partial U}{\partial T}\right)_V = \overline{H^2}(X) - U^2}
+\end{equation}
+
+\subsubsection{Пример 12.2. Дисперсия числа частиц}
+
+\textbf{Условие:} Используя большое каноническое распределение Гиббса, доказать равенство $(\Delta N)^2 = \overline{N^2} - (\bar{N})^2 = kT(\partial \bar{N}/\partial \mu)_{T,V}$.
+
+\textbf{Решение:} Среднее число частиц $\bar{N}$ и среднее значение квадрата числа частиц $\overline{N^2}$:
+\[
+\bar{N} = \tilde{Z}_2^{-1} \sum_N \frac{N}{(2\pi\hbar)^{3N} N!} \int\exp\left[\frac{\mu N - H(X, N, a)}{kT}\right]dX = \frac{kT}{\tilde{Z}_2} \frac{\partial \tilde{Z}_2}{\partial \mu}
+\]
+\[
+\overline{N^2} = \frac{(kT)^2}{\tilde{Z}_2} \frac{\partial^2 \tilde{Z}_2}{\partial \mu^2}
+\]
+
+Продифференцируем соотношение (7.16) по $\mu$ при постоянных $T$ и $V$, умножим на $kT$ и учтём, что $\Omega = -kT \ln \tilde{Z}_2$:
+\[
+kT\left(\frac{\partial \bar{N}}{\partial \mu}\right)_{T,V} = -kT \frac{\partial^2 \Omega}{\partial \mu^2} = \frac{(kT)^2}{\tilde{Z}_2}\left[\frac{\partial^2 \tilde{Z}_2}{\partial \mu^2} - \frac{1}{\tilde{Z}_2}\left(\frac{\partial \tilde{Z}_2}{\partial \mu}\right)^2\right] = \overline{N^2} - (\bar{N})^2
+\]
+
+\begin{equation}
+\boxed{(\Delta N)^2 = kT\left(\frac{\partial \bar{N}}{\partial \mu}\right)_{T,V}}
+\tag{12.10}
+\end{equation}
+
+\subsubsection{Пример 12.3. Коэффициент корреляции $\Delta N \Delta H$}
+
+\textbf{Условие:} Выразить коэффициент корреляции между флуктуациями энергии и числа частиц через уравнение состояния и дисперсию числа частиц.
+
+\textbf{Решение:} Продифференцируем $\bar{N}$ по $T$ при постоянных $V$ и $\mu$:
+\[
+\left(\frac{\partial \bar{N}}{\partial T}\right)_{V,\mu} = \frac{-\bar{U}\bar{N} + \mu(\bar{N})^2 - \mu\overline{N^2} + \overline{HN}}{kT^2}
+\]
+
+Коэффициент корреляции:
+\[
+\overline{\Delta N \Delta H} = \overline{(N - \bar{N})(H - U)} = \overline{NH} - \bar{U}\bar{N} = kT^2\left(\frac{\partial \bar{N}}{\partial T}\right)_{V,\mu} + \mu(\overline{N^2} - (\bar{N})^2)
+\]
+\[
+= kT^2\left(\frac{\partial \bar{N}}{\partial T}\right)_{V,\mu} + kT\mu\left(\frac{\partial \bar{N}}{\partial \mu}\right)_{T,V}
+\]
+
+Используя соотношение $0 = (\partial \bar{N}/\partial T)_{V,\mu}(\partial T/\partial \mu)_{V,\bar{N}} + (\partial \bar{N}/\partial \mu)_{T,V}$:
+\begin{equation}
+\boxed{\overline{\Delta N \Delta H} = (\Delta N)^2 \left(\frac{\partial U}{\partial N}\right)_{V,T}}
+\end{equation}
+
+Для идеального газа $(\Delta N)^2 = \bar{N}$, $U = 3kT\bar{N}/2$, и, следовательно, $\overline{\Delta N \Delta H} = 3kT\bar{N}/2$.
+
+\subsubsection{Пример 12.4. Дисперсия объёма}
+
+\textbf{Условие:} В цилиндре под поршнем под давлением $p$ находится $N$ молекул идеального газа при температуре $T$. Рассчитать дисперсию объёма газа.
+
+\textbf{Решение:} Изменение давления газа равно $\Delta p = (\partial p/\partial V)_{T,N}\Delta V$, т.к. $\Delta T = 0$, $\Delta N = 0$. При этом формула (12.6) принимает вид:
+\[
+w = C \exp\left[\frac{(\partial p/\partial V)_{T,N}(\Delta V)^2}{2kT}\right]
+\]
+
+В соответствии с формулой (12.1):
+\begin{equation}
+\boxed{(\Delta V)^2 = -kT\left(\frac{\partial V}{\partial p}\right)_{T,N} = N\left(\frac{kT}{p}\right)^2 \cdot \frac{1}{N} = \frac{V^2}{N}}
+\end{equation}
+
+\subsubsection{Пример 12.5. Дисперсия числа частиц (квазитермодинамика)}
+
+\textbf{Условие:} В цилиндре объёмом $V$ при температуре $T$ находится переменное число частиц $N$, задаваемое химическим потенциалом $\mu$. Рассчитать дисперсию числа частиц газа.
+
+\textbf{Решение:} По условию $\Delta V = \Delta T = 0$, а $\Delta\mu = (\partial\mu/\partial N)_{V,T}\Delta N$. При этом формула (12.6) принимает вид:
+\[
+w(\Delta N) = C \exp\left[-\frac{(\partial\mu/\partial N)_{V,T}(\Delta N)^2}{2kT}\right]
+\]
+
+В соответствии с формулой (12.1):
+\begin{equation}
+\boxed{(\Delta N)^2 = kT\left(\frac{\partial N}{\partial \mu}\right)_{V,T}}
+\end{equation}
+
+\subsubsection{Пример 12.6. Дисперсия внутренней энергии идеального газа}
+
+\textbf{Условие:} Найти дисперсию внутренней энергии $U(V, T)$ идеального одноатомного газа, состоящего из $N$ частиц.
+
+\textbf{Решение:} Усреднив очевидное равенство:
+\[
+(\Delta U)^2 = \left(\frac{\partial U}{\partial T}\right)_V^2(\Delta T)^2 + 2\left(\frac{\partial U}{\partial T}\right)_V\left(\frac{\partial U}{\partial V}\right)_T\overline{\Delta T\Delta V} + \left(\frac{\partial U}{\partial V}\right)_T^2(\Delta V)^2
+\]
+
+В переменных $T$ и $V$:
+\[
+\Delta S = \left(\frac{\partial S}{\partial T}\right)_V\Delta T + \left(\frac{\partial S}{\partial V}\right)_T\Delta V, \qquad \Delta p = \left(\frac{\partial p}{\partial T}\right)_V\Delta T + \left(\frac{\partial p}{\partial V}\right)_T\Delta V
+\]
+
+С учётом соотношений Максвелла, формула (12.6) принимает вид:
+\[
+w = C \exp\left[-\frac{(\partial S/\partial T)_V(\Delta T)^2 + (\partial p/\partial V)_T(\Delta V)^2}{2kT}\right]
+\]
+
+Откуда следует:
+\[
+(\Delta T)^2 = kT\left(\frac{\partial T}{\partial S}\right)_V, \qquad (\Delta V)^2 = -kT\left(\frac{\partial V}{\partial p}\right)_T, \qquad \overline{\Delta T\Delta V} = 0
+\]
+
+Подставляя $(\Delta T)^2$ и $(\Delta V)^2$ в выражение для $(\Delta U)^2$:
+\[
+(\Delta U)^2 = kT\left[\left(\frac{\partial U}{\partial T}\right)_V^2\left(\frac{\partial T}{\partial S}\right)_{V,N} - \left(\frac{\partial p}{\partial V}\right)_{T,N}\left(\frac{\partial U}{\partial V}\right)_T^2\right]
+\]
+
+Для одноатомного идеального газа $U = 3NkT/2$, $(\partial U/\partial V)_T = 0$:
+\begin{equation}
+\boxed{(\Delta U)^2 = \frac{3N(kT)^2}{2}}
+\end{equation}
+
+%═══════════════════════════════════════════════════════════════════════════════
+\section{\S 13. Кинетическое уравнение Больцмана и процессы переноса}
+%═══════════════════════════════════════════════════════════════════════════════
+
+\subsection{Краткие теоретические сведения}
+
+\subsubsection{Функции распределения}
+
+Связь $S$-частичной функции распределения с $N$-частичной:
+\begin{equation}
+w_S(x_1, x_2, \ldots, x_S, t) = V^S \int w_N(x_1, x_2, \ldots, x_N, t)\,dx_{S+1}dx_{S+2}\ldots dx_N
+\tag{13.1}
+\end{equation}
+
+\textbf{Внутренняя энергия:}
+\begin{equation}
+U(t) = \frac{N}{V}\int\frac{\vec{p}^2}{2m}w_1(\vec{r}, \vec{p}, t)\,d\vec{p}\,d\vec{r} + \frac{N^2}{2V^2}\int\Phi(|\vec{r}_1 - \vec{r}_2|)w_2\,d\vec{p}_1d\vec{r}_1d\vec{p}_2d\vec{r}_2
+\tag{13.3}
+\end{equation}
+
+\subsubsection{Цепочка уравнений ББГКИ}
+
+Первое уравнение цепочки:
+\begin{equation}
+\left(\frac{\partial}{\partial t} + \frac{\vec{p}_1}{m}\frac{\partial}{\partial \vec{r}_1} - \frac{\partial U_0(\vec{r}_1)}{\partial \vec{r}_1}\frac{\partial}{\partial \vec{p}_1}\right)w_1 = \frac{N}{V}\int\frac{\partial\Phi(|\vec{r}_1 - \vec{r}_2|)}{\partial \vec{r}_1}\frac{\partial w_2}{\partial \vec{p}_1}\,d\vec{r}_2d\vec{p}_2
+\tag{13.4}
+\end{equation}
+
+\subsubsection{Корреляционные функции}
+
+\begin{equation}
+g_2(x_1, x_2, t) = w_2(x_1, x_2, t) - w_1(x_1, t)w_1(x_2, t)
+\tag{13.6}
+\end{equation}
+
+\subsubsection{Кинетическое уравнение Больцмана}
+
+\begin{multline}
+\left(\frac{\partial}{\partial t} + \frac{\vec{p}_1}{m}\frac{\partial}{\partial \vec{r}_1} - \frac{\partial U_0(\vec{r}_1)}{\partial \vec{p}_1}\frac{\partial}{\partial \vec{p}_1}\right)w_1(\vec{r}_1, \vec{p}_1, t) = \\
+= \frac{N}{mV}\int_0^\infty dp_2\rho d\rho \int_0^{2\pi} d\varphi|\vec{p}_2 - \vec{p}_1|[w_1(\vec{r}_1, \vec{p}_2', t)w_1(\vec{r}_1, \vec{p}_1', t) - w_1(\vec{r}_1, \vec{p}_2, t)w_1(\vec{r}_1, \vec{p}_1, t)]
+\tag{13.8}
+\end{multline}
+
+\subsubsection{Равновесное распределение Максвелла--Больцмана}
+
+\begin{equation}
+\boxed{w_1^{(0)} = \frac{1}{(2\pi mkT)^{3/2}} \exp\left(-\frac{p^2 + 2mU_0(\vec{r})}{kT}\right)\left(\int\exp(-U_0(\vec{r})/kT)\,d\vec{r}\right)^{-1}}
+\tag{13.9}
+\end{equation}
+
+\subsubsection{Релаксационное приближение}
+
+\begin{equation}
+\boxed{\left(\frac{\partial}{\partial t} + \frac{\vec{p}}{m}\frac{\partial}{\partial \vec{r}} - \frac{\partial U_0(\vec{r})}{\partial \vec{r}}\frac{\partial}{\partial \vec{p}}\right)w_1 = -\frac{w_1 - w_1^{(0)}}{\tau}}
+\tag{13.10}
+\end{equation}
+
+\subsection{Процессы переноса}
+
+\subsubsection{Диффузия}
+
+\textbf{Закон Фика:}
+\begin{equation}
+\boxed{u(x, t)n(x, t) = -D\frac{\partial n}{\partial x}}
+\tag{13.11}
+\end{equation}
+
+\textbf{Уравнение диффузии:}
+\begin{equation}
+\boxed{\frac{\partial n}{\partial t} = D\frac{\partial^2 n}{\partial x^2}}
+\tag{13.12}
+\end{equation}
+
+\textbf{Решение для бесконечной среды:}
+\begin{equation}
+n(x, t) = (4\pi Dt)^{-1/2} \int_{-\infty}^{\infty} \tilde{n}(x')\exp\left[-\frac{(x - x')^2}{4Dt}\right]dx'
+\tag{13.13}
+\end{equation}
+
+\subsubsection{Вязкость}
+
+\begin{equation}
+\boxed{f_y = -\eta\frac{\partial v_y}{\partial x}}
+\tag{13.14}
+\end{equation}
+
+где $\eta$ --- коэффициент вязкости.
+
+\subsubsection{Теплопроводность}
+
+\textbf{Закон Фурье:}
+\begin{equation}
+\boxed{J_x = -\kappa\frac{\partial T}{\partial x}}
+\tag{13.15}
+\end{equation}
+
+\textbf{Уравнение теплопроводности:}
+\begin{equation}
+\boxed{c_v\rho\frac{\partial T}{\partial t} = \kappa\Delta T + q}
+\tag{13.16}
+\end{equation}
+
+\subsection{Примеры решения задач}
+
+\subsubsection{Пример 13.1. Выражение термодинамических функций через $w_1$}
+
+\textbf{Условие:} Выразить через одночастичную функцию распределения концентрацию частиц, плотность газа, среднюю скорость их упорядоченного движения и локальную температуру. Масса одной частицы $m$.
+
+\textbf{Решение:}
+
+\textbf{Концентрация частиц:}
+\[
+n(\vec{r}, t) = \overline{\sum_{i=1}^{N} \delta(\vec{r} - \vec{r}_i(t))} = \frac{N}{V}\int w_1(\vec{r}, \vec{p}, t)\,d\vec{p}
+\]
+
+\textbf{Плотность массы:} $\rho(\vec{r}, t) = mn(\vec{r}, t)$
+
+\textbf{Скорость упорядоченного движения:}
+\[
+\vec{u}(\vec{r}, t)n(\vec{r}, t) = \frac{N}{mV}\int \vec{p} w_1(\vec{r}, \vec{p}, t)\,d\vec{p}
+\]
+
+\textbf{Локальная температура:}
+\[
+\frac{3n(\vec{r}, t)kT(\vec{r}, t)}{2} = \frac{mN}{2V}\int \left[\frac{\vec{p}}{m} - \vec{u}(\vec{r}, t)\right]^2 w_1(\vec{r}, \vec{p}, t)\,d\vec{p}
+\]
+
+\subsubsection{Пример 13.2. Вывод первого уравнения цепочки ББГКИ}
+
+\textbf{Условие:} Используя уравнение Лиувилля (7.3), получить первое уравнение цепочки уравнений ББГКИ.
+
+\textbf{Решение:} Умножим уравнение Лиувилля на $V$ и проинтегрируем по $x_2, x_3, \ldots, x_N$.
+
+Член с производной по времени: $\partial w_1(\vec{r}_1, \vec{p}_1, t)/\partial t$.
+
+При интегрировании по пространственным координатам выделим первое слагаемое:
+\[
+\frac{V}{m}\int\sum_{i=1}^{N} \vec{p}_i\left[\frac{\partial w_N}{\partial \vec{r}_i}\right]dx_2 dx_3\ldots dx_N = \frac{\vec{p}_1}{m}\frac{\partial w_1}{\partial \vec{r}_1}
+\]
+(остальные $N-1$ слагаемых равны нулю из-за граничных условий).
+
+Аналогично для членов с $\partial U_0/\partial \vec{r}_i$ остаётся только:
+\[
+-\frac{\partial U_0(\vec{r}_1)}{\partial \vec{r}_1}\frac{\partial w_1}{\partial \vec{p}_1}
+\]
+
+Члены взаимодействия дают правую часть:
+\[
+\frac{N}{V}\int\frac{\partial\Phi(|\vec{r}_1 - \vec{r}_2|)}{\partial \vec{r}_1}\frac{\partial w_2(x_1, x_2, t)}{\partial \vec{p}_1}\,dx_2
+\]
+
+Собирая всё вместе, получаем первое уравнение цепочки ББГКИ (13.4).
+
+\subsubsection{Пример 13.3. Длина свободного пробега}
+
+\textbf{Условие:} Считая молекулы газа абсолютно упругими шариками массой $m$ и диаметром $\sigma$, оценить среднее время между двумя последовательными столкновениями $\tau_0$ и среднюю длину свободного пробега $l_0$. Концентрация частиц $n$, температура газа $T$.
+
+\textbf{Решение:} Допустим, что все молекулы, кроме одной, движущейся со скоростью $v_0$, покоятся. Движущаяся молекула, пройдя расстояние $d$, столкнётся со всеми неподвижными молекулами, центры которых находятся в круглом прямом цилиндре с радиусом основания $\sigma$ и высотой $d$.
+
+Средняя длина свободного пробега равна высоте такого цилиндра, в котором в среднем находится одна молекула: $\pi\sigma^2 l_0 n = 1$, откуда:
+\begin{equation}
+\boxed{l_0 = \frac{1}{\pi\sigma^2 n}}
+\end{equation}
+
+Среднее время между столкновениями (положив $v_0$ равным среднему значению модуля скорости относительного движения двух молекул):
+\begin{equation}
+\boxed{\tau_0 = \frac{l_0}{v_0} = \sqrt{\frac{m}{8\pi kT\sigma^4 n^2}}}
+\end{equation}
+
+\subsubsection{Пример 13.4. H-теорема Больцмана}
+
+\textbf{Условие:} Доказать, что в ходе эволюции замкнутой системы введённая Больцманом энтропия $S_1 = -k\int w_1(\vec{r}, \vec{p}, t)\ln w_1(\vec{r}, \vec{p}, t)\,d\vec{r}\,d\vec{p}$ возрастает или остаётся неизменной.
+
+\textbf{Решение:} Продифференцируем $S_1$ по времени:
+\[
+\frac{dS_1}{dt} = -k\int\left[\frac{\partial w_1}{\partial t}\ln w_1\right]dx - k\int w_1\frac{1}{w_1}\frac{\partial w_1}{\partial t}\,dx
+\]
+
+Первое слагаемое с $(\partial/\partial t)\int w_1 dx = 0$ из-за нормировки. Интегралы с $(\vec{p}/m)(\partial w_1/\partial \vec{r})$ и $(\partial U_0/\partial \vec{r})(\partial w_1/\partial \vec{p})$ равны нулю при интегрировании по частям с использованием граничных условий.
+
+Подставим интеграл столкновений в форме Боголюбова и проведём симметризацию:
+\[
+\frac{dS_1}{dt} = \frac{kN}{4mV}\int d\vec{p}_2 d\vec{p} d\vec{r}\int_0^\infty \rho d\rho\int_0^{2\pi} d\varphi|\vec{p}_2 - \vec{p}| \times
+\]
+\[
+\times \ln\frac{w_1(\vec{r}, \vec{p}, t)w_1(\vec{r}, \vec{p}_2, t)}{w_1(\vec{r}, \vec{p}', t)w_1(\vec{r}, \vec{p}_2', t)} \cdot \{w_1(\vec{r}, \vec{p}', t)w_1(\vec{r}, \vec{p}_2', t) - w_1(\vec{r}, \vec{p}, t)w_1(\vec{r}, \vec{p}_2, t)\}
+\]
+
+Произведение логарифма на фигурную скобку имеет структуру $(B_1 - B_2)\ln(B_1/B_2)$ и при любых положительных $B_1$ и $B_2$ положительно:
+\begin{equation}
+\boxed{\frac{dS_1}{dt} \geq 0}
+\end{equation}
+
+\subsubsection{Пример 13.5. Коэффициент диффузии}
+
+\textbf{Условие:} С помощью кинетического уравнения Больцмана с релаксационным членом (13.10) оценить величину коэффициента диффузии газа. Газ находится вблизи равновесия, изменение концентрации стационарно, внешние поля отсутствуют.
+
+\textbf{Решение:} В силу стационарности и отсутствия внешних полей, первое и третье слагаемые в (13.10) обращаются в ноль:
+\[
+w_1(\vec{r}, \vec{p}) = w_1^{(0)} - \tau\frac{\vec{p}}{m}\frac{\partial w_1(\vec{r}, \vec{p})}{\partial \vec{r}}
+\]
+
+Вблизи равновесия заменим $w_1$ на $w_1^{(0)}$ в правой части. Умножим на $Np_x/mV$ и проинтегрируем по $\vec{p}$:
+\[
+u(x, t)n(x, t) = \frac{N}{V}\int\frac{p_x}{m}w_1^{(0)}d\vec{p} - \frac{\tau N}{V}\frac{\partial}{\partial x}\int\frac{p_x^2}{m^2}w_1^{(0)}d\vec{p}
+\]
+
+Первый интеграл равен нулю (в равновесии поток отсутствует). Второй даёт:
+\[
+u(x, t)n(x, t) = -\frac{\tau kT}{m}\frac{\partial n(x, t)}{\partial x}
+\]
+
+Сравнивая с законом Фика (13.11):
+\begin{equation}
+\boxed{D = \frac{\tau kT}{m}}
+\end{equation}
+
+\subsubsection{Пример 13.6. Вывод уравнения теплопроводности}
+
+\textbf{Условие:} Исходя из выражения (13.15) для потока тепла, получить уравнение теплопроводности (13.16).
+
+\textbf{Решение:} Выделим в среде небольшой параллелепипед с гранями $x = x_0$, $x = x_0 + \Delta x$, $y = y_0$, $y = y_0 + \Delta y$, $z = z_0$, $z = z_0 + \Delta z$.
+
+Через грань $x = x_0$ за время $dt$ поступает теплота $dQ_1 = -\Delta y\Delta z\,dt\,\kappa\,\partial T/\partial x|_{x=x_0}$, через грань $x = x_0 + \Delta x$ уходит $dQ_2 = -\Delta y\Delta z\,dt\,\kappa\,\partial T/\partial x|_{x=x_0+\Delta x}$.
+
+Уравнение теплового баланса:
+\[
+c_v\rho\Delta x\Delta y\Delta z\,dT = dQ_1 - dQ_2 + dQ_3 - dQ_4 + dQ_5 - dQ_6 + q\Delta x\Delta y\Delta z\,dt
+\]
+\[
+= \kappa\Delta x\Delta y\Delta z\,dt\left(\frac{\partial^2 T}{\partial x^2} + \frac{\partial^2 T}{\partial y^2} + \frac{\partial^2 T}{\partial z^2}\right) + q\Delta x\Delta y\Delta z\,dt
+\]
+
+Деля на $\Delta x\Delta y\Delta z\,dt$:
+\begin{equation}
+\boxed{c_v\rho\frac{\partial T}{\partial t} = \kappa\left(\frac{\partial^2 T}{\partial x^2} + \frac{\partial^2 T}{\partial y^2} + \frac{\partial^2 T}{\partial z^2}\right) + q}
+\end{equation}
+
+\subsubsection{Пример 13.7. Теплообмен между сосудами}
+
+\textbf{Условие:} Два сосуда с газом нагреты до температур $T_{10}$ и $T_{20}$ ($T_{10} > T_{20}$). Массы газов $m_1$, $m_2$, удельные теплоёмкости $c_1$, $c_2$. Сосуды соединены металлическим стержнем длиной $L$, площадью $S$, коэффициентом теплопроводности $\kappa$. Найти зависимость разности температур от времени.
+
+\textbf{Решение:} Так как теплоёмкость стержня равна нулю, уравнение (13.16) принимает вид: $\partial^2 T(x, t)/\partial x^2 = 0$.
+
+Его решение с граничными условиями $T(0, t) = T_1(t)$, $T(L, t) = T_2(t)$:
+\[
+T(x, t) = T_1(t) + x[T_2(t) - T_1(t)]/L
+\]
+
+Поток тепла постоянен вдоль стержня:
+\[
+J_x = -\kappa\frac{\partial T}{\partial x} = \frac{\kappa[T_1(t) - T_2(t)]}{L} = -\frac{c_1 m_1}{S}\frac{dT_1}{dt} = \frac{c_2 m_2}{S}\frac{dT_2}{dt}
+\]
+
+Уравнение для разности температур:
+\[
+\frac{d[T_2(t) - T_1(t)]}{dt} = -\frac{\kappa S}{L}\left(\frac{1}{c_1 m_1} + \frac{1}{c_2 m_2}\right)[T_2(t) - T_1(t)]
+\]
+
+Решение:
+\begin{equation}
+\boxed{T_2(t) - T_1(t) = (T_{20} - T_{10})\exp\left[-\frac{\kappa St}{L}\left(\frac{1}{c_1 m_1} + \frac{1}{c_2 m_2}\right)\right]}
+\end{equation}
+
+%═══════════════════════════════════════════════════════════════════════════════
+\part{Полный конспект формул}
+%═══════════════════════════════════════════════════════════════════════════════
+
+%═══════════════════════════════════════════════════════════════════════════════
+\section{\S 1. Основные понятия и первое начало термодинамики}
+%═══════════════════════════════════════════════════════════════════════════════
+
+\subsection{Фундаментальные константы}
+\begin{align}
+N_A &= 6{,}02 \cdot 10^{23} \text{ моль}^{-1} && \text{(число Авогадро)} \\
+R &= 8{,}31 \text{ Дж/(моль$\cdot$К)} && \text{(универсальная газовая постоянная)} \\
+k &= \frac{R}{N_A} = 1{,}38 \cdot 10^{-23} \text{ Дж/К} && \text{(постоянная Больцмана)}
+\end{align}
+
+\subsection{Уравнение Клапейрона--Менделеева}
+\begin{equation}
+\boxed{pV = \frac{m}{\mu}RT = \nu RT}
+\tag{1.2}
+\end{equation}
+
+\subsection{Первое начало термодинамики}
+\begin{equation}
+\boxed{\delta Q = dU + \delta A}
+\tag{1.8}
+\end{equation}
+
+\subsection{Работа газа}
+\begin{equation}
+\boxed{A = \int_{V_0}^{V_1} p(V) \, dV}
+\tag{1.6}
+\end{equation}
+
+\subsection{Теплоёмкости идеального газа}
+\begin{equation}
+\boxed{C_V = \frac{i}{2}R, \qquad C_p = C_V + R = \frac{i+2}{2}R, \qquad \gamma = \frac{C_p}{C_V} = \frac{i+2}{i}}
+\end{equation}
+
+\subsection{Политропный процесс}
+\begin{equation}
+\boxed{pV^n = \text{const}}
+\tag{1.11}
+\end{equation}
+
+\subsection{КПД цикла Карно}
+\begin{equation}
+\boxed{\eta = 1 - \frac{T_2}{T_1}}
+\end{equation}
+
+%═══════════════════════════════════════════════════════════════════════════════
+\section{\S 2. Второе начало термодинамики. Энтропия}
+%═══════════════════════════════════════════════════════════════════════════════
+
+\subsection{Дифференциал энтропии}
+\begin{equation}
+\boxed{dS \equiv \frac{\delta Q}{T} = \frac{dU}{T} + \frac{p\,dV}{T}}
+\tag{2.1}
+\end{equation}
+
+\subsection{Изменение энтропии идеального газа}
+\begin{equation}
+\boxed{S_2 - S_1 = R \ln\frac{V_2}{V_1} + C_V \ln\frac{T_2}{T_1}}
+\tag{2.4}
+\end{equation}
+
+\subsection{Неравенство Клаузиуса}
+\begin{equation}
+\boxed{\oint \frac{\delta Q}{T} \leq 0}
+\tag{2.5}
+\end{equation}
+
+%═══════════════════════════════════════════════════════════════════════════════
+\section{\S 3. Термодинамические потенциалы}
+%═══════════════════════════════════════════════════════════════════════════════
+
+\subsection{Определения}
+\begin{center}
+\begin{tabular}{|c|c|c|}
+\hline
+Потенциал & Определение & Естественные переменные \\
+\hline
+Внутренняя энергия $U$ & --- & $V$, $S$ \\
+Свободная энергия $F$ & $U - TS$ & $V$, $T$ \\
+Энтальпия $H$ & $U + pV$ & $p$, $S$ \\
+Потенциал Гиббса $G$ & $U - TS + pV$ & $p$, $T$ \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Дифференциалы потенциалов}
+\begin{align}
+dU &\leq TdS - pdV \\
+dF &\leq -pdV - SdT \\
+dH &\leq TdS + Vdp \\
+dG &\leq -SdT + Vdp
+\end{align}
+
+\subsection{Соотношения Максвелла}
+\begin{equation}
+\boxed{
+\begin{aligned}
+\left(\frac{\partial T}{\partial V}\right)_S &= -\left(\frac{\partial p}{\partial S}\right)_V \\[6pt]
+\left(\frac{\partial S}{\partial V}\right)_T &= \left(\frac{\partial p}{\partial T}\right)_V \\[6pt]
+\left(\frac{\partial T}{\partial p}\right)_S &= \left(\frac{\partial V}{\partial S}\right)_p \\[6pt]
+\left(\frac{\partial S}{\partial p}\right)_T &= -\left(\frac{\partial V}{\partial T}\right)_p
+\end{aligned}
+}
+\tag{3.9}
+\end{equation}
+
+%═══════════════════════════════════════════════════════════════════════════════
+\section{\S 5. Системы с переменным числом частиц}
+%═══════════════════════════════════════════════════════════════════════════════
+
+\subsection{Химический потенциал}
+\begin{equation}
+\boxed{\mu = \left(\frac{\partial U}{\partial N}\right)_{S,V} = \left(\frac{\partial F}{\partial N}\right)_{T,V} = \left(\frac{\partial G}{\partial N}\right)_{T,p}}
+\tag{5.6}
+\end{equation}
+
+\subsection{Уравнение Клапейрона--Клаузиуса}
+\begin{equation}
+\boxed{\frac{dp}{dT} = \frac{\lambda}{T(\nu_1 - \nu_2)}}
+\tag{5.18}
+\end{equation}
+
+%═══════════════════════════════════════════════════════════════════════════════
+\section{\S 6. Некоторые вероятностные представления}
+%═══════════════════════════════════════════════════════════════════════════════
+
+\subsection{Среднее значение и дисперсия}
+\begin{equation}
+\boxed{\bar{x} = \int_a^b x\, w^{(1)}(x)\,dx, \qquad \sigma^2(x) = \int_a^b (x - \bar{x})^2 w^{(1)}(x)\,dx}
+\end{equation}
+
+\subsection{Распределение Гаусса}
+\begin{equation}
+\boxed{w^{(1)}(x) = \frac{1}{\sqrt{2\pi}\sigma} \exp\left(-\frac{(x - x_0)^2}{2\sigma^2}\right)}
+\tag{6.11}
+\end{equation}
+
+\subsection{Биномиальное распределение}
+\begin{equation}
+\boxed{P_N(n) = C_N^n \left(\frac{v}{V}\right)^n \left(1 - \frac{v}{V}\right)^{N-n}}
+\tag{6.14}
+\end{equation}
+
+%═══════════════════════════════════════════════════════════════════════════════
+\section{\S 8. Распределение Максвелла}
+%═══════════════════════════════════════════════════════════════════════════════
+
+\subsection{Распределение по импульсам}
+\begin{equation}
+\boxed{w^{(3)}(\vec{p}) = (2\pi mkT)^{-3/2} \exp\left(-\frac{\vec{p}^2}{2mkT}\right)}
+\tag{8.1}
+\end{equation}
+
+\subsection{Характерные скорости}
+\begin{align}
+\text{Наивероятнейшая:} \quad &v^* = \sqrt{\frac{2kT}{m}} \\[6pt]
+\text{Средняя:} \quad &\bar{v} = \sqrt{\frac{8kT}{\pi m}} \\[6pt]
+\text{Среднеквадратичная:} \quad &\sqrt{\overline{v^2}} = \sqrt{\frac{3kT}{m}}
+\end{align}
+
+\subsection{Средняя энергия молекулы}
+\begin{equation}
+\boxed{\bar{E} = \frac{3kT}{2}}
+\tag{8.6}
+\end{equation}
+
+\subsection{Число ударов о стенку}
+\begin{equation}
+\boxed{N = \frac{Sn\tau\bar{v}}{4}}
+\tag{8.10}
+\end{equation}
+
+%═══════════════════════════════════════════════════════════════════════════════
+\section{\S 9. Распределение Больцмана}
+%═══════════════════════════════════════════════════════════════════════════════
+
+\subsection{Распределение по координатам}
+\begin{equation}
+\boxed{w^{(3)}(\vec{r}) = \frac{\exp(-U_0(\vec{r})/kT)}{\displaystyle\int_V \exp(-U_0(\vec{r})/kT)\,d\vec{r}}}
+\tag{9.1}
+\end{equation}
+
+\subsection{Барометрическая формула}
+\begin{equation}
+\boxed{n(z) = n(0) \exp\left(-\frac{m_0 gz}{kT}\right), \qquad p(z) = p(0) \exp\left(-\frac{m_0 gz}{kT}\right)}
+\end{equation}
+
+\subsection{Центрифугирование}
+\begin{equation}
+\boxed{\frac{n_i(r)}{n_i(0)} = \exp\left(\frac{m_i \omega^2 r^2}{2kT}\right)}
+\tag{9.10}
+\end{equation}
+
+%═══════════════════════════════════════════════════════════════════════════════
+\section{\S 10. Цепочка уравнений для равновесных функций распределения}
+%═══════════════════════════════════════════════════════════════════════════════
+
+\subsection{Уравнение состояния с поправкой}
+\begin{equation}
+\boxed{p = \frac{NkT}{V}\left[1 + \frac{N(\tilde{b} - \tilde{a}/kT)}{V}\right]}
+\tag{10.22}
+\end{equation}
+
+\subsection{Связь с константами Ван-дер-Ваальса}
+\begin{equation}
+\boxed{a = N_A^2 \tilde{a}, \qquad b = N_A \tilde{b}}
+\tag{10.23}
+\end{equation}
+
+%═══════════════════════════════════════════════════════════════════════════════
+\section{\S 11. Идеальные квантовые газы}
+%═══════════════════════════════════════════════════════════════════════════════
+
+\subsection{Распределение Бозе--Эйнштейна}
+\begin{equation}
+\boxed{\bar{N}_l = \frac{1}{\exp[(E_l - \mu)/kT] - 1}}
+\tag{11.8}
+\end{equation}
+
+\subsection{Распределение Ферми--Дирака}
+\begin{equation}
+\boxed{\bar{N}_l = \frac{1}{\exp[(E_l - \mu)/kT] + 1}}
+\tag{11.9}
+\end{equation}
+
+\subsection{Энергия Ферми}
+\begin{equation}
+\boxed{E_F = \frac{(3\pi^2 \bar{N}/V)^{2/3} \hbar^2}{2m}}
+\end{equation}
+
+%═══════════════════════════════════════════════════════════════════════════════
+\section{\S 14. Броуновское движение}
+%═══════════════════════════════════════════════════════════════════════════════
+
+\subsection{Уравнение Фоккера--Планка}
+\begin{equation}
+\boxed{\left(\frac{\partial}{\partial t} + \frac{\vec{p}}{M}\frac{\partial}{\partial \vec{r}} - \frac{\partial U_0(\vec{r})}{\partial \vec{r}}\frac{\partial}{\partial \vec{p}}\right)w_1 = \gamma MkT\frac{\partial^2 w_1}{\partial \vec{p}^2} + \frac{\partial}{\partial \vec{p}}[\gamma\vec{p}w_1]}
+\tag{14.1}
+\end{equation}
+
+\subsection{Коэффициент диффузии}
+\begin{equation}
+\boxed{D = \frac{kT}{M\gamma} = \frac{kT}{6\pi\eta_0 R_0}}
+\end{equation}
+
+\subsection{Средний квадрат смещения}
+\begin{equation}
+\boxed{\overline{r^2} = 6Dt} \quad \text{(при } t \gg \gamma^{-1}\text{)}
+\tag{14.6}
+\end{equation}
+
+\subsection{Формула Эйнштейна для дисперсии импульса}
+\begin{equation}
+\boxed{(\Delta p)^2 = 2MkT\gamma t} \quad \text{(при } \tau_1 \ll t \ll \gamma^{-1}\text{)}
+\end{equation}
+
+\part{Термодинамика равновесных систем}
+
+
+%======================================================================
+% §01_Основные_понятия_и_первое_начало_термодинамики
+%======================================================================
+
+\section{\S 1. Основные понятия и первое начало термодинамики}
+
+%═══════════════════════════════════════════════════════════════════
+\subsection{Краткая теория}
+%═══════════════════════════════════════════════════════════════════
+
+\subsubsection{Основные определения}
+
+\textbf{Термодинамическая система} --- совокупность $N \sim N_A$ хаотически движущихся частиц в ограниченной области пространства.
+
+\textbf{Параметры системы:}
+\begin{itemize}
+    \item \textbf{Внешние} $a_i$ $(i = 1, 2, \ldots, n)$ --- определяются состоянием тел вне системы
+    \item \textbf{Внутренние} $b_j$ --- определяются движением частиц системы
+    \item \textbf{Интенсивные} --- не зависят от массы (давление, температура)
+    \item \textbf{Экстенсивные} --- пропорциональны массе (объём, энергия)
+\end{itemize}
+
+\textbf{Термодинамическое равновесие} --- состояние изолированной системы, из которого она самопроизвольно выйти не может. Характеризуется абсолютной температурой $T$ [K].
+
+\textbf{Равновесный (квазистатический) процесс} --- процесс, при котором система в каждый момент времени находится в состоянии термодинамического равновесия.
+
+\textbf{Теплоёмкость} $\tilde{C} = \delta Q / dT$ --- количество теплоты для изменения температуры на $dT$.
+
+\textbf{Адиабатический процесс} --- процесс без теплообмена с окружающей средой ($\delta Q = 0$).
+
+%═══════════════════════════════════════════════════════════════════
+\subsection{Основные формулы}
+%═══════════════════════════════════════════════════════════════════
+
+\subsubsection{Фундаментальные константы}
+
+\begin{align}
+    N_A &= 6{,}02 \cdot 10^{23} \text{ моль}^{-1} && \text{(число Авогадро)} \\[6pt]
+    R &= 8{,}31 \text{ Дж/(моль$\cdot$К)} && \text{(универсальная газовая постоянная)} \\[6pt]
+    k &= \frac{R}{N_A} = 1{,}38 \cdot 10^{-23} \text{ Дж/К} && \text{(постоянная Больцмана)}
+\end{align}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Уравнения состояния}
+
+\textbf{Термическое уравнение состояния (общий вид):}
+\begin{equation}
+    B_i = B_i(a_1, a_2, \ldots, T)
+    \tag{1.1}
+\end{equation}
+где $B_i$ --- обобщённая термодинамическая сила, сопряжённая параметру $a_i$.
+
+\textbf{Уравнение Клапейрона--Менделеева (идеальный газ):}
+\begin{equation}
+    \boxed{pV = \frac{m}{\mu}RT = \nu RT}
+    \tag{1.2}
+\end{equation}
+где $\nu = m/\mu$ --- число молей, $\mu$ --- молярная масса.
+
+\textbf{Калорическое уравнение состояния (внутренняя энергия идеального газа):}
+\begin{equation}
+    \boxed{U = \frac{i}{2}kTN = \frac{i}{2}\frac{m}{\mu}RT}
+    \tag{1.3}
+\end{equation}
+где $i$ --- число степеней свободы молекулы.
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Условие равновесного процесса}
+
+\begin{equation}
+    \frac{da_i}{dt} \ll \frac{\Delta a_i}{\tau}, \qquad \frac{db_j}{dt} \ll \frac{\Delta b_j}{\tau}
+    \tag{1.4}
+\end{equation}
+где $\tau$ --- время релаксации системы.
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Работа и теплота}
+
+\textbf{Элементарная работа (общий случай):}
+\begin{equation}
+    \delta A = \sum_{i=1}^{n} B_i \, da_i
+    \tag{1.5}
+\end{equation}
+
+\textbf{Работа газа при изменении объёма:}
+\begin{equation}
+    \boxed{A = \int_{V_0}^{V_1} p(V) \, dV}
+    \tag{1.6}
+\end{equation}
+
+\textbf{Теплоёмкость системы:}
+\begin{equation}
+    \tilde{C} \equiv \frac{\delta Q}{dT}
+    \tag{1.7}
+\end{equation}
+
+Связь теплоёмкостей: $C = \tilde{C}/\nu$, \quad $c = \tilde{C}/m$, \quad где $\nu = m/\mu$.
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Первое начало термодинамики}
+
+\begin{equation}
+    \boxed{\delta Q = dU(a_1, \ldots, a_n, T) + \delta A}
+    \tag{1.8}
+\end{equation}
+
+\textbf{Для кругового процесса (цикла):}
+\begin{equation}
+    A = Q_1 + Q_2 = Q_1 - |Q_2|
+    \tag{1.9}
+\end{equation}
+где $Q_1$ --- теплота от нагревателя, $Q_2$ --- теплота холодильнику.
+
+\textbf{КПД тепловой машины:}
+\begin{equation}
+    \boxed{\eta = \frac{A}{Q_1}}
+\end{equation}
+
+\textbf{Холодильный коэффициент:}
+\begin{equation}
+    \eta_x = \frac{|Q_2|}{A}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Теплоёмкость идеального газа}
+
+\textbf{Теплоёмкость при постоянном объёме:}
+\begin{equation}
+    \boxed{C_V = \frac{i}{2}R}
+\end{equation}
+
+\textbf{Теплоёмкость при постоянном давлении:}
+\begin{equation}
+    \boxed{C_p = C_V + R = \frac{i+2}{2}R}
+\end{equation}
+
+\textbf{Показатель адиабаты:}
+\begin{equation}
+    \boxed{\gamma = \frac{C_p}{C_V} = \frac{i+2}{i}}
+\end{equation}
+
+\textbf{Общая формула теплоёмкости:}
+\begin{equation}
+    C = C_V + p\frac{dV}{dT}
+    \tag{1.10}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Политропный процесс}
+
+\textbf{Уравнение политропы:}
+\begin{equation}
+    \boxed{pV^n = \text{const}}
+    \tag{1.11}
+\end{equation}
+
+\textbf{Показатель политропы:}
+\begin{equation}
+    n = \frac{C - C_p}{C - C_V}
+\end{equation}
+
+\textbf{Теплоёмкость в политропном процессе:}
+\begin{equation}
+    C(n) = C_V \frac{n - \gamma}{n - 1}
+\end{equation}
+
+\textbf{Частные случаи:}
+\begin{center}
+\begin{tabular}{|c|c|c|c|}
+\hline
+$n$ & Процесс & Условие & Теплоёмкость \\
+\hline
+$0$ & Изобарический & $p = \text{const}$ & $C_p$ \\
+$1$ & Изотермический & $T = \text{const}$ & $\pm\infty$ \\
+$\gamma$ & Адиабатический & $\delta Q = 0$ & $0$ \\
+$\infty$ & Изохорический & $V = \text{const}$ & $C_V$ \\
+\hline
+\end{tabular}
+\end{center}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Термические коэффициенты}
+
+\textbf{Коэффициент объёмного расширения:}
+\begin{equation}
+    \alpha = \frac{1}{V_0}\left(\frac{\partial V}{\partial T}\right)_p
+\end{equation}
+
+\textbf{Температурный коэффициент давления:}
+\begin{equation}
+    \lambda = \frac{1}{p_0}\left(\frac{\partial p}{\partial T}\right)_V
+\end{equation}
+
+\textbf{Изотермическая сжимаемость:}
+\begin{equation}
+    \beta = -\frac{1}{V_0}\left(\frac{\partial V}{\partial p}\right)_T
+\end{equation}
+
+\textbf{Для идеального газа при $T_0 = 273$ К:}
+\begin{equation}
+    \alpha = \lambda = \frac{1}{T_0}, \qquad \beta = \frac{1}{p_0}, \qquad \alpha = p_0 \beta \lambda
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Цикл Карно}
+
+\textbf{КПД цикла Карно (идеальный газ):}
+\begin{equation}
+    \boxed{\eta = 1 - \frac{T_2}{T_1}}
+\end{equation}
+где $T_1$ --- температура нагревателя, $T_2$ --- температура холодильника.
+
+\textbf{Теплота на изотерме:}
+\begin{equation}
+    Q_{12} = \nu RT_1 \ln\frac{V_2}{V_1}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Разность теплоёмкостей (общий случай)}
+
+Для любого однородного изотропного вещества:
+\begin{equation}
+    \tilde{C}_p - \tilde{C}_V = \left[\left(\frac{\partial U}{\partial V}\right)_T + p\right]\left(\frac{\partial V}{\partial T}\right)_p
+\end{equation}
+
+%═══════════════════════════════════════════════════════════════════
+\subsection{Полезные соотношения из примеров}
+%═══════════════════════════════════════════════════════════════════
+
+\textbf{Изменение внутренней энергии идеального газа:}
+\begin{equation}
+    \Delta U = \frac{m}{\mu} C_V \Delta T = \nu C_V \Delta T
+\end{equation}
+
+\textbf{Теплота в изобарическом процессе:}
+\begin{equation}
+    Q_p = \nu C_p \Delta T
+\end{equation}
+
+\textbf{Теплота в изохорическом процессе:}
+\begin{equation}
+    Q_V = \nu C_V \Delta T = \Delta U
+\end{equation}
+
+\textbf{Работа в изобарическом процессе:}
+\begin{equation}
+    A = p \Delta V = \nu R \Delta T
+\end{equation}
+
+\textbf{Работа в изотермическом процессе:}
+\begin{equation}
+    A = \nu RT \ln\frac{V_2}{V_1}
+\end{equation}
+
+\textbf{Связь холодильного коэффициента и КПД (машина Карно):}
+\begin{equation}
+    \eta_x = \frac{|Q_2|}{A} = \frac{1-\eta}{\eta} = \eta^{-1} - 1
+\end{equation}
+
+\newpage
+
+
+%======================================================================
+% §02_Второе_начало_термодинамики_Энтропия
+%======================================================================
+
+\section{\S 2. Второе начало термодинамики Энтропия}
+
+%═══════════════════════════════════════════════════════════════════
+\subsection{Краткая теория}
+%═══════════════════════════════════════════════════════════════════
+
+\subsubsection{Формулировки второго начала термодинамики}
+
+\textbf{Формулировка Томсона (Кельвина):}
+Невозможно осуществить циклический процесс, единственным результатом которого было бы превращение в механическую работу количества теплоты, отнятой у какого-нибудь тела, без каких-либо изменений в другом теле.
+
+\textbf{Формулировка Карно:}
+Циклическая тепловая машина, работающая при данных температурах нагревателя и холодильника, не может иметь больший КПД, чем машина Карно при тех же температурах.
+
+\subsubsection{Энтропия}
+
+\textbf{Энтропия} $S$ --- функция состояния термодинамической системы, определяемая через полный дифференциал. Измеряется в Дж/К.
+
+\textbf{Свойства энтропии:}
+\begin{itemize}
+    \item В изолированной системе: $\Delta S \geq 0$ (равенство для обратимых процессов)
+    \item В неизолированной системе: $\Delta S$ может быть любого знака
+    \item Все естественные процессы необратимы $\Rightarrow$ энтропия замкнутой системы возрастает
+\end{itemize}
+
+%═══════════════════════════════════════════════════════════════════
+\subsection{Основные формулы}
+%═══════════════════════════════════════════════════════════════════
+
+\subsubsection{Дифференциал энтропии}
+
+\textbf{Для равновесного (обратимого) процесса:}
+\begin{equation}
+    \boxed{dS \equiv \frac{\delta Q}{T} = \frac{dU}{T} + \frac{1}{T}\sum_{i=1}^{n} B_i \, da_i}
+    \tag{2.1}
+\end{equation}
+
+\textbf{Для неравновесного процесса:}
+\begin{equation}
+    dS > \frac{\delta Q'}{T} = \frac{dU}{T} + \frac{1}{T}\sum_{i=1}^{n} B_i \, da_i
+    \tag{2.2}
+\end{equation}
+
+\textbf{Важно:} $T$ --- температура \textit{отдающего} тепло тела!
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Изменение энтропии при конечном переходе}
+
+\textbf{Общая формула:}
+\begin{equation}
+    \boxed{S_2 - S_1 = \int_1^2 \frac{\delta Q}{T} = \int_1^2 T^{-1} dU + \int_1^2 T^{-1} \sum_{i=1}^{n} B_i \, da_i}
+    \tag{2.3}
+\end{equation}
+
+Интеграл вычисляется вдоль \textit{любой} равновесной траектории между состояниями 1 и 2.
+
+\textbf{Для одного моля идеального газа:}
+\begin{equation}
+    \boxed{S_2 - S_1 = R \ln\frac{V_2}{V_1} + C_V \ln\frac{T_2}{T_1}}
+    \tag{2.4}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Неравенство Клаузиуса}
+
+\textbf{Для произвольного кругового процесса:}
+\begin{equation}
+    \boxed{\oint \frac{\delta Q}{T} \leq 0}
+    \tag{2.5}
+\end{equation}
+
+\begin{itemize}
+    \item Знак ``$=$'' --- для обратимых процессов
+    \item Знак ``$<$'' --- для необратимых процессов
+\end{itemize}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Первое начало через энтропию}
+
+\begin{equation}
+    \delta Q = TdS(V,T) = dU(V,T) + pdV = \left(\frac{\partial U}{\partial T}\right)_V dT + \left(\frac{\partial U}{\partial V}\right)_T dV + pdV
+    \tag{2.6}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Соотношение для давления и внутренней энергии}
+
+\begin{equation}
+    \boxed{T\left(\frac{\partial p}{\partial T}\right)_V = p + \left(\frac{\partial U}{\partial V}\right)_T}
+    \tag{2.7}
+\end{equation}
+
+Связывает $p$ и $U(T,V)$ в любой термодинамической системе.
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Энтропия идеального газа (явный вид)}
+
+\begin{equation}
+    S = \frac{m}{\mu}\left(R \ln V + C_V \ln T + S_0\right)
+    \tag{2.8}
+\end{equation}
+
+где $S_0$ --- константа интегрирования (зависит от числа частиц).
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Закон Стефана--Больцмана}
+
+Для равновесного электромагнитного излучения:
+\begin{equation}
+    \boxed{u = \sigma T^4}
+\end{equation}
+где $u = U/V$ --- плотность энергии излучения, $\sigma = 7{,}64 \cdot 10^{-16}$ Дж/(К$^4\cdot$м$^3$) --- постоянная Стефана--Больцмана.
+
+Давление излучения: $p = u/3$.
+
+%═══════════════════════════════════════════════════════════════════
+\subsection{Полезные соотношения из примеров}
+%═══════════════════════════════════════════════════════════════════
+
+\subsubsection{Изменение энтропии в типовых процессах}
+
+\textbf{Изотермическое расширение идеального газа:}
+\begin{equation}
+    \Delta S = \frac{m}{\mu} R \ln\frac{V_2}{V_1} = \frac{pV}{T} \ln\frac{V_2}{V_1}
+\end{equation}
+
+\textbf{Нагревание тела:}
+\begin{equation}
+    \Delta S = mc \int_{T_1}^{T_2} \frac{dT}{T} = mc \ln\frac{T_2}{T_1}
+\end{equation}
+где $c$ --- удельная теплоёмкость.
+
+\textbf{Фазовый переход при температуре $T$:}
+\begin{equation}
+    \Delta S = \frac{Q}{T} = \frac{m\lambda}{T}
+\end{equation}
+где $\lambda$ --- удельная теплота фазового перехода.
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{КПД цикла Карно (через энтропию)}
+
+На диаграмме $T$--$S$ цикл Карно --- прямоугольник.
+
+\textbf{Теплота на изотерме 1--2 (нагреватель):}
+\begin{equation}
+    Q_{12} = T_1(S_2 - S_1)
+\end{equation}
+
+\textbf{Теплота на изотерме 3--4 (холодильник):}
+\begin{equation}
+    Q_{34} = T_2(S_1 - S_2)
+\end{equation}
+
+\textbf{Работа за цикл:}
+\begin{equation}
+    A = (T_1 - T_2)(S_2 - S_1)
+\end{equation}
+
+\textbf{КПД:}
+\begin{equation}
+    \boxed{\eta = \frac{A}{Q_{12}} = \frac{T_1 - T_2}{T_1} = 1 - \frac{T_2}{T_1}}
+\end{equation}
+
+\textbf{Теорема Карно:} КПД цикла Карно не зависит от рода рабочего тела, а только от температур нагревателя и холодильника.
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Установление теплового равновесия}
+
+Два тела с теплоёмкостями $\tilde{C}_p = \text{const}$ и температурами $T_1$, $T_2$ приходят в контакт.
+
+\textbf{Равновесная температура:}
+\begin{equation}
+    T_3 = \frac{T_1 + T_2}{2}
+\end{equation}
+
+\textbf{Изменение энтропии системы:}
+\begin{equation}
+    \Delta S = \tilde{C}_p \ln\frac{T_3^2}{T_1 T_2} = \tilde{C}_p \ln\frac{(T_1 + T_2)^2}{4T_1 T_2} > 0
+\end{equation}
+
+(т.к. $(T_1 + T_2)/2 \geq \sqrt{T_1 T_2}$ --- неравенство между средним арифметическим и геометрическим)
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Диффузия газов}
+
+При смешении двух идеальных газов с одинаковой температурой:
+\begin{equation}
+    \Delta S = \left(\frac{M_1}{\mu_1} + \frac{M_2}{\mu_2}\right) R \ln 2 > 0
+\end{equation}
+
+\textbf{Парадокс Гиббса:} формула даёт $\Delta S > 0$ даже для одинаковых газов, хотя состояние системы не меняется. Разрешается корректным учётом зависимости $S_0$ от числа частиц.
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Необратимое адиабатическое расширение в пустоту}
+
+Для $\nu$ молей идеального газа при расширении объёма в 2 раза:
+\begin{equation}
+    \Delta S_1 = \nu R \ln 2, \qquad \Delta U_1 = 0
+\end{equation}
+
+При обратном адиабатическом сжатии:
+\begin{equation}
+    \Delta S_2 = 0, \qquad T = T_0 \cdot 2^{\gamma - 1}
+\end{equation}
+
+Итоговое изменение:
+\begin{equation}
+    \Delta U = \nu C_V T_0 (2^{\gamma-1} - 1)
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Максимальная работа тепловой машины}
+
+Два тела с теплоёмкостями $\tilde{C}_1$, $\tilde{C}_2$ и начальными температурами $T_{10}$, $T_{20}$.
+
+\textbf{Конечная равновесная температура:}
+\begin{equation}
+    T = T_{10}^{\tilde{C}_1/(\tilde{C}_1+\tilde{C}_2)} \cdot T_{20}^{\tilde{C}_2/(\tilde{C}_1+\tilde{C}_2)}
+\end{equation}
+
+\textbf{Максимальная работа:}
+\begin{equation}
+    A_{\max} = \tilde{C}_1 T_{10} + \tilde{C}_2 T_{20} - (\tilde{C}_1 + \tilde{C}_2) T
+\end{equation}
+
+\newpage
+
+
+%======================================================================
+% §03_Термодинамические_потенциалы
+%======================================================================
+
+\section{\S 3. Термодинамические потенциалы}
+
+%═══════════════════════════════════════════════════════════════════
+\subsection{Краткая теория}
+%═══════════════════════════════════════════════════════════════════
+
+\subsubsection{Термодинамические потенциалы}
+
+\textbf{Термодинамические потенциалы} --- функции состояния, позволяющие выразить все макроскопические характеристики системы и анализировать устойчивость равновесия.
+
+\begin{center}
+\begin{tabular}{|c|c|c|}
+\hline
+Потенциал & Определение & Естественные переменные \\
+\hline
+Внутренняя энергия $U$ & --- & $V$, $S$ \\
+Свободная энергия $F$ & $U - TS$ & $V$, $T$ \\
+Энтальпия $H$ & $U + pV$ & $p$, $S$ \\
+Потенциал Гиббса $G$ & $U - TS + pV$ & $p$, $T$ \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsubsection{Условия равновесия и устойчивости}
+
+\begin{itemize}
+    \item \textbf{Изолированная система}: $S \to \max$ $\Rightarrow$ $\delta S = 0$, $\delta^2 S < 0$
+    \item \textbf{$V, T = \text{const}$}: $F \to \min$ $\Rightarrow$ $\delta F = 0$, $\delta^2 F > 0$
+    \item \textbf{$p, T = \text{const}$}: $G \to \min$ $\Rightarrow$ $\delta G = 0$, $\delta^2 G > 0$
+    \item \textbf{Адиабата, $p = \text{const}$}: $H \to \min$
+    \item \textbf{Адиабата, $V = \text{const}$}: $U \to \min$
+\end{itemize}
+
+%═══════════════════════════════════════════════════════════════════
+\subsection{Основные формулы}
+%═══════════════════════════════════════════════════════════════════
+
+\subsubsection{Дифференциалы термодинамических потенциалов}
+
+\textbf{Для обратимых процессов} (знак ``$=$''), для необратимых (знак ``$\leq$''):
+
+\begin{align}
+    dU &\leq TdS - pdV \tag{3.1} \\[4pt]
+    dF &\leq -pdV - SdT \tag{3.2} \\[4pt]
+    dH &\leq TdS + Vdp \tag{3.3} \\[4pt]
+    dG &\leq -SdT + Vdp \tag{3.4}
+\end{align}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Частные производные потенциалов}
+
+\textbf{Из внутренней энергии $U(V, S)$:}
+\begin{equation}
+    \boxed{T = \left(\frac{\partial U}{\partial S}\right)_V}, \qquad
+    \boxed{p = -\left(\frac{\partial U}{\partial V}\right)_S}
+    \tag{3.5}
+\end{equation}
+
+\textbf{Из свободной энергии $F(V, T)$:}
+\begin{equation}
+    \boxed{S = -\left(\frac{\partial F}{\partial T}\right)_V}, \qquad
+    \boxed{p = -\left(\frac{\partial F}{\partial V}\right)_T}
+    \tag{3.6}
+\end{equation}
+
+\textbf{Из энтальпии $H(p, S)$:}
+\begin{equation}
+    \boxed{T = \left(\frac{\partial H}{\partial S}\right)_p}, \qquad
+    \boxed{V = \left(\frac{\partial H}{\partial p}\right)_S}
+    \tag{3.7}
+\end{equation}
+
+\textbf{Из потенциала Гиббса $G(p, T)$:}
+\begin{equation}
+    \boxed{S = -\left(\frac{\partial G}{\partial T}\right)_p}, \qquad
+    \boxed{V = \left(\frac{\partial G}{\partial p}\right)_T}
+    \tag{3.8}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Соотношения Максвелла}
+
+\begin{equation}
+    \boxed{
+    \begin{aligned}
+        \left(\frac{\partial T}{\partial V}\right)_S &= -\left(\frac{\partial p}{\partial S}\right)_V \\[6pt]
+        \left(\frac{\partial S}{\partial V}\right)_T &= \left(\frac{\partial p}{\partial T}\right)_V \\[6pt]
+        \left(\frac{\partial T}{\partial p}\right)_S &= \left(\frac{\partial V}{\partial S}\right)_p \\[6pt]
+        \left(\frac{\partial S}{\partial p}\right)_T &= -\left(\frac{\partial V}{\partial T}\right)_p
+    \end{aligned}
+    }
+    \tag{3.9}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Уравнения Гиббса--Гельмгольца}
+
+\begin{equation}
+    \boxed{
+    \begin{aligned}
+        U &= H - p\left(\frac{\partial H}{\partial p}\right)_S = F - T\left(\frac{\partial F}{\partial T}\right)_V \\[6pt]
+        G &= F - V\left(\frac{\partial F}{\partial V}\right)_T = H - S\left(\frac{\partial H}{\partial S}\right)_p
+    \end{aligned}
+    }
+    \tag{3.10}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Неравенство для энтропии}
+
+\begin{equation}
+    TdS \geq dU + pdV
+    \tag{3.11}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Адиабатический процесс в переменных $p$, $T$}
+
+\begin{equation}
+    \frac{\tilde{C}_p}{T} \cdot \frac{dT}{dp} = \left(\frac{\partial V}{\partial T}\right)_p
+    \tag{3.12}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Эффект Джоуля--Томсона}
+
+Дифференциальный эффект (при $H = \text{const}$):
+\begin{equation}
+    \tilde{C}_p \, dT + \left[V - T\left(\frac{\partial V}{\partial T}\right)_p\right] dp = 0
+    \tag{3.14}
+\end{equation}
+
+Коэффициент Джоуля--Томсона:
+\begin{equation}
+    \left(\frac{\partial T}{\partial p}\right)_H = \frac{T(\partial V/\partial T)_p - V}{\tilde{C}_p}
+\end{equation}
+
+Конечная температура:
+\begin{equation}
+    T_1 = T_0 + \int_{p_1}^{p_2} \frac{1}{\tilde{C}_p}\left[T\left(\frac{\partial V}{\partial T}\right)_p - V\right] dp
+    \tag{3.15}
+\end{equation}
+
+%═══════════════════════════════════════════════════════════════════
+\subsection{Полезные соотношения из примеров}
+%═══════════════════════════════════════════════════════════════════
+
+\subsubsection{Потенциалы идеального газа ($\nu$ молей)}
+
+\textbf{Свободная энергия:}
+\begin{equation}
+    F(V,T) = \nu \left[C_V T(1 - \ln T) - RT\ln V - TS_0\right]
+\end{equation}
+
+\textbf{Потенциал Гиббса:}
+\begin{equation}
+    G(p,T) = \nu \left[C_p T(1 - \ln T) - T(S_0 + R\ln V) + RT\right]
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Разность теплоёмкостей}
+
+Для вещества с известным уравнением состояния $V = V(p, T)$:
+\begin{equation}
+    \boxed{\tilde{C}_p - \tilde{C}_V = -T\left(\frac{\partial V}{\partial p}\right)_T^{-1} \left(\frac{\partial V}{\partial T}\right)_p^2}
+\end{equation}
+
+Тождество для частных производных:
+\begin{equation}
+    \left(\frac{\partial p}{\partial T}\right)_V \left(\frac{\partial T}{\partial V}\right)_p \left(\frac{\partial V}{\partial p}\right)_T = -1
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Полезное соотношение}
+
+\begin{equation}
+    \left(\frac{\partial T}{\partial V}\right)_S = -\frac{T(\partial p/\partial T)_V}{\tilde{C}_V}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Условия механической и термической устойчивости}
+
+\textbf{Механическая устойчивость:}
+\begin{equation}
+    \left(\frac{\partial p}{\partial V}\right)_T < 0
+\end{equation}
+(увеличение объёма $\Rightarrow$ уменьшение давления)
+
+\textbf{Термическая устойчивость:}
+\begin{equation}
+    \tilde{C}_V > 0
+\end{equation}
+(получение теплоты $\Rightarrow$ увеличение температуры)
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Максимальная работа при изотермическом смешении газов}
+
+\begin{equation}
+    A_{\max} = -\Delta F = \nu RT_0 \ln\frac{(V_1 + V_2)^2}{V_1 V_2}
+\end{equation}
+
+\newpage
+
+
+%======================================================================
+% §04_Реальные_газы
+%======================================================================
+
+\section{\S 4. Реальные газы}
+
+%═══════════════════════════════════════════════════════════════════
+\subsection{Краткая теория}
+%═══════════════════════════════════════════════════════════════════
+
+\subsubsection{Потенциал межмолекулярного взаимодействия}
+
+Потенциальная энергия взаимодействия $\Phi(r)$ между двумя частицами газа:
+\begin{itemize}
+    \item При малых $r$: $\Phi \to +\infty$ (отталкивание, ``непроницаемость'' атомов)
+    \item При больших $r$: $\Phi \to 0^{-}$ (притяжение)
+    \item Минимум: $\Phi_0 = |\min\{\Phi(r)\}| \sim kT_K$
+\end{itemize}
+где $T_K$ --- критическая температура вещества.
+
+\subsubsection{Уравнение Ван-дер-Ваальса}
+
+Учитывает:
+\begin{itemize}
+    \item Силы притяжения между молекулами $\Rightarrow$ дополнительное давление $\nu^2 a/V^2$
+    \item Силы отталкивания $\Rightarrow$ ``собственный объём'' молекул $\nu b$
+\end{itemize}
+
+\subsubsection{Критическая точка}
+
+При $T = T_K$ изотерма имеет точку перегиба (точка $K$):
+\begin{itemize}
+    \item $T > T_K$: только газообразное состояние
+    \item $T < T_K$: возможен фазовый переход жидкость--газ
+\end{itemize}
+
+%═══════════════════════════════════════════════════════════════════
+\subsection{Основные формулы}
+%═══════════════════════════════════════════════════════════════════
+
+\subsubsection{Уравнение Ван-дер-Ваальса}
+
+\begin{equation}
+    \boxed{\left(p + \frac{\nu^2 a}{V^2}\right)(V - \nu b) = \nu RT}
+    \tag{4.1}
+\end{equation}
+
+где $\nu = m/\mu$ --- число молей, $a$ и $b$ --- константы Ван-дер-Ваальса (разные для разных газов).
+
+\textbf{Для одного моля} ($\nu = 1$):
+\begin{equation}
+    \left(p + \frac{a}{V^2}\right)(V - b) = RT
+    \tag{4.2}
+\end{equation}
+
+или в явном виде для давления:
+\begin{equation}
+    p = \frac{RT}{V - b} - \frac{a}{V^2}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Критические параметры}
+
+В критической точке: $\left(\frac{\partial p}{\partial V}\right)_{T_K} = 0$ и $\left(\frac{\partial^2 p}{\partial V^2}\right)_{T_K} = 0$.
+
+\textbf{Выражение констант через критические параметры:}
+\begin{equation}
+    \boxed{a = \frac{27 R^2 T_K^2}{64 p_K}}, \qquad
+    \boxed{b = \frac{RT_K}{8p_K}}
+\end{equation}
+
+\textbf{Критический объём:}
+\begin{equation}
+    V_K = 3\nu b
+\end{equation}
+
+\textbf{Число молей через критические параметры:}
+\begin{equation}
+    \nu = \frac{8 V_K p_K}{3 R T_K}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Внутренняя энергия газа Ван-дер-Ваальса}
+
+\begin{equation}
+    \boxed{U = -\frac{\nu^2 a}{V} + \nu C_V T}
+\end{equation}
+
+При $a = 0$ переходит в выражение для идеального газа.
+
+Частная производная:
+\begin{equation}
+    \left(\frac{\partial U}{\partial V}\right)_T = \frac{\nu^2 a}{V^2}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Энтропия газа Ван-дер-Ваальса}
+
+\begin{equation}
+    \boxed{S = \nu C_V \ln T + \nu R \ln(V - \nu b) + S_0}
+\end{equation}
+
+\textbf{Важно:} $S_{\text{Ван-дер-Ваальс}} < S_{\text{идеальный газ}}$ при одинаковых $\nu$, $V$, $T$.
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Разность теплоёмкостей}
+
+\begin{equation}
+    \boxed{C_p - C_V = R\left[1 - \frac{2a(V-b)^2}{RTV^3}\right]^{-1}}
+\end{equation}
+
+Для газа Ван-дер-Ваальса: $C_p - C_V > R$ (больше, чем для идеального газа).
+
+\textbf{Теплоёмкость $C_V$} не зависит от объёма $V$:
+\begin{equation}
+    \left(\frac{\partial C_V}{\partial V}\right)_T = T\left(\frac{\partial^2 p}{\partial T^2}\right)_V = 0
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Эффект Джоуля--Томсона для газа Ван-дер-Ваальса}
+
+При $b \ll V$ и $a/V^2 \ll p \approx RT/V$:
+\begin{equation}
+    \boxed{\left(\frac{\partial T}{\partial p}\right)_H = \frac{2a/RT - b}{C_p}}
+\end{equation}
+
+\textbf{Температура инверсии:}
+\begin{equation}
+    \boxed{T^* = \frac{2a}{bR}}
+\end{equation}
+
+\begin{itemize}
+    \item $T < T^*$: газ \textbf{охлаждается} при расширении (N$_2$, O$_2$, воздух)
+    \item $T > T^*$: газ \textbf{нагревается} при расширении (H$_2$, He при комнатной $T$)
+\end{itemize}
+
+%═══════════════════════════════════════════════════════════════════
+\subsection{Полезные соотношения из примеров}
+%═══════════════════════════════════════════════════════════════════
+
+\subsubsection{Адиабатическое расширение в пустоту}
+
+Внутренняя энергия сохраняется ($\Delta U = 0$). Изменение температуры:
+\begin{equation}
+    T_1 - T_2 = \frac{2a(V_2 - V_1)}{5R V_1 V_2}
+\end{equation}
+(для двухатомного газа, $C_V = 5R/2$)
+
+\subsubsection{Смешение двух порций газа Ван-дер-Ваальса}
+
+При смешении газов в теплоизолированных сосудах ($\Delta U = 0$):
+\begin{equation}
+    T_2 = T_1 - \frac{a(V_2 - V_1)^2}{2C_V V_1 V_2 (V_2 + V_1)}
+\end{equation}
+
+Давление после установления равновесия:
+\begin{equation}
+    p = \frac{2RT_2}{V_1 + V_2 - 2b} - \frac{4a}{(V_1 + V_2)^2}
+\end{equation}
+
+\subsubsection{Работа при изобарическом расширении}
+
+Работа газа Ван-дер-Ваальса при изобарическом расширении равна работе при изотермическом расширении между теми же объёмами:
+\begin{equation}
+    A = p(V_2 - V_1) = RT\ln\frac{V_2 - b}{V_1 - b} + \frac{a}{V_2} - \frac{a}{V_1}
+\end{equation}
+
+\subsubsection{Частные производные для уравнения Ван-дер-Ваальса}
+
+\begin{equation}
+    \left(\frac{\partial T}{\partial V}\right)_p = \frac{TRV^3 - 2a(V-b)^2}{RV^3(V-b)}
+\end{equation}
+
+\begin{equation}
+    \left(\frac{\partial p}{\partial T}\right)_V = \frac{R}{V - b}
+\end{equation}
+
+\newpage
+
+
+%======================================================================
+% §05_Системы_с_переменным_числом_частиц
+%======================================================================
+
+\section{\S 5. Системы с переменным числом частиц}
+
+%═══════════════════════════════════════════════════════════════════
+\subsection{Краткая теория}
+%═══════════════════════════════════════════════════════════════════
+
+\subsubsection{Химический потенциал}
+
+\textbf{Химический потенциал} $\mu$ --- изменение внутренней энергии системы при изменении числа частиц на одну при постоянных $V$ и $S$:
+\begin{equation}
+    \mu = \left(\frac{\partial U}{\partial N}\right)_{S,V}
+\end{equation}
+
+\subsubsection{Фазы и компоненты}
+
+\textbf{Фаза} --- гомогенная часть гетерогенной системы, отделённая поверхностью раздела.
+
+\textbf{Компоненты} --- химические индивидуальные вещества, допускающие независимое существование.
+
+\textbf{Агрегатных состояний} --- 4 (твёрдое, жидкое, газообразное, плазменное).
+
+\textbf{Фаз может быть много} (различные кристаллические модификации и т.д.).
+
+\subsubsection{Фазовые переходы первого рода}
+
+Происходят при постоянной температуре $T^*$ с поглощением или выделением скрытой теплоты $T^*(S_2 - S_1)$. Примеры: плавление, кристаллизация, кипение.
+
+%═══════════════════════════════════════════════════════════════════
+\subsection{Основные формулы}
+%═══════════════════════════════════════════════════════════════════
+
+\subsubsection{Второе начало для системы с переменным $N$}
+
+\begin{equation}
+    \boxed{TdS(U,V,N) \geq dU + pdV - \mu dN}
+    \tag{5.1}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Дифференциалы термодинамических потенциалов}
+
+\begin{align}
+    dU(S,V,N) &\leq TdS - pdV + \mu dN \tag{5.2} \\[4pt]
+    dF(V,T,N) &\leq -pdV - SdT + \mu dN \tag{5.3} \\[4pt]
+    dH(S,p,N) &\leq TdS + Vdp + \mu dN \tag{5.4} \\[4pt]
+    dG(T,p,N) &\leq -SdT + Vdp + \mu dN \tag{5.5}
+\end{align}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Химический потенциал через различные потенциалы}
+
+\begin{equation}
+    \boxed{\mu = \left(\frac{\partial U}{\partial N}\right)_{S,V} = \left(\frac{\partial F}{\partial N}\right)_{T,V} = \left(\frac{\partial H}{\partial N}\right)_{S,p} = \left(\frac{\partial G}{\partial N}\right)_{T,p} = -T\left(\frac{\partial S}{\partial N}\right)_{U,V}}
+    \tag{5.6}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Дополнительные соотношения Максвелла}
+
+\begin{align}
+    \left(\frac{\partial T}{\partial N}\right)_{S,V} &= \left(\frac{\partial \mu}{\partial S}\right)_{V,N}, &
+    \left(\frac{\partial p}{\partial N}\right)_{S,V} &= -\left(\frac{\partial \mu}{\partial V}\right)_{S,N} \tag{5.7} \\[4pt]
+    \left(\frac{\partial p}{\partial N}\right)_{V,T} &= -\left(\frac{\partial \mu}{\partial V}\right)_{N,T}, &
+    \left(\frac{\partial S}{\partial N}\right)_{V,T} &= -\left(\frac{\partial \mu}{\partial T}\right)_{N,V} \tag{5.8} \\[4pt]
+    \left(\frac{\partial T}{\partial N}\right)_{S,p} &= \left(\frac{\partial \mu}{\partial S}\right)_{p,N}, &
+    \left(\frac{\partial V}{\partial N}\right)_{S,p} &= \left(\frac{\partial \mu}{\partial p}\right)_{S,N} \tag{5.9} \\[4pt]
+    \left(\frac{\partial S}{\partial N}\right)_{T,p} &= -\left(\frac{\partial \mu}{\partial T}\right)_{p,N}, &
+    \left(\frac{\partial V}{\partial N}\right)_{T,p} &= \left(\frac{\partial \mu}{\partial p}\right)_{T,N} \tag{5.10}
+\end{align}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Большой термодинамический потенциал}
+
+\begin{equation}
+    \boxed{\Omega(V,T,\mu) = F - \mu N}
+\end{equation}
+
+Дифференциал:
+\begin{equation}
+    d\Omega \leq -SdT - pdV - Nd\mu
+    \tag{5.11}
+\end{equation}
+
+В равновесии:
+\begin{equation}
+    S = -\left(\frac{\partial \Omega}{\partial T}\right)_{V,\mu}, \quad
+    p = -\left(\frac{\partial \Omega}{\partial V}\right)_{T,\mu}, \quad
+    N = -\left(\frac{\partial \Omega}{\partial \mu}\right)_{V,T}
+    \tag{5.12}
+\end{equation}
+
+Условие устойчивости:
+\begin{equation}
+    \delta\Omega = 0, \qquad \delta^2\Omega > 0
+    \tag{5.13}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Связь потенциала Гиббса и химического потенциала}
+
+\begin{equation}
+    \boxed{G = \mu N}
+    \tag{5.14}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Условия фазового равновесия (двухфазная система)}
+
+\begin{equation}
+    \boxed{T_1 = T_2 = T, \qquad p_1 = p_2 = p}
+    \tag{5.15}
+\end{equation}
+
+\begin{equation}
+    \boxed{\mu_1(T_1, p_1) = \mu_2(T_2, p_2)}
+    \tag{5.16}
+\end{equation}
+
+Уравнение кривой фазового равновесия:
+\begin{equation}
+    \mu_1(T,p) = \mu_2(T,p)
+    \tag{5.17}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Уравнение Клапейрона--Клаузиуса}
+
+\begin{equation}
+    \boxed{\frac{dp}{dT} = \frac{\lambda}{T(\nu_1 - \nu_2)}}
+    \tag{5.18}
+\end{equation}
+
+где $\lambda$ --- удельная теплота перехода, $\nu_{1,2}$ --- удельные объёмы фаз.
+
+%═══════════════════════════════════════════════════════════════════
+\subsection{Полезные соотношения из примеров}
+%═══════════════════════════════════════════════════════════════════
+
+\subsubsection{Газ Ван-дер-Ваальса с переменным $N$}
+
+\textbf{Внутренняя энергия:}
+\begin{equation}
+    U(V,T,N) = \tilde{C}_{V,N} T - \frac{aN^2}{V}
+    \tag{5.22}
+\end{equation}
+
+\textbf{Энтропия:}
+\begin{equation}
+    S = kN\ln(V - Nb/N_A) + \tilde{C}_{V,N}\ln T + NS_0(V/N,T)
+    \tag{5.23}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Производные химического потенциала}
+
+\begin{equation}
+    \left(\frac{\partial \mu}{\partial T}\right)_p = -\frac{S}{N}, \qquad
+    \left(\frac{\partial \mu}{\partial p}\right)_T = \frac{V}{N}
+    \tag{5.26}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Давление насыщенного пара}
+
+При $\lambda = \text{const}$ и пренебрежении объёмом жидкости:
+\begin{equation}
+    \boxed{p = p_0 \exp\left[\frac{\mu\lambda(T - T_0)}{RTT_0}\right]}
+\end{equation}
+
+где $p_0$ --- давление при $T_0$, $\mu$ --- молярная масса.
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Теплоёмкость насыщенного пара}
+
+\begin{equation}
+    \boxed{c = c_p - \frac{\lambda}{T}}
+\end{equation}
+
+где $\lambda$ --- удельная теплота парообразования.
+
+\newpage
+
+
+\part{Статистическая физика равновесных систем}
+
+
+%======================================================================
+% §06_Некоторые_вероятностные_представления
+%======================================================================
+
+\section{\S 6. Некоторые вероятностные представления}
+
+%═══════════════════════════════════════════════════════════════════
+\subsection{Краткая теория}
+%═══════════════════════════════════════════════════════════════════
+
+\subsubsection{Вероятность и случайные величины}
+
+\textbf{Вероятность события} $A$: $P(A) = m/n$, где $m$ --- число реализаций события $A$, $n$ --- полное число возможных равновероятных реализаций.
+
+\textbf{Дискретная случайная величина} принимает счётное число значений $x_1, x_2, \ldots, x_n$ с вероятностями $P(x_i)$, причём $\sum_i P(x_i) = 1$.
+
+\textbf{Непрерывная случайная величина} $x$ характеризуется \textbf{плотностью вероятности} $w^{(1)}(x)$, где $w^{(1)}(x)dx$ --- вероятность попадания $x$ в интервал $(x, x+dx)$.
+
+Условие нормировки: $\int_a^b w^{(1)}(x)dx = 1$.
+
+\subsubsection{Распределение Гаусса}
+
+Нормальный закон распределения (распределение Гаусса) --- важнейшее распределение в статистической физике. Характеризуется двумя параметрами: средним значением $x_0$ и дисперсией $\sigma^2$.
+
+\subsubsection{Статистическая независимость}
+
+Случайные величины $x_1, x_2, \ldots, x_n$ \textbf{независимы}, если их совместная плотность вероятности равна произведению плотностей вероятности каждой из них.
+
+%═══════════════════════════════════════════════════════════════════
+\subsection{Основные формулы}
+%═══════════════════════════════════════════════════════════════════
+
+\subsubsection{Функция распределения}
+
+\begin{equation}
+    \boxed{F_1(\tilde{x}) = \int_a^{\tilde{x}} w^{(1)}(x)\,dx}
+    \tag{6.1}
+\end{equation}
+
+Принимает значение, равное вероятности того, что $x$ попадает в интервал $(a, \tilde{x})$.
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Среднее значение}
+
+\textbf{Дискретная величина:}
+\begin{equation}
+    \boxed{\bar{x} = \sum_{i=1}^{n} x_i P(x_i)}
+    \tag{6.2a}
+\end{equation}
+
+\textbf{Непрерывная величина:}
+\begin{equation}
+    \boxed{\bar{x} = \int_a^b x\, w^{(1)}(x)\,dx}
+    \tag{6.2b}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Среднее значение функции}
+
+\textbf{Дискретный случай:}
+\begin{equation}
+    \boxed{\overline{f(x)} = \sum_{i=1}^{n} f(x_i) P(x_i)}
+    \tag{6.3a}
+\end{equation}
+
+\textbf{Непрерывный случай:}
+\begin{equation}
+    \boxed{\overline{f(x)} = \int_a^b f(x)\, w^{(1)}(x)\,dx}
+    \tag{6.3b}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Дисперсия}
+
+\textbf{Дискретная величина:}
+\begin{equation}
+    \boxed{\sigma^2(x) = \sum_{i=1}^{n} (x_i - \bar{x})^2 P(x_i)}
+    \tag{6.4a}
+\end{equation}
+
+\textbf{Непрерывная величина:}
+\begin{equation}
+    \boxed{\sigma^2(x) = \int_a^b (x - \bar{x})^2 w^{(1)}(x)\,dx}
+    \tag{6.4b}
+\end{equation}
+
+\textbf{Стандартное отклонение:} $\sigma(x) = \sqrt{\sigma^2(x)}$
+
+\textbf{Относительная флуктуация:}
+\begin{equation}
+    \boxed{\delta(x) = \frac{\sigma(x)}{\bar{x}}}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Среднее функции многих переменных}
+
+\begin{equation}
+    \boxed{\overline{f(x_1, \ldots, x_n)} = \int\ldots\int w^{(n)}(x_1, \ldots, x_n) f(x_1, \ldots, x_n)\,dx_1\ldots dx_n}
+    \tag{6.5}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Маргинальное распределение}
+
+\begin{equation}
+    \boxed{w^{(1)}(x_m) = \int\ldots\int w^{(n)}(x_1, \ldots, x_n)\,dx_1\ldots dx_{m-1}\,dx_{m+1}\ldots dx_n}
+    \tag{6.6}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Преобразование плотности вероятности}
+
+При замене переменных $y_i = y_i(x_1, \ldots, x_n)$:
+\begin{equation}
+    \boxed{w^{(n)}(y_1, \ldots, y_n) = w^{(n)}(x_1(y), \ldots, x_n(y)) \left|\frac{\partial(x_1, \ldots, x_n)}{\partial(y_1, \ldots, y_n)}\right|}
+    \tag{6.7}
+\end{equation}
+
+Последний множитель --- якобиан преобразования.
+
+\textbf{Для одной переменной} $y = y(x)$:
+\begin{equation}
+    w^{(1)}(y) = w^{(1)}(x(y))\left|\frac{dx}{dy}\right|
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Формула полной вероятности}
+
+\begin{equation}
+    \boxed{P(A) = \sum_{i=1}^{n} P(B_i) P(A|B_i)}
+    \tag{6.8}
+\end{equation}
+
+где $B_1, B_2, \ldots, B_n$ --- попарно несовместные события, образующие полную группу; $P(A|B_i)$ --- условная вероятность события $A$ при реализации $B_i$.
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Статистическая независимость}
+
+\begin{equation}
+    \boxed{w^{(n)}(x_1, x_2, \ldots, x_n) = w^{(1)}(x_1) w^{(1)}(x_2) \cdots w^{(1)}(x_n)}
+    \tag{6.9}
+\end{equation}
+
+\textbf{Следствие:} для независимых величин $\overline{x_1 x_2} = \bar{x}_1 \cdot \bar{x}_2$.
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Распределение Гаусса (нормальное)}
+
+\begin{equation}
+    \boxed{w^{(1)}(x) = \frac{1}{\sqrt{2\pi}\sigma} \exp\left(-\frac{(x - x_0)^2}{2\sigma^2}\right)}
+    \tag{6.11}
+\end{equation}
+
+\textbf{Свойства:}
+\begin{itemize}
+    \item Наиболее вероятное значение: $x^* = x_0$
+    \item Среднее значение: $\bar{x} = x_0$
+    \item Дисперсия: $\sigma^2(x) = \sigma^2$
+    \item Относительная флуктуация: $\delta(x) = \sigma/x_0$
+\end{itemize}
+
+%═══════════════════════════════════════════════════════════════════
+\subsection{Полезные соотношения из примеров}
+%═══════════════════════════════════════════════════════════════════
+
+\subsubsection{Биномиальное распределение}
+
+Вероятность того, что $n$ из $N$ частиц окажутся в объёме $v$ ($v \ll V$):
+\begin{equation}
+    \boxed{P_N(n) = C_N^n \left(\frac{v}{V}\right)^n \left(1 - \frac{v}{V}\right)^{N-n} = \frac{N!}{n!(N-n)!} \left(\frac{v}{V}\right)^n \left(1 - \frac{v}{V}\right)^{N-n}}
+    \tag{6.14}
+\end{equation}
+
+\textbf{Среднее число частиц:}
+\begin{equation}
+    \boxed{\bar{n} = \frac{Nv}{V}}
+\end{equation}
+
+\textbf{Дисперсия:}
+\begin{equation}
+    \boxed{\sigma^2(n) = \left(1 - \frac{v}{V}\right)\frac{Nv}{V}}
+    \tag{6.15}
+\end{equation}
+
+\textbf{Относительная флуктуация:}
+\begin{equation}
+    \boxed{\delta = \frac{\sqrt{V/v - 1}}{\sqrt{N}}}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Предельные случаи биномиального распределения}
+
+\textbf{Распределение Пуассона} (при $N \gg 1$, $v \ll V$):
+\begin{equation}
+    \boxed{P_N(n) \approx \frac{(Nv/V)^n}{n!} \exp\left(-\frac{Nv}{V}\right) = \frac{\bar{n}^n}{n!} e^{-\bar{n}}}
+\end{equation}
+
+\textbf{Гауссова аппроксимация} (в окрестности максимума):
+\begin{equation}
+    \boxed{P_N(n) = \frac{1}{\sqrt{2\pi}} \cdot \frac{1}{\sqrt{(1 - v/V)Nv/V}} \cdot \exp\left[-\frac{(n - Nv/V)^2}{2(1 - v/V)Nv/V}\right]}
+    \tag{6.16}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Поведение флуктуаций с ростом $N$}
+
+\begin{itemize}
+    \item Среднее число частиц $\bar{n} \propto N$
+    \item Дисперсия $\sigma^2 \propto N$
+    \item Относительная флуктуация $\delta \propto 1/\sqrt{N}$ (уменьшается!)
+\end{itemize}
+
+Это фундаментальный результат статистической физики: относительные флуктуации макроскопических величин исчезающе малы для больших систем.
+
+\newpage
+
+
+%======================================================================
+% §07_Распределения_Гиббса
+%======================================================================
+
+\section{\S 7. Распределения Гиббса}
+
+%═══════════════════════════════════════════════════════════════════
+\subsection{Краткая теория}
+%═══════════════════════════════════════════════════════════════════
+
+\subsubsection{Микросостояние системы}
+
+Состояние системы из $N$ частиц определяется координатами и импульсами всех частиц: $X = (x_1, x_2, \ldots, x_N) = (\vec{r}_1, \vec{r}_2, \ldots, \vec{r}_N, \vec{p}_1, \vec{p}_2, \ldots, \vec{p}_N)$, где $x_i = (\vec{r}_i, \vec{p}_i)$.
+
+\subsubsection{Функция Гамильтона}
+
+Эволюция системы описывается уравнениями Гамильтона с гамильтонианом, включающим кинетическую энергию, внешний потенциал $U_0$ и межчастичное взаимодействие $\Phi$.
+
+\subsubsection{Типы распределений}
+
+\begin{itemize}
+    \item \textbf{Микроканоническое} --- для изолированной системы с фиксированной энергией $E$
+    \item \textbf{Каноническое} --- для системы в термостате с фиксированной температурой $T$
+    \item \textbf{Большое каноническое} --- для системы с переменным числом частиц (фиксирован химический потенциал $\mu$)
+\end{itemize}
+
+\subsubsection{Энтропия и термодинамика}
+
+Энтропия выражается через функцию распределения и достигает максимума в состоянии равновесия. Это даёт статистическое обоснование второго начала термодинамики.
+
+%═══════════════════════════════════════════════════════════════════
+\subsection{Основные формулы}
+%═══════════════════════════════════════════════════════════════════
+
+\subsubsection{Уравнения Гамильтона}
+
+\begin{equation}
+    \boxed{\frac{d\vec{r}_i}{dt} = \frac{\partial H(X)}{\partial \vec{p}_i}, \qquad \frac{d\vec{p}_i}{dt} = -\frac{\partial H(X)}{\partial \vec{r}_i}}
+    \tag{7.1}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Функция Гамильтона}
+
+\begin{equation}
+    \boxed{H(X) = \sum_{i=1}^{N} \frac{\vec{p}_i^2}{2m} + U(\vec{r}_1, \ldots, \vec{r}_N) = \sum_{i=1}^{N} \left(\frac{\vec{p}_i^2}{2m} + U_0(\vec{r}_i)\right) + \sum_{i<j} \Phi(|\vec{r}_i - \vec{r}_j|)}
+    \tag{7.2}
+\end{equation}
+
+где $m$ --- масса частицы, $U_0$ --- потенциал внешнего поля, $\Phi$ --- потенциал межчастичного взаимодействия.
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Микроканоническое распределение Гиббса}
+
+Для изолированной системы с энергией $E$:
+\begin{equation}
+    \boxed{w_N(X, a, E) = \frac{\delta(H(X, a) - E)}{\tilde{\Omega}(a, E)}}
+    \tag{7.4}
+\end{equation}
+
+\textbf{Статистический вес:}
+\begin{equation}
+    \tilde{\Omega}(a, E) = \int \delta(H(X, a) - E)\,dX
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Каноническое распределение Гиббса (классическое)}
+
+Для системы в термостате с температурой $T$:
+\begin{equation}
+    \boxed{w_N(X, a, T) = \frac{\exp(-H(X, a)/kT)}{Z(a, T)}}
+    \tag{7.5}
+\end{equation}
+
+\textbf{Статистический интеграл:}
+\begin{equation}
+    \boxed{Z(a, T) = \int \exp(-H(X, a)/kT)\,dX}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Факторизация канонического распределения}
+
+Если $H(X) = \sum_{\alpha=1}^{m} H_\alpha(X_\alpha)$, то:
+\begin{equation}
+    \boxed{w_N(X) = \prod_{\alpha=1}^{m} \frac{\exp(-H_\alpha(X_\alpha)/kT)}{Z_\alpha(a, T, N_\alpha)}}
+    \tag{7.6}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Квантовое микроканоническое распределение}
+
+\begin{equation}
+    \boxed{P_n(N, a, E) = \frac{\delta_{E, E_n}}{\Omega_1(a, N, E)}}
+    \tag{7.7}
+\end{equation}
+
+где $\Omega_1 = \sum_n \delta_{E, E_n}$ --- число микросостояний с энергией $E$.
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Квантовое каноническое распределение}
+
+\begin{equation}
+    \boxed{P_n(N, a, T) = \frac{\exp(-E_n/kT)}{Z_1(a, N, E)} = \exp\left(\frac{F - E_n}{kT}\right)}
+    \tag{7.8}
+\end{equation}
+
+\textbf{Статистическая сумма:}
+\begin{equation}
+    \boxed{Z_1 = \sum_n \exp(-E_n/kT)}
+    \tag{7.9}
+\end{equation}
+
+\textbf{Связь со свободной энергией:}
+\begin{equation}
+    \boxed{F = -kT \ln Z_1(a, N, E)}
+    \tag{7.10}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Переход от квантовой суммы к классическому интегралу}
+
+\begin{equation}
+    \boxed{Z_1 = \sum_n \exp(-E_n/kT) \to \vartheta(N) Z(a, T)}
+    \tag{7.11}
+\end{equation}
+
+где $\vartheta(N) = [(2\pi\hbar)^{3N} N!]^{-1}$, $\hbar = 1{,}0546 \cdot 10^{-34}$ Дж$\cdot$с.
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Большое каноническое распределение}
+
+Для системы с переменным числом частиц:
+\begin{equation}
+    \boxed{P_{n,N}(a, T, \mu) = \frac{\exp[(\mu N - E_{n,N})/kT]}{Z_2(a, T, \mu)}}
+    \tag{7.12}
+\end{equation}
+
+\textbf{Большая статистическая сумма:}
+\begin{equation}
+    \boxed{Z_2 = \sum_{N,n} \exp[(\mu N - E_{n,N})/kT]}
+    \tag{7.13}
+\end{equation}
+
+\textbf{Связь с большим потенциалом:}
+\begin{equation}
+    \boxed{\Omega = -kT \ln Z_2 = F - \mu N}
+    \tag{7.14}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Среднее число частиц}
+
+\begin{equation}
+    \boxed{N(a, T, \mu) = -\left(\frac{\partial \Omega}{\partial \mu}\right)_{a,T}}
+    \tag{7.16}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Энтропия через функцию распределения}
+
+\textbf{Квантовый случай:}
+\begin{equation}
+    \boxed{S(a, T, \mu) = -k \sum_{n,N} P_{n,N} \ln P_{n,N}}
+    \tag{7.19}
+\end{equation}
+
+\textbf{Классический случай:}
+\begin{equation}
+    \boxed{S(a, T, \mu) = -k \sum_N \vartheta(N) \int w_N \ln(w_N)\,dX = -k \ln w_N}
+    \tag{7.20}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Теорема о равномерном распределении энергии}
+
+\begin{equation}
+    \boxed{\bar{H} = \left(\frac{s_1}{2} + \frac{s_2}{\eta}\right)kT}
+    \tag{7.21}
+\end{equation}
+
+где $s_1$ --- полное число степеней свободы, $s_2$ --- число колебательных степеней свободы.
+
+\textbf{Для потенциала} $U(\lambda\vec{r}_1, \ldots, \lambda\vec{r}_N) = \lambda^\eta U(\vec{r}_1, \ldots, \vec{r}_N)$.
+
+\textbf{Следствие:} На каждую поступательную или вращательную степень свободы приходится энергия $kT/2$, на колебательную --- $kT$.
+
+%═══════════════════════════════════════════════════════════════════
+\subsection{Полезные соотношения из примеров}
+%═══════════════════════════════════════════════════════════════════
+
+\subsubsection{Гауссов интеграл}
+
+\begin{equation}
+    \boxed{\int_{-\infty}^{\infty} u^{2n} \exp(-\alpha u^2)\,du = \frac{(2n-1)!!}{(2\alpha)^n} \sqrt{\frac{\pi}{\alpha}}}
+    \tag{7.22}
+\end{equation}
+
+где $(2n-1)!! = 1 \cdot 3 \cdot 5 \cdots (2n-1)$ при $n \geq 1$, и $(-1)!! = 1$.
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Статистический интеграл идеального газа}
+
+Для $N$ частиц в объёме $V$:
+\begin{equation}
+    \boxed{Z(a, T) = V^N (2\pi mkT)^{3N/2}}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Свободная энергия идеального газа}
+
+\begin{equation}
+    \boxed{F = -kTN\left\{1 + \ln\left[\frac{V(2\pi mkT)^{3/2}}{N(2\pi\hbar)^3}\right]\right\}}
+    \tag{7.32}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Уравнение состояния}
+
+\begin{equation}
+    \boxed{p = -\left(\frac{\partial F}{\partial V}\right)_T = \frac{kTN}{V} \quad \Rightarrow \quad pV = \nu RT}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Внутренняя энергия идеального газа}
+
+\begin{equation}
+    \boxed{U = F - T\left(\frac{\partial F}{\partial T}\right)_V = \frac{3kTN}{2} = \frac{3\nu RT}{2}}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Энтропия идеального газа (формула Сакура--Тетроде)}
+
+\begin{equation}
+    \boxed{S = -\left(\frac{\partial F}{\partial T}\right)_{V,N} = kN\left\{\frac{5}{2} + \ln\left[\frac{(2\pi mkT)^{3/2}V}{(2\pi\hbar)^3 N}\right]\right\}}
+    \tag{7.33}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Химический потенциал идеального газа}
+
+\begin{equation}
+    \boxed{\mu = kT \ln\left[\frac{N(2\pi\hbar)^3}{V(2\pi mkT)^{3/2}}\right]}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Теплоёмкость газа в поле тяжести}
+
+\begin{equation}
+    \boxed{\tilde{C}_V = \frac{5kN}{2}}
+\end{equation}
+
+(больше, чем $3kN/2$ для свободного газа, из-за потенциальной энергии)
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Ультрарелятивистский газ ($E = cp$)}
+
+\textbf{Теплоёмкость:}
+\begin{equation}
+    \boxed{\tilde{C}_V = 3Nk = 3\nu R}
+\end{equation}
+(в 2 раза больше нерелятивистского)
+
+\textbf{Уравнение состояния:} $pV = \nu RT$ (такое же, как у нерелятивистского газа)
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Внутренняя энергия двухатомного газа}
+
+Для молекул с поступательными, вращательными и колебательными степенями свободы:
+\begin{equation}
+    \boxed{U = \frac{7RT}{2}} \quad (s_1 = 6, \, s_2 = 1, \, \eta = 2)
+\end{equation}
+
+\newpage
+
+
+%======================================================================
+% §08_Распределение_Максвелла
+%======================================================================
+
+\section{\S 8. Распределение Максвелла}
+
+%═══════════════════════════════════════════════════════════════════
+\subsection{Краткая теория}
+%═══════════════════════════════════════════════════════════════════
+
+\subsubsection{Суть распределения Максвелла}
+
+Распределение Максвелла описывает распределение молекул идеального газа по импульсам (скоростям) в состоянии термодинамического равновесия. Является следствием канонического распределения Гиббса.
+
+\subsubsection{Основные характеристики}
+
+\begin{itemize}
+    \item \textbf{Наивероятнейшая скорость} $v^*$ --- скорость, при которой плотность вероятности максимальна
+    \item \textbf{Средняя скорость} $\bar{v}$ --- математическое ожидание модуля скорости
+    \item \textbf{Среднеквадратичная скорость} $\sqrt{\overline{v^2}}$ --- корень из среднего квадрата скорости
+\end{itemize}
+
+Соотношение: $v^* < \bar{v} < \sqrt{\overline{v^2}}$.
+
+%═══════════════════════════════════════════════════════════════════
+\subsection{Основные формулы}
+%═══════════════════════════════════════════════════════════════════
+
+\subsubsection{Распределение по импульсам (3D)}
+
+\begin{equation}
+    \boxed{w^{(3)}(\vec{p}) = (2\pi mkT)^{-3/2} \exp\left(-\frac{\vec{p}^2}{2mkT}\right)}
+    \tag{8.1}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Распределение по проекции импульса}
+
+\begin{equation}
+    \boxed{w(p_x) = (2\pi mkT)^{-1/2} \exp\left(-\frac{p_x^2}{2mkT}\right)}
+    \tag{8.2}
+\end{equation}
+
+Это одномерное распределение Гаусса с дисперсией $\sigma^2 = mkT$.
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Распределение по модулю импульса}
+
+\begin{equation}
+    \boxed{w(p) = \frac{4\pi p^2}{(2\pi mkT)^{3/2}} \exp\left(-\frac{p^2}{2mkT}\right)}
+    \tag{8.3}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Распределение по углам}
+
+\begin{equation}
+    \boxed{w(\theta) = \frac{\sin\theta}{2}}, \qquad w(\varphi) = \frac{1}{2\pi}
+    \tag{8.4}
+\end{equation}
+
+Совместное распределение: $w^{(3)}(p, \theta, \varphi) = w(p)w(\theta)w(\varphi)$.
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Распределение по энергиям}
+
+\begin{equation}
+    \boxed{w(E) = \frac{2\pi}{(\pi kT)^{3/2}} \sqrt{E} \exp\left(-\frac{E}{kT}\right)}
+    \tag{8.5}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Характерные значения импульса}
+
+\textbf{Наивероятнейший импульс:}
+\begin{equation}
+    \boxed{p^* = \sqrt{2mkT}}
+\end{equation}
+
+\textbf{Средний импульс:}
+\begin{equation}
+    \boxed{\bar{p} = \sqrt{\frac{8mkT}{\pi}}}
+\end{equation}
+
+\textbf{Среднеквадратичный импульс:}
+\begin{equation}
+    \boxed{\sqrt{\overline{p^2}} = \sqrt{3mkT}}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Характерные значения скорости}
+
+\textbf{Наивероятнейшая скорость:}
+\begin{equation}
+    \boxed{v^* = \sqrt{\frac{2kT}{m}} = \sqrt{\frac{2RT}{\mu}}}
+\end{equation}
+
+\textbf{Средняя скорость:}
+\begin{equation}
+    \boxed{\bar{v} = \sqrt{\frac{8kT}{\pi m}} = \sqrt{\frac{8RT}{\pi\mu}}}
+\end{equation}
+
+\textbf{Среднеквадратичная скорость:}
+\begin{equation}
+    \boxed{\sqrt{\overline{v^2}} = \sqrt{\frac{3kT}{m}} = \sqrt{\frac{3RT}{\mu}}}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Характерные значения энергии}
+
+\textbf{Наивероятнейшая энергия:}
+\begin{equation}
+    \boxed{E^* = \frac{kT}{2}}
+\end{equation}
+
+\textbf{Средняя энергия:}
+\begin{equation}
+    \boxed{\bar{E} = \frac{3kT}{2}}
+    \tag{8.6}
+\end{equation}
+
+\textbf{Дисперсия энергии:}
+\begin{equation}
+    \boxed{\sigma^2(E) = \frac{3(kT)^2}{2}}
+\end{equation}
+
+\textbf{Относительная флуктуация энергии одной молекулы:}
+\begin{equation}
+    \boxed{\delta(E) = \sqrt{\frac{2}{3}}}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Флуктуации энергии газа из $N$ частиц}
+
+\begin{equation}
+    \boxed{\delta(E_N) = \sqrt{\frac{2}{3N}}}
+\end{equation}
+
+При $N \gg 1$ относительные флуктуации пренебрежимо малы.
+
+%═══════════════════════════════════════════════════════════════════
+\subsection{Полезные соотношения из примеров}
+%═══════════════════════════════════════════════════════════════════
+
+\subsubsection{Число ударов молекул о стенку}
+
+За время $\tau$ о поверхность площадью $S$ ударяется:
+\begin{equation}
+    \boxed{N = \frac{Sn\tau\bar{v}}{4} = \frac{Sn\tau}{4}\sqrt{\frac{8kT}{\pi m}}}
+    \tag{8.10}
+\end{equation}
+
+где $n$ --- концентрация молекул.
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Эффузия (истечение газа через малое отверстие)}
+
+\textbf{Средняя скорость вылетающих молекул:}
+\begin{equation}
+    \boxed{\bar{v}_{\text{выл}} = 3\sqrt{\frac{\pi kT}{8m}} = \frac{3\pi}{8}\bar{v}}
+    \tag{8.11}
+\end{equation}
+
+\textbf{Средняя энергия вылетающих молекул:}
+\begin{equation}
+    \boxed{\bar{E}_{\text{выл}} = 2kT > \frac{3kT}{2}}
+\end{equation}
+
+(больше средней энергии молекул в объёме!)
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Распределение скоростей вылетающих молекул}
+
+\begin{equation}
+    \boxed{w^{(1)}(v) = \frac{m^2 v^3}{2(kT)^2} \exp\left(-\frac{mv^2}{2kT}\right)}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Средняя скорость относительного движения двух молекул}
+
+\begin{equation}
+    \boxed{\bar{u} = |\vec{v}_1 - \vec{v}_2| = 4\sqrt{\frac{kT}{\pi m}} = \sqrt{2}\,\bar{v}}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Заполнение сосуда через малое отверстие}
+
+Концентрация газа в первоначально пустом сосуде:
+\begin{equation}
+    \boxed{n(t) = n_0\left[1 - \exp\left(-\frac{t}{\tau}\right)\right]}
+    \tag{8.12}
+\end{equation}
+
+\textbf{Характерное время:}
+\begin{equation}
+    \boxed{\tau = \frac{4V}{S\bar{v}}}
+\end{equation}
+
+где $V$ --- объём сосуда, $S$ --- площадь отверстия.
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Двумерный газ (плёнка)}
+
+\textbf{Распределение по модулю импульса:}
+\begin{equation}
+    \boxed{w(p) = \frac{p}{mkT} \exp\left(-\frac{p^2}{2mkT}\right)}
+    \tag{8.8}
+\end{equation}
+
+\textbf{Распределение по энергиям:}
+\begin{equation}
+    \boxed{w(E) = \frac{1}{kT} \exp\left(-\frac{E}{kT}\right)}
+\end{equation}
+
+\textbf{Наивероятнейшая энергия:} $E^* = 0$
+
+\textbf{Средняя энергия:} $\bar{E} = kT$
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Давление фотонного газа}
+
+\begin{equation}
+    \boxed{p = \frac{n\hbar\omega}{3} = \frac{u}{3}}
+\end{equation}
+
+где $u = n\hbar\omega$ --- плотность энергии излучения.
+
+Сравнение: для идеального газа $p = nkT = 2u_0/3$.
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Распределение скоростей смеси газов}
+
+Для смеси газов с молекулами масс $m_1$ и $m_2$:
+\begin{equation}
+    \boxed{\tilde{w}(v) = \sum_{i=1}^{2} \frac{N_i m_i^{3/2}}{(N_1 + N_2)} \cdot \frac{4\pi v^2}{(2\pi kT)^{3/2}} \exp\left(-\frac{m_i v^2}{2kT}\right)}
+\end{equation}
+
+При $m_1 \neq m_2$ и $N_1 m_1^{3/2} \approx N_2 m_2^{3/2}$ наблюдаются два максимума.
+
+\newpage
+
+
+%======================================================================
+% §09_Распределение_Больцмана
+%======================================================================
+
+\section{\S 9. Распределение Больцмана}
+
+%═══════════════════════════════════════════════════════════════════
+\subsection{Краткая теория}
+%═══════════════════════════════════════════════════════════════════
+
+\subsubsection{Суть распределения Больцмана}
+
+Распределение Больцмана описывает распределение молекул идеального газа по координатам в присутствии внешнего потенциального поля $U_0(\vec{r})$. Является следствием канонического распределения Гиббса при пренебрежении межмолекулярным взаимодействием.
+
+\subsubsection{Применения}
+
+\begin{itemize}
+    \item Распределение молекул в поле тяжести (атмосфера)
+    \item Центрифугирование и разделение изотопов
+    \item Седиментация взвешенных частиц
+\end{itemize}
+
+%═══════════════════════════════════════════════════════════════════
+\subsection{Основные формулы}
+%═══════════════════════════════════════════════════════════════════
+
+\subsubsection{Плотность распределения вероятностей по координатам}
+
+\begin{equation}
+    \boxed{w^{(3)}(\vec{r}) = \frac{\exp(-U_0(\vec{r})/kT)}{\displaystyle\int_V \exp(-U_0(\vec{r})/kT)\,d\vec{r}}}
+    \tag{9.1}
+\end{equation}
+
+где $U_0(\vec{r})$ --- потенциальная энергия молекулы во внешнем поле, $V$ --- объём системы.
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Связь с концентрацией}
+
+\begin{equation}
+    \boxed{n(\vec{r}) = N w^{(3)}(\vec{r})}
+    \tag{9.2}
+\end{equation}
+
+где $N$ --- полное число молекул.
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Распределение в поле тяжести}
+
+Для потенциала $U_0(z) = mgz$:
+\begin{equation}
+    \boxed{w(z) = \frac{mg}{kT} \exp\left(-\frac{mgz}{kT}\right)}
+    \tag{9.3}
+\end{equation}
+
+\textbf{Высота центра масс газа:}
+\begin{equation}
+    \boxed{z_c = \bar{z} = \frac{kT}{mg}}
+    \tag{9.4}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Барометрическая формула}
+
+\textbf{Концентрация:}
+\begin{equation}
+    \boxed{n(z) = n(0) \exp\left(-\frac{m_0 gz}{kT}\right)}
+    \tag{9.5}
+\end{equation}
+
+\textbf{Давление:}
+\begin{equation}
+    \boxed{p(z) = p(0) \exp\left(-\frac{m_0 gz}{kT}\right)}
+    \tag{9.6}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Газ в цилиндрическом сосуде высотой $H$}
+
+\begin{equation}
+    \boxed{w(z) = \frac{mg}{kT} \cdot \frac{\exp(-mgz/kT)}{1 - \exp(-mgH/kT)}}
+    \tag{9.7}
+\end{equation}
+
+\textbf{Средняя потенциальная энергия:}
+\begin{equation}
+    \bar{U}_0 = kT - \frac{mgH}{\exp(mgH/kT) - 1}
+\end{equation}
+
+\textbf{Положение центра масс:}
+\begin{equation}
+    \boxed{z_c = \frac{kT}{mg} - \frac{H}{\exp(mgH/kT) - 1}}
+    \tag{9.8}
+\end{equation}
+
+\textbf{Предельные случаи:}
+\begin{itemize}
+    \item $mgH \ll kT$: $\bar{U}_0 \approx mgH/2$, $z_c \approx H/2$
+    \item $mgH \gg kT$: $\bar{U}_0 \approx kT$, $z_c \approx kT/mg$
+\end{itemize}
+
+%═══════════════════════════════════════════════════════════════════
+\subsection{Полезные соотношения из примеров}
+%═══════════════════════════════════════════════════════════════════
+
+\subsubsection{Флуктуации потенциальной энергии}
+
+Для газа в поле тяжести:
+\begin{equation}
+    \boxed{\bar{U}_0 = kT, \qquad \sigma^2(U_0) = (kT)^2, \qquad \delta(U_0) = 1}
+\end{equation}
+
+(относительная флуктуация равна единице!)
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Центрифугирование}
+
+\textbf{Потенциальная энергия} во вращающейся системе отсчёта:
+\begin{equation}
+    U_0 = -\frac{m\omega^2 r^2}{2}
+\end{equation}
+
+\textbf{Распределение концентрации:}
+\begin{equation}
+    \boxed{\frac{n_i(r)}{n_i(0)} = \exp\left(\frac{m_i \omega^2 r^2}{2kT}\right)}
+    \tag{9.10}
+\end{equation}
+
+\textbf{Коэффициент разделения изотопов:}
+\begin{equation}
+    \boxed{q = \frac{n_1(R)/n_1(0)}{n_2(R)/n_2(0)} = \exp\left[\frac{(m_1 - m_2)\omega^2 R^2}{2kT}\right]}
+\end{equation}
+
+Коэффициент разделения увеличивается при:
+\begin{itemize}
+    \item уменьшении температуры
+    \item увеличении разности масс $|m_1 - m_2|$
+    \item увеличении $\omega$ и $R$
+\end{itemize}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Толщина слоя с заданным изменением концентрации}
+
+При изменении концентрации на $\Delta n/n$:
+\begin{equation}
+    \boxed{\Delta z \approx \frac{kT}{mg} \cdot \frac{\Delta n}{n}}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Центр масс смеси газов в поле тяжести}
+
+Для смеси из $N_1$ частиц массой $m_1$ и $N_2$ частиц массой $m_2$:
+\begin{equation}
+    \boxed{z_c = \frac{(N_1 + N_2)kT}{g(N_1 m_1 + N_2 m_2)}}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Доля молекул выше определённой высоты}
+
+Для полубесконечного столба газа, доля молекул на высоте $z > z_0$:
+\begin{equation}
+    \int_{z_0}^{\infty} w(z)\,dz = \exp\left(-\frac{mgz_0}{kT}\right)
+\end{equation}
+
+\textbf{Пример:} на высоте $z > 4z_c = 4kT/mg$ находится менее $e^{-4} \approx 1{,}8\%$ молекул.
+
+\newpage
+
+
+%======================================================================
+% §10_Цепочка_уравнений_для_равновесных_функций_распределения
+%======================================================================
+
+\section{\S 10. Цепочка уравнений для равновесных функций распределения}
+
+%═══════════════════════════════════════════════════════════════════
+\subsection{Краткая теория}
+%═══════════════════════════════════════════════════════════════════
+
+\subsubsection{Многочастичные функции распределения}
+
+Для учёта межмолекулярного взаимодействия вводятся $S$-частичные функции распределения $f_S(\vec{r}_1, \vec{r}_2, \ldots, \vec{r}_S)$, описывающие вероятность одновременного нахождения $S$ частиц в заданных точках пространства.
+
+\subsubsection{Цепочка ББГКИ}
+
+Функции распределения связаны бесконечной цепочкой интегро-дифференциальных уравнений: уравнение для $f_1$ содержит $f_2$, уравнение для $f_2$ содержит $f_3$ и т.д. Эта цепочка называется цепочкой ББГКИ (Боголюбова--Борна--Грина--Кирквуда--Ивона).
+
+\subsubsection{Разреженный газ}
+
+Для разреженного газа ($\varepsilon = Nr_0^3/V \ll 1$) цепочку уравнений можно решать методом теории возмущений по параметру плотности $\varepsilon$.
+
+%═══════════════════════════════════════════════════════════════════
+\subsection{Основные формулы}
+%═══════════════════════════════════════════════════════════════════
+
+\subsubsection{Факторизация канонического распределения}
+
+\begin{equation}
+    \boxed{w_N(\vec{p}_1, \ldots, \vec{p}_N, \vec{r}_1, \ldots, \vec{r}_N, T) = f_N(\vec{r}_1, \ldots, \vec{r}_N) \prod_{i=1}^{N} w^{(3)}(\vec{p}_i)}
+    \tag{10.1}
+\end{equation}
+
+где $w^{(3)}(\vec{p}_i)$ --- распределение Максвелла.
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Конфигурационная функция распределения}
+
+\begin{equation}
+    \boxed{f_N(\vec{r}_1, \ldots, \vec{r}_N) = Q_N^{-1} \exp\left[-\frac{1}{kT}\left(\sum_{i=1}^{N} U_0(\vec{r}_i) + \sum_{1 \leq i < j \leq N} \Phi(|\vec{r}_i - \vec{r}_j|)\right)\right]}
+    \tag{10.2}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Конфигурационный интеграл}
+
+\begin{equation}
+    \boxed{Q_N = \int \exp\left[-\frac{1}{kT}\left(\sum_{i=1}^{N} U_0(\vec{r}_i) + \sum_{1 \leq i < j \leq N} \Phi(|\vec{r}_i - \vec{r}_j|)\right)\right] d\vec{r}_1 \ldots d\vec{r}_N}
+    \tag{10.3}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Свободная энергия}
+
+\begin{equation}
+    \boxed{F = -kTN\left\{1 + \ln\left[\frac{V(2\pi mkT)^{3/2}}{N(2\pi\hbar)^3}\right]\right\} - kT \ln\left[\frac{Q_N}{V^N}\right]}
+    \tag{10.4}
+\end{equation}
+
+Последнее слагаемое --- поправка на взаимодействие.
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{$S$-частичные функции распределения}
+
+\begin{equation}
+    \boxed{f_S(\vec{r}_1, \ldots, \vec{r}_S) = V^S \int f_N(\vec{r}_1, \ldots, \vec{r}_N) d\vec{r}_{S+1} \ldots d\vec{r}_N}
+    \tag{10.5}
+\end{equation}
+
+\textbf{Условие нормировки:}
+\begin{equation}
+    \boxed{V^{-S} \int f_S(\vec{r}_1, \ldots, \vec{r}_S) d\vec{r}_1 \ldots d\vec{r}_S = 1}
+    \tag{10.6}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Первое уравнение цепочки}
+
+\begin{equation}
+    \boxed{\frac{\partial f_1(\vec{r}_1)}{\partial \vec{r}_1} + \frac{1}{kT}\frac{\partial U_0(\vec{r}_1)}{\partial \vec{r}_1} f_1(\vec{r}_1) = -\frac{N}{VkT} \int \frac{\partial \Phi(|\vec{r}_1 - \vec{r}_2|)}{\partial \vec{r}_1} f_2(\vec{r}_1, \vec{r}_2) d\vec{r}_2}
+    \tag{10.7}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Второе уравнение цепочки}
+
+\begin{multline}
+    \frac{\partial f_2(\vec{r}_1, \vec{r}_2)}{\partial \vec{r}_{1,2}} + \frac{1}{kT}\frac{\partial U_0(\vec{r}_{1,2})}{\partial \vec{r}_{1,2}} f_2 + \frac{1}{kT}\frac{\partial \Phi(|\vec{r}_1 - \vec{r}_2|)}{\partial \vec{r}_{1,2}} f_2 = \\
+    = -\frac{N}{VkT} \int \frac{\partial \Phi(|\vec{r}_{1,2} - \vec{r}_3|)}{\partial \vec{r}_{1,2}} f_3(\vec{r}_1, \vec{r}_2, \vec{r}_3) d\vec{r}_3
+    \tag{10.8}
+\end{multline}
+
+%═══════════════════════════════════════════════════════════════════
+\subsection{Полезные соотношения из примеров}
+%═══════════════════════════════════════════════════════════════════
+
+\subsubsection{Двухчастичная функция в нулевом приближении}
+
+При $U_0 = 0$ и $\Phi_0 \ll kT$:
+\begin{equation}
+    \boxed{f_2^{(0)}(\vec{r}_1, \vec{r}_2) = \exp\left[-\frac{\Phi(|\vec{r}_1 - \vec{r}_2|)}{kT}\right]}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Поправка к свободной энергии от взаимодействия}
+
+\begin{equation}
+    \boxed{F_1 = \frac{2\pi N^2}{V} \int_0^1 d\lambda \int_0^{\infty} r^2 \Phi(r) f_2(\lambda, r) \, dr}
+    \tag{10.19}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Свободная энергия с поправкой на взаимодействие}
+
+\begin{equation}
+    \boxed{F = -kTN\left\{1 + \ln\left[\frac{V(2\pi mkT)^{3/2}}{N(2\pi\hbar)^3}\right]\right\} + \frac{kTN^2}{V}\left[\tilde{b} - \frac{\tilde{a}}{kT}\right]}
+    \tag{10.21}
+\end{equation}
+
+где
+\begin{equation}
+    \tilde{b} = \frac{2\pi r_0^3}{3}, \qquad \tilde{a} = 2\pi \int_{r_0}^{\infty} |\Phi(r)| r^2 \, dr
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Уравнение состояния с поправкой}
+
+\begin{equation}
+    \boxed{p = \frac{NkT}{V}\left[1 + \frac{N(\tilde{b} - \tilde{a}/kT)}{V}\right]}
+    \tag{10.22}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Связь с константами Ван-дер-Ваальса}
+
+\begin{equation}
+    \boxed{a = N_A^2 \tilde{a}, \qquad b = N_A \tilde{b}}
+    \tag{10.23}
+\end{equation}
+
+где $N_A$ --- число Авогадро.
+
+При малой плотности ($b/V \ll 1$) уравнение Ван-дер-Ваальса:
+\begin{equation}
+    p \approx \frac{kNT}{V}\left(1 + \frac{\nu b}{V}\right) - \frac{\nu^2 a}{V^2}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Энтропия неидеального газа}
+
+\begin{equation}
+    S = kN\left\{\frac{5}{2} + \ln\left[\frac{V(2\pi mkT)^{3/2}}{N(2\pi\hbar)^3}\right]\right\} - \frac{N\tilde{b}}{V}
+\end{equation}
+
+Энтропия неидеального газа \textbf{меньше} энтропии идеального газа при тех же $\nu$, $V$, $T$ из-за ``занятого'' молекулами объёма.
+
+\newpage
+
+
+%======================================================================
+% §11_Идеальные_квантовые_газы_в_равновесном_состоянии
+%======================================================================
+
+\section{\S 11. Идеальные квантовые газы в равновесном состоянии}
+
+%═══════════════════════════════════════════════════════════════════
+\subsection{Краткая теория}
+%═══════════════════════════════════════════════════════════════════
+
+\subsubsection{Типы квантовых частиц}
+
+\begin{itemize}
+    \item \textbf{Бозоны} --- частицы с целым спином (фотоны, $\pi$-мезоны, $K$-мезоны). Подчиняются статистике Бозе--Эйнштейна. Числа заполнения $N_l$ могут быть любыми: $0 \leq N_l \leq \infty$.
+    \item \textbf{Фермионы} --- частицы с полуцелым спином (электроны, протоны, нейтроны). Подчиняются статистике Ферми--Дирака. Принцип Паули: $N_l \in \{0, 1\}$.
+\end{itemize}
+
+\subsubsection{Предельный переход}
+
+При высоких температурах ($T \gg T^*$) распределения Бозе и Ферми переходят в классическое распределение Больцмана.
+
+%═══════════════════════════════════════════════════════════════════
+\subsection{Основные формулы}
+%═══════════════════════════════════════════════════════════════════
+
+\subsubsection{Число частиц в квантовом состоянии $l$}
+
+\begin{equation}
+    \boxed{N_l = \sum_{i=1}^{N} \delta_{l, n_i}}
+    \tag{11.1}
+\end{equation}
+
+\textbf{Условие сохранения числа частиц:}
+\begin{equation}
+    \boxed{\sum_l N_l = N}
+    \tag{11.2}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Большое каноническое распределение}
+
+\begin{equation}
+    \boxed{P_{n_1, n_2, \ldots, n_s}(N, T) = \exp\left(\frac{\Omega + \sum_l (\mu - E_l) N_l}{kT}\right)}
+    \tag{11.3}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Распределение Бозе--Эйнштейна}
+
+\begin{equation}
+    \boxed{\bar{N}_l = \frac{1}{\exp[(E_l - \mu)/kT] - 1}}
+    \tag{11.8}
+\end{equation}
+
+Для бозонов: $\mu \leq E_{\min}$ (иначе $\bar{N}_l < 0$).
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Распределение Ферми--Дирака}
+
+\begin{equation}
+    \boxed{\bar{N}_l = \frac{1}{\exp[(E_l - \mu)/kT] + 1}}
+    \tag{11.9}
+\end{equation}
+
+При $T \to 0$: $\bar{N}_l \to 1$ если $E_l < \mu$, и $\bar{N}_l \to 0$ если $E_l > \mu$.
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Температура вырождения}
+
+\begin{equation}
+    \boxed{T^* = \frac{N^{2/3} 2\pi \hbar^2}{V^{2/3} mk}}
+\end{equation}
+
+При $T \gg T^*$ --- классический предел (распределение Больцмана).\\
+При $T \lesssim T^*$ --- квантовые эффекты существенны.
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Большой термодинамический потенциал (бозе-газ)}
+
+\begin{equation}
+    \boxed{\Omega = kT \sum_l \ln\{1 - \exp[(\mu - E_l)/kT]\}}
+    \tag{11.17}
+\end{equation}
+
+В интегральной форме:
+\begin{equation}
+    \boxed{\Omega = -\frac{2^{1/2} V m^{3/2}}{3\pi^2 \hbar^3} \int_0^{\infty} \frac{E^{3/2}}{\exp[(E - \mu)/kT] - 1}\, dE}
+    \tag{11.20}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Большой термодинамический потенциал (ферми-газ)}
+
+\begin{equation}
+    \boxed{\Omega = -2kT \sum_l \ln\{1 + \exp[(\mu - E_l)/kT]\}}
+    \tag{11.24}
+\end{equation}
+
+В интегральной форме:
+\begin{equation}
+    \boxed{\Omega = -\frac{2^{3/2} V m^{3/2}}{3\pi^2 \hbar^3} \int_0^{\infty} \frac{E^{3/2}}{\exp[(E - \mu)/kT] + 1}\, dE}
+    \tag{11.27}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Внутренняя энергия}
+
+\begin{equation}
+    \boxed{U = \Omega - T\left(\frac{\partial \Omega}{\partial T}\right)_\mu - \mu\left(\frac{\partial \Omega}{\partial \mu}\right)_T}
+    \tag{11.21}
+\end{equation}
+
+%═══════════════════════════════════════════════════════════════════
+\subsection{Полезные соотношения из примеров}
+%═══════════════════════════════════════════════════════════════════
+
+\subsubsection{Энергия Ферми}
+
+При $T = 0$ для электронного газа:
+\begin{equation}
+    \boxed{E_F = \frac{(3\pi^2 \bar{N}/V)^{2/3} \hbar^2}{2m}}
+\end{equation}
+
+\textbf{Внутренняя энергия при $T = 0$:}
+\begin{equation}
+    \boxed{U = \frac{3\bar{N} E_F}{5}}
+\end{equation}
+
+\textbf{Давление при $T = 0$:}
+\begin{equation}
+    \boxed{p' = \frac{2U}{3V} = \frac{(3\pi^2)^{2/3} \hbar^2}{5m} \left(\frac{N}{V}\right)^{5/3}}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Квантовый гармонический осциллятор}
+
+\textbf{Уровни энергии:}
+\begin{equation}
+    E_n = \left(n + \frac{1}{2}\right)\hbar\omega, \quad n = 0, 1, 2, \ldots
+\end{equation}
+
+\textbf{Статистическая сумма:}
+\begin{equation}
+    \boxed{Z_1 = \frac{\exp(-\hbar\omega/2kT)}{1 - \exp(-\hbar\omega/kT)}}
+    \tag{11.30}
+\end{equation}
+
+\textbf{Внутренняя энергия осциллятора:}
+\begin{equation}
+    \boxed{U = \frac{\hbar\omega}{2} + \frac{\hbar\omega}{\exp(\hbar\omega/kT) - 1}}
+    \tag{11.31}
+\end{equation}
+
+\textbf{Предельные случаи:}
+\begin{itemize}
+    \item $T = 0$: $U = \hbar\omega/2$ (нулевые колебания)
+    \item $T \gg \hbar\omega/k$: $U \approx kT$ (классический предел)
+\end{itemize}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Теплоёмкость кристалла (модель Эйнштейна)}
+
+Для $3N$ осцилляторов:
+\begin{equation}
+    \boxed{\tilde{C}_V = 3Nk \left(\frac{\hbar\omega}{kT}\right)^2 \frac{\exp(\hbar\omega/kT)}{[\exp(\hbar\omega/kT) - 1]^2}}
+    \tag{11.32}
+\end{equation}
+
+\textbf{Предельные случаи:}
+\begin{itemize}
+    \item $\hbar\omega/kT \ll 1$: $\tilde{C}_V \approx 3Nk$ (закон Дюлонга--Пти)
+    \item $T \to 0$: $\tilde{C}_V \to 0$ (экспоненциально)
+\end{itemize}
+
+\textbf{Примечание:} эксперимент даёт $\tilde{C}_V \sim T^3$ при низких $T$ (модель Дебая).
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Температура вырождения для электронов в металле}
+
+Для $m \approx 10^{-30}$ кг и $N/V \approx 5 \cdot 10^{28}$ м$^{-3}$:
+\begin{equation}
+    T^* \sim 10^4 \text{ K}
+\end{equation}
+
+Поэтому для электронов в металлах \textbf{всегда} используется распределение Ферми.
+
+\newpage
+
+
+%======================================================================
+% §12_Флуктуации_в_равновесных_системах
+%======================================================================
+
+\section{\S 12. Флуктуации в равновесных системах}
+
+%═══════════════════════════════════════════════════════════════════
+\subsection{Краткая теория}
+%═══════════════════════════════════════════════════════════════════
+
+\subsubsection{Определение флуктуаций}
+
+Флуктуации --- самопроизвольные отклонения динамических переменных $B_j(X)$ от их средних значений $\bar{B}_j$.
+
+\textbf{Дисперсия (квадратичная флуктуация):}
+\begin{equation}
+    \boxed{(B_j - \bar{B}_j)^2 = (\Delta B_j)^2 = \overline{B_j^2} - (\bar{B}_j)^2 = \sigma_{B_j}^2}
+\end{equation}
+
+\textbf{Относительная флуктуация:} $\delta_{B_j} = \sigma_{B_j}/\bar{B}_j$
+
+\textbf{Коэффициент корреляции:} $K_{ij} = \overline{\Delta B_i \Delta B_j}$
+
+\subsubsection{Квазитермодинамическая теория}
+
+Малая часть системы также может характеризоваться термодинамическими параметрами. Флуктуации рассматриваются как медленные переходы между квазиравновесными состояниями. Флуктуации в различных микрообластях считаются независимыми.
+
+%═══════════════════════════════════════════════════════════════════
+\subsection{Основные формулы}
+%═══════════════════════════════════════════════════════════════════
+
+\subsubsection{Распределение Гаусса для флуктуаций}
+
+\begin{equation}
+    \boxed{w(B_j) = \left(\frac{\lambda}{2\pi}\right)^{1/2} \exp\left(-\frac{\lambda B_j^2}{2}\right)}
+    \tag{12.1}
+\end{equation}
+
+При этом дисперсия: $(\Delta B_j)^2 = 1/\lambda$.
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Формула Эйнштейна}
+
+Вероятность перехода в квазиравновесное состояние:
+\begin{equation}
+    \boxed{w = C \exp\left(-\frac{\Delta U + p\Delta V - \mu\Delta N - T\Delta S}{kT}\right)}
+    \tag{12.2}
+\end{equation}
+
+где $C$ --- нормировочная константа.
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Частные случаи формулы (12.2)}
+
+\textbf{Изолированная система} (постоянные $U$, $V$, $N$):
+\begin{equation}
+    \boxed{w = C \exp(\Delta S/k)}
+    \tag{12.3}
+\end{equation}
+
+\textbf{Система в термостате} (постоянные $T$, $V$, $N$):
+\begin{equation}
+    \boxed{w = C \exp(-\Delta F/kT)}
+    \tag{12.4}
+\end{equation}
+
+\textbf{Система с переменным числом частиц} (постоянные $T$, $V$, $\mu$):
+\begin{equation}
+    \boxed{w = C \exp(-\Delta\Omega/kT)}
+    \tag{12.5}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Общая формула для вероятности флуктуаций}
+
+\begin{equation}
+    \boxed{w = C \exp\left(\frac{\Delta p \Delta V - \Delta\mu \Delta N - \Delta T \Delta S}{2kT}\right)}
+    \tag{12.6}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Флуктуации энергии}
+
+\begin{equation}
+    \boxed{kT^2 \left(\frac{\partial U}{\partial T}\right)_{V,N} = \overline{H^2} - \bar{U}^2}
+    \tag{12.7}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Флуктуации числа частиц}
+
+Среднее число частиц:
+\begin{equation}
+    \boxed{\bar{N} = \frac{kT}{\tilde{Z}_2} \frac{\partial \tilde{Z}_2}{\partial \mu}}
+    \tag{12.8}
+\end{equation}
+
+Среднее квадрата числа частиц:
+\begin{equation}
+    \boxed{\overline{N^2} = \frac{(kT)^2}{\tilde{Z}_2} \frac{\partial^2 \tilde{Z}_2}{\partial \mu^2}}
+    \tag{12.9}
+\end{equation}
+
+\textbf{Дисперсия числа частиц:}
+\begin{equation}
+    \boxed{(\Delta N)^2 = \overline{N^2} - (\bar{N})^2 = kT \left(\frac{\partial \bar{N}}{\partial \mu}\right)_{T,V}}
+    \tag{12.10}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Корреляция энергии и числа частиц}
+
+\begin{equation}
+    \boxed{\overline{\Delta N \Delta H} = kT^2 \left(\frac{\partial \bar{N}}{\partial T}\right)_{V,\mu} + kT\mu \left(\frac{\partial \bar{N}}{\partial \mu}\right)_{T,V}}
+    \tag{12.12}
+\end{equation}
+
+Эквивалентная форма:
+\begin{equation}
+    \boxed{\overline{\Delta N \Delta H} = (\Delta N)^2 \left(\frac{\partial U}{\partial N}\right)_{V,T}}
+    \tag{12.13}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Флуктуации температуры и объёма}
+
+При постоянном числе частиц из формулы (12.15):
+\begin{equation}
+    \boxed{w = C \exp\left(-\frac{(\partial S/\partial T)_V (\Delta T)^2 - (\partial p/\partial V)_T (\Delta V)^2}{2kT}\right)}
+    \tag{12.15}
+\end{equation}
+
+Следствия:
+\begin{equation}
+    \boxed{(\Delta T)^2 = kT \left(\frac{\partial T}{\partial S}\right)_V = \frac{kT^2}{\tilde{C}_V}}
+\end{equation}
+
+\begin{equation}
+    \boxed{(\Delta V)^2 = -kT \left(\frac{\partial V}{\partial p}\right)_T}
+\end{equation}
+
+\begin{equation}
+    \boxed{\overline{\Delta T \Delta V} = 0}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Дисперсия внутренней энергии}
+
+\begin{equation}
+    \boxed{(\Delta U)^2 = kT \left[\left(\frac{\partial U}{\partial T}\right)_V^2 \left(\frac{\partial T}{\partial S}\right)_{V,N} - \left(\frac{\partial p}{\partial V}\right)_{T,N} \left(\frac{\partial U}{\partial V}\right)_T^2\right]}
+    \tag{12.16}
+\end{equation}
+
+%═══════════════════════════════════════════════════════════════════
+\subsection{Полезные соотношения из примеров}
+%═══════════════════════════════════════════════════════════════════
+
+\subsubsection{Дисперсия объёма идеального газа}
+
+Для $N$ молекул под поршнем при давлении $p$ и температуре $T$:
+\begin{equation}
+    \boxed{(\Delta V)^2 = \frac{V^2}{N} = \frac{N(kT)^2}{p^2}}
+\end{equation}
+
+\subsubsection{Дисперсия числа частиц}
+
+Для системы с переменным числом частиц:
+\begin{equation}
+    \boxed{(\Delta N)^2 = kT \left(\frac{\partial N}{\partial \mu}\right)_{V,T}}
+\end{equation}
+
+\subsubsection{Дисперсия энергии идеального газа}
+
+Для одноатомного идеального газа из $N$ частиц:
+\begin{equation}
+    \boxed{(\Delta U)^2 = \frac{3N(kT)^2}{2}}
+\end{equation}
+
+\subsubsection{Корреляция числа частиц и энергии для идеального газа}
+
+Для идеального газа с $(\Delta N)^2 = \bar{N}$ и $U = 3kTN/2$:
+\begin{equation}
+    \boxed{\overline{\Delta N \Delta H} = \frac{3kT\bar{N}}{2}}
+\end{equation}
+
+\subsubsection{Относительные флуктуации}
+
+Для макроскопических систем ($N \sim 10^{23}$):
+\begin{equation}
+    \delta_B = \frac{\sigma_B}{\bar{B}} \sim \frac{1}{\sqrt{N}} \sim 10^{-12}
+\end{equation}
+
+Флуктуации пренебрежимо малы для макроскопических величин.
+
+\newpage
+
+
+\part{Элементы теории неравновесных процессов}
+
+
+%======================================================================
+% §13_Кинетическое_уравнение_Больцмана_и_процессы_переноса
+%======================================================================
+
+\section{\S 13. Кинетическое уравнение Больцмана и процессы переноса}
+
+%═══════════════════════════════════════════════════════════════════
+\subsection{Краткая теория}
+%═══════════════════════════════════════════════════════════════════
+
+\subsubsection{$S$-частичные функции распределения}
+
+Для описания неравновесных систем используются функции распределения $w_S(x_1, \ldots, x_S, t)$, где $x_i = (\vec{r}_i, \vec{p}_i)$. Они связаны с $N$-частичной функцией распределения.
+
+\subsubsection{Процессы переноса}
+
+Необратимые процессы пространственного перераспределения вещества, импульса, энергии:
+\begin{itemize}
+    \item \textbf{Диффузия} --- перенос вещества
+    \item \textbf{Вязкость} --- перенос импульса
+    \item \textbf{Теплопроводность} --- перенос энергии
+\end{itemize}
+
+%═══════════════════════════════════════════════════════════════════
+\subsection{Основные формулы}
+%═══════════════════════════════════════════════════════════════════
+
+\subsubsection{$S$-частичная функция распределения}
+
+\begin{equation}
+    \boxed{w_S(x_1, \ldots, x_S, t) = V^S \int w_N(x_1, \ldots, x_N, t)\,dx_{S+1}\ldots dx_N}
+    \tag{13.1}
+\end{equation}
+
+\textbf{Условие нормировки:}
+\begin{equation}
+    \boxed{V^{-S} \int w_S(x_1, \ldots, x_S, t)\,dx_1\ldots dx_S = 1}
+    \tag{13.2}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Внутренняя энергия}
+
+\begin{multline}
+    \boxed{U(t) = \frac{N}{V}\int \frac{\vec{p}^2}{2m}w_1(\vec{r}, \vec{p}, t)\,d\vec{p}d\vec{r} + } \\
+    \boxed{+ \frac{N^2}{2V^2}\int \Phi(|\vec{r}_1 - \vec{r}_2|)w_2(\vec{r}_1, \vec{p}_1, \vec{r}_2, \vec{p}_2, t)\,d\vec{p}_1d\vec{r}_1d\vec{p}_2d\vec{r}_2}
+    \tag{13.3}
+\end{multline}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Первое уравнение цепочки ББГКИ}
+
+\begin{multline}
+    \boxed{\left(\frac{\partial}{\partial t} + \frac{\vec{p}_1}{m}\frac{\partial}{\partial \vec{r}_1} - \frac{\partial U_0(\vec{r}_1)}{\partial \vec{r}_1}\frac{\partial}{\partial \vec{p}_1}\right)w_1(\vec{r}_1, \vec{p}_1, t) = } \\
+    \boxed{= \frac{N}{V}\int \frac{\partial\Phi(|\vec{r}_1 - \vec{r}_2|)}{\partial \vec{r}_1}\frac{\partial w_2}{\partial \vec{p}_1}\,d\vec{r}_2d\vec{p}_2}
+    \tag{13.4}
+\end{multline}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Корреляционные функции}
+
+\begin{equation}
+    \boxed{g_2(x_1, x_2, t) = w_2(x_1, x_2, t) - w_1(x_1, t)w_1(x_2, t)}
+    \tag{13.6}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Кинетическое уравнение Больцмана}
+
+\begin{multline}
+    \boxed{\left(\frac{\partial}{\partial t} + \frac{\vec{p}_1}{m}\frac{\partial}{\partial \vec{r}_1} - \frac{\partial U_0(\vec{r}_1)}{\partial \vec{p}_1}\frac{\partial}{\partial \vec{p}_1}\right)w_1 = } \\
+    \boxed{= \frac{N}{mV}\int_0^\infty dp_2 \rho d\rho \int_0^{2\pi} d\varphi\,|\vec{p}_2 - \vec{p}_1|[w_1'w_1'' - w_1 w_1^{(2)}] \equiv I}
+    \tag{13.8}
+\end{multline}
+
+где $I$ --- интеграл столкновений в форме Н.Н. Боголюбова.
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Равновесное распределение Максвелла--Больцмана}
+
+\begin{equation}
+    \boxed{w_1^{(0)} = \frac{1}{(2\pi mkT)^{3/2}} \exp\left(-\frac{p^2/2m + U_0(\vec{r})}{kT}\right)\left(\int \exp\left(-\frac{U_0(\vec{r})}{kT}\right)d\vec{r}\right)^{-1}}
+    \tag{13.9}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Релаксационное приближение}
+
+\begin{equation}
+    \boxed{\left(\frac{\partial}{\partial t} + \frac{\vec{p}}{m}\frac{\partial}{\partial \vec{r}} - \frac{\partial U_0(\vec{r})}{\partial \vec{r}}\frac{\partial}{\partial \vec{p}}\right)w_1 = -\frac{w_1 - w_1^{(0)}}{\tau}}
+    \tag{13.10}
+\end{equation}
+
+где $\tau$ --- время релаксации.
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Уравнение диффузии}
+
+\textbf{Закон Фика:}
+\begin{equation}
+    \boxed{u(x, t)n(x, t) = -D\frac{\partial n}{\partial x}}
+    \tag{13.11}
+\end{equation}
+
+где $D$ --- коэффициент диффузии ($D \sim \bar{v}l$).
+
+\textbf{Уравнение диффузии:}
+\begin{equation}
+    \boxed{\frac{\partial n}{\partial t} = D\frac{\partial^2 n}{\partial x^2}}
+    \tag{13.12}
+\end{equation}
+
+\textbf{Решение для бесконечной среды:}
+\begin{equation}
+    \boxed{n(x, t) = (4\pi Dt)^{-1/2} \int_{-\infty}^{\infty} \tilde{n}(x')\exp\left[-\frac{(x - x')^2}{4Dt}\right]dx'}
+    \tag{13.13}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Вязкость}
+
+\begin{equation}
+    \boxed{f_y = -\eta\frac{\partial v_y}{\partial x}}
+    \tag{13.14}
+\end{equation}
+
+где $\eta$ --- коэффициент вязкости ($\eta \sim \bar{v}/\rho$).
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Теплопроводность}
+
+\textbf{Закон Фурье:}
+\begin{equation}
+    \boxed{J_x = -\kappa\frac{\partial T}{\partial x}}
+    \tag{13.15}
+\end{equation}
+
+где $\kappa$ --- коэффициент теплопроводности ($\kappa \sim \bar{v}/\rho c_v$).
+
+\textbf{Уравнение теплопроводности:}
+\begin{equation}
+    \boxed{c_v\rho\frac{\partial T}{\partial t} = \kappa\Delta T + q}
+    \tag{13.16}
+\end{equation}
+
+где $\Delta$ --- оператор Лапласа, $q(\vec{r}, t)$ --- плотность мощности тепловых источников.
+
+%═══════════════════════════════════════════════════════════════════
+\subsection{Полезные соотношения из примеров}
+%═══════════════════════════════════════════════════════════════════
+
+\subsubsection{Концентрация и плотность}
+
+\begin{equation}
+    \boxed{n(\vec{r}, t) = NV^{-1}\int w_1(\vec{r}, \vec{p}, t)\,d\vec{p}}
+    \tag{13.17}
+\end{equation}
+
+\begin{equation}
+    \boxed{\rho(\vec{r}, t) = mn(\vec{r}, t)}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Скорость упорядоченного движения}
+
+\begin{equation}
+    \boxed{m\vec{u}(\vec{r}, t)n(\vec{r}, t) = NV^{-1}\int \vec{p}\,w_1(\vec{r}, \vec{p}, t)\,d\vec{p}}
+    \tag{13.18}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Локальная температура}
+
+\begin{equation}
+    \boxed{\frac{3}{2}n(\vec{r}, t)kT(\vec{r}, t) = \frac{mN}{2V}\int\left[\frac{\vec{p}}{m} - u(\vec{r}, t)\right]^2 w_1(\vec{r}, \vec{p}, t)\,d\vec{p}}
+    \tag{13.19}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Среднее время между столкновениями}
+
+Для молекул-шариков диаметра $\sigma$:
+\begin{equation}
+    \boxed{l_0 = \frac{1}{\pi\sigma^2 n}}
+\end{equation}
+
+\begin{equation}
+    \boxed{\tau_0 = \frac{l_0}{v_0} = \sqrt{\frac{m}{8\pi kT\sigma^4 n^2}}}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{H-теорема Больцмана}
+
+Энтропия Больцмана:
+\begin{equation}
+    \boxed{S_1 = -k\int w_1(\vec{r}, \vec{p}, t)\ln w_1(\vec{r}, \vec{p}, t)\,d\vec{r}d\vec{p}}
+\end{equation}
+
+\textbf{H-теорема:}
+\begin{equation}
+    \boxed{\frac{dS_1}{dt} \geq 0}
+\end{equation}
+
+Энтропия замкнутой системы возрастает или остаётся постоянной.
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Коэффициент диффузии}
+
+Из релаксационного приближения:
+\begin{equation}
+    \boxed{D = \frac{\tau kT}{m}}
+    \tag{13.23}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Поток тепла вдоль стержня}
+
+Для стержня длиной $L$:
+\begin{equation}
+    \boxed{J_x = -\kappa\frac{\partial T}{\partial x} = \frac{T_2(t) - T_1(t)}{L}}
+    \tag{13.24}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Выравнивание температур двух сосудов}
+
+\begin{equation}
+    \boxed{T_2(t) - T_1(t) = (T_{20} - T_{10})\exp\left[-\frac{\kappa St}{L}\left(\frac{1}{c_1m_1} + \frac{1}{c_2m_2}\right)\right]}
+\end{equation}
+
+\newpage
+
+
+%======================================================================
+% §14_Броуновское_движение
+%======================================================================
+
+\section{\S 14. Броуновское движение}
+
+%═══════════════════════════════════════════════════════════════════
+\subsection{Краткая теория}
+%═══════════════════════════════════════════════════════════════════
+
+\subsubsection{Определение}
+
+\textbf{Броуновское движение} --- беспорядочное движение малых частиц (взвешенных в жидкости или газе) под действием ударов молекул окружающей среды. Причина --- флуктуации давления.
+
+\subsubsection{Характерные параметры}
+
+\begin{itemize}
+    \item $M$ --- масса броуновской частицы
+    \item $R_0$ --- радиус частицы
+    \item $\eta_0$ --- динамическая вязкость среды
+    \item $\gamma^{-1} = M/6\pi R_0\eta_0$ --- время релаксации импульса
+    \item $D = kT/M\gamma$ --- коэффициент диффузии
+\end{itemize}
+
+%═══════════════════════════════════════════════════════════════════
+\subsection{Основные формулы}
+%═══════════════════════════════════════════════════════════════════
+
+\subsubsection{Уравнение Фоккера--Планка}
+
+\begin{equation}
+    \boxed{\left(\frac{\partial}{\partial t} + \frac{\vec{p}}{M}\frac{\partial}{\partial \vec{r}} - \frac{\partial U_0(\vec{r})}{\partial \vec{r}}\frac{\partial}{\partial \vec{p}}\right)w_1 = \gamma MkT\frac{\partial^2 w_1}{\partial \vec{p}^2} + \frac{\partial}{\partial \vec{p}}[\gamma\vec{p}w_1]}
+    \tag{14.1}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Распределение по импульсам}
+
+При начальном импульсе $\vec{p}_0$:
+\begin{equation}
+    \boxed{w(\vec{p}, t) = \frac{1}{(2\pi MkT)^{3/2}[1 - \alpha^2(t)]^{3/2}} \exp\left(-\frac{[\vec{p} - \vec{p}_0\alpha(t)]^2}{2MkT[1 - \alpha^2(t)]}\right)}
+    \tag{14.2}
+\end{equation}
+
+где $\alpha(t) = \exp(-\gamma t)$.
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Распределение по координатам}
+
+При начальном положении $\vec{r} = 0$ и импульсе $\vec{p}_0$:
+\begin{equation}
+    \boxed{w(\vec{r}, t) = [4\pi D\beta(t)]^{-3/2} \exp\left(-\frac{\{\vec{r} - (\vec{p}_0/\gamma M)[1 - \alpha(t)]\}^2}{4D\beta(t)}\right)}
+    \tag{14.3}
+\end{equation}
+
+где $\beta(t) = [\gamma t + 4\alpha(t) - \alpha^2(t) - 3]/\gamma$, $D = kT/M\gamma$.
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Средний квадрат радиус-вектора}
+
+\begin{equation}
+    \boxed{\overline{r^2} = \frac{6kT[\gamma t + 4\alpha(t) - \alpha^2(t) - 3]}{M\gamma^2} + \frac{p_0^2[1 - \alpha(t)]^2}{\gamma^2 M^2}}
+    \tag{14.4}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Асимптотика при $t \gg \gamma^{-1}$}
+
+\begin{equation}
+    \boxed{w(\vec{r}, t) = (4\pi Dt)^{-3/2} \exp\left[-\frac{(\vec{r} - \vec{p}_0/\gamma M)^2}{4Dt}\right]}
+    \tag{14.5}
+\end{equation}
+
+\begin{equation}
+    \boxed{\overline{r^2} = 6Dt + \frac{p_0^2}{\gamma^2 M^2} = \frac{6kTt}{M\gamma} + \frac{p_0^2}{\gamma^2 M^2}}
+    \tag{14.6}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Уравнение диффузии для броуновских частиц}
+
+\begin{equation}
+    \boxed{\frac{\partial w(\vec{r}, t)}{\partial t} = D\Delta w(\vec{r}, t)}
+    \tag{14.7}
+\end{equation}
+
+Справедливо при $\gamma t \gg 1$.
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Формула Эйнштейна для дисперсии импульса}
+
+При $\tau_1 \ll t \ll \gamma^{-1}$:
+\begin{equation}
+    \boxed{(\Delta p)^2 = 2MkT\gamma t}
+\end{equation}
+
+%═══════════════════════════════════════════════════════════════════
+\subsection{Полезные соотношения из примеров}
+%═══════════════════════════════════════════════════════════════════
+
+\subsubsection{Коэффициент диффузии из наблюдений}
+
+Для двумерного случая (наблюдение в плоскости):
+\begin{equation}
+    \boxed{l^2 = 4Dt_0 \quad \Rightarrow \quad D = \frac{l^2}{4t_0}}
+\end{equation}
+
+\subsubsection{Плотность распределения первого достижения точки $z_0$}
+
+\begin{equation}
+    \boxed{w(t) = z_0(4\pi Dt^3)^{-1/2} \exp\left(-\frac{z_0^2}{4Dt}\right)}
+\end{equation}
+
+Максимум при $t^* = z_0^2/6D$.
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Движение в поле тяжести}
+
+При $t \gg \gamma^{-1}$:
+\begin{equation}
+    \boxed{\bar{z} - z_0 = \frac{gt}{\gamma}, \qquad \overline{(z - z_0)^2} = \left(\frac{gt}{\gamma}\right)^2 + \frac{2kTt}{M\gamma}}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Движение с отражающей стенкой}
+
+При наличии непроницаемой стенки в точке $z = 0$:
+\begin{equation}
+    \boxed{w(z, t) = (4\pi Dt)^{-1/2}\left\{\exp\left[-\frac{(z - z_0)^2}{4Dt}\right] + \exp\left[-\frac{(z + z_0)^2}{4Dt}\right]\right\}}
+\end{equation}
+
+При $t \gg z_0^2/D$:
+\begin{equation}
+    \boxed{\bar{z} - z_0 = 2\sqrt{\frac{Dt}{\pi}}}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Убывание свободной энергии}
+
+Для броуновских частиц в неравновесном состоянии:
+\begin{equation}
+    \boxed{\frac{dF(t)}{dt} = -(kT)^2 N\gamma \int \frac{M}{w_1}\left(\frac{\partial w_1}{\partial \vec{p}} + \frac{\vec{p}}{MkT}w_1\right)^2 d\vec{r}d\vec{p} \leq 0}
+    \tag{14.11}
+\end{equation}
+
+Свободная энергия убывает до достижения равновесия.
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Формула Стокса--Эйнштейна}
+
+Связь коэффициента диффузии с вязкостью среды:
+\begin{equation}
+    \boxed{D = \frac{kT}{6\pi\eta_0 R_0}}
+\end{equation}
+
+где $\eta_0$ --- динамическая вязкость, $R_0$ --- радиус частицы.
+
+%───────────────────────────────────────────────────────────────────
+\subsubsection{Время релаксации импульса}
+
+\begin{equation}
+    \boxed{\gamma^{-1} = \frac{M}{6\pi R_0\eta_0}}
+    \tag{13.2}
+\end{equation}
+
+\subsubsection{Область применимости формул}
+
+\begin{itemize}
+    \item Формулы (14.5), (14.6) справедливы при $L^2/D \gg t \gg \gamma^{-1}$
+    \item $L$ --- характерный размер области движения частиц
+\end{itemize}
+
+\newpage
+
+\end{document}

@@ -1,0 +1,215 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T2A]{fontenc}
+\usepackage[russian]{babel}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{geometry}
+\geometry{margin=2cm}
+
+\title{\S 3. Термодинамические потенциалы}
+\author{Конспект формул}
+\date{}
+
+\begin{document}
+\maketitle
+
+%═══════════════════════════════════════════════════════════════════
+\section{Краткая теория}
+%═══════════════════════════════════════════════════════════════════
+
+\subsection{Термодинамические потенциалы}
+
+\textbf{Термодинамические потенциалы} --- функции состояния, позволяющие выразить все макроскопические характеристики системы и анализировать устойчивость равновесия.
+
+\begin{center}
+\begin{tabular}{|c|c|c|}
+\hline
+Потенциал & Определение & Естественные переменные \\
+\hline
+Внутренняя энергия $U$ & --- & $V$, $S$ \\
+Свободная энергия $F$ & $U - TS$ & $V$, $T$ \\
+Энтальпия $H$ & $U + pV$ & $p$, $S$ \\
+Потенциал Гиббса $G$ & $U - TS + pV$ & $p$, $T$ \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Условия равновесия и устойчивости}
+
+\begin{itemize}
+    \item \textbf{Изолированная система}: $S \to \max$ $\Rightarrow$ $\delta S = 0$, $\delta^2 S < 0$
+    \item \textbf{$V, T = \text{const}$}: $F \to \min$ $\Rightarrow$ $\delta F = 0$, $\delta^2 F > 0$
+    \item \textbf{$p, T = \text{const}$}: $G \to \min$ $\Rightarrow$ $\delta G = 0$, $\delta^2 G > 0$
+    \item \textbf{Адиабата, $p = \text{const}$}: $H \to \min$
+    \item \textbf{Адиабата, $V = \text{const}$}: $U \to \min$
+\end{itemize}
+
+%═══════════════════════════════════════════════════════════════════
+\section{Основные формулы}
+%═══════════════════════════════════════════════════════════════════
+
+\subsection{Дифференциалы термодинамических потенциалов}
+
+\textbf{Для обратимых процессов} (знак ``$=$''), для необратимых (знак ``$\leq$''):
+
+\begin{align}
+    dU &\leq TdS - pdV \tag{3.1} \\[4pt]
+    dF &\leq -pdV - SdT \tag{3.2} \\[4pt]
+    dH &\leq TdS + Vdp \tag{3.3} \\[4pt]
+    dG &\leq -SdT + Vdp \tag{3.4}
+\end{align}
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Частные производные потенциалов}
+
+\textbf{Из внутренней энергии $U(V, S)$:}
+\begin{equation}
+    \boxed{T = \left(\frac{\partial U}{\partial S}\right)_V}, \qquad
+    \boxed{p = -\left(\frac{\partial U}{\partial V}\right)_S}
+    \tag{3.5}
+\end{equation}
+
+\textbf{Из свободной энергии $F(V, T)$:}
+\begin{equation}
+    \boxed{S = -\left(\frac{\partial F}{\partial T}\right)_V}, \qquad
+    \boxed{p = -\left(\frac{\partial F}{\partial V}\right)_T}
+    \tag{3.6}
+\end{equation}
+
+\textbf{Из энтальпии $H(p, S)$:}
+\begin{equation}
+    \boxed{T = \left(\frac{\partial H}{\partial S}\right)_p}, \qquad
+    \boxed{V = \left(\frac{\partial H}{\partial p}\right)_S}
+    \tag{3.7}
+\end{equation}
+
+\textbf{Из потенциала Гиббса $G(p, T)$:}
+\begin{equation}
+    \boxed{S = -\left(\frac{\partial G}{\partial T}\right)_p}, \qquad
+    \boxed{V = \left(\frac{\partial G}{\partial p}\right)_T}
+    \tag{3.8}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Соотношения Максвелла}
+
+\begin{equation}
+    \boxed{
+    \begin{aligned}
+        \left(\frac{\partial T}{\partial V}\right)_S &= -\left(\frac{\partial p}{\partial S}\right)_V \\[6pt]
+        \left(\frac{\partial S}{\partial V}\right)_T &= \left(\frac{\partial p}{\partial T}\right)_V \\[6pt]
+        \left(\frac{\partial T}{\partial p}\right)_S &= \left(\frac{\partial V}{\partial S}\right)_p \\[6pt]
+        \left(\frac{\partial S}{\partial p}\right)_T &= -\left(\frac{\partial V}{\partial T}\right)_p
+    \end{aligned}
+    }
+    \tag{3.9}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Уравнения Гиббса--Гельмгольца}
+
+\begin{equation}
+    \boxed{
+    \begin{aligned}
+        U &= H - p\left(\frac{\partial H}{\partial p}\right)_S = F - T\left(\frac{\partial F}{\partial T}\right)_V \\[6pt]
+        G &= F - V\left(\frac{\partial F}{\partial V}\right)_T = H - S\left(\frac{\partial H}{\partial S}\right)_p
+    \end{aligned}
+    }
+    \tag{3.10}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Неравенство для энтропии}
+
+\begin{equation}
+    TdS \geq dU + pdV
+    \tag{3.11}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Адиабатический процесс в переменных $p$, $T$}
+
+\begin{equation}
+    \frac{\tilde{C}_p}{T} \cdot \frac{dT}{dp} = \left(\frac{\partial V}{\partial T}\right)_p
+    \tag{3.12}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Эффект Джоуля--Томсона}
+
+Дифференциальный эффект (при $H = \text{const}$):
+\begin{equation}
+    \tilde{C}_p \, dT + \left[V - T\left(\frac{\partial V}{\partial T}\right)_p\right] dp = 0
+    \tag{3.14}
+\end{equation}
+
+Коэффициент Джоуля--Томсона:
+\begin{equation}
+    \left(\frac{\partial T}{\partial p}\right)_H = \frac{T(\partial V/\partial T)_p - V}{\tilde{C}_p}
+\end{equation}
+
+Конечная температура:
+\begin{equation}
+    T_1 = T_0 + \int_{p_1}^{p_2} \frac{1}{\tilde{C}_p}\left[T\left(\frac{\partial V}{\partial T}\right)_p - V\right] dp
+    \tag{3.15}
+\end{equation}
+
+%═══════════════════════════════════════════════════════════════════
+\section{Полезные соотношения из примеров}
+%═══════════════════════════════════════════════════════════════════
+
+\subsection{Потенциалы идеального газа ($\nu$ молей)}
+
+\textbf{Свободная энергия:}
+\begin{equation}
+    F(V,T) = \nu \left[C_V T(1 - \ln T) - RT\ln V - TS_0\right]
+\end{equation}
+
+\textbf{Потенциал Гиббса:}
+\begin{equation}
+    G(p,T) = \nu \left[C_p T(1 - \ln T) - T(S_0 + R\ln V) + RT\right]
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Разность теплоёмкостей}
+
+Для вещества с известным уравнением состояния $V = V(p, T)$:
+\begin{equation}
+    \boxed{\tilde{C}_p - \tilde{C}_V = -T\left(\frac{\partial V}{\partial p}\right)_T^{-1} \left(\frac{\partial V}{\partial T}\right)_p^2}
+\end{equation}
+
+Тождество для частных производных:
+\begin{equation}
+    \left(\frac{\partial p}{\partial T}\right)_V \left(\frac{\partial T}{\partial V}\right)_p \left(\frac{\partial V}{\partial p}\right)_T = -1
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Полезное соотношение}
+
+\begin{equation}
+    \left(\frac{\partial T}{\partial V}\right)_S = -\frac{T(\partial p/\partial T)_V}{\tilde{C}_V}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Условия механической и термической устойчивости}
+
+\textbf{Механическая устойчивость:}
+\begin{equation}
+    \left(\frac{\partial p}{\partial V}\right)_T < 0
+\end{equation}
+(увеличение объёма $\Rightarrow$ уменьшение давления)
+
+\textbf{Термическая устойчивость:}
+\begin{equation}
+    \tilde{C}_V > 0
+\end{equation}
+(получение теплоты $\Rightarrow$ увеличение температуры)
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Максимальная работа при изотермическом смешении газов}
+
+\begin{equation}
+    A_{\max} = -\Delta F = \nu RT_0 \ln\frac{(V_1 + V_2)^2}{V_1 V_2}
+\end{equation}
+
+\end{document}

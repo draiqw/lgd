@@ -1,0 +1,224 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T2A]{fontenc}
+\usepackage[russian]{babel}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{geometry}
+\geometry{margin=2cm}
+
+\title{\S 6. Некоторые вероятностные представления}
+\author{Конспект формул}
+\date{}
+
+\begin{document}
+\maketitle
+
+%═══════════════════════════════════════════════════════════════════
+\section{Краткая теория}
+%═══════════════════════════════════════════════════════════════════
+
+\subsection{Вероятность и случайные величины}
+
+\textbf{Вероятность события} $A$: $P(A) = m/n$, где $m$ --- число реализаций события $A$, $n$ --- полное число возможных равновероятных реализаций.
+
+\textbf{Дискретная случайная величина} принимает счётное число значений $x_1, x_2, \ldots, x_n$ с вероятностями $P(x_i)$, причём $\sum_i P(x_i) = 1$.
+
+\textbf{Непрерывная случайная величина} $x$ характеризуется \textbf{плотностью вероятности} $w^{(1)}(x)$, где $w^{(1)}(x)dx$ --- вероятность попадания $x$ в интервал $(x, x+dx)$.
+
+Условие нормировки: $\int_a^b w^{(1)}(x)dx = 1$.
+
+\subsection{Распределение Гаусса}
+
+Нормальный закон распределения (распределение Гаусса) --- важнейшее распределение в статистической физике. Характеризуется двумя параметрами: средним значением $x_0$ и дисперсией $\sigma^2$.
+
+\subsection{Статистическая независимость}
+
+Случайные величины $x_1, x_2, \ldots, x_n$ \textbf{независимы}, если их совместная плотность вероятности равна произведению плотностей вероятности каждой из них.
+
+%═══════════════════════════════════════════════════════════════════
+\section{Основные формулы}
+%═══════════════════════════════════════════════════════════════════
+
+\subsection{Функция распределения}
+
+\begin{equation}
+    \boxed{F_1(\tilde{x}) = \int_a^{\tilde{x}} w^{(1)}(x)\,dx}
+    \tag{6.1}
+\end{equation}
+
+Принимает значение, равное вероятности того, что $x$ попадает в интервал $(a, \tilde{x})$.
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Среднее значение}
+
+\textbf{Дискретная величина:}
+\begin{equation}
+    \boxed{\bar{x} = \sum_{i=1}^{n} x_i P(x_i)}
+    \tag{6.2a}
+\end{equation}
+
+\textbf{Непрерывная величина:}
+\begin{equation}
+    \boxed{\bar{x} = \int_a^b x\, w^{(1)}(x)\,dx}
+    \tag{6.2b}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Среднее значение функции}
+
+\textbf{Дискретный случай:}
+\begin{equation}
+    \boxed{\overline{f(x)} = \sum_{i=1}^{n} f(x_i) P(x_i)}
+    \tag{6.3a}
+\end{equation}
+
+\textbf{Непрерывный случай:}
+\begin{equation}
+    \boxed{\overline{f(x)} = \int_a^b f(x)\, w^{(1)}(x)\,dx}
+    \tag{6.3b}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Дисперсия}
+
+\textbf{Дискретная величина:}
+\begin{equation}
+    \boxed{\sigma^2(x) = \sum_{i=1}^{n} (x_i - \bar{x})^2 P(x_i)}
+    \tag{6.4a}
+\end{equation}
+
+\textbf{Непрерывная величина:}
+\begin{equation}
+    \boxed{\sigma^2(x) = \int_a^b (x - \bar{x})^2 w^{(1)}(x)\,dx}
+    \tag{6.4b}
+\end{equation}
+
+\textbf{Стандартное отклонение:} $\sigma(x) = \sqrt{\sigma^2(x)}$
+
+\textbf{Относительная флуктуация:}
+\begin{equation}
+    \boxed{\delta(x) = \frac{\sigma(x)}{\bar{x}}}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Среднее функции многих переменных}
+
+\begin{equation}
+    \boxed{\overline{f(x_1, \ldots, x_n)} = \int\ldots\int w^{(n)}(x_1, \ldots, x_n) f(x_1, \ldots, x_n)\,dx_1\ldots dx_n}
+    \tag{6.5}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Маргинальное распределение}
+
+\begin{equation}
+    \boxed{w^{(1)}(x_m) = \int\ldots\int w^{(n)}(x_1, \ldots, x_n)\,dx_1\ldots dx_{m-1}\,dx_{m+1}\ldots dx_n}
+    \tag{6.6}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Преобразование плотности вероятности}
+
+При замене переменных $y_i = y_i(x_1, \ldots, x_n)$:
+\begin{equation}
+    \boxed{w^{(n)}(y_1, \ldots, y_n) = w^{(n)}(x_1(y), \ldots, x_n(y)) \left|\frac{\partial(x_1, \ldots, x_n)}{\partial(y_1, \ldots, y_n)}\right|}
+    \tag{6.7}
+\end{equation}
+
+Последний множитель --- якобиан преобразования.
+
+\textbf{Для одной переменной} $y = y(x)$:
+\begin{equation}
+    w^{(1)}(y) = w^{(1)}(x(y))\left|\frac{dx}{dy}\right|
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Формула полной вероятности}
+
+\begin{equation}
+    \boxed{P(A) = \sum_{i=1}^{n} P(B_i) P(A|B_i)}
+    \tag{6.8}
+\end{equation}
+
+где $B_1, B_2, \ldots, B_n$ --- попарно несовместные события, образующие полную группу; $P(A|B_i)$ --- условная вероятность события $A$ при реализации $B_i$.
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Статистическая независимость}
+
+\begin{equation}
+    \boxed{w^{(n)}(x_1, x_2, \ldots, x_n) = w^{(1)}(x_1) w^{(1)}(x_2) \cdots w^{(1)}(x_n)}
+    \tag{6.9}
+\end{equation}
+
+\textbf{Следствие:} для независимых величин $\overline{x_1 x_2} = \bar{x}_1 \cdot \bar{x}_2$.
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Распределение Гаусса (нормальное)}
+
+\begin{equation}
+    \boxed{w^{(1)}(x) = \frac{1}{\sqrt{2\pi}\sigma} \exp\left(-\frac{(x - x_0)^2}{2\sigma^2}\right)}
+    \tag{6.11}
+\end{equation}
+
+\textbf{Свойства:}
+\begin{itemize}
+    \item Наиболее вероятное значение: $x^* = x_0$
+    \item Среднее значение: $\bar{x} = x_0$
+    \item Дисперсия: $\sigma^2(x) = \sigma^2$
+    \item Относительная флуктуация: $\delta(x) = \sigma/x_0$
+\end{itemize}
+
+%═══════════════════════════════════════════════════════════════════
+\section{Полезные соотношения из примеров}
+%═══════════════════════════════════════════════════════════════════
+
+\subsection{Биномиальное распределение}
+
+Вероятность того, что $n$ из $N$ частиц окажутся в объёме $v$ ($v \ll V$):
+\begin{equation}
+    \boxed{P_N(n) = C_N^n \left(\frac{v}{V}\right)^n \left(1 - \frac{v}{V}\right)^{N-n} = \frac{N!}{n!(N-n)!} \left(\frac{v}{V}\right)^n \left(1 - \frac{v}{V}\right)^{N-n}}
+    \tag{6.14}
+\end{equation}
+
+\textbf{Среднее число частиц:}
+\begin{equation}
+    \boxed{\bar{n} = \frac{Nv}{V}}
+\end{equation}
+
+\textbf{Дисперсия:}
+\begin{equation}
+    \boxed{\sigma^2(n) = \left(1 - \frac{v}{V}\right)\frac{Nv}{V}}
+    \tag{6.15}
+\end{equation}
+
+\textbf{Относительная флуктуация:}
+\begin{equation}
+    \boxed{\delta = \frac{\sqrt{V/v - 1}}{\sqrt{N}}}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Предельные случаи биномиального распределения}
+
+\textbf{Распределение Пуассона} (при $N \gg 1$, $v \ll V$):
+\begin{equation}
+    \boxed{P_N(n) \approx \frac{(Nv/V)^n}{n!} \exp\left(-\frac{Nv}{V}\right) = \frac{\bar{n}^n}{n!} e^{-\bar{n}}}
+\end{equation}
+
+\textbf{Гауссова аппроксимация} (в окрестности максимума):
+\begin{equation}
+    \boxed{P_N(n) = \frac{1}{\sqrt{2\pi}} \cdot \frac{1}{\sqrt{(1 - v/V)Nv/V}} \cdot \exp\left[-\frac{(n - Nv/V)^2}{2(1 - v/V)Nv/V}\right]}
+    \tag{6.16}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Поведение флуктуаций с ростом $N$}
+
+\begin{itemize}
+    \item Среднее число частиц $\bar{n} \propto N$
+    \item Дисперсия $\sigma^2 \propto N$
+    \item Относительная флуктуация $\delta \propto 1/\sqrt{N}$ (уменьшается!)
+\end{itemize}
+
+Это фундаментальный результат статистической физики: относительные флуктуации макроскопических величин исчезающе малы для больших систем.
+
+\end{document}

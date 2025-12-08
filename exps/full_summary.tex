@@ -1,0 +1,447 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T2A]{fontenc}
+\usepackage[russian]{babel}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{titlesec}
+\geometry{margin=2cm}
+
+% Настройка заголовков
+\titleformat{\part}[display]{\Huge\bfseries\centering}{Глава \thepart}{20pt}{\Huge}
+\titlespacing*{\part}{0pt}{50pt}{40pt}
+
+\title{\Huge\textbf{Термодинамика и статистическая физика}\\[10pt]\Large Полный конспект формул}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\newpage
+
+%═══════════════════════════════════════════════════════════════════════════════
+\part{Термодинамика равновесных систем}
+%═══════════════════════════════════════════════════════════════════════════════
+
+%═══════════════════════════════════════════════════════════════════════════════
+\section*{\S 1. Основные понятия и первое начало термодинамики}
+\addcontentsline{toc}{section}{\S 1. Основные понятия и первое начало термодинамики}
+%═══════════════════════════════════════════════════════════════════════════════
+
+\subsection{Основные определения}
+
+\textbf{Термодинамическая система} --- совокупность $N \sim N_A$ хаотически движущихся частиц в ограниченной области пространства.
+
+\textbf{Параметры системы:}
+\begin{itemize}
+    \item \textbf{Внешние} $a_i$ $(i = 1, 2, \ldots, n)$ --- определяются состоянием тел вне системы
+    \item \textbf{Внутренние} $b_j$ --- определяются движением частиц системы
+    \item \textbf{Интенсивные} --- не зависят от массы (давление, температура)
+    \item \textbf{Экстенсивные} --- пропорциональны массе (объём, энергия)
+\end{itemize}
+
+\subsection{Фундаментальные константы}
+
+\begin{align}
+    N_A &= 6{,}02 \cdot 10^{23} \text{ моль}^{-1} && \text{(число Авогадро)} \\[6pt]
+    R &= 8{,}31 \text{ Дж/(моль$\cdot$К)} && \text{(универсальная газовая постоянная)} \\[6pt]
+    k &= \frac{R}{N_A} = 1{,}38 \cdot 10^{-23} \text{ Дж/К} && \text{(постоянная Больцмана)}
+\end{align}
+
+\subsection{Уравнение Клапейрона--Менделеева (идеальный газ)}
+\begin{equation}
+    \boxed{pV = \frac{m}{\mu}RT = \nu RT}
+    \tag{1.2}
+\end{equation}
+
+\subsection{Первое начало термодинамики}
+\begin{equation}
+    \boxed{\delta Q = dU(a_1, \ldots, a_n, T) + \delta A}
+    \tag{1.8}
+\end{equation}
+
+\subsection{Работа газа при изменении объёма}
+\begin{equation}
+    \boxed{A = \int_{V_0}^{V_1} p(V) \, dV}
+    \tag{1.6}
+\end{equation}
+
+\subsection{Теплоёмкость идеального газа}
+
+\textbf{При постоянном объёме:}
+\begin{equation}
+    \boxed{C_V = \frac{i}{2}R}
+\end{equation}
+
+\textbf{При постоянном давлении:}
+\begin{equation}
+    \boxed{C_p = C_V + R = \frac{i+2}{2}R}
+\end{equation}
+
+\textbf{Показатель адиабаты:}
+\begin{equation}
+    \boxed{\gamma = \frac{C_p}{C_V} = \frac{i+2}{i}}
+\end{equation}
+
+\subsection{Политропный процесс}
+\begin{equation}
+    \boxed{pV^n = \text{const}}
+    \tag{1.11}
+\end{equation}
+
+\subsection{КПД цикла Карно}
+\begin{equation}
+    \boxed{\eta = 1 - \frac{T_2}{T_1}}
+\end{equation}
+
+%═══════════════════════════════════════════════════════════════════════════════
+\section*{\S 2. Второе начало термодинамики. Энтропия}
+\addcontentsline{toc}{section}{\S 2. Второе начало термодинамики. Энтропия}
+%═══════════════════════════════════════════════════════════════════════════════
+
+\subsection{Дифференциал энтропии}
+\begin{equation}
+    \boxed{dS \equiv \frac{\delta Q}{T} = \frac{dU}{T} + \frac{1}{T}\sum_{i=1}^{n} B_i \, da_i}
+    \tag{2.1}
+\end{equation}
+
+\subsection{Изменение энтропии идеального газа}
+\begin{equation}
+    \boxed{S_2 - S_1 = R \ln\frac{V_2}{V_1} + C_V \ln\frac{T_2}{T_1}}
+    \tag{2.4}
+\end{equation}
+
+\subsection{Неравенство Клаузиуса}
+\begin{equation}
+    \boxed{\oint \frac{\delta Q}{T} \leq 0}
+    \tag{2.5}
+\end{equation}
+
+\subsection{Связь давления и внутренней энергии}
+\begin{equation}
+    \boxed{T\left(\frac{\partial p}{\partial T}\right)_V = p + \left(\frac{\partial U}{\partial V}\right)_T}
+    \tag{2.7}
+\end{equation}
+
+%═══════════════════════════════════════════════════════════════════════════════
+\section*{\S 3. Термодинамические потенциалы}
+\addcontentsline{toc}{section}{\S 3. Термодинамические потенциалы}
+%═══════════════════════════════════════════════════════════════════════════════
+
+\subsection{Определения}
+\begin{center}
+\begin{tabular}{|c|c|c|}
+\hline
+Потенциал & Определение & Естественные переменные \\
+\hline
+Внутренняя энергия $U$ & --- & $V$, $S$ \\
+Свободная энергия $F$ & $U - TS$ & $V$, $T$ \\
+Энтальпия $H$ & $U + pV$ & $p$, $S$ \\
+Потенциал Гиббса $G$ & $U - TS + pV$ & $p$, $T$ \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Дифференциалы потенциалов}
+\begin{align}
+    dU &\leq TdS - pdV \tag{3.1} \\
+    dF &\leq -pdV - SdT \tag{3.2} \\
+    dH &\leq TdS + Vdp \tag{3.3} \\
+    dG &\leq -SdT + Vdp \tag{3.4}
+\end{align}
+
+\subsection{Соотношения Максвелла}
+\begin{equation}
+    \boxed{
+    \begin{aligned}
+        \left(\frac{\partial T}{\partial V}\right)_S &= -\left(\frac{\partial p}{\partial S}\right)_V \\[6pt]
+        \left(\frac{\partial S}{\partial V}\right)_T &= \left(\frac{\partial p}{\partial T}\right)_V \\[6pt]
+        \left(\frac{\partial T}{\partial p}\right)_S &= \left(\frac{\partial V}{\partial S}\right)_p \\[6pt]
+        \left(\frac{\partial S}{\partial p}\right)_T &= -\left(\frac{\partial V}{\partial T}\right)_p
+    \end{aligned}
+    }
+    \tag{3.9}
+\end{equation}
+
+%═══════════════════════════════════════════════════════════════════════════════
+\section*{\S 4. Реальные газы}
+\addcontentsline{toc}{section}{\S 4. Реальные газы}
+%═══════════════════════════════════════════════════════════════════════════════
+
+\subsection{Уравнение Ван-дер-Ваальса}
+\begin{equation}
+    \boxed{\left(p + \frac{\nu^2 a}{V^2}\right)(V - \nu b) = \nu RT}
+    \tag{4.1}
+\end{equation}
+
+\subsection{Критические параметры}
+\begin{equation}
+    \boxed{a = \frac{27 R^2 T_K^2}{64 p_K}}, \qquad
+    \boxed{b = \frac{RT_K}{8p_K}}
+\end{equation}
+
+\subsection{Внутренняя энергия}
+\begin{equation}
+    \boxed{U = -\frac{\nu^2 a}{V} + \nu C_V T}
+\end{equation}
+
+\subsection{Температура инверсии (эффект Джоуля--Томсона)}
+\begin{equation}
+    \boxed{T^* = \frac{2a}{bR}}
+\end{equation}
+
+%═══════════════════════════════════════════════════════════════════════════════
+\section*{\S 5. Системы с переменным числом частиц}
+\addcontentsline{toc}{section}{\S 5. Системы с переменным числом частиц}
+%═══════════════════════════════════════════════════════════════════════════════
+
+\subsection{Химический потенциал}
+\begin{equation}
+    \boxed{\mu = \left(\frac{\partial U}{\partial N}\right)_{S,V} = \left(\frac{\partial F}{\partial N}\right)_{T,V} = \left(\frac{\partial G}{\partial N}\right)_{T,p}}
+    \tag{5.6}
+\end{equation}
+
+\subsection{Большой термодинамический потенциал}
+\begin{equation}
+    \boxed{\Omega(V,T,\mu) = F - \mu N}
+\end{equation}
+
+\subsection{Уравнение Клапейрона--Клаузиуса}
+\begin{equation}
+    \boxed{\frac{dp}{dT} = \frac{\lambda}{T(\nu_1 - \nu_2)}}
+    \tag{5.18}
+\end{equation}
+
+%═══════════════════════════════════════════════════════════════════════════════
+\part{Статистическая физика равновесных систем}
+%═══════════════════════════════════════════════════════════════════════════════
+
+%═══════════════════════════════════════════════════════════════════════════════
+\section*{\S 6. Некоторые вероятностные представления}
+\addcontentsline{toc}{section}{\S 6. Некоторые вероятностные представления}
+%═══════════════════════════════════════════════════════════════════════════════
+
+\subsection{Среднее значение}
+\begin{equation}
+    \boxed{\bar{x} = \int_a^b x\, w^{(1)}(x)\,dx}
+    \tag{6.2b}
+\end{equation}
+
+\subsection{Дисперсия}
+\begin{equation}
+    \boxed{\sigma^2(x) = \int_a^b (x - \bar{x})^2 w^{(1)}(x)\,dx}
+    \tag{6.4b}
+\end{equation}
+
+\subsection{Распределение Гаусса}
+\begin{equation}
+    \boxed{w^{(1)}(x) = \frac{1}{\sqrt{2\pi}\sigma} \exp\left(-\frac{(x - x_0)^2}{2\sigma^2}\right)}
+    \tag{6.11}
+\end{equation}
+
+%═══════════════════════════════════════════════════════════════════════════════
+\section*{\S 7. Распределения Гиббса}
+\addcontentsline{toc}{section}{\S 7. Распределения Гиббса}
+%═══════════════════════════════════════════════════════════════════════════════
+
+\subsection{Каноническое распределение}
+\begin{equation}
+    \boxed{w_N(X, a, T) = \frac{\exp(-H(X, a)/kT)}{Z(a, T)}}
+    \tag{7.5}
+\end{equation}
+
+\subsection{Статистический интеграл}
+\begin{equation}
+    \boxed{Z(a, T) = \int \exp(-H(X, a)/kT)\,dX}
+\end{equation}
+
+\subsection{Связь со свободной энергией}
+\begin{equation}
+    \boxed{F = -kT \ln Z_1}
+    \tag{7.10}
+\end{equation}
+
+\subsection{Формула Сакура--Тетроде (энтропия идеального газа)}
+\begin{equation}
+    \boxed{S = kN\left\{\frac{5}{2} + \ln\left[\frac{(2\pi mkT)^{3/2}V}{(2\pi\hbar)^3 N}\right]\right\}}
+    \tag{7.33}
+\end{equation}
+
+%═══════════════════════════════════════════════════════════════════════════════
+\section*{\S 8. Распределение Максвелла}
+\addcontentsline{toc}{section}{\S 8. Распределение Максвелла}
+%═══════════════════════════════════════════════════════════════════════════════
+
+\subsection{Распределение по импульсам}
+\begin{equation}
+    \boxed{w^{(3)}(\vec{p}) = (2\pi mkT)^{-3/2} \exp\left(-\frac{\vec{p}^2}{2mkT}\right)}
+    \tag{8.1}
+\end{equation}
+
+\subsection{Характерные скорости}
+\begin{align}
+    \text{Наивероятнейшая:} \quad &v^* = \sqrt{\frac{2kT}{m}} \\[6pt]
+    \text{Средняя:} \quad &\bar{v} = \sqrt{\frac{8kT}{\pi m}} \\[6pt]
+    \text{Среднеквадратичная:} \quad &\sqrt{\overline{v^2}} = \sqrt{\frac{3kT}{m}}
+\end{align}
+
+\subsection{Средняя энергия молекулы}
+\begin{equation}
+    \boxed{\bar{E} = \frac{3kT}{2}}
+    \tag{8.6}
+\end{equation}
+
+%═══════════════════════════════════════════════════════════════════════════════
+\section*{\S 9. Распределение Больцмана}
+\addcontentsline{toc}{section}{\S 9. Распределение Больцмана}
+%═══════════════════════════════════════════════════════════════════════════════
+
+\subsection{Распределение по координатам}
+\begin{equation}
+    \boxed{w^{(3)}(\vec{r}) = \frac{\exp(-U_0(\vec{r})/kT)}{\displaystyle\int_V \exp(-U_0(\vec{r})/kT)\,d\vec{r}}}
+    \tag{9.1}
+\end{equation}
+
+\subsection{Барометрическая формула}
+\begin{equation}
+    \boxed{p(z) = p(0) \exp\left(-\frac{m_0 gz}{kT}\right)}
+    \tag{9.6}
+\end{equation}
+
+%═══════════════════════════════════════════════════════════════════════════════
+\section*{\S 10. Цепочка уравнений для равновесных функций распределения}
+\addcontentsline{toc}{section}{\S 10. Цепочка уравнений для равновесных функций распределения}
+%═══════════════════════════════════════════════════════════════════════════════
+
+\subsection{Уравнение состояния с поправкой}
+\begin{equation}
+    \boxed{p = \frac{NkT}{V}\left[1 + \frac{N(\tilde{b} - \tilde{a}/kT)}{V}\right]}
+    \tag{10.22}
+\end{equation}
+
+\subsection{Связь с константами Ван-дер-Ваальса}
+\begin{equation}
+    \boxed{a = N_A^2 \tilde{a}, \qquad b = N_A \tilde{b}}
+    \tag{10.23}
+\end{equation}
+
+%═══════════════════════════════════════════════════════════════════════════════
+\section*{\S 11. Идеальные квантовые газы в равновесном состоянии}
+\addcontentsline{toc}{section}{\S 11. Идеальные квантовые газы в равновесном состоянии}
+%═══════════════════════════════════════════════════════════════════════════════
+
+\subsection{Распределение Бозе--Эйнштейна}
+\begin{equation}
+    \boxed{\bar{N}_l = \frac{1}{\exp[(E_l - \mu)/kT] - 1}}
+    \tag{11.8}
+\end{equation}
+
+\subsection{Распределение Ферми--Дирака}
+\begin{equation}
+    \boxed{\bar{N}_l = \frac{1}{\exp[(E_l - \mu)/kT] + 1}}
+    \tag{11.9}
+\end{equation}
+
+\subsection{Энергия Ферми}
+\begin{equation}
+    \boxed{E_F = \frac{(3\pi^2 \bar{N}/V)^{2/3} \hbar^2}{2m}}
+\end{equation}
+
+%═══════════════════════════════════════════════════════════════════════════════
+\section*{\S 12. Флуктуации в равновесных системах}
+\addcontentsline{toc}{section}{\S 12. Флуктуации в равновесных системах}
+%═══════════════════════════════════════════════════════════════════════════════
+
+\subsection{Формула Эйнштейна}
+\begin{equation}
+    \boxed{w = C \exp\left(-\frac{\Delta U + p\Delta V - \mu\Delta N - T\Delta S}{kT}\right)}
+    \tag{12.2}
+\end{equation}
+
+\subsection{Общая формула для вероятности флуктуаций}
+\begin{equation}
+    \boxed{w = C \exp\left(\frac{\Delta p \Delta V - \Delta\mu \Delta N - \Delta T \Delta S}{2kT}\right)}
+    \tag{12.6}
+\end{equation}
+
+\subsection{Дисперсия числа частиц}
+\begin{equation}
+    \boxed{(\Delta N)^2 = kT \left(\frac{\partial \bar{N}}{\partial \mu}\right)_{T,V}}
+    \tag{12.10}
+\end{equation}
+
+%═══════════════════════════════════════════════════════════════════════════════
+\part{Элементы теории неравновесных процессов}
+%═══════════════════════════════════════════════════════════════════════════════
+
+%═══════════════════════════════════════════════════════════════════════════════
+\section*{\S 13. Кинетическое уравнение Больцмана и процессы переноса}
+\addcontentsline{toc}{section}{\S 13. Кинетическое уравнение Больцмана и процессы переноса}
+%═══════════════════════════════════════════════════════════════════════════════
+
+\subsection{Релаксационное приближение}
+\begin{equation}
+    \boxed{\left(\frac{\partial}{\partial t} + \frac{\vec{p}}{m}\frac{\partial}{\partial \vec{r}} - \frac{\partial U_0(\vec{r})}{\partial \vec{r}}\frac{\partial}{\partial \vec{p}}\right)w_1 = -\frac{w_1 - w_1^{(0)}}{\tau}}
+    \tag{13.10}
+\end{equation}
+
+\subsection{Закон Фика (диффузия)}
+\begin{equation}
+    \boxed{u(x, t)n(x, t) = -D\frac{\partial n}{\partial x}}
+    \tag{13.11}
+\end{equation}
+
+\subsection{Уравнение диффузии}
+\begin{equation}
+    \boxed{\frac{\partial n}{\partial t} = D\frac{\partial^2 n}{\partial x^2}}
+    \tag{13.12}
+\end{equation}
+
+\subsection{Вязкость}
+\begin{equation}
+    \boxed{f_y = -\eta\frac{\partial v_y}{\partial x}}
+    \tag{13.14}
+\end{equation}
+
+\subsection{Закон Фурье (теплопроводность)}
+\begin{equation}
+    \boxed{J_x = -\kappa\frac{\partial T}{\partial x}}
+    \tag{13.15}
+\end{equation}
+
+\subsection{Уравнение теплопроводности}
+\begin{equation}
+    \boxed{c_v\rho\frac{\partial T}{\partial t} = \kappa\Delta T + q}
+    \tag{13.16}
+\end{equation}
+
+%═══════════════════════════════════════════════════════════════════════════════
+\section*{\S 14. Броуновское движение}
+\addcontentsline{toc}{section}{\S 14. Броуновское движение}
+%═══════════════════════════════════════════════════════════════════════════════
+
+\subsection{Уравнение Фоккера--Планка}
+\begin{equation}
+    \boxed{\left(\frac{\partial}{\partial t} + \frac{\vec{p}}{M}\frac{\partial}{\partial \vec{r}} - \frac{\partial U_0(\vec{r})}{\partial \vec{r}}\frac{\partial}{\partial \vec{p}}\right)w_1 = \gamma MkT\frac{\partial^2 w_1}{\partial \vec{p}^2} + \frac{\partial}{\partial \vec{p}}[\gamma\vec{p}w_1]}
+    \tag{14.1}
+\end{equation}
+
+\subsection{Коэффициент диффузии}
+\begin{equation}
+    \boxed{D = \frac{kT}{M\gamma} = \frac{kT}{6\pi\eta_0 R_0}}
+\end{equation}
+
+\subsection{Средний квадрат смещения}
+\begin{equation}
+    \boxed{\overline{r^2} = 6Dt} \quad \text{(при } t \gg \gamma^{-1}\text{)}
+    \tag{14.6}
+\end{equation}
+
+\subsection{Формула Эйнштейна для дисперсии импульса}
+\begin{equation}
+    \boxed{(\Delta p)^2 = 2MkT\gamma t} \quad \text{(при } \tau_1 \ll t \ll \gamma^{-1}\text{)}
+\end{equation}
+
+\end{document}

@@ -1,0 +1,194 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T2A]{fontenc}
+\usepackage[russian]{babel}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{geometry}
+\geometry{margin=2cm}
+
+\title{\S 5. Системы с переменным числом частиц}
+\author{Конспект формул}
+\date{}
+
+\begin{document}
+\maketitle
+
+%═══════════════════════════════════════════════════════════════════
+\section{Краткая теория}
+%═══════════════════════════════════════════════════════════════════
+
+\subsection{Химический потенциал}
+
+\textbf{Химический потенциал} $\mu$ --- изменение внутренней энергии системы при изменении числа частиц на одну при постоянных $V$ и $S$:
+\begin{equation}
+    \mu = \left(\frac{\partial U}{\partial N}\right)_{S,V}
+\end{equation}
+
+\subsection{Фазы и компоненты}
+
+\textbf{Фаза} --- гомогенная часть гетерогенной системы, отделённая поверхностью раздела.
+
+\textbf{Компоненты} --- химические индивидуальные вещества, допускающие независимое существование.
+
+\textbf{Агрегатных состояний} --- 4 (твёрдое, жидкое, газообразное, плазменное).
+
+\textbf{Фаз может быть много} (различные кристаллические модификации и т.д.).
+
+\subsection{Фазовые переходы первого рода}
+
+Происходят при постоянной температуре $T^*$ с поглощением или выделением скрытой теплоты $T^*(S_2 - S_1)$. Примеры: плавление, кристаллизация, кипение.
+
+%═══════════════════════════════════════════════════════════════════
+\section{Основные формулы}
+%═══════════════════════════════════════════════════════════════════
+
+\subsection{Второе начало для системы с переменным $N$}
+
+\begin{equation}
+    \boxed{TdS(U,V,N) \geq dU + pdV - \mu dN}
+    \tag{5.1}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Дифференциалы термодинамических потенциалов}
+
+\begin{align}
+    dU(S,V,N) &\leq TdS - pdV + \mu dN \tag{5.2} \\[4pt]
+    dF(V,T,N) &\leq -pdV - SdT + \mu dN \tag{5.3} \\[4pt]
+    dH(S,p,N) &\leq TdS + Vdp + \mu dN \tag{5.4} \\[4pt]
+    dG(T,p,N) &\leq -SdT + Vdp + \mu dN \tag{5.5}
+\end{align}
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Химический потенциал через различные потенциалы}
+
+\begin{equation}
+    \boxed{\mu = \left(\frac{\partial U}{\partial N}\right)_{S,V} = \left(\frac{\partial F}{\partial N}\right)_{T,V} = \left(\frac{\partial H}{\partial N}\right)_{S,p} = \left(\frac{\partial G}{\partial N}\right)_{T,p} = -T\left(\frac{\partial S}{\partial N}\right)_{U,V}}
+    \tag{5.6}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Дополнительные соотношения Максвелла}
+
+\begin{align}
+    \left(\frac{\partial T}{\partial N}\right)_{S,V} &= \left(\frac{\partial \mu}{\partial S}\right)_{V,N}, &
+    \left(\frac{\partial p}{\partial N}\right)_{S,V} &= -\left(\frac{\partial \mu}{\partial V}\right)_{S,N} \tag{5.7} \\[4pt]
+    \left(\frac{\partial p}{\partial N}\right)_{V,T} &= -\left(\frac{\partial \mu}{\partial V}\right)_{N,T}, &
+    \left(\frac{\partial S}{\partial N}\right)_{V,T} &= -\left(\frac{\partial \mu}{\partial T}\right)_{N,V} \tag{5.8} \\[4pt]
+    \left(\frac{\partial T}{\partial N}\right)_{S,p} &= \left(\frac{\partial \mu}{\partial S}\right)_{p,N}, &
+    \left(\frac{\partial V}{\partial N}\right)_{S,p} &= \left(\frac{\partial \mu}{\partial p}\right)_{S,N} \tag{5.9} \\[4pt]
+    \left(\frac{\partial S}{\partial N}\right)_{T,p} &= -\left(\frac{\partial \mu}{\partial T}\right)_{p,N}, &
+    \left(\frac{\partial V}{\partial N}\right)_{T,p} &= \left(\frac{\partial \mu}{\partial p}\right)_{T,N} \tag{5.10}
+\end{align}
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Большой термодинамический потенциал}
+
+\begin{equation}
+    \boxed{\Omega(V,T,\mu) = F - \mu N}
+\end{equation}
+
+Дифференциал:
+\begin{equation}
+    d\Omega \leq -SdT - pdV - Nd\mu
+    \tag{5.11}
+\end{equation}
+
+В равновесии:
+\begin{equation}
+    S = -\left(\frac{\partial \Omega}{\partial T}\right)_{V,\mu}, \quad
+    p = -\left(\frac{\partial \Omega}{\partial V}\right)_{T,\mu}, \quad
+    N = -\left(\frac{\partial \Omega}{\partial \mu}\right)_{V,T}
+    \tag{5.12}
+\end{equation}
+
+Условие устойчивости:
+\begin{equation}
+    \delta\Omega = 0, \qquad \delta^2\Omega > 0
+    \tag{5.13}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Связь потенциала Гиббса и химического потенциала}
+
+\begin{equation}
+    \boxed{G = \mu N}
+    \tag{5.14}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Условия фазового равновесия (двухфазная система)}
+
+\begin{equation}
+    \boxed{T_1 = T_2 = T, \qquad p_1 = p_2 = p}
+    \tag{5.15}
+\end{equation}
+
+\begin{equation}
+    \boxed{\mu_1(T_1, p_1) = \mu_2(T_2, p_2)}
+    \tag{5.16}
+\end{equation}
+
+Уравнение кривой фазового равновесия:
+\begin{equation}
+    \mu_1(T,p) = \mu_2(T,p)
+    \tag{5.17}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Уравнение Клапейрона--Клаузиуса}
+
+\begin{equation}
+    \boxed{\frac{dp}{dT} = \frac{\lambda}{T(\nu_1 - \nu_2)}}
+    \tag{5.18}
+\end{equation}
+
+где $\lambda$ --- удельная теплота перехода, $\nu_{1,2}$ --- удельные объёмы фаз.
+
+%═══════════════════════════════════════════════════════════════════
+\section{Полезные соотношения из примеров}
+%═══════════════════════════════════════════════════════════════════
+
+\subsection{Газ Ван-дер-Ваальса с переменным $N$}
+
+\textbf{Внутренняя энергия:}
+\begin{equation}
+    U(V,T,N) = \tilde{C}_{V,N} T - \frac{aN^2}{V}
+    \tag{5.22}
+\end{equation}
+
+\textbf{Энтропия:}
+\begin{equation}
+    S = kN\ln(V - Nb/N_A) + \tilde{C}_{V,N}\ln T + NS_0(V/N,T)
+    \tag{5.23}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Производные химического потенциала}
+
+\begin{equation}
+    \left(\frac{\partial \mu}{\partial T}\right)_p = -\frac{S}{N}, \qquad
+    \left(\frac{\partial \mu}{\partial p}\right)_T = \frac{V}{N}
+    \tag{5.26}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Давление насыщенного пара}
+
+При $\lambda = \text{const}$ и пренебрежении объёмом жидкости:
+\begin{equation}
+    \boxed{p = p_0 \exp\left[\frac{\mu\lambda(T - T_0)}{RTT_0}\right]}
+\end{equation}
+
+где $p_0$ --- давление при $T_0$, $\mu$ --- молярная масса.
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Теплоёмкость насыщенного пара}
+
+\begin{equation}
+    \boxed{c = c_p - \frac{\lambda}{T}}
+\end{equation}
+
+где $\lambda$ --- удельная теплота парообразования.
+
+\end{document}

@@ -1,0 +1,204 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T2A]{fontenc}
+\usepackage[russian]{babel}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{geometry}
+\geometry{margin=2cm}
+
+\title{\S 12. Флуктуации в равновесных системах}
+\author{Конспект формул}
+\date{}
+
+\begin{document}
+\maketitle
+
+%═══════════════════════════════════════════════════════════════════
+\section{Краткая теория}
+%═══════════════════════════════════════════════════════════════════
+
+\subsection{Определение флуктуаций}
+
+Флуктуации --- самопроизвольные отклонения динамических переменных $B_j(X)$ от их средних значений $\bar{B}_j$.
+
+\textbf{Дисперсия (квадратичная флуктуация):}
+\begin{equation}
+    \boxed{(B_j - \bar{B}_j)^2 = (\Delta B_j)^2 = \overline{B_j^2} - (\bar{B}_j)^2 = \sigma_{B_j}^2}
+\end{equation}
+
+\textbf{Относительная флуктуация:} $\delta_{B_j} = \sigma_{B_j}/\bar{B}_j$
+
+\textbf{Коэффициент корреляции:} $K_{ij} = \overline{\Delta B_i \Delta B_j}$
+
+\subsection{Квазитермодинамическая теория}
+
+Малая часть системы также может характеризоваться термодинамическими параметрами. Флуктуации рассматриваются как медленные переходы между квазиравновесными состояниями. Флуктуации в различных микрообластях считаются независимыми.
+
+%═══════════════════════════════════════════════════════════════════
+\section{Основные формулы}
+%═══════════════════════════════════════════════════════════════════
+
+\subsection{Распределение Гаусса для флуктуаций}
+
+\begin{equation}
+    \boxed{w(B_j) = \left(\frac{\lambda}{2\pi}\right)^{1/2} \exp\left(-\frac{\lambda B_j^2}{2}\right)}
+    \tag{12.1}
+\end{equation}
+
+При этом дисперсия: $(\Delta B_j)^2 = 1/\lambda$.
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Формула Эйнштейна}
+
+Вероятность перехода в квазиравновесное состояние:
+\begin{equation}
+    \boxed{w = C \exp\left(-\frac{\Delta U + p\Delta V - \mu\Delta N - T\Delta S}{kT}\right)}
+    \tag{12.2}
+\end{equation}
+
+где $C$ --- нормировочная константа.
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Частные случаи формулы (12.2)}
+
+\textbf{Изолированная система} (постоянные $U$, $V$, $N$):
+\begin{equation}
+    \boxed{w = C \exp(\Delta S/k)}
+    \tag{12.3}
+\end{equation}
+
+\textbf{Система в термостате} (постоянные $T$, $V$, $N$):
+\begin{equation}
+    \boxed{w = C \exp(-\Delta F/kT)}
+    \tag{12.4}
+\end{equation}
+
+\textbf{Система с переменным числом частиц} (постоянные $T$, $V$, $\mu$):
+\begin{equation}
+    \boxed{w = C \exp(-\Delta\Omega/kT)}
+    \tag{12.5}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Общая формула для вероятности флуктуаций}
+
+\begin{equation}
+    \boxed{w = C \exp\left(\frac{\Delta p \Delta V - \Delta\mu \Delta N - \Delta T \Delta S}{2kT}\right)}
+    \tag{12.6}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Флуктуации энергии}
+
+\begin{equation}
+    \boxed{kT^2 \left(\frac{\partial U}{\partial T}\right)_{V,N} = \overline{H^2} - \bar{U}^2}
+    \tag{12.7}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Флуктуации числа частиц}
+
+Среднее число частиц:
+\begin{equation}
+    \boxed{\bar{N} = \frac{kT}{\tilde{Z}_2} \frac{\partial \tilde{Z}_2}{\partial \mu}}
+    \tag{12.8}
+\end{equation}
+
+Среднее квадрата числа частиц:
+\begin{equation}
+    \boxed{\overline{N^2} = \frac{(kT)^2}{\tilde{Z}_2} \frac{\partial^2 \tilde{Z}_2}{\partial \mu^2}}
+    \tag{12.9}
+\end{equation}
+
+\textbf{Дисперсия числа частиц:}
+\begin{equation}
+    \boxed{(\Delta N)^2 = \overline{N^2} - (\bar{N})^2 = kT \left(\frac{\partial \bar{N}}{\partial \mu}\right)_{T,V}}
+    \tag{12.10}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Корреляция энергии и числа частиц}
+
+\begin{equation}
+    \boxed{\overline{\Delta N \Delta H} = kT^2 \left(\frac{\partial \bar{N}}{\partial T}\right)_{V,\mu} + kT\mu \left(\frac{\partial \bar{N}}{\partial \mu}\right)_{T,V}}
+    \tag{12.12}
+\end{equation}
+
+Эквивалентная форма:
+\begin{equation}
+    \boxed{\overline{\Delta N \Delta H} = (\Delta N)^2 \left(\frac{\partial U}{\partial N}\right)_{V,T}}
+    \tag{12.13}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Флуктуации температуры и объёма}
+
+При постоянном числе частиц из формулы (12.15):
+\begin{equation}
+    \boxed{w = C \exp\left(-\frac{(\partial S/\partial T)_V (\Delta T)^2 - (\partial p/\partial V)_T (\Delta V)^2}{2kT}\right)}
+    \tag{12.15}
+\end{equation}
+
+Следствия:
+\begin{equation}
+    \boxed{(\Delta T)^2 = kT \left(\frac{\partial T}{\partial S}\right)_V = \frac{kT^2}{\tilde{C}_V}}
+\end{equation}
+
+\begin{equation}
+    \boxed{(\Delta V)^2 = -kT \left(\frac{\partial V}{\partial p}\right)_T}
+\end{equation}
+
+\begin{equation}
+    \boxed{\overline{\Delta T \Delta V} = 0}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Дисперсия внутренней энергии}
+
+\begin{equation}
+    \boxed{(\Delta U)^2 = kT \left[\left(\frac{\partial U}{\partial T}\right)_V^2 \left(\frac{\partial T}{\partial S}\right)_{V,N} - \left(\frac{\partial p}{\partial V}\right)_{T,N} \left(\frac{\partial U}{\partial V}\right)_T^2\right]}
+    \tag{12.16}
+\end{equation}
+
+%═══════════════════════════════════════════════════════════════════
+\section{Полезные соотношения из примеров}
+%═══════════════════════════════════════════════════════════════════
+
+\subsection{Дисперсия объёма идеального газа}
+
+Для $N$ молекул под поршнем при давлении $p$ и температуре $T$:
+\begin{equation}
+    \boxed{(\Delta V)^2 = \frac{V^2}{N} = \frac{N(kT)^2}{p^2}}
+\end{equation}
+
+\subsection{Дисперсия числа частиц}
+
+Для системы с переменным числом частиц:
+\begin{equation}
+    \boxed{(\Delta N)^2 = kT \left(\frac{\partial N}{\partial \mu}\right)_{V,T}}
+\end{equation}
+
+\subsection{Дисперсия энергии идеального газа}
+
+Для одноатомного идеального газа из $N$ частиц:
+\begin{equation}
+    \boxed{(\Delta U)^2 = \frac{3N(kT)^2}{2}}
+\end{equation}
+
+\subsection{Корреляция числа частиц и энергии для идеального газа}
+
+Для идеального газа с $(\Delta N)^2 = \bar{N}$ и $U = 3kTN/2$:
+\begin{equation}
+    \boxed{\overline{\Delta N \Delta H} = \frac{3kT\bar{N}}{2}}
+\end{equation}
+
+\subsection{Относительные флуктуации}
+
+Для макроскопических систем ($N \sim 10^{23}$):
+\begin{equation}
+    \delta_B = \frac{\sigma_B}{\bar{B}} \sim \frac{1}{\sqrt{N}} \sim 10^{-12}
+\end{equation}
+
+Флуктуации пренебрежимо малы для макроскопических величин.
+
+\end{document}

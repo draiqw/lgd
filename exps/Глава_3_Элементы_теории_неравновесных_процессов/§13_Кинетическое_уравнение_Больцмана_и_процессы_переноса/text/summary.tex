@@ -1,0 +1,240 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T2A]{fontenc}
+\usepackage[russian]{babel}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{geometry}
+\geometry{margin=2cm}
+
+\title{\S 13. Кинетическое уравнение Больцмана и процессы переноса}
+\author{Конспект формул}
+\date{}
+
+\begin{document}
+\maketitle
+
+%═══════════════════════════════════════════════════════════════════
+\section{Краткая теория}
+%═══════════════════════════════════════════════════════════════════
+
+\subsection{$S$-частичные функции распределения}
+
+Для описания неравновесных систем используются функции распределения $w_S(x_1, \ldots, x_S, t)$, где $x_i = (\vec{r}_i, \vec{p}_i)$. Они связаны с $N$-частичной функцией распределения.
+
+\subsection{Процессы переноса}
+
+Необратимые процессы пространственного перераспределения вещества, импульса, энергии:
+\begin{itemize}
+    \item \textbf{Диффузия} --- перенос вещества
+    \item \textbf{Вязкость} --- перенос импульса
+    \item \textbf{Теплопроводность} --- перенос энергии
+\end{itemize}
+
+%═══════════════════════════════════════════════════════════════════
+\section{Основные формулы}
+%═══════════════════════════════════════════════════════════════════
+
+\subsection{$S$-частичная функция распределения}
+
+\begin{equation}
+    \boxed{w_S(x_1, \ldots, x_S, t) = V^S \int w_N(x_1, \ldots, x_N, t)\,dx_{S+1}\ldots dx_N}
+    \tag{13.1}
+\end{equation}
+
+\textbf{Условие нормировки:}
+\begin{equation}
+    \boxed{V^{-S} \int w_S(x_1, \ldots, x_S, t)\,dx_1\ldots dx_S = 1}
+    \tag{13.2}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Внутренняя энергия}
+
+\begin{multline}
+    \boxed{U(t) = \frac{N}{V}\int \frac{\vec{p}^2}{2m}w_1(\vec{r}, \vec{p}, t)\,d\vec{p}d\vec{r} + } \\
+    \boxed{+ \frac{N^2}{2V^2}\int \Phi(|\vec{r}_1 - \vec{r}_2|)w_2(\vec{r}_1, \vec{p}_1, \vec{r}_2, \vec{p}_2, t)\,d\vec{p}_1d\vec{r}_1d\vec{p}_2d\vec{r}_2}
+    \tag{13.3}
+\end{multline}
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Первое уравнение цепочки ББГКИ}
+
+\begin{multline}
+    \boxed{\left(\frac{\partial}{\partial t} + \frac{\vec{p}_1}{m}\frac{\partial}{\partial \vec{r}_1} - \frac{\partial U_0(\vec{r}_1)}{\partial \vec{r}_1}\frac{\partial}{\partial \vec{p}_1}\right)w_1(\vec{r}_1, \vec{p}_1, t) = } \\
+    \boxed{= \frac{N}{V}\int \frac{\partial\Phi(|\vec{r}_1 - \vec{r}_2|)}{\partial \vec{r}_1}\frac{\partial w_2}{\partial \vec{p}_1}\,d\vec{r}_2d\vec{p}_2}
+    \tag{13.4}
+\end{multline}
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Корреляционные функции}
+
+\begin{equation}
+    \boxed{g_2(x_1, x_2, t) = w_2(x_1, x_2, t) - w_1(x_1, t)w_1(x_2, t)}
+    \tag{13.6}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Кинетическое уравнение Больцмана}
+
+\begin{multline}
+    \boxed{\left(\frac{\partial}{\partial t} + \frac{\vec{p}_1}{m}\frac{\partial}{\partial \vec{r}_1} - \frac{\partial U_0(\vec{r}_1)}{\partial \vec{p}_1}\frac{\partial}{\partial \vec{p}_1}\right)w_1 = } \\
+    \boxed{= \frac{N}{mV}\int_0^\infty dp_2 \rho d\rho \int_0^{2\pi} d\varphi\,|\vec{p}_2 - \vec{p}_1|[w_1'w_1'' - w_1 w_1^{(2)}] \equiv I}
+    \tag{13.8}
+\end{multline}
+
+где $I$ --- интеграл столкновений в форме Н.Н. Боголюбова.
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Равновесное распределение Максвелла--Больцмана}
+
+\begin{equation}
+    \boxed{w_1^{(0)} = \frac{1}{(2\pi mkT)^{3/2}} \exp\left(-\frac{p^2/2m + U_0(\vec{r})}{kT}\right)\left(\int \exp\left(-\frac{U_0(\vec{r})}{kT}\right)d\vec{r}\right)^{-1}}
+    \tag{13.9}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Релаксационное приближение}
+
+\begin{equation}
+    \boxed{\left(\frac{\partial}{\partial t} + \frac{\vec{p}}{m}\frac{\partial}{\partial \vec{r}} - \frac{\partial U_0(\vec{r})}{\partial \vec{r}}\frac{\partial}{\partial \vec{p}}\right)w_1 = -\frac{w_1 - w_1^{(0)}}{\tau}}
+    \tag{13.10}
+\end{equation}
+
+где $\tau$ --- время релаксации.
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Уравнение диффузии}
+
+\textbf{Закон Фика:}
+\begin{equation}
+    \boxed{u(x, t)n(x, t) = -D\frac{\partial n}{\partial x}}
+    \tag{13.11}
+\end{equation}
+
+где $D$ --- коэффициент диффузии ($D \sim \bar{v}l$).
+
+\textbf{Уравнение диффузии:}
+\begin{equation}
+    \boxed{\frac{\partial n}{\partial t} = D\frac{\partial^2 n}{\partial x^2}}
+    \tag{13.12}
+\end{equation}
+
+\textbf{Решение для бесконечной среды:}
+\begin{equation}
+    \boxed{n(x, t) = (4\pi Dt)^{-1/2} \int_{-\infty}^{\infty} \tilde{n}(x')\exp\left[-\frac{(x - x')^2}{4Dt}\right]dx'}
+    \tag{13.13}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Вязкость}
+
+\begin{equation}
+    \boxed{f_y = -\eta\frac{\partial v_y}{\partial x}}
+    \tag{13.14}
+\end{equation}
+
+где $\eta$ --- коэффициент вязкости ($\eta \sim \bar{v}/\rho$).
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Теплопроводность}
+
+\textbf{Закон Фурье:}
+\begin{equation}
+    \boxed{J_x = -\kappa\frac{\partial T}{\partial x}}
+    \tag{13.15}
+\end{equation}
+
+где $\kappa$ --- коэффициент теплопроводности ($\kappa \sim \bar{v}/\rho c_v$).
+
+\textbf{Уравнение теплопроводности:}
+\begin{equation}
+    \boxed{c_v\rho\frac{\partial T}{\partial t} = \kappa\Delta T + q}
+    \tag{13.16}
+\end{equation}
+
+где $\Delta$ --- оператор Лапласа, $q(\vec{r}, t)$ --- плотность мощности тепловых источников.
+
+%═══════════════════════════════════════════════════════════════════
+\section{Полезные соотношения из примеров}
+%═══════════════════════════════════════════════════════════════════
+
+\subsection{Концентрация и плотность}
+
+\begin{equation}
+    \boxed{n(\vec{r}, t) = NV^{-1}\int w_1(\vec{r}, \vec{p}, t)\,d\vec{p}}
+    \tag{13.17}
+\end{equation}
+
+\begin{equation}
+    \boxed{\rho(\vec{r}, t) = mn(\vec{r}, t)}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Скорость упорядоченного движения}
+
+\begin{equation}
+    \boxed{m\vec{u}(\vec{r}, t)n(\vec{r}, t) = NV^{-1}\int \vec{p}\,w_1(\vec{r}, \vec{p}, t)\,d\vec{p}}
+    \tag{13.18}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Локальная температура}
+
+\begin{equation}
+    \boxed{\frac{3}{2}n(\vec{r}, t)kT(\vec{r}, t) = \frac{mN}{2V}\int\left[\frac{\vec{p}}{m} - u(\vec{r}, t)\right]^2 w_1(\vec{r}, \vec{p}, t)\,d\vec{p}}
+    \tag{13.19}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Среднее время между столкновениями}
+
+Для молекул-шариков диаметра $\sigma$:
+\begin{equation}
+    \boxed{l_0 = \frac{1}{\pi\sigma^2 n}}
+\end{equation}
+
+\begin{equation}
+    \boxed{\tau_0 = \frac{l_0}{v_0} = \sqrt{\frac{m}{8\pi kT\sigma^4 n^2}}}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsection{H-теорема Больцмана}
+
+Энтропия Больцмана:
+\begin{equation}
+    \boxed{S_1 = -k\int w_1(\vec{r}, \vec{p}, t)\ln w_1(\vec{r}, \vec{p}, t)\,d\vec{r}d\vec{p}}
+\end{equation}
+
+\textbf{H-теорема:}
+\begin{equation}
+    \boxed{\frac{dS_1}{dt} \geq 0}
+\end{equation}
+
+Энтропия замкнутой системы возрастает или остаётся постоянной.
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Коэффициент диффузии}
+
+Из релаксационного приближения:
+\begin{equation}
+    \boxed{D = \frac{\tau kT}{m}}
+    \tag{13.23}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Поток тепла вдоль стержня}
+
+Для стержня длиной $L$:
+\begin{equation}
+    \boxed{J_x = -\kappa\frac{\partial T}{\partial x} = \frac{T_2(t) - T_1(t)}{L}}
+    \tag{13.24}
+\end{equation}
+
+%───────────────────────────────────────────────────────────────────
+\subsection{Выравнивание температур двух сосудов}
+
+\begin{equation}
+    \boxed{T_2(t) - T_1(t) = (T_{20} - T_{10})\exp\left[-\frac{\kappa St}{L}\left(\frac{1}{c_1m_1} + \frac{1}{c_2m_2}\right)\right]}
+\end{equation}
+
+\end{document}
